@@ -56,6 +56,7 @@ dashboard.new(
       query='max(imap_nb_unread_messages_in_mailbox{environment=~"$environment"})',
       interval='1m',
       intervalFactor=2,
+      legendFormat='Count',
       yAxisLabel='',
       legend_show=true,
       linewidth=2
