@@ -25,6 +25,7 @@ dashboard.new(
     'Deployment',
     'gitlab-mailroom,',
     'gitlab-mailroom',
+    hide='variable',
   )
 )
 .addPanel(
