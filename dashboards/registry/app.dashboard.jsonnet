@@ -25,6 +25,7 @@ dashboard.new(
     'Deployment',
     'gitlab-registry,',
     'gitlab-registry',
+    hide='variable',
   )
 )
 .addPanel(
