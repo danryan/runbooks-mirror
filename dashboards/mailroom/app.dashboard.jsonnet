@@ -20,7 +20,7 @@ dashboard.new(
 .addTemplate(templates.ds)
 .addTemplate(templates.environment)
 .addTemplate(templates.gkeCluster)
-.addTemplate(templates.namespace)
+.addTemplate(templates.namespaceGitlab)
 .addTemplate(
   template.custom(
     'Deployment',
