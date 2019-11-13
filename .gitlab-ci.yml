@@ -121,6 +121,19 @@ update_elastic_dashboards:
     variables:
       - $ES_URL
 
+update_elastic_index_patterns:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-com/runbooks/runtools_build:latest
+  script:
+  - ./elastic/managed-objects/index-patterns/update-index-patterns.sh
+  only:
+    refs:
+      - master
+    changes:
+      - elastic/managed-objects/index-patterns/*
+    variables:
+      - $ES_URL
+
 update_elastic_searches:
   stage: deploy
   image: registry.gitlab.com/gitlab-com/runbooks/runtools_build:latest
