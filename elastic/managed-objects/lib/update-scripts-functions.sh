@@ -8,7 +8,7 @@ function es_client() {
 
 function execute_jsonnet() {
   # MARQUEE_CUSTOMERS_TOP_LEVEL_DOMAINS should be comma-delimited
-  jsonnet -J "${SCRIPT_DIR}" \
+  jsonnet -J "${SCRIPT_DIR}/../lib" \
     --ext-str "marquee_customers_top_level_domains=${MARQUEE_CUSTOMERS_TOP_LEVEL_DOMAINS:-}" \
     "$@"
 }
