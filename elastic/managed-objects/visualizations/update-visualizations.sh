@@ -5,6 +5,8 @@ IFS=$'\n\t'
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)"
 source "${SCRIPT_DIR}"/../lib/update-scripts-functions.sh
 
+# this script is not being used at the moment anyway, will review this when moving visualizations to this rep
+
 #visualization=$(curl --fail "$ES_URL/.kibana/visualization/AWxNxiqsysVgSEDmrJd1")
 #visualization_json=$(execute_jsonnet marquee-customers.jsonnet)
 #
