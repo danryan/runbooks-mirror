@@ -236,7 +236,7 @@ errorRatesPanel(serviceType, serviceStage, compact=false, includeLastWeek=true):
       ||| % formatConfig,
       legendFormat='last week',
     ) + {
-      [if !includeLastWeek then "hide"]: true
+      [if !includeLastWeek then 'hide']: true,
     }
   )
   .resetYaxes()
