@@ -17,15 +17,16 @@
   - [Purpose of each service](#purpose-of-each-service)
   - [Normal healthy interactions between these services](#normal-healthy-interactions-between-these-services)
   - [What *failure modes* are known, and what their symptoms look like](#what-failure-modes-are-known-and-what-their-symptoms-look-like)
-- [FAQ (more background info)](#faq-more-background-info)
+- [Details of how Patroni uses Consul](#details-of-how-patroni-uses-consul)
   - [What is Patroni's purpose?](#what-is-patronis-purpose)
   - [What is Consul's purpose?](#what-is-consuls-purpose)
   - [How and why does Patroni interact with Consul as a datastore?](#how-and-why-does-patroni-interact-with-consul-as-a-datastore)
   - [What is the difference between the Patroni leader and the Consul leader?](#what-is-the-difference-between-the-patroni-leader-and-the-consul-leader)
   - [Why use one database (Consul) to manage another database (Postgres)?](#why-use-one-database-consul-to-manage-another-database-postgres)
   - [How does Consul balance consistency versus availability?](#how-does-consul-balance-consistency-versus-availability)
-- [Details of how Patroni uses Consul](#details-of-how-patroni-uses-consul)
-  - [The Patroni "loop": How do Patroni's calls to Consul allow Patroni to decide which Postgres instance to treat as the primary db (and when to failover and promote a different Postgres instance to become primary)?](#the-patroni-loop-how-do-patronis-calls-to-consul-allow-patroni-to-decide-which-postgres-instance-to-treat-as-the-primary-db-and-when-to-failover-and-promote-a-different-postgres-instance-to-become-primary)
+  - [How do Patroni's calls to Consul let it decide when to failover?](#how-do-patronis-calls-to-consul-let-it-decide-when-to-failover)
+  - [What is Consul's `serfHealth` check, and how can it trigger a Patroni failover?](#what-is-consuls-serfhealth-check-and-how-can-it-trigger-a-patroni-failover)
+  - [What happens during a Patroni leader election?](#what-happens-during-a-patroni-leader-election)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -51,7 +52,7 @@ Here is a brief summary of how Postgres database access is supported by Patroni,
   * PgBouncer appears to be more CPU-efficient on dedicated VMs than when running on the primary db host.  We have a couple untested hypotheses as to why.
   * The primary db's PgBouncer VMs share a virtual IP address (a Google TCP Internal Load Balancer VIP).  That ILB VIP is what Consul advertises to database clients as the primary db IP.
 
-See [here](#background-details) and [here](#faq-more-background-info) for more details on the purpose, behaviors, and interactions of each service.
+See [here](#background-details) and [here](#details-of-how-patroni-uses-consul) for more details on the purpose, behaviors, and interactions of each service.
 
 
 ## Where do the components run?
@@ -422,13 +423,13 @@ $ gcloud --project='gitlab-production' compute instance-groups list | egrep 'NAM
 Describe those instance-groups.
 
 ```shell
-$ ( for ZONE in us-east1-{b,c,d} ; do export INSTANCE_GROUP="gprd-pgbouncer-${ZONE}" ; echo -e "\nInstance-group: ${INSTANCE_GROUP}" ; gcloud --project='gitlab-production' compute instance-groups describe "${INSTANCE_GROUP}" --zone="${ZONE}" ; done )
+$ ( for ZONE in us-east1-{b,c,d} ; do INSTANCE_GROUP="gprd-pgbouncer-${ZONE}" ; echo -e "\nInstance-group: ${INSTANCE_GROUP}" ; gcloud --project='gitlab-production' compute instance-groups describe "${INSTANCE_GROUP}" --zone="${ZONE}" ; done )
 ```
 
 List the instances in those instance-groups.
 
 ```shell
-$ ( for ZONE in us-east1-{b,c,d} ; do export INSTANCE_GROUP="gprd-pgbouncer-${ZONE}" ; echo -e "\nInstance-group: ${INSTANCE_GROUP}" ; gcloud --project='gitlab-production' compute instance-groups list-instances "${INSTANCE_GROUP}" --zone="${ZONE}" ; done )
+$ ( for ZONE in us-east1-{b,c,d} ; do INSTANCE_GROUP="gprd-pgbouncer-${ZONE}" ; echo -e "\nInstance-group: ${INSTANCE_GROUP}" ; gcloud --project='gitlab-production' compute instance-groups list-instances "${INSTANCE_GROUP}" --zone="${ZONE}" ; done )
 ```
 
 ## Background details
@@ -472,7 +473,7 @@ $ ( for ZONE in us-east1-{b,c,d} ; do export INSTANCE_GROUP="gprd-pgbouncer-${ZO
 * See #7790, maybe starting with some combination of the issue's description (especially its `Background` section?) and this [Concise summary of RCA so far](https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/7790#note_215232905).
 
 
-## FAQ (more background info)
+## Details of how Patroni uses Consul
 
 ### What is Patroni's purpose?
 
@@ -522,20 +523,33 @@ The Consul servers participate in a [strongly consistent consensus protocol (RAF
 
 Only the Consul servers participate as peers in the strongly-consistent RAFT protocol.  But all Consul agents participate in a [weakly-consistent gossip protocol (SERF)](https://www.consul.io/docs/internals/gossip.html).  This supports automatic node discovery and provides distributed node failure detection.
 
-
-## Details of how Patroni uses Consul
-
-### The Patroni "loop": How do Patroni's calls to Consul allow Patroni to decide which Postgres instance to treat as the primary db (and when to failover and promote a different Postgres instance to become primary)?
+### How do Patroni's calls to Consul let it decide when to failover?
 
 Each Patroni agent (whether replica or primary) periodically interacts with Consul to:
 * Fetch the most recently published status of its cluster peers.
 * Publish its own current state metadata.
 * Affirm its liveness by renewing its consul session (which quickly auto-expires without these renewals).
 
-If Patroni fails one of these REST calls to Consul agent, the failed call can be retried for up to its configured `retry_timeout` deadline (currently 10 seconds).  For the Patroni leader (i.e. the Patroni agent whose Postgres instance is currently the writable primary db), if that retry deadline is reached, Patroni will initiate failover by voluntarily releasing the Patroni cluster lock.
+If Patroni fails one of these REST calls to Consul agent, the failed call can be retried for up to its configured `retry_timeout` deadline (currently 30 seconds).  For the Patroni leader (i.e. the Patroni agent whose Postgres instance is currently the writable primary db), if that retry deadline is reached, Patroni will initiate failover by voluntarily releasing the Patroni cluster lock.
 
-Similarly, if the Patroni leader's loop takes long enough to complete that its consul session expires (TTL is currently 15 seconds), then it involuntarily loses the cluster lock, which also initiates failover.
+Similarly, if the Patroni leader's loop takes long enough to complete that its consul session expires (TTL is currently effectively 45 seconds), then it involuntarily loses the cluster lock, which also initiates failover.
 
-Another way for Patroni's leader to involuntarily lose its cluster lock is if Consul's "serfCheck" health check fails for that host's Consul agent.  SERF is Consul's gossip protocol.  It acts as a mechanism for automatic peer discovery and failure detection (as well as providing a medium for asynchronous eventually-consistent information sharing).  Every host running a Consul agent participates.  (The `gprd` environment runs 288 agents, as of 2019-09-04.)  Each of those agents intermittently tries to connect to a random subset of other agents, and if that attempt fails, it announces that target as being suspected of being down.  That agent has a limit window of time to actively refute that suspicion.  Meanwhile, other agents will "dogpile" on health-checking the suspected failed agent, and if they concur that the agent is down, the window for refutation shortens (to reduce time to detect a legitimate failure).  After the refutation window expires, the Consul server can mark that Consul agent as failed.  If that "serfCheck" failure designation is applied to the host that's currently the Patroni leader, then this immediately invalidates the Patroni agent's consul session (which, as described above is the mutex underlying the Patroni "cluster lock").  In summary, any host's consul agent can flag the Patroni leader's Consul agent as potentially down, and if it does not promptly refute that claim, Patroni will initiate a failover -- all because Consul's "serfCheck" healthiness is part of Patroni's contract for maintaining the validity of its consul session.
+### What is Consul's `serfHealth` check, and how can it trigger a Patroni failover?
 
-In any case, Patroni's leader election protocol allows a period of time for all replicas to catch up on any transaction data they had received but not yet applied, and at the end of the grace period, the freshest replica will be promoted to become the new primary.
+Another way for Patroni's leader to involuntarily lose its cluster lock is if Consul's `serfHealth` health check fails for that host's Consul agent.
+
+SERF is Consul's gossip protocol.  It acts as a mechanism for automatic peer discovery and failure detection (as well as providing a medium for asynchronous eventually-consistent information sharing).  Every host running a Consul agent participates.  Each of those agents intermittently tries to connect to a random subset of other agents, and if that attempt fails, it announces that target as being suspected of being down.  That agent has a limit window of time to actively refute that suspicion.  Meanwhile, other agents will "dogpile" on health-checking the suspected failed agent, and if they concur that the agent is down, the window for refutation shortens (to reduce time to detect a legitimate failure).  After the refutation window expires, the Consul server can mark that Consul agent as failed.
+
+If a Patroni node's Consul agent is marked by its peers as failing that `serfHealth` check, then this immediately invalidates the Patroni agent's consul session (which, as described above, acts as a mutex).  If that happens to the Patroni leader, it immediately loses the Patroni "cluster lock", triggering a Patroni failover.  In contrast, if `serfHealth` check fails for a non-leader Patroni node, it is merely excluded as a candidate for leader election until it establishes a new session (which typically happens seconds after network connectivity is restored).
+
+In summary, any host's consul agent can flag the Patroni leader's Consul agent as potentially down, and if it does not promptly refute that claim, Patroni will initiate a failover -- all because Consul's `serfHealth` check is part of Patroni's contract for maintaining the validity of its consul session.
+
+Because GCP network connectivity has proven to be intermittently unreliable, we are considering reconfiguring Patroni to ignore the `serfCheck`, so that its consul sessions would not be invalidated due to any one random VM in the environment having packet loss.  Pros and cons are described in [Issue 8050](https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/8050).
+
+### What happens during a Patroni leader election?
+
+Patroni's leader election protocol allows a period of time for all replicas to catch up on any transaction data from the old primary db that they had received but not yet applied.  During that period, each Patroni node frequently updates its state (e.g. xlog replay location), so its peers know who is the freshest.  At the end of the grace period, the freshest replica will be promoted to become the new primary.
+
+Patroni then helps each replica switch to the new primary's timeline, so they have a consistent point of divergence from the old primary's timeline and can safely apply transaction logs from the new primary.  If a replica fails to switch timelines for any reason, it is shutdown and removed from the list of replica dbs available for handling read-only queries.  (However, in this case the new primary db still needs to be manually told to stop retaining transaction logs for that dead replica.)
+
+Meanwhile, the dedicated PgBouncer instances frequently query Consul DNS for updates, so they quickly detect that Patroni has promoted a new Postgres instance to be the primary db.  PgBouncer discards any residual connections to the old primary db, opens connections to the new primary db, and starts mapping client queries to these new db connections.  Clients such as Rails instances remain connected to PgBouncer throughout this process.  Transactions that were in progress at the time the primary db failed (or was demoted) are aborted, and newer transactions fail until the new primary db is elected by Patroni and detected by PgBouncer.
