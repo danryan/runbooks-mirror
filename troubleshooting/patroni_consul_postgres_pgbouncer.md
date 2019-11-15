@@ -1,11 +1,16 @@
+## Table of Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [High-level summary](#high-level-summary)
+
+- [Quick orientation](#quick-orientation)
 - [Where do the components run?](#where-do-the-components-run)
 - [Links to external docs](#links-to-external-docs)
 - [Quick reference commands](#quick-reference-commands)
+  - [List of tools for working with these services](#list-of-tools-for-working-with-these-services)
+  - [PgBouncer](#pgbouncer)
+  - [Consul CLI](#consul-cli)
   - [Consul REST API: Commands to inspect/explore Patroni's state stored in Consul's key-value (KV) store](#consul-rest-api-commands-to-inspectexplore-patronis-state-stored-in-consuls-key-value-kv-store)
   - [Internal Loadbalancer (ILB)](#internal-loadbalancer-ilb)
 - [Background details](#background-details)
@@ -25,9 +30,11 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## High-level summary
+## Quick orientation
 
-Brief summary of how Postgres database access is supported by Patroni, Consul, PgBouncer, and our Rails app:
+What are these services, and how do they work together?
+
+Here is a brief summary of how Postgres database access is supported by Patroni, Consul, PgBouncer, and our Rails app:
 * Postgres is our relational database.
   * Currently we have 1 writable primary instance and several read-only replica instances of Postgres.
   * The replica dbs handle read-only queries and act as failover candidates in case the primary db becomes unavailable (e.g. unreachable, unresponsive) or concerned about possible split-brain (e.g. unable to see/update Patroni cluster state).
@@ -87,10 +94,190 @@ Notes about the ILB:
 ## Quick reference commands
 
 
+### List of tools for working with these services
+
+* `gitlab-psql`: Wrapper for generic `psql`, authenticating and connecting to the local Postgres instance as a superuser.
+* `gitlab-patronictl`: Wrapper for generic `patronictl`, authenticating and connecting to the local Patroni agent.
+* `pgb-console`, `pgb-console-1`, `pgb-console-2`: Wrapper for generic `psql`, authenticating and connecting to each of the local PgBouncer instances on their distinctive ports.  This allows running [PgBouncer's Admin Console commands](https://www.pgbouncer.org/usage.html#admin-console) like `SHOW HELP`, `SHOW STATS`, `RELOAD`, etc.
+* `consul`: Consul CLI tool, for querying or modifying Consul from any host running a Consul agent.
+
+
+### PgBouncer
+
+All Patroni hosts are running local PgBouncer instances, including whichever host is currently the Patroni leader and primary Postgres db.  The PgBouncers on the primary db are idle, since we route its traffic through the dedicated PgBouncer hosts.
+
+The same `pgb-console` script exists on the dedicated PgBouncer hosts used for routing traffic to the primary db.
+
+**Note:** The mechanism for taking a PgBouncer out of service for maintenance is different for dedicated PgBouncer hosts than for a PgBouncer instance on a Patroni host.
+
+List the PgBouncer processes.
+
+```shell
+$ pgrep -a -f '/usr/local/bin/pgbouncer'
+
+$ pgrep -f '/usr/local/bin/pgbouncer' | xargs -r ps uwf
+```
+
+Each PgBouncer runs on a different TCP port and has its own script to connect to its Admin Console.
+
+```shell
+$ ls -1 /usr/local/bin/pgb-console*
+/usr/local/bin/pgb-console
+/usr/local/bin/pgb-console-1
+/usr/local/bin/pgb-console-2
+```
+
+Connect to Admin Console for each of the PgBouncer instances.  This puts you in an interactive `psql` session, where you can run [PgBouncer commands](https://www.pgbouncer.org/usage.html#admin-console) like `SHOW HELP`, `SHOW POOLS`, `SHOW CLIENTS`, `SHOW SERVERS`, etc.
+
+**Note:** You can also use any `psql` options on the command-line or psql meta-commands in the interactive shell (e.g. `\pset pager off`, `\x`).
+
+```shell
+$ sudo pgb-console
+$ sudo pgb-console-1
+$ sudo pgb-console-2
+```
+
+In an interactive session, show the PgBouncer configuration (`conffile`, `listen_port`, `max_client_conn`, `client_idle_timeout`, `server_lifetime`, `server_reset_query`, etc.).
+
+```shell
+pgbouncer=# SHOW CONFIG ;
+```
+
+For each PgBouncer instance, show a summary of each connection pool, including:
+* `cl_active`: number of clients that are linked to a db server connection and can process queries
+* `cl_waiting`: number of clients who have sent queries but are waiting for a db server connection to become available
+* `sv_active`: number of db server connections linked to a client
+* `sv_idle`: number of db server connections that are unused and immediately available for clients
+* `sv_used` (unintuitive): number of db server connections that have been idle for more than `server_check_delay`, so they need `server_check_query` to run on them before they can be used again
+
+```shell
+$ for console in /usr/local/bin/pgb-console* ; do sudo $console -c 'SHOW POOLS' | cat ; done
+```
+
+For each PgBouncer instance, list the configured databases and their pool size limits.
+
+```shell
+$ for console in /usr/local/bin/pgb-console* ; do sudo $console -c 'SHOW DATABASES' | cat ; done
+```
+
+List connections from each PgBouncer instance to the local Postgres database instance.
+
+```shell
+$ for console in /usr/local/bin/pgb-console* ; do sudo $console -c 'SHOW SERVERS' | cat ; done
+```
+
+List connections from clients to each PgBouncer instance.
+
+```shell
+$ for console in /usr/local/bin/pgb-console* ; do sudo $console -c 'SHOW CLIENTS' | cat ; done
+```
+
+### Consul CLI
+
+Consul queries and operations can mostly be done via either the `consul` CLI tool or the consul agent's HTTP REST interface (TCP port 8500).
+All of these Consul queries can be run from *any* host running a Consul agent in the environment you want to inspect (e.g. `gprd`, `gstg`, etc.).
+It does not have to be a Patroni host, because all Consul agents participating in the same gossip membership list can also make RPC calls to the Consul servers.
+
+Get help with the `consul` CLI tool's commands and subcommands.
+
+```shell
+$ consul help
+$ consul operator --help
+$ consul kv --help
+$ consul kv get --help
+```
+
+Summarize generic status info for the local host's Consul agent.
+
+```shell
+$ consul info
+```
+
+Show the list of Consul servers, and indicate which one is currently the Consul leader.
+
+```shell
+$ consul operator raft list-peers
+```
+
+Show all KV records, including their metadata and base64-encoded values.
+
+```shell
+$ consul kv export
+```
+
+List all key names in the KV store.
+
+```shell
+$ consul kv export | jq '.[].key'
+```
+
+Show the values of all keys having prefix "service/pg-ha-cluster".  Output values are automatically decoded from base64.
+
+```shell
+$ consul kv get -recurse 'service/pg-ha-cluster'
+```
+
+Show a single KV record's value, with and without metadata.  Many of Patroni's KV record values are JSON, so piping the raw value to `jq` is sometimes more readable.
+
+```shell
+$ consul kv get -detailed 'service/pg-ha-cluster/config'
+$ consul kv get 'service/pg-ha-cluster/config'
+$ consul kv get 'service/pg-ha-cluster/config' | jq
+```
+
+Show the latest Patroni state self-published by each Patroni node through its Consul agent.
+
+```shell
+$ consul kv get -recurse -keys 'service/pg-ha-cluster/members/' | xargs -i consul kv get {} | jq -S
+```
+
+List all nodes running a Consul agent in this environment.
+
+**Note:** Currently we run all Consul agents as though they were in the same datacenter (i.e. the same "Serf LAN").  Consul expects each "datacenter" to have its own set of Consul servers, with loose coupling between datacenters.  But the Consul servers in each datacenter would maintain state separately.  If we used "Serf WAN" to connect multiple regions, this command's output would only include Consul agents in this host's region (i.e. the Consul agents bound to this region's set of Consul servers).
+
+```shell
+$ consul members
+$ consul catalog nodes
+```
+
+List all service names registered to Consul.
+
+```shell
+$ consul catalog services
+```
+
+List all nodes associated with a specific registered service.  (Service names are listed by `consul catalog services`.)
+
+```shell
+$ consul catalog nodes -service=patroni
+$ consul catalog nodes -service=db-replica
+```
+
+List all services registered by a specific node.  (Node names are listed by `consul catalog nodes`.)
+
+```shell
+$ consul catalog services -node=patroni-01-db-gprd
+```
+
+Put the local Consul agent (or a specific service it provides) into maintenance mode.  This is comparable to failing a health check for the node or service.
+
+**Warning:** This state *persists* across agent restarts.  If maint mode is enabled, it must later be manually disabled.
+
+```shell
+$ consul maint -help
+$ consul maint
+$ consul maint -enable -reason 'Optional comment explaining why this node is being taken down'
+$ consul maint -disable
+```
+
+
 ### Consul REST API: Commands to inspect/explore Patroni's state stored in Consul's key-value (KV) store
 
-Note that all of these commands can be run from *any* host running a Consul agent in the environment you want to inspect (e.g. `gprd`, `gstg`, etc.).
-It does not have to be a Patroni host, because all Consul agents participating in the same gossip membership list can make Consul RPC calls.
+Consul queries and operations can mostly be done via either the `consul` CLI tool or the consul agent's HTTP REST interface (TCP port 8500).
+All of these Consul queries can be run from *any* host running a Consul agent in the environment you want to inspect (e.g. `gprd`, `gstg`, etc.).
+It does not have to be a Patroni host, because all Consul agents participating in the same gossip membership list can also make RPC calls to the Consul servers.
+
+Patroni uses the HTTP REST interface to interact with Consul agent.  To see these calls, run a packet capture of TCP port 8500 on the loopback interface.
 
 Who is the current Patroni leader for the Patroni cluster named "pg-ha-cluster"?
 
