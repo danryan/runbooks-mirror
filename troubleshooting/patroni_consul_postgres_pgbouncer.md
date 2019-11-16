@@ -27,6 +27,8 @@
   - [How do Patroni's calls to Consul let it decide when to failover?](#how-do-patronis-calls-to-consul-let-it-decide-when-to-failover)
   - [What is Consul's `serfHealth` check, and how can it trigger a Patroni failover?](#what-is-consuls-serfhealth-check-and-how-can-it-trigger-a-patroni-failover)
   - [What happens during a Patroni leader election?](#what-happens-during-a-patroni-leader-election)
+  - [Define the relationship between Patroni settings `ttl`, `loop_wait`, and `retry_timeout`](#define-the-relationship-between-patroni-settings-ttl-loop_wait-and-retry_timeout)
+  - [Why is Patroni's actual TTL half of its configured value?](#why-is-patronis-actual-ttl-half-of-its-configured-value)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -192,6 +194,12 @@ Summarize generic status info for the local host's Consul agent.
 
 ```shell
 $ consul info
+```
+
+Tail the logs from the consul agent.  Ctrl-C to stop following.
+
+```shell
+$ consul monitor
 ```
 
 Show the list of Consul servers, and indicate which one is currently the Consul leader.
@@ -475,15 +483,18 @@ $ ( for ZONE in us-east1-{b,c,d} ; do INSTANCE_GROUP="gprd-pgbouncer-${ZONE}" ; 
 
 ## Details of how Patroni uses Consul
 
+
 ### What is Patroni's purpose?
 
 Patroni's job is to provide high availability for Postgres by automatically detecting node failure, promoting a replica to become the new writable primary, and coordinating the switchover for all other replicas to start following transactions from the new primary once they reach the point of divergence between the old and new primary's timelines.
+
 
 ### What is Consul's purpose?
 
 Consul has 2 primary jobs:
 * Store Patroni's state data in a highly-available distributed datastore.
 * Advertise via DNS to database clients how to connect to a primary or replica database.
+
 
 ### How and why does Patroni interact with Consul as a datastore?
 
@@ -499,11 +510,13 @@ Patroni stores several kinds of data in its DCS (Consul), such as:
 
 The Consul agent does not locally cache any of the above data.  Every time the Patroni agent asks the local Consul agent to read or write this data, the Consul agent must synchronously make RPC calls to a Consul server.  The Patroni agent's REST call to the Consul agent can timeout or fail if Consul agent's RPC call to Consul server stalls or fails.  (This has proven to be a common failure mode on GCP due to transient network connectivity loss.)
 
+
 ### What is the difference between the Patroni leader and the Consul leader?
 
 The Patroni leader is the Patroni agent corresponding to the writable Postgres database (a.k.a. the primary Postgres db).  All other Patroni nodes correspond to read-only replica Postgres databases that asynchronously replay transaction logs received from the primary Postgres database.
 
 The Consul leader is whichever one of the Consul servers is currently accepting writes.  Consul has its own internal leader-election process, independent of Patroni.
+
 
 ### Why use one database (Consul) to manage another database (Postgres)?
 
@@ -512,6 +525,7 @@ Patroni uses Consul to provide high availability to Postgres through automated f
 Postgres and Consul are both databases, but they have different strengths and weaknesses.  Consul excels at storing a small amount of data, providing strong consistency guarantees while tolerating the loss of potentially multiple replicas.  But Consul is not designed to handle a high write rate, and it provides just basic key-value storage.  In contrast, Postgres is a much more featureful relational database and supports many concurrent writers.  While Postgres natively provides replication, it does not natively provide an automated failover mechanism.
 
 For Patroni to provide high availability (automated failover) to Postgres, it needs all Patroni agents to have a consistent view of the Patroni cluster state (i.e. who is the current leader, how stale is each replica, etc.).  Patroni stores that state in its DCS (which for us is Consul), with the expectation that writes are durable and reads are strongly consistent.
+
 
 ### How does Consul balance consistency versus availability?
 
@@ -523,6 +537,7 @@ The Consul servers participate in a [strongly consistent consensus protocol (RAF
 
 Only the Consul servers participate as peers in the strongly-consistent RAFT protocol.  But all Consul agents participate in a [weakly-consistent gossip protocol (SERF)](https://www.consul.io/docs/internals/gossip.html).  This supports automatic node discovery and provides distributed node failure detection.
 
+
 ### How do Patroni's calls to Consul let it decide when to failover?
 
 Each Patroni agent (whether replica or primary) periodically interacts with Consul to:
@@ -533,6 +548,7 @@ Each Patroni agent (whether replica or primary) periodically interacts with Cons
 If Patroni fails one of these REST calls to Consul agent, the failed call can be retried for up to its configured `retry_timeout` deadline (currently 30 seconds).  For the Patroni leader (i.e. the Patroni agent whose Postgres instance is currently the writable primary db), if that retry deadline is reached, Patroni will initiate failover by voluntarily releasing the Patroni cluster lock.
 
 Similarly, if the Patroni leader's loop takes long enough to complete that its consul session expires (TTL is currently effectively 45 seconds), then it involuntarily loses the cluster lock, which also initiates failover.
+
 
 ### What is Consul's `serfHealth` check, and how can it trigger a Patroni failover?
 
@@ -546,6 +562,7 @@ In summary, any host's consul agent can flag the Patroni leader's Consul agent a
 
 Because GCP network connectivity has proven to be intermittently unreliable, we are considering reconfiguring Patroni to ignore the `serfCheck`, so that its consul sessions would not be invalidated due to any one random VM in the environment having packet loss.  Pros and cons are described in [Issue 8050](https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/8050).
 
+
 ### What happens during a Patroni leader election?
 
 Patroni's leader election protocol allows a period of time for all replicas to catch up on any transaction data from the old primary db that they had received but not yet applied.  During that period, each Patroni node frequently updates its state (e.g. xlog replay location), so its peers know who is the freshest.  At the end of the grace period, the freshest replica will be promoted to become the new primary.
@@ -553,3 +570,50 @@ Patroni's leader election protocol allows a period of time for all replicas to c
 Patroni then helps each replica switch to the new primary's timeline, so they have a consistent point of divergence from the old primary's timeline and can safely apply transaction logs from the new primary.  If a replica fails to switch timelines for any reason, it is shutdown and removed from the list of replica dbs available for handling read-only queries.  (However, in this case the new primary db still needs to be manually told to stop retaining transaction logs for that dead replica.)
 
 Meanwhile, the dedicated PgBouncer instances frequently query Consul DNS for updates, so they quickly detect that Patroni has promoted a new Postgres instance to be the primary db.  PgBouncer discards any residual connections to the old primary db, opens connections to the new primary db, and starts mapping client queries to these new db connections.  Clients such as Rails instances remain connected to PgBouncer throughout this process.  Transactions that were in progress at the time the primary db failed (or was demoted) are aborted, and newer transactions fail until the new primary db is elected by Patroni and detected by PgBouncer.
+
+
+### Define the relationship between Patroni settings `ttl`, `loop_wait`, and `retry_timeout`
+
+The [Patroni documentation](https://patroni.readthedocs.io/en/release-1.6.0/SETTINGS.html#bootstrap-configuration) is vague about how these 3 settings are used and how to tune them:
+
+> * `loop_wait`: the number of seconds the loop will sleep. Default value: 10
+> * `ttl`: the TTL to acquire the leader lock. Think of it as the length of time before initiation of the automatic failover process. Default value: 30
+> * `retry_timeout`: timeout for DCS and PostgreSQL operation retries. DCS or network issues shorter than this will not cause Patroni to demote the leader. Default value: 10
+
+The following more detailed description is based on review of the [Patroni 1.6.0 source code](https://github.com/zalando/patroni/tree/v1.6.0), specifically focusing on the [generic DCS code](https://github.com/zalando/patroni/blob/v1.6.0/patroni/dcs/__init__.py) and the [Consul-specific code](https://github.com/zalando/patroni/blob/v1.6.0/patroni/dcs/consul.py).
+
+* `loop_wait` (seconds): The minimum delay the Patroni agent waits between attempts to renew the TTL of its consul session.  The consul session of the Patroni leader is effectively the leader lock; if the leader's consul session expires, the `services/[cluster_name]/leader` record will be deleted by the Consul server, and surviving Patroni agents will initiate a leader election.
+* `ttl` (seconds): Effectively the TTL of the leader lock.  Technically every Patroni agent has a consul session with this TTL.  If the leader's consul session expires, the leader lock is released (i.e. the Consul KV revord named `services/[cluster_name]/leader` is automatically deleted), which surviving Patroni agents detect, initiating leader election.  If a non-leader Patroni node's consul session expires, it cannot publish status updates or participate in leader elections until it creates a new consul session.  All Patroni agents try to renew the TTL on their consul sessions approximately every `loop_wait` seconds, but only the leader's session expiry can cause failover.
+* `retry_timeout` (seconds): The cumulative max duration of all tries of any *single* operation (e.g. a single REST operation to Consul can be retried for up to `retry_timeout` seconds.)  A typical healthy Patroni loop makes 3-4 REST calls to Consul.  If more than one is affected by slowness, the TTL could expire before Patroni issues the REST call to renew it.  In the Consul-specific Patroni code, each of 3 attempts at a REST HTTP call to Consul agent gets 1/3 of this `retry_timeout` budget.  (The [Retry object's overall deadline](https://github.com/zalando/patroni/blob/v1.6.0/patroni/dcs/consul.py#L185) is `retry_timeout`, and it wraps the [HTTP client object whose `read_timeout` is set to 1/3 of that value](https://github.com/zalando/patroni/blob/v1.6.0/patroni/dcs/consul.py#L61).)  Only the last of 3 failed attempts is logged, which is why its log message shows the HTTP timeout as being 1/3 of this configured value.
+
+When adjusting these 3 settings, for the timeouts to work properly:
+* `ttl` must be at least `loop_wait` + `retry_timeout`.  Otherwise the leader lock will implicitly expire either between renewal attempts or before a stalled DCS operation reaches its `retry_timeout`.
+* `ttl` being comfortably larger than this makes it tolerate multiple slow calls to Consul.
+* The default settings are equivalent to: `ttl` = `loop_wait` + 2 * `retry_timeout`
+
+
+### Why is Patroni's actual TTL half of its configured value?
+
+Surprisingly, Patroni [silently halves the configured `ttl` setting](https://github.com/zalando/patroni/blob/v1.6.0/patroni/dcs/consul.py#L245), because it expects Consul to silently double it.
+
+```python
+    def set_ttl(self, ttl):
+        if self._client.http.set_ttl(ttl/2.0):  # Consul multiplies the TTL by 2x
+        ...
+```
+
+Example: The default `ttl` is 30 seconds, but the actual consul session's TTL is really set to 15 seconds:
+
+```shell
+$ consul kv get service/pg-ha-cluster/config | jq -c '. | { ttl }'
+{"ttl":30}
+
+$ curl -s http://127.0.0.1:8500/v1/session/node/$( hostname -s ) | jq -c '.[] | { TTL }'
+{"TTL":"15.0s"}
+```
+
+This hard-coded behavior may be helpful in environments that prefer a very strict TTL, typically with very small value -- in other words, environments that prefer to failover spuriously rather than waiting a little longer to see if the triggering condition was ephemeral or a false alarm.  The [Consul documentation](https://www.consul.io/docs/internals/sessions.html#session-design) also describes its TTL support as following a lazy expiry policy, but it does not claim any divide-by-two logic.  Rather it states the session TTL is a lower bound (not an upper bound) for when the Consul server will actually delete/release an expired session:
+
+> When creating a session, a TTL can be specified. If the TTL interval expires without being renewed, the session has expired and an invalidation is triggered. [...] The contract of a TTL is that it represents a *lower bound for invalidation*; that is, Consul will not expire the session before the TTL is reached, but it is allowed to delay the expiration past the TTL.
+
+So we should be aware that whatever value we set in Patroni's DCS ttl config, **Consul is being told half of that value**.  Despite the heuristic testing done 2 years ago when that divide-by-two logic was added to the Patroni code, a strict interpretation of the Consul docs suggests the session *could be expired as early as half* the time we specify in the Patroni `ttl` config.
