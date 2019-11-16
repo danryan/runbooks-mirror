@@ -16,7 +16,6 @@
 - [Background details](#background-details)
   - [Purpose of each service](#purpose-of-each-service)
   - [Normal healthy interactions between these services](#normal-healthy-interactions-between-these-services)
-  - [What *failure modes* are known, and what their symptoms look like](#what-failure-modes-are-known-and-what-their-symptoms-look-like)
 - [Details of how Patroni uses Consul](#details-of-how-patroni-uses-consul)
   - [What is Patroni's purpose?](#what-is-patronis-purpose)
   - [What is Consul's purpose?](#what-is-consuls-purpose)
@@ -29,6 +28,9 @@
   - [What happens during a Patroni leader election?](#what-happens-during-a-patroni-leader-election)
   - [Define the relationship between Patroni settings `ttl`, `loop_wait`, and `retry_timeout`](#define-the-relationship-between-patroni-settings-ttl-loop_wait-and-retry_timeout)
   - [Why is Patroni's actual TTL half of its configured value?](#why-is-patronis-actual-ttl-half-of-its-configured-value)
+- [Known failure modes](#known-failure-modes)
+  - [What specific network paths can trigger Patroni failover if they become lossy?](#what-specific-network-paths-can-trigger-patroni-failover-if-they-become-lossy)
+  - [Dedicated PgBouncer hosts can develop a very uneven distribution of client connections after maintenance or restart events](#dedicated-pgbouncer-hosts-can-develop-a-very-uneven-distribution-of-client-connections-after-maintenance-or-restart-events)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -476,11 +478,6 @@ $ ( for ZONE in us-east1-{b,c,d} ; do INSTANCE_GROUP="gprd-pgbouncer-${ZONE}" ; 
   * If Consul's list of available dbs changes, our Rails app updates its internal database connection pool accordingly.
 
 
-### What *failure modes* are known, and what their symptoms look like
-
-* See #7790, maybe starting with some combination of the issue's description (especially its `Background` section?) and this [Concise summary of RCA so far](https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/7790#note_215232905).
-
-
 ## Details of how Patroni uses Consul
 
 
@@ -617,3 +614,18 @@ This hard-coded behavior may be helpful in environments that prefer a very stric
 > When creating a session, a TTL can be specified. If the TTL interval expires without being renewed, the session has expired and an invalidation is triggered. [...] The contract of a TTL is that it represents a *lower bound for invalidation*; that is, Consul will not expire the session before the TTL is reached, but it is allowed to delay the expiration past the TTL.
 
 So we should be aware that whatever value we set in Patroni's DCS ttl config, **Consul is being told half of that value**.  Despite the heuristic testing done 2 years ago when that divide-by-two logic was added to the Patroni code, a strict interpretation of the Consul docs suggests the session *could be expired as early as half* the time we specify in the Patroni `ttl` config.
+
+
+## Known failure modes
+
+The following lists some selected illustrative failure patterns and what their symptoms look like.
+
+
+### What specific network paths can trigger Patroni failover if they become lossy?
+
+See: ["Concise summary of RCA" comment on issue "Why are patroni failovers occurring so often?"](https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/7790#note_215232905)
+
+
+### Dedicated PgBouncer hosts can develop a very uneven distribution of client connections after maintenance or restart events
+
+See: [Why do the PgBouncer hosts have a very uneven distribution of client connections?](https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/7440)
