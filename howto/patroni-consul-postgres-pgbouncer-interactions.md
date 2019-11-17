@@ -25,6 +25,7 @@
   - [How does Consul balance consistency versus availability?](#how-does-consul-balance-consistency-versus-availability)
   - [How do Patroni's calls to Consul let it decide when to failover?](#how-do-patronis-calls-to-consul-let-it-decide-when-to-failover)
   - [What is Consul's `serfHealth` check, and how can it trigger a Patroni failover?](#what-is-consuls-serfhealth-check-and-how-can-it-trigger-a-patroni-failover)
+  - [How does `serfHealth` work?](#how-does-serfhealth-work)
   - [What happens during a Patroni leader election?](#what-happens-during-a-patroni-leader-election)
   - [Define the relationship between Patroni settings `ttl`, `loop_wait`, and `retry_timeout`](#define-the-relationship-between-patroni-settings-ttl-loop_wait-and-retry_timeout)
   - [Why is Patroni's actual TTL half of its configured value?](#why-is-patronis-actual-ttl-half-of-its-configured-value)
@@ -551,13 +552,47 @@ Similarly, if the Patroni leader's loop takes long enough to complete that its c
 
 Another way for Patroni's leader to involuntarily lose its cluster lock is if Consul's `serfHealth` health check fails for that host's Consul agent.
 
-SERF is Consul's gossip protocol.  It acts as a mechanism for automatic peer discovery and failure detection (as well as providing a medium for asynchronous eventually-consistent information sharing).  Every host running a Consul agent participates.  Each of those agents intermittently tries to connect to a random subset of other agents, and if that attempt fails, it announces that target as being suspected of being down.  That agent has a limit window of time to actively refute that suspicion.  Meanwhile, other agents will "dogpile" on health-checking the suspected failed agent, and if they concur that the agent is down, the window for refutation shortens (to reduce time to detect a legitimate failure).  After the refutation window expires, the Consul server can mark that Consul agent as failed.
+[Consul uses Serf as its gossip protocol](https://www.consul.io/docs/internals/gossip.html).  In addition to being a medium for asynchronous eventually-consistent information sharing, Serf also provides Consul's mechanism for node failure detection.  Every host running a Consul agent participates in Serf gossip traffic, including its liveness probe: `serfHealth` ([also called `SerfCheck`](https://github.com/hashicorp/consul/blob/v1.5.1/agent/structs/catalog.go#L7)).  Each Consul agent intermittently tries to connect to a random subset of other agents, and if that attempt fails, it announces that target as being suspected of being down.  The suspected-down agent has a limit window of time to actively refute that suspicion.  Meanwhile, other agents will "dogpile" on health-checking the suspected-down agent, and if they concur that the agent is unresponsive, the window for refutation shortens (to reduce time to detect a legitimate failure).  After the refutation window expires, the Consul server can mark that Consul agent as failed.  When the problem is resolved (e.g. agent restarted, network connectivity restored), the failed Consul agent automatically rejoins by contacting the Consul server.
 
 If a Patroni node's Consul agent is marked by its peers as failing that `serfHealth` check, then this immediately invalidates the Patroni agent's consul session (which, as described above, acts as a mutex).  If that happens to the Patroni leader, it immediately loses the Patroni "cluster lock", triggering a Patroni failover.  In contrast, if `serfHealth` check fails for a non-leader Patroni node, it is merely excluded as a candidate for leader election until it establishes a new session (which typically happens seconds after network connectivity is restored).
 
-In summary, any host's consul agent can flag the Patroni leader's Consul agent as potentially down, and if it does not promptly refute that claim, Patroni will initiate a failover -- all because Consul's `serfHealth` check is part of Patroni's contract for maintaining the validity of its consul session.
+In summary, any host's Consul agent can flag the Patroni leader's Consul agent as potentially down, and if it does not promptly refute that claim, Patroni will initiate a failover -- all because Consul's `serfHealth` check is part of Patroni's contract for maintaining the validity of its consul session.
 
 Because GCP network connectivity has proven to be intermittently unreliable, we are considering reconfiguring Patroni to ignore the `serfCheck`, so that its consul sessions would not be invalidated due to any one random VM in the environment having packet loss.  Pros and cons are described in [Issue 8050](https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/8050).
+
+
+### How does `serfHealth` work?
+
+**In brief:** A Consul agent first sends a UDP message probe.  If it gets no response, it asks a few other nodes to try the same UDP message while it concurrently tries one via TCP.  If those attempts all fail, it broadcasts via gossip a suspicion that the target node is dead.  If the target node does not explicitly refute that suspicion within the time limit, it is marked as failed by Consul server.  For more details, continue reading.
+
+The following notes are from a source code review of [Consul 1.5.1](https://github.com/hashicorp/consul/tree/v1.5.1), which includes a fork of the [Serf library](https://github.com/hashicorp/consul/tree/v1.5.1/vendor/github.com/hashicorp/serf/serf).
+
+For reference, the configuration options and their defaults are defined (and well-annotated) here:
+* [Serf config.go](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/serf/serf/config.go), with [default settings at the end](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/serf/serf/config.go#L254)
+* [MemberList config.go](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/memberlist/config.go), with default settings near the end for the [Serf LAN](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/memberlist/config.go#L225) (within "datacenter") and [Serf WAN](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/memberlist/config.go#L269) (cross-"datacenter") scopes of communication.  Most of the timeouts mentioned below are defined here.
+
+The node failure detection behavior using Serf primatives is implemented by [the `probeNode` method of `Memberlist`](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/memberlist/state.go#L245).  Here is a walk-through of that behavior:
+
+* Deadline for a probe is dynamic but is at least `Memberlist.Config.ProbeInterval` (default: 1 second).
+* If the target node's current state is `stateAlive` (healthy), then just send a `pingMsg` via Gossip (UDP).  Otherwise, append a `suspect` message to the pingMsg and send it.
+* Wait for an acknowledgement response for up to `Memberlist.Config.ProbeTimeout` (default: 500 ms).
+  * Exit successfully if ack received within `ProbeTimeout` deadline.  Else continue.
+* Concurrently try 2 tactics:
+  * Tactic 1: Request indirect UDP probes: Ask up to `Memberlist.Config.IndirectChecks` nodes (default: 3) to ping the target node on our behalf.
+  * Tactic 2: Try "fallback" TCP ping: If the target node speaks protocol version 3 or higher and `DisableTcpPings=false` (default), then open a TCP connection, and send the same `pingMsg`.
+    * Note: The `deadline` variable passed to TCP ping has roughly `ProbeInterval` minus `ProbeTimeout` time remaining (default: 1000 ms - 500 ms = 500 ms).  The `deadline` variable was set to `time.Now().Add(ProbeInterval)` at the [*start* of the `probeNode` method](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/memberlist/state.go#L273), and by this point we have already spend roughly `ProbeTimeout` (default: 500 ms) of that budgetted deadline.
+    * Note: Both the Indirect UDP Pings and the TCP Ping are run in goroutines, so they may not run immediately if the Golang runtime has too few threads free (e.g. on a host with very few CPUs).  The TCP probe's `deadline` is an absolute timestamp, so any delay in scheduling a goroutine consumes part of the patience of that health check.
+* Check results: Wait for the UDP-based indirect acks or nacks to arrive or timeout.  Then check the result of the TCP ping.
+  * If any indirect UDP Ping succeeds, exit successfully.  If they all fail (timeout or nack), then check results of the TCP Ping.
+  * If TCP Ping succeeded, log warning and exit successfully.
+  * Note: We warn if only TCP succeeds because if UDP is consistently blocked/failing, the node cannot hear most gossip and may pollute peers with its stale state via full-sync.
+* If those fallback probes all failed, then:
+  * Update self-awareness metrics.
+  * Call [method `suspectNode`](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/memberlist/state.go#L1045):
+    * Broadcasts via gossip the identity (name and incarnation number) of the node that failed its health check, and starts the timer for the refutation window.
+* Other nodes in the cluster receive this `suspect` message and also locally call `suspectNode`.
+  * If the suspected node receives this gossip message, its local call to `suspectNode` [notices the message refers to itself, logs a warning, and broadcasts a refutation message](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/memberlist/state.go#L1078).  If egress network traffic is working, its peers should see this broadcast and accept this refutation; otherwise, the countdown continues until the node is marked as failed.
+  * The duration of the refutation window is [calculated here](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/memberlist/state.go#L1110) using settings from [MemberList config.go](https://github.com/hashicorp/consul/blob/v1.5.1/vendor/github.com/hashicorp/memberlist/config.go#L225).
 
 
 ### What happens during a Patroni leader election?
