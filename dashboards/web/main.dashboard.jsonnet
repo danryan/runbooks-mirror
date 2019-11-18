@@ -76,7 +76,7 @@ row.new(title='Rails'),
     'open_fds',
     'single_node_cpu',
     'single_node_unicorn_workers',
-    'workers'
+    'workers',
   ]), gridPos={ x: 0, y: 7000, w: 24, h: 1 })
 .addPanel(capacityPlanning.capacityPlanningRow('web', '$stage'), gridPos={ x: 0, y: 8000 })
 + {
