@@ -97,7 +97,8 @@ find_dashboards "$@" | while read -r line; do
   # Note: create folders with `create-grafana-folder.sh` to configure the UID
   folderId=$(resolve_folder_id "${folder}")
 
-  description="Uploaded by ${USER} at $(date -u)"
+  uploader_identifier="${CI_JOB_URL:-$USER}"
+  description="Uploaded by ${uploader_identifier} at $(date -u)"
 
   # Generate the POST body
   body=$(echo "$dashboard" | jq -c --arg uid "$uid" --arg folder "$folder" --arg folderId "$folderId" --arg description "$description" '
