@@ -35,7 +35,7 @@ local ES_QUERY = {
   },
   condition: {
     compare: {
-      'ctx.payload.hits.total.value': {
+      'ctx.payload.hits.total': {
         gt: ALERT_THRESHOLD,
       },
     },
@@ -44,13 +44,12 @@ local ES_QUERY = {
     'notify-slack': {
       throttle_period: '30m',
       slack: {
-        account: 'gitlab_team',
         message: {
-          from: 'ElasticCloud Watcher: es_integration_redacted_results',
+          from: 'ElasticCloud Watcher: es-integration-redacted-results',
           to: [
             '#sec-appsec-private',
           ],
-          text: 'Search results from the ES integration in gstg environment were redacted. Visit https://nonprod-log.gitlab.net/goto/84600aa0711d38da1a309befa091470b for more details',
+          text: 'Search results from the ES integration were redacted. Visit https://nonprod-log.gitlab.net/goto/84600aa0711d38da1a309befa091470b for more details',
         },
       },
     },
