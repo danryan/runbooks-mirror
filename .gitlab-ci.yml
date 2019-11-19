@@ -107,7 +107,7 @@ test:
     - scripts/validate_kibana_urls
     - scripts/validate-alerts
 
-update_elastic_prod_dashboards:
+update_elastic_log_dashboards:
   stage: deploy
   image: registry.gitlab.com/gitlab-com/runbooks/runtools_build:latest
   script:
@@ -118,9 +118,9 @@ update_elastic_prod_dashboards:
     changes:
       - elastic/managed-objects/log/dashboards/*
     variables:
-      - $ES_PROD_URL
+      - $ES_LOG_URL
 
-update_elastic_prod_index_patterns:
+update_elastic_log_index_patterns:
   stage: deploy
   image: registry.gitlab.com/gitlab-com/runbooks/runtools_build:latest
   script:
@@ -131,9 +131,9 @@ update_elastic_prod_index_patterns:
     changes:
       - elastic/managed-objects/log/index-patterns/*
     variables:
-      - $ES_PROD_URL
+      - $ES_LOG_URL
 
-update_elastic_prod_searches:
+update_elastic_log_searches:
   stage: deploy
   image: registry.gitlab.com/gitlab-com/runbooks/runtools_build:latest
   script:
@@ -144,9 +144,9 @@ update_elastic_prod_searches:
     changes:
       - elastic/managed-objects/log/searches/*
     variables:
-      - $ES_PROD_URL
+      - $ES_LOG_URL
 
-update_elastic_prod_watchers:
+update_elastic_log_watchers:
   stage: deploy
   image: registry.gitlab.com/gitlab-com/runbooks/runtools_build:latest
   script:
@@ -157,9 +157,9 @@ update_elastic_prod_watchers:
     changes:
       - elastic/managed-objects/log/watches/*
     variables:
-      - $ES_PROD_URL
+      - $ES_LOG_URL
 
-update_elastic_prod_visualizations:
+update_elastic_log_visualizations:
   stage: deploy
   image: registry.gitlab.com/gitlab-com/runbooks/runtools_build:latest
   script:
@@ -170,7 +170,7 @@ update_elastic_prod_visualizations:
     changes:
       - elastic/managed-objects/log/visualizations/*
     variables:
-      - $ES_PROD_URL
+      - $ES_LOG_URL
 
 update_elastic_nonprod-log_watchers:
   stage: deploy
