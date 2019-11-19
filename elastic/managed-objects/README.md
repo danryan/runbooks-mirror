@@ -1,4 +1,4 @@
-Watchers:
+Watcher and watches:
 
 https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-alerting.html
 
