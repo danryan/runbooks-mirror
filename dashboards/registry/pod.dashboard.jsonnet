@@ -18,13 +18,14 @@ dashboard.new(
 .addTemplate(templates.ds)
 .addTemplate(templates.environment)
 .addTemplate(templates.gkeCluster)
-.addTemplate(templates.namespace)
+.addTemplate(templates.namespaceGitlab)
 .addTemplate(templates.Node)
 .addTemplate(
   template.custom(
     'Deployment',
     'gitlab-registry,',
     'gitlab-registry',
+    hide='variable',
   )
 )
 .addPanel(

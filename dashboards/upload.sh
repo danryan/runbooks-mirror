@@ -97,8 +97,11 @@ find_dashboards "$@" | while read -r line; do
   # Note: create folders with `create-grafana-folder.sh` to configure the UID
   folderId=$(resolve_folder_id "${folder}")
 
+  uploader_identifier="${CI_JOB_URL:-$USER}"
+  description="Uploaded by ${uploader_identifier} at $(date -u)"
+
   # Generate the POST body
-  body=$(echo "$dashboard" | jq -c --arg uid "$uid" --arg folder "$folder" --arg folderId "$folderId" '
+  body=$(echo "$dashboard" | jq -c --arg uid "$uid" --arg folder "$folder" --arg folderId "$folderId" --arg description "$description" '
  {
     dashboard: .,
     folderId: $folderId | tonumber,
@@ -107,10 +110,23 @@ find_dashboards "$@" | while read -r line; do
     dashboard: {
       uid: $uid,
       title: "\($folder): \(.title)",
-      tags: (["managed", $folder] + .tags)
+      tags: (["managed", $folder] + .tags),
+      description: "\($description)"
     }
   }
 ')
+
+  if (echo "${body}" | grep -E '%\(\w+\)' >/dev/null); then
+    echo "$line output contains format markers. Did you forget to use %?"
+    echo "${body}" | jq '.' | grep -E -B3 -A3 --color=always '%\(\w+\)'
+    exit 1
+  fi
+
+  if (echo "${body}" | grep -E "' *\\+" >/dev/null); then
+    echo "$line output contains format markers. Did you forget to use %?"
+    echo "${body}" | jq '.' | grep -E -B3 -A3 --color=always "' *\\+"
+    exit 1
+  fi
 
   if [[ -n $dry_run ]]; then
     echo "Running in dry run mode, would create $line in folder $folder with uid $uid"

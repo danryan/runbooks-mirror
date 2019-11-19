@@ -23,7 +23,7 @@ groups:
     expr: gitaly:grpc_server_handled_total:error_rate1m > 2
     for: 5m
     labels:
-      channel: gitaly
+      channel: g_create_gitaly
       pager: pagerduty
       severity: s1
     annotations:
@@ -35,7 +35,7 @@ groups:
     expr: gitaly:grpc_server_handled_total:instance_error_rate1m > 5
     for: 5m
     labels:
-      channel: gitaly
+      channel: g_create_gitaly
       pager: pagerduty
       severity: s1
     annotations:
@@ -95,7 +95,7 @@ groups:
     expr: up{job="gitaly",tier="stor",type="gitaly"} == 0
     for: 1m
     labels:
-      channel: gitaly
+      channel: g_create_gitaly
       pager: pagerduty
       severity: s1
     annotations:
@@ -103,25 +103,6 @@ groups:
         Check Gitaly logs and restart the process if necessary
       runbook: troubleshooting/gitaly-down.md
       title: Gitaly is down on {{ $labels.fqdn }}
-  - alert: GitalyFileServerCPUUsage
-    expr: >
-      avg by (environment, fqdn) (
-        instance:process_cpu_seconds_total:rate1m{job="gitaly",tier="stor",type="gitaly"}
-      ) /
-      avg by (environment, fqdn) (
-        instance:node_cpus:count{tier="stor",type="gitaly"}
-      ) * 100 > 50
-    for: 1m
-    labels:
-      channel: gitaly
-      pager: pagerduty
-      severity: s1
-    annotations:
-      description: 'Gitaly has been using more than 50% of total available CPU on
-        {{$labels.fqdn}} for the past minute. This may affect the stability of the
-        NFS server. Visit this dashboard: https://dashboards.gitlab.net/dashboard/db/gitaly-nfs-metrics-per-host?refresh=30s&orgId=1&var-fqdn={{$labels.fqdn}}'
-      runbook: troubleshooting/gitaly-high-cpu.md
-      title: 'Gitaly: High CPU usage on {{ $labels.fqdn }}'
   - alert: GitalyVersionMismatch
     expr: >
       count(
@@ -131,7 +112,7 @@ groups:
       ) == 2
     for: 30m
     labels:
-      channel: gitaly
+      channel: g_create_gitaly
       pager: pagerduty
       severity: s1
     annotations:
@@ -151,7 +132,7 @@ groups:
       ) > 2
     for: 1m
     labels:
-      channel: gitaly
+      channel: g_create_gitaly
       pager: pagerduty
       severity: s1
     annotations:
@@ -161,6 +142,18 @@ groups:
         for details of versions deployed across the fleet.
       runbook: troubleshooting/gitaly-version-mismatch.md
       title: 'Gitaly: multiple versions of Gitaly are currently running in production'
+  - alert: GitalyPermissionDenied
+    expr: sum(gitaly_grpc:grpc_server_handled_total:rate1m{grpc_code="PermissionDenied"}) > 10
+    for: 10s
+    labels:
+      channel: g_create_gitaly
+      pager: pagerduty
+      severity: s1
+    annotations:
+      description: Gitaly authention failing, authentication tokens might be misconfigured, or severe clockdrift is occuring.
+      runbook: troubleshooting/gitaly-permission-denied.md
+      title: 'Gitaly: Auth-tokens are invalid, failing RPCs'
+
 
 - name: Misc Gitaly Alerts
   rules:
@@ -169,7 +162,7 @@ groups:
       stackdriver_pubsub_topic_pubsub_googleapis_com_topic_send_message_operation_count{topic_id="pubsub-gitaly-inf-gprd"} / 60 < 100
     for: 5m
     labels:
-      channel: g_gitaly
+      channel: g_create_gitaly
       severity: s4
     annotations:
       description: >
@@ -188,4 +181,21 @@ groups:
         gitaly on the affected node if it's causing a partial outage.
       runbook: troubleshooting/gitaly-latency.md
       title: Gitaly latency on {{ $labels.fqdn }} has been over 1m during the last 5m
+
+  - alert: GitalyNewVersionDeployed
+    expr: |
+      sum by (version) (
+        gitlab_build_info{job="gitaly",type="gitaly"})
+          unless (
+            sum by (version) (gitlab_build_info{job="gitaly",type="gitaly"} offset 1h
+          )
+      ) > 2
+    for: 5m
+    labels:
+      channel: g_create_gitaly
+      severity: s4
+    annotations:
+      title: New Gitaly version is being deployed
+      description: >
+        Gitaly version {{ $labels.version }} is being deployed to {{ $labels.environment }} (stage {{ $labels.stage }}).
 

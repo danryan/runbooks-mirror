@@ -18,6 +18,7 @@ local graphPanel = grafana.graphPanel;
 local annotation = grafana.annotation;
 local serviceHealth = import 'service_health.libsonnet';
 local processExporter = import 'process_exporter.libsonnet';
+local saturationDetail = import 'saturation_detail.libsonnet';
 
 dashboard.new(
   'Overview',
@@ -32,9 +33,10 @@ dashboard.new(
 .addTemplate(templates.environment)
 .addTemplate(templates.stage)
 .addTemplate(templates.sigma)
-.addPanel(serviceHealth.row('frontend', '$stage'), gridPos={ x: 0, y: 0 })
+.addPanels(keyMetrics.headlineMetricsRow('frontend', '$stage', startRow=0))
+.addPanel(serviceHealth.row('frontend', '$stage'), gridPos={ x: 0, y: 500 })
 .addPanel(
-row.new(title="🏅 Key Service Metrics"),
+row.new(title='🏅 Key Service Metrics'),
   gridPos={
       x: 0,
       y: 1000,
@@ -52,7 +54,7 @@ layout.grid([
   ], startRow=1001)
 )
 .addPanel(
-row.new(title="HAProxy process"),
+row.new(title='HAProxy process'),
   gridPos={
       x: 0,
       y: 2000,
@@ -81,7 +83,15 @@ nodeMetrics.nodeMetricsDetailRow('environment="$environment", stage=~"|$stage", 
       h: 1,
   }
 )
-.addPanel(capacityPlanning.capacityPlanningRow('frontend', '$stage'), gridPos={ x: 0, y: 6000 })
+.addPanel(saturationDetail.saturationDetailPanels('frontend', '$stage', components=[
+    'cpu',
+    'disk_space',
+    'memory',
+    'open_fds',
+    'single_node_cpu',
+  ]),
+  gridPos={ x: 0, y: 6000, w: 24, h: 1 })
+.addPanel(capacityPlanning.capacityPlanningRow('frontend', '$stage'), gridPos={ x: 0, y: 7000 })
 + {
   links+: platformLinks.triage + serviceCatalog.getServiceLinks('frontend') + platformLinks.services,
 }

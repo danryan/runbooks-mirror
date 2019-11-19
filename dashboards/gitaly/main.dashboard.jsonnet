@@ -8,6 +8,7 @@ local layout = import 'layout.libsonnet';
 local nodeMetrics = import 'node_metrics.libsonnet';
 local platformLinks = import 'platform_links.libsonnet';
 local promQuery = import 'prom_query.libsonnet';
+local saturationDetail = import 'saturation_detail.libsonnet';
 local seriesOverrides = import 'series_overrides.libsonnet';
 local serviceCatalog = import 'service_catalog.libsonnet';
 local templates = import 'templates.libsonnet';
@@ -20,18 +21,24 @@ local serviceHealth = import 'service_health.libsonnet';
 
 local GITALY_PEAK_WRITE_THROUGHPUT_BYTES_PER_SECOND = 400 * 1024 * 1024;
 local GITALY_PEAK_READ_THROUGHPUT_BYTES_PER_SECOND = 1200 * 1024 * 1024;
-local GITALY_DISK = "sdb";
+local GITALY_DISK = 'sdb';
+
+local gitalyConfig = {
+  GITALY_PEAK_WRITE_THROUGHPUT_BYTES_PER_SECOND: GITALY_PEAK_WRITE_THROUGHPUT_BYTES_PER_SECOND,
+  GITALY_PEAK_READ_THROUGHPUT_BYTES_PER_SECOND: GITALY_PEAK_READ_THROUGHPUT_BYTES_PER_SECOND,
+  GITALY_DISK: GITALY_DISK,
+};
 
 local generalGraphPanel(
   title,
   description=null,
   linewidth=2,
-  sort="increasing",
+  sort='increasing',
 ) = graphPanel.new(
     title,
     linewidth=linewidth,
     fill=0,
-    datasource="$PROMETHEUS_DS",
+    datasource='$PROMETHEUS_DS',
     description=description,
     decimals=2,
     sort=sort,
@@ -45,7 +52,7 @@ local generalGraphPanel(
     legend_alignAsTable=true,
     legend_hideEmpty=true,
   )
-  .addSeriesOverride(seriesOverrides.goldenMetric("/ service/"))
+  .addSeriesOverride(seriesOverrides.goldenMetric('/ service/'))
   .addSeriesOverride(seriesOverrides.upper)
   .addSeriesOverride(seriesOverrides.lower)
   .addSeriesOverride(seriesOverrides.upperLegacy)
@@ -58,46 +65,46 @@ local generalGraphPanel(
   .addSeriesOverride(seriesOverrides.slo);
 
 local readThroughput() = basic.saturationTimeseries(
-  title="Average Peak Read Throughput per Node",
-  description='Average Peak read throughput as a ratio of specified max (over 30s) per Node, on the Gitaly disk (' + GITALY_DISK + '). Lower is better.',
-  query='
+  title='Average Peak Read Throughput per Node',
+  description='Average Peak read throughput as a ratio of specified max (over 30s) per Node, on the Gitaly disk (%(GITALY_DISK)s). Lower is better.' % gitalyConfig,
+  query=|||
     avg_over_time(
       max_over_time(
-        rate(node_disk_read_bytes_total{environment="$environment", stage="$stage", type="gitaly", device="' + GITALY_DISK + '"}[30s]) / (' + GITALY_PEAK_READ_THROUGHPUT_BYTES_PER_SECOND + ')[5m:30s]
+        rate(node_disk_read_bytes_total{environment="$environment", stage="$stage", type="gitaly", device="%(GITALY_DISK)s"}[30s]) / (%(GITALY_PEAK_READ_THROUGHPUT_BYTES_PER_SECOND)s)[5m:30s]
       )[$__interval:1m]
     )
-  ',
+  ||| % gitalyConfig,
   legendFormat='{{ fqdn }}',
-  interval="1m",
+  interval='1m',
   intervalFactor=3,
   linewidth=1,
   legend_show=true,
 );
 
 local writeThroughput() = basic.saturationTimeseries(
-  title="Average Peak Write Throughput per Node",
-  description='Average Peak write throughput as a ratio of specified max (over 30s) per Node, on the Gitaly disk (' + GITALY_DISK + '). Lower is better.',
-  query='
+  title='Average Peak Write Throughput per Node',
+  description='Average Peak write throughput as a ratio of specified max (over 30s) per Node, on the Gitaly disk (%(GITALY_DISK)s). Lower is better.' % gitalyConfig,
+  query=|||
     avg_over_time(
       max_over_time(
-        rate(node_disk_written_bytes_total{environment="$environment", stage="$stage", type="gitaly", device="' + GITALY_DISK + '"}[30s]) / (' + GITALY_PEAK_WRITE_THROUGHPUT_BYTES_PER_SECOND + ')[5m:30s]
+        rate(node_disk_written_bytes_total{environment="$environment", stage="$stage", type="gitaly", device="%(GITALY_DISK)s"}[30s]) / (%(GITALY_PEAK_WRITE_THROUGHPUT_BYTES_PER_SECOND)s)[5m:30s]
      )[$__interval:1m]
     )
-  ',
+  ||| % gitalyConfig,
   legendFormat='{{ fqdn }}',
-  interval="1m",
+  interval='1m',
   intervalFactor=3,
   linewidth=1,
   legend_show=true,
 );
 
 local ratelimitLockPercentage() = generalGraphPanel(
-    "Request % acquiring rate-limit lock within 1m, by host + method",
-    description="Percentage of requests that acquire a Gitaly rate-limit lock within 1 minute, by host and method"
+    'Request % acquiring rate-limit lock within 1m, by host + method',
+    description='Percentage of requests that acquire a Gitaly rate-limit lock within 1 minute, by host and method'
   )
   .addTarget(
     promQuery.target(
-      '
+      |||
         sum(
           rate(
             gitaly_rate_limiting_acquiring_seconds_bucket{
@@ -117,9 +124,9 @@ local ratelimitLockPercentage() = generalGraphPanel(
             }[$__interval]
           )
         ) by (environment, tier, type, stage, fqdn, grpc_method)
-      ',
-      interval="30s",
-      legendFormat="{{fqdn}} - {{grpc_method}}"
+      |||,
+      interval='30s',
+      legendFormat='{{fqdn}} - {{grpc_method}}'
     )
   )
   .resetYaxes()
@@ -127,7 +134,7 @@ local ratelimitLockPercentage() = generalGraphPanel(
     format='percentunit',
     min=0,
     max=1,
-    label="%"
+    label='%'
   )
   .addYaxis(
     format='short',
@@ -139,7 +146,7 @@ local perNodeApdex() =
   basic.apdexTimeseries(
     title='Apdex score per Gitaly Node',
     description='Apdex is a measure of requests that complete within an acceptable threshold duration. Actual threshold vary per service or endpoint. Higher is better.',
-    query='
+    query=|||
       (
         sum(rate(grpc_server_handling_seconds_bucket{environment="$environment", stage="$stage",type="gitaly", tier="stor", grpc_type="unary", le="0.5", grpc_method!~"GarbageCollect|Fsck|RepackFull|RepackIncremental|CommitLanguages|CreateRepositoryFromURL|UserRebase|UserSquash|CreateFork|UserUpdateBranch|FindRemoteRepository|UserCherryPick|FetchRemote|UserRevert|FindRemoteRootRef"}[1m])) by (environment, type, tier, stage, fqdn)
         +
@@ -147,7 +154,7 @@ local perNodeApdex() =
       )
       /
       2 / (sum(rate(grpc_server_handling_seconds_count{environment="$environment", stage="$stage",type="gitaly", tier="stor", grpc_type="unary", grpc_method!~"GarbageCollect|Fsck|RepackFull|RepackIncremental|CommitLanguages|CreateRepositoryFromURL|UserRebase|UserSquash|CreateFork|UserUpdateBranch|FindRemoteRepository|UserCherryPick|FetchRemote|UserRevert|FindRemoteRootRef"}[1m])) by (environment, type, tier, stage, fqdn))
-    ',
+    |||,
     legendFormat='{{ fqdn }}',
     interval='1m',
     linewidth=1,
@@ -158,9 +165,9 @@ local inflightGitalyCommandsPerNode() =
   basic.timeseries(
     title='Inflight Git Commands per Server',
     description='Number of Git commands running concurrently per node. Lower is better.',
-    query='
+    query=|||
       avg_over_time(gitaly_commands_running{environment="$environment", stage="$stage"}[$__interval])
-    ',
+    |||,
     legendFormat='{{ fqdn }}',
     interval='1m',
     linewidth=1,
@@ -171,9 +178,9 @@ local gitalySpawnTimeoutsPerNode() =
   basic.timeseries(
     title='Gitaly Spawn Timeouts per Node',
     description='Golang uses a global lock on process spawning. In order to control contention on this lock Gitaly uses a safety valve. If a request is unable to obtain the lock within a period, a timeout occurs. These timeouts are serious and should be addressed. Non-zero is bad.',
-    query='
+    query=|||
       changes(gitaly_spawn_timeouts_total{environment="$environment", stage="$stage"}[$__interval])
-    ',
+    |||,
     legendFormat='{{ fqdn }}',
     interval='1m',
     linewidth=1,
@@ -194,27 +201,10 @@ dashboard.new(
 .addTemplate(templates.environment)
 .addTemplate(templates.stage)
 .addTemplate(templates.sigma)
-.addPanel(serviceHealth.row('gitaly', '$stage'), gridPos={ x: 0, y: 0 })
+.addPanels(keyMetrics.headlineMetricsRow('gitaly', '$stage', startRow=0))
+.addPanel(serviceHealth.row('gitaly', '$stage'), gridPos={ x: 0, y: 1000 })
 .addPanel(
-row.new(title="🏅 Key Service Metrics"),
-  gridPos={
-      x: 0,
-      y: 1000,
-      w: 24,
-      h: 1,
-  }
-)
-.addPanels(
-layout.grid([
-    keyMetrics.apdexPanel('gitaly', '$stage'),
-    keyMetrics.errorRatesPanel('gitaly', '$stage'),
-    keyMetrics.serviceAvailabilityPanel('gitaly', '$stage'),
-    keyMetrics.qpsPanel('gitaly', '$stage'),
-    keyMetrics.saturationPanel('gitaly', '$stage'),
-  ], startRow=1001)
-)
-.addPanel(
-row.new(title="Node Performance"),
+row.new(title='Node Performance'),
   gridPos={
       x: 0,
       y: 2000,
@@ -231,7 +221,7 @@ layout.grid([
   ], startRow=2001)
 )
 .addPanel(
-row.new(title="Gitaly Safety Mechanisms"),
+row.new(title='Gitaly Safety Mechanisms'),
   gridPos={
       x: 0,
       y: 3000,
@@ -245,25 +235,24 @@ layout.grid([
     ratelimitLockPercentage(),
   ], startRow=3001)
 )
-.addPanel(
-keyMetrics.keyComponentMetricsRow('gitaly', '$stage'),
-  gridPos={
-      x: 0,
-      y: 4000,
-      w: 24,
-      h: 1,
-  }
-)
-.addPanel(
-nodeMetrics.nodeMetricsDetailRow('environment="$environment", stage=~"|$stage", type="gitaly"'),
-  gridPos={
-      x: 0,
-      y: 5000,
-      w: 24,
-      h: 1,
-  }
-)
-.addPanel(capacityPlanning.capacityPlanningRow('gitaly', '$stage'), gridPos={ x: 0, y: 6000 })
+.addPanel(keyMetrics.keyServiceMetricsRow('gitaly', '$stage'), gridPos={ x: 0, y: 4000 })
+.addPanel(keyMetrics.keyComponentMetricsRow('gitaly', '$stage'), gridPos={ x: 0, y: 5000 })
+.addPanel(nodeMetrics.nodeMetricsDetailRow('type="gitaly", environment="$environment", stage="$stage"'), gridPos={ x: 0, y: 6000 })
+.addPanel(saturationDetail.saturationDetailPanels('gitaly', '$stage', components=[
+    'cgroup_memory',
+    'cpu',
+    'disk_space',
+    'disk_sustained_read_iops',
+    'disk_sustained_read_throughput',
+    'disk_sustained_write_iops',
+    'disk_sustained_write_throughput',
+    'memory',
+    'open_fds',
+    'single_node_cpu',
+  ]),
+  gridPos={ x: 0, y: 6000, w: 24, h: 1 })
+
+.addPanel(capacityPlanning.capacityPlanningRow('gitaly', '$stage'), gridPos={ x: 0, y: 7000 })
 + {
   links+: platformLinks.triage + serviceCatalog.getServiceLinks('gitaly') + platformLinks.services +
   [platformLinks.dynamicLinks('Gitaly Detail', 'type:gitaly')],
