@@ -2,7 +2,6 @@
 
 set -euo pipefail
 IFS=$'\n\t'
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)"
 
 function es_client() {
   url=$1
@@ -17,7 +16,7 @@ function execute_jsonnet() {
     "$@"
 }
 
-function upload_json() {
+function ES5_upload_json() {
   for i in "${SCRIPT_DIR}"/*.json; do
     base_name=$(basename "$i")
     name=${base_name%.json}
@@ -25,12 +24,22 @@ function upload_json() {
   done
 }
 
-function exec_jsonnet_and_upload() {
+function ES5_watches_exec_jsonnet_and_upload_json() {
   for i in "${SCRIPT_DIR}"/*.jsonnet; do
     base_name=$(basename "$i")
     echo "$base_name"
     name=${base_name%.jsonnet}
     watch_json="$(execute_jsonnet "${i}" | jq -c '.')" # Compile jsonnet and compact with jq
     es_client "_xpack/watcher/watch/${name}?pretty=true" -X PUT --data-binary "${watch_json}"
+  done
+}
+
+function ES7_watches_exec_jsonnet_and_upload_json() {
+  for i in "${SCRIPT_DIR}"/*.jsonnet; do
+    base_name=$(basename "$i")
+    echo "$base_name"
+    name=${base_name%.jsonnet}
+    watch_json="$(execute_jsonnet "${i}" | jq -c '.')" # Compile jsonnet and compact with jq
+    es_client "_watcher/watch/${name}" -X PUT --data-binary "${watch_json}"
   done
 }
