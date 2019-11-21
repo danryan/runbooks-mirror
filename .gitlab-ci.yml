@@ -152,6 +152,8 @@ update_elastic_log_watchers:
   script:
   - ./elastic/managed-objects/log/watches/update-watches.sh
   only:
+    refs:
+      - master
     changes:
       - elastic/managed-objects/log/watches/*
     variables:
