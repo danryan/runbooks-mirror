@@ -152,8 +152,6 @@ update_elastic_log_watchers:
   script:
   - ./elastic/managed-objects/log/watches/update-watches.sh
   only:
-    refs:
-      - master
     changes:
       - elastic/managed-objects/log/watches/*
     variables:
@@ -253,4 +251,3 @@ build_runtools_build_image:
     - docker build -t ${IMAGE} images/runtools_build/
     - docker push ${IMAGE}
   when: manual
-
