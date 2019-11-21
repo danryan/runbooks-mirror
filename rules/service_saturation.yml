@@ -155,7 +155,7 @@ groups:
             pgbouncer_pools_server_login_connections{user="gitlab", database="gitlabhq_production_sidekiq"}
           )
           /
-          50
+          75
       ) by (type, tier, stage, environment), 1)
 
   # type: postgres-delayed, postgres-archive, patroni
