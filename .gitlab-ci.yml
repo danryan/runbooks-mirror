@@ -182,8 +182,6 @@ update_elastic_log_gprd_ilm:
   script:
   - ./elastic/managed-objects/log_gprd/ILM/update-ilm.sh
   only:
-    refs:
-      - master
     changes:
       - elastic/managed-objects/log_gprd/ILM/*
     variables:
@@ -210,8 +208,6 @@ update_elastic_nonprod-log_ilm:
   script:
   - ./elastic/managed-objects/nonprod-log/ILM/update-ilm.sh
   only:
-    refs:
-      - master
     changes:
       - elastic/managed-objects/nonprod-log/ILM/*
     variables:
