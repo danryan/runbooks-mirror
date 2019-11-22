@@ -13,11 +13,12 @@
         },
       },
       warm: {
-        min_age: '1m',
+        min_age: '1d',  // keep some data on hot nodes, otherwise disk usage is < 20%
         actions: {
-          forcemerge: {
-            max_num_segments: 1,
-          },
+          // skipping force merge for now for a performance optimisation test
+          // forcemerge: {
+          //   max_num_segments: 1,
+          // },
           allocate: {
             require: {
               data: 'warm',
