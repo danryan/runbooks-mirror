@@ -15,36 +15,23 @@ KEY_ORDER = [
 ].freeze
 
 def reorder(item)
-  case
-  when item.is_a?(Hash)
+  case item
+  when Hash
     reorder_hash(item)
-  when item.is_a?(Array)
+  when Array
     reorder_array(item)
   else
     item
   end
 end
 
-def reorder_hash(item)
-  item_dup = item.dup
-  result = Hash.new
-
-  KEY_ORDER.each do |key|
-    if item_dup.include?(key)
-      value = item_dup.delete(key)
-      result[key] = reorder(value)
-    end
-  end
-
-  item_dup.keys.sort.each do |key|
-    result[key] = reorder(item_dup[key])
-  end
-
-  result
+# Reorder the items in the hash according to the order listed in KEY_ORDER
+def reorder_hash(hash)
+  hash.transform_values { |v| reorder(v) }.sort_by { |k, _| KEY_ORDER.index(k) ||  KEY_ORDER.size }.to_h
 end
 
-def reorder_array(item)
-  item.collect { |i| reorder(i) }
+def reorder_array(array)
+  array.collect { |i| reorder(i) }
 end
 
 doc = YAML.load(ARGF.read)
