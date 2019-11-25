@@ -51,7 +51,6 @@ dashboard.new(
     '',  // Fix this when https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/8456 arrives
     [
       { title: 'Overall', aggregationLabels: '', legendFormat: 'shared_runner_queues' },
-      { title: 'By Failure Reason', aggregationLabels: 'failure_reason', legendFormat: '{{ failure_reason }}' },
     ],
   ), gridPos={ x: 0, y: 5100 }
 )
