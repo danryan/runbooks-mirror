@@ -391,9 +391,9 @@ local DETAILS = {
       this could impact user experience.
     |||,
     query: |||
-      sum without (queue) (sidekiq_running_jobs{%(selector)s})
+      sum by (fqdn, instance, environment, tier, type, stage) (sidekiq_running_jobs{%(selector)s})
       /
-      sidekiq_concurrency{%(selector)s}
+      sum by (fqdn, instance, environment, tier, type, stage) (sidekiq_concurrency{%(selector)s})
     |||,
     legendFormat: '{{ fqdn }}',
   },
