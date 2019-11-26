@@ -7,29 +7,29 @@ source "${SCRIPT_DIR}"/../../lib/update-scripts-functions.sh
 template_name='log_gprd_index_template.libsonnet'
 declare -a indices
 indices=(
-    api
-    application
-    camoproxy
-    consul
-    gitaly
-    gke
-    monitoring
-    nginx
-    pages
-    postgres
-    rails
-    redis
-    registry
-    runner
-    shell
-    sidekiq
-    system
-    unicorn
-    unstructured
-    workhorse
+  api
+  application
+  camoproxy
+  consul
+  gitaly
+  gke
+  monitoring
+  nginx
+  pages
+  postgres
+  rails
+  redis
+  registry
+  runner
+  shell
+  sidekiq
+  system
+  unicorn
+  unstructured
+  workhorse
 )
 env=gprd
 
 for index in "${indices[@]}"; do
-    ES7_index-template_exec_jsonnet_and_upload_json "$template_name" "$index" "$env"
+  ES7_index-template_exec_jsonnet_and_upload_json "$template_name" "$index" "$env"
 done
