@@ -1,7 +1,7 @@
 // https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/7981
 local TRIGGER_SCHEDULE_MINS = 5;  // Run this watcher at this frequency, in minutes
-local QUERY_PERIOD_MINS = TRIGGER_SCHEDULE_MINS * 2; // Ensure we definitely catch any
-local ALERT_THRESHOLD = 5; // A small number doesn't warrant alerting, I think.  Tweak this as necessary to ensure useful alerting
+local QUERY_PERIOD_MINS = TRIGGER_SCHEDULE_MINS * 2;  // Ensure we definitely catch any
+local ALERT_THRESHOLD = 5;  // A small number doesn't warrant alerting, I think.  Tweak this as necessary to ensure useful alerting
 
 local ES_QUERY = {
   search_type: 'query_then_fetch',
@@ -14,8 +14,8 @@ local ES_QUERY = {
     query: {
       bool: {
         must: [
-          { "match_phrase_prefix": { "json.jsonPayload.error": { "query": "read: connection reset by peer" } } },
-          { "match_phrase_prefix": { "json.jsonPayload.error": { "query": "gcs: Get https://storage.googleapis.com/" } } },
+          { match_phrase_prefix: { 'json.jsonPayload.error': { query: 'read: connection reset by peer' } } },
+          { match_phrase_prefix: { 'json.jsonPayload.error': { query: 'gcs: Get https://storage.googleapis.com/' } } },
           { range: { '@timestamp': { gte: std.format('now-%dm', QUERY_PERIOD_MINS), lte: 'now' } } },
         ],
       },
@@ -53,13 +53,13 @@ local ES_QUERY = {
             '#alerts',
           ],
           text: 'Registry is seeing Connection Resets talking to GCS.  This may indicate an outage is being caused by GCS connectivity',
-          "attachments" : [
+          attachments: [
             {
-              "title" : "Registry Connection Resets from GCS",
-              "text" : "{{ctx.payload.hits.total.value}} GCS connection resets in the last" + QUERY_PERIOD_MINS + "minutes.",
-              "color" : "danger"
-            }
-         ]
+              title: 'Registry Connection Resets from GCS',
+              text: '{{ctx.payload.hits.total.value}} GCS connection resets in the last' + QUERY_PERIOD_MINS + 'minutes.',
+              color: 'danger',
+            },
+          ],
         },
       },
     },
