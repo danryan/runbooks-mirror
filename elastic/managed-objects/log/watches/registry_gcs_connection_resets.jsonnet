@@ -1,6 +1,6 @@
 // https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/7981
 local TRIGGER_SCHEDULE_MINS = 5;  // Run this watcher at this frequency, in minutes
-local QUERY_PERIOD_MINS = TRIGGER_SCHEDULE_MINS * 2;  // Ensure we definitely catch any
+local QUERY_PERIOD_MINS = TRIGGER_SCHEDULE_MINS * 4;  // Ensure we definitely catch any
 local ALERT_THRESHOLD = 5;  // A small number doesn't warrant alerting, I think.  Tweak this as necessary to ensure useful alerting
 
 local ES_QUERY = {
