@@ -44,7 +44,7 @@ local ES_QUERY = {
   },
   actions: {
     'notify-slack': {
-      throttle_period: '120m',
+      throttle_period: '30m',
       slack: {
         account: 'gitlab_team',
         message: {
