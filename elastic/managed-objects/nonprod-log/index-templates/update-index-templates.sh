@@ -29,7 +29,6 @@ indices=(
   workhorse
 )
 
-
 env=gstg
 for index in "${indices[@]}"; do
   ES7_index-template_exec_jsonnet_and_upload_json "$template_name" "$index" "$env"
@@ -37,15 +36,15 @@ done
 
 env=dr
 for index in "${indices[@]}"; do
-    ES7_index-template_exec_jsonnet_and_upload_json "$template_name" "$index" "$env"
+  ES7_index-template_exec_jsonnet_and_upload_json "$template_name" "$index" "$env"
 done
 
 env=ops
 for index in "${indices[@]}"; do
-    ES7_index-template_exec_jsonnet_and_upload_json "$template_name" "$index" "$env"
+  ES7_index-template_exec_jsonnet_and_upload_json "$template_name" "$index" "$env"
 done
 
 env=pre
 for index in "${indices[@]}"; do
-    ES7_index-template_exec_jsonnet_and_upload_json "$template_name" "$index" "$env"
+  ES7_index-template_exec_jsonnet_and_upload_json "$template_name" "$index" "$env"
 done
