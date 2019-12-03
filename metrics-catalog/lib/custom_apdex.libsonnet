@@ -2,7 +2,7 @@ local recordingRules = import './recording_rules.libsonnet';
 local selectors = import './selectors.libsonnet';
 
 local generateQuery(rateQueryTemplate, selector, rangeInterval) =
-  local s = if selector == "" then '__name__!=""' else selector;
+  local s = if selector == '' then '__name__!=""' else selector;
 
   rateQueryTemplate % {
     selector: s,
@@ -31,7 +31,7 @@ local generateSingleThresholdApdexScoreQuery(customApdex, aggregationLabels, add
   ||| % {
     aggregationLabels: aggregationLabels,
     satisfiedRateQuery: satisfiedRateQuery,
-    totalRateQuery: totalRateQuery
+    totalRateQuery: totalRateQuery,
   };
 
 // A double threshold apdex score only has both SATISFACTORY threshold and TOLERABLE thresholds
@@ -65,7 +65,7 @@ local generateDoubleThresholdApdexScoreQuery(customApdex, aggregationLabels, add
     aggregationLabels: aggregationLabels,
     satisfiedRateQuery: satisfiedRateQuery,
     toleratedRateQuery: toleratedRateQuery,
-    totalRateQuery: totalRateQuery
+    totalRateQuery: totalRateQuery,
   };
 
 
@@ -89,7 +89,7 @@ local generatePercentileLatencyQuery(customApdex, percentile, aggregationLabels,
   ||| % {
     percentile: percentile,
     aggregationLabelsWithLe: aggregationLabelsWithLe,
-    rateQuery: rateQuery
+    rateQuery: rateQuery,
   };
 
 local generateApdexWeightScoreQuery(customApdex, aggregationLabels, additionalSelectors, duration) =
@@ -102,7 +102,7 @@ local generateApdexWeightScoreQuery(customApdex, aggregationLabels, additionalSe
     )
   ||| % {
     aggregationLabels: aggregationLabels,
-    totalRateQuery: totalRateQuery
+    totalRateQuery: totalRateQuery,
   };
 
 {

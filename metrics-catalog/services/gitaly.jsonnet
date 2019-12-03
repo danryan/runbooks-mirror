@@ -10,6 +10,7 @@ local customApdex = metricsCatalog.customApdex;
   slos: {
     apdexRatio: 0.995,
     errorRatio: 0.001,
+    alertTriggerDuration: 'long',
   },
   components: {
     goserver: {
