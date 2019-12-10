@@ -2,32 +2,7 @@
 
 set -eufo pipefail
 IFS=$'\t\n'
-
-declare -a indices
-
-indices=(
-  api
-  application
-  camoproxy
-  consul
-  gitaly
-  gke
-  monitoring
-  nginx
-  pages
-  postgres
-  rails
-  redis
-  registry
-  runner
-  shell
-  sidekiq
-  system
-  unicorn
-  unstructured
-  workhorse
-)
-
+source ../../managed-objects/indices/indices-array.sh
 env=$1
 
 for index in "${indices[@]}"; do
