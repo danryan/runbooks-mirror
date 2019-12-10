@@ -49,7 +49,7 @@ function get_json_and_jsonnet() {
 # ES5
 ################################################################################
 
-function ES5_upload_json() {
+function ES5_watches_upload_json() {
   for i in "${SCRIPT_DIR}"/*.json; do
     base_name=$(basename "$i")
     name=${base_name%.json}
@@ -69,6 +69,13 @@ function ES5_watches_exec_jsonnet_and_upload_json() {
 
 # ES7
 ################################################################################
+function ES7_watches_upload_json() {
+  for i in "${SCRIPT_DIR}"/*.json; do
+    base_name=$(basename "$i")
+    name=${base_name%.json}
+    es_client "_watcher/watch/${name}" -X PUT --data-binary "@${i}"
+  done
+}
 
 function ES7_watches_exec_jsonnet_and_upload_json() {
   for i in "${SCRIPT_DIR}"/*.jsonnet; do

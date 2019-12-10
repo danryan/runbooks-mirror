@@ -157,7 +157,7 @@ update_elastic_log_searches:
     variables:
       - $ES_LOG_URL
 
-update_elastic_log_watchers:
+update_elastic_log_watches:
   stage: deploy
   image: "${CI_REGISTRY_IMAGE}/runtools_build:latest"
   script:
@@ -198,6 +198,19 @@ update_elastic_log_gprd_ilm:
     variables:
       - $ES_LOG_GPRD_URL
 
+update_elastic_log_gprd_watches:
+  stage: deploy
+  image: "${CI_REGISTRY_IMAGE}/runtools_build:latest"
+  script:
+  - ./elastic/managed-objects/log_gprd/watches/update-watches.sh
+  only:
+    refs:
+      - master
+    changes:
+      - elastic/managed-objects/log_gprd/watches/*
+    variables:
+      - $ES_LOG_GPRD_URL
+
 update_elastic_log_gprd_index_templates:
   stage: deploy
   image: "${CI_REGISTRY_IMAGE}/runtools_build:latest"
@@ -227,7 +240,7 @@ update_elastic_log_gprd_cluster_settings:
 
 # nonprod-log.gitlab.net
 ################################################################################
-update_elastic_nonprod-log_watchers:
+update_elastic_nonprod-log_watches:
   stage: deploy
   image: "${CI_REGISTRY_IMAGE}/runtools_build:latest"
   script:
