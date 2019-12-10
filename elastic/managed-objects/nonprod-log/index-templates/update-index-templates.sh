@@ -33,6 +33,7 @@ env=gstg
 for index in "${indices[@]}"; do
   ES7_index-template_exec_jsonnet_and_upload_json "$template_name" "$index" "$env"
 done
+# test
 
 env=dr
 for index in "${indices[@]}"; do
