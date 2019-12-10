@@ -4,23 +4,7 @@
       hot: {
         actions: {
           rollover: {
-            max_age: '3d',
             max_size: '15gb',
-          },
-          set_priority: {
-            priority: 100,
-          },
-        },
-      },
-      warm: {
-        actions: {
-          allocate: {
-            require: {
-              data: 'warm',
-            },
-          },
-          set_priority: {
-            priority: 50,
           },
         },
       },
