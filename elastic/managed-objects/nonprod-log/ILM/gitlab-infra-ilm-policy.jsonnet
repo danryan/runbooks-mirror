@@ -13,7 +13,7 @@
         },
       },
       warm: {
-        min_age: '3d'
+        min_age: '3d',
         actions: {
           allocate: {
             require: {
