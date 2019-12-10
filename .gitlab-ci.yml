@@ -202,8 +202,6 @@ update_elastic_log_gprd_index_templates:
   script:
   - ./elastic/managed-objects/log_gprd/index-templates/update-index-templates.sh
   only:
-    refs:
-      - master
     changes:
       - elastic/managed-objects/log_gprd/index-templates/*
       - elastic/managed-objects/lib/log_gprd_index_template.libsonnet
