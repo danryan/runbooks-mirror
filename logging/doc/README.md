@@ -173,7 +173,7 @@ Files containing logs are parsed by Fluentd (td-agent). Fluentd runs directly on
 
 All logs reaching Stackdriver are saved to GCS using an export sink where they are stored long-term (e.g. 6 months) for compliance reasons and can be read using BigQuery. Kubernetes logs are also forwarded from Stackdriver to Pub/Sub (that's because Fluentd in kubernetes is not forwarding logs to Pub/Sub).
 
-All logs listed in the [table](#what-are-we-logging) are processed by StackDriver, but most are excluded from it's indexing for cost reasons. It is sometimes helpful to use it to search for logs over a 30day interval for the included logs. It also allows you to do basic queries for strings across all types and find errors.
+All logs listed in the [table](#what-are-we-logging) are processed by StackDriver, but most are excluded from indexing due to costs. It is sometimes helpful to use it to search for logs over a 30 day interval for the included logs. It also allows you to do basic queries for strings across all types and find errors.
 
 The current exclusions for StackDriver can be found in [terraform variables.tf](https://ops.gitlab.net/gitlab-com/gitlab-com-infrastructure/blob/master/environments/gprd/variables.tf),
 search for `sd_log_filters`.
