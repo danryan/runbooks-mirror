@@ -210,6 +210,17 @@ update_elastic_log_gprd_index_templates:
     variables:
       - $ES_LOG_GPRD_URL
 
+update_elastic_log_gprd_cluster_settings:
+  stage: deploy
+  image: "${CI_REGISTRY_IMAGE}/runtools_build:latest"
+  script:
+  - ./elastic/managed-objects/log_gprd/cluster-settings/update-cluster-settings.sh
+  only:
+    changes:
+      - elastic/managed-objects/log_gprd/cluster-settings/*
+    variables:
+      - $ES_LOG_GPRD_URL
+
 # nonprod-log.gitlab.net
 ################################################################################
 update_elastic_nonprod-log_watchers:

@@ -60,3 +60,9 @@ function ES7_index-template_exec_jsonnet_and_upload_json() {
   echo "${url}"
   es_client "${url}" -X PUT --data-binary "${json}"
 }
+
+function ES7_set_cluster_settings() {
+  json=$1
+  url="_cluster/settings"
+  es_client "${url}" -X PUT -d "${json}"
+}
