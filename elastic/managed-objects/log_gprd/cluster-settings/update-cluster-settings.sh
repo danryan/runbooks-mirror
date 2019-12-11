@@ -15,6 +15,7 @@ curl_data_watermark() {
   "persistent": {
     "cluster.routing.allocation.disk.watermark.low": "86%",
     "cluster.routing.allocation.disk.watermark.high": "91%"
+    "cluster.routing.allocation.disk.watermark.high": "96%"
   }
 }
 EOF
