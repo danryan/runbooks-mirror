@@ -10,15 +10,14 @@ source "${SCRIPT_DIR}"/../../lib/update-scripts-functions.sh
 # (I believe `gb` means GiB, but can't find a reference.)
 
 curl_data_watermark() {
-    cat <<EOF
+  cat <<EOF
 {
-    "persistent": {
-        "cluster.routing.allocation.disk.watermark.low": "86%",
-        "cluster.routing.allocation.disk.watermark.high": "91%"
-    }
+  "persistent": {
+    "cluster.routing.allocation.disk.watermark.low": "86%",
+    "cluster.routing.allocation.disk.watermark.high": "91%"
+  }
 }
 EOF
 }
-
 
 ES7_set_cluster_settings "$(curl_data_watermark)"
