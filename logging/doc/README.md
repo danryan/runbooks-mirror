@@ -285,7 +285,7 @@ These rules are parameterized and are configured with defaults which are set in 
 ## Why are we using StackDriver and GCS in addition to ElasticSearch? ##
 
 We are sending logs to Stackdriver and GCS in addition to elasticsearch for
-longer retention and to preserve logs in object storage for 365days.
+longer retention and to preserve logs in object storage for 365 days.
 
 ## Why are we using pubsub queues instead of sending logs from fluentd directly to Elastic? ##
 
