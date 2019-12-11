@@ -126,7 +126,7 @@ Logs from all environments used to be available at https://log.gitlab.net/ .
 
 Previously production logs were using the `pubsub-production-*` pattern, this has changed to `pubsub-rails-inf-gprd-*`. For more info see the [table](#what-are-we-logging).
 
-production.log and haproxy logs are no longer being sent to elasticcloud because it was overwhelming our cluster, currently these logs are only available in StackDriver.
+production.log, haproxy logs and nginx logs are no longer being sent to elasticcloud because it was overwhelming our cluster, currently these logs are only available in StackDriver.
 
 Runner logs used to be unstructured and mixed in with other syslog messages, structured logging was tracked with https://gitlab.com/gitlab-org/gitlab-runner/issues/3336 . Runner logs now have a dedicated index.
 
