@@ -2,7 +2,7 @@
 
 declare -a indices
 
-indices=(
+export indices=(
   api
   application
   camoproxy
