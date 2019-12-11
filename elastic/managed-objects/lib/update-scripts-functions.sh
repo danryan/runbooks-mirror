@@ -16,6 +16,41 @@ function execute_jsonnet() {
     "$@"
 }
 
+function matches_exist () {
+  [ $# -gt 1 ] || [ -e "$1" ]
+}
+
+function get_json_and_jsonnet() {
+  declare -a json_array
+
+  if matches_exist ./*.json; then
+    for i in "${SCRIPT_DIR}"/*.json; do
+      base_name=$(basename "$i")
+      json_content=$(cat ${base_name} | jq -c)
+      json_array+=${json_content}
+    done
+  fi
+
+  # if [[ -f ./*.jsonnet ]]; then
+  #   for i in "${SCRIPT_DIR}"/*.jsonnet; do
+  #     base_name=$(basename "$i")
+  #     echo "$base_name"
+  #     name=${base_name%.jsonnet}
+  #     json="$(execute_jsonnet "${i}" | jq -c '.')" # Compile jsonnet and compact with jq
+  #     es_client "_cluster/settings" -X PUT --data-binary "${json}"
+  #   done
+  # fi
+
+  if [ ${#json_array[@]} -eq 0 ]; then
+    echo "No json or jsonnet files found."
+    exit 1
+  else
+    export json_array
+  fi
+
+}
+################################################################################
+
 function ES5_upload_json() {
   for i in "${SCRIPT_DIR}"/*.json; do
     base_name=$(basename "$i")
@@ -62,7 +97,25 @@ function ES7_index-template_exec_jsonnet_and_upload_json() {
 }
 
 function ES7_set_cluster_settings() {
-  json=$1
   url="_cluster/settings"
-  es_client "${url}" -X PUT -d "${json}"
+  get_json_and_jsonnet
+  for i in $json_array; do
+    echo $i;
+  done
+
+  # for json in "${json_array[@]}"; do
+  #   es_client "${url}" -X PUT --data-binary "@${json}"
+  # done
+  # for i in "${SCRIPT_DIR}"/*.json; do
+  #   base_name=$(basename "$i")
+  #   name=${base_name%.json}
+  #   es_client "_cluster/settings" -X PUT --data-binary "@${i}"
+  # done
+  # for i in "${SCRIPT_DIR}"/*.jsonnet; do
+  #   base_name=$(basename "$i")
+  #   echo "$base_name"
+  #   name=${base_name%.jsonnet}
+  #   json="$(execute_jsonnet "${i}" | jq -c '.')" # Compile jsonnet and compact with jq
+  #   es_client "_cluster/settings" -X PUT --data-binary "${json}"
+  # done
 }
