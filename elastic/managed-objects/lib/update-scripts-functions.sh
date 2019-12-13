@@ -21,34 +21,32 @@ function matches_exist () {
 }
 
 function get_json_and_jsonnet() {
+  export array_file_path=/tmp/get_json_and_jsonnet.array
   declare -a json_array
 
   if matches_exist ./*.json; then
     for i in "${SCRIPT_DIR}"/*.json; do
-      base_name=$(basename "$i")
-      json_content=$(cat ${base_name} | jq -c)
-      json_array+=${json_content}
+      json_content=$(cat "${i}" | jq -c '.')
+      json_array+=(${json_content})
     done
   fi
 
-  # if [[ -f ./*.jsonnet ]]; then
-  #   for i in "${SCRIPT_DIR}"/*.jsonnet; do
-  #     base_name=$(basename "$i")
-  #     echo "$base_name"
-  #     name=${base_name%.jsonnet}
-  #     json="$(execute_jsonnet "${i}" | jq -c '.')" # Compile jsonnet and compact with jq
-  #     es_client "_cluster/settings" -X PUT --data-binary "${json}"
-  #   done
-  # fi
+  if matches_exist ./*.jsonnet; then
+    for i in "${SCRIPT_DIR}"/*.jsonnet; do
+      json_content="$(execute_jsonnet "${i}" | jq -c '.')" # Compile jsonnet and compact with jq
+      json_array+=(${json_content})
+    done
+  fi
 
   if [ ${#json_array[@]} -eq 0 ]; then
     echo "No json or jsonnet files found."
     exit 1
-  else
-    export json_array
   fi
 
+  declare -p json_array > $array_file_path
 }
+
+# ES5
 ################################################################################
 
 function ES5_upload_json() {
@@ -68,6 +66,9 @@ function ES5_watches_exec_jsonnet_and_upload_json() {
     es_client "_xpack/watcher/watch/${name}?pretty=true" -X PUT --data-binary "${watch_json}"
   done
 }
+
+# ES7
+################################################################################
 
 function ES7_watches_exec_jsonnet_and_upload_json() {
   for i in "${SCRIPT_DIR}"/*.jsonnet; do
@@ -99,23 +100,9 @@ function ES7_index-template_exec_jsonnet_and_upload_json() {
 function ES7_set_cluster_settings() {
   url="_cluster/settings"
   get_json_and_jsonnet
-  for i in $json_array; do
-    echo $i;
-  done
+  source $array_file_path
 
-  # for json in "${json_array[@]}"; do
-  #   es_client "${url}" -X PUT --data-binary "@${json}"
-  # done
-  # for i in "${SCRIPT_DIR}"/*.json; do
-  #   base_name=$(basename "$i")
-  #   name=${base_name%.json}
-  #   es_client "_cluster/settings" -X PUT --data-binary "@${i}"
-  # done
-  # for i in "${SCRIPT_DIR}"/*.jsonnet; do
-  #   base_name=$(basename "$i")
-  #   echo "$base_name"
-  #   name=${base_name%.jsonnet}
-  #   json="$(execute_jsonnet "${i}" | jq -c '.')" # Compile jsonnet and compact with jq
-  #   es_client "_cluster/settings" -X PUT --data-binary "${json}"
-  # done
+  for json in "${json_array[@]}"; do
+    es_client "${url}" -X PUT --data-binary "@${json}"
+  done
 }
