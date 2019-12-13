@@ -26,15 +26,15 @@ function get_json_and_jsonnet() {
 
   if matches_exist ./*.json; then
     for i in "${SCRIPT_DIR}"/*.json; do
-      json_content=$(cat "${i}" | jq -c '.')
-      json_array+=(${json_content})
+      json_content=$(jq -c '.' "${i}")
+      json_array+=("${json_content}")
     done
   fi
 
   if matches_exist ./*.jsonnet; then
     for i in "${SCRIPT_DIR}"/*.jsonnet; do
       json_content="$(execute_jsonnet "${i}" | jq -c '.')" # Compile jsonnet and compact with jq
-      json_array+=(${json_content})
+      json_array+=("${json_content}")
     done
   fi
 
@@ -103,6 +103,7 @@ function ES7_set_cluster_settings() {
   source $array_file_path
 
   for json in "${json_array[@]}"; do
-    es_client "${url}" -X PUT --data-binary "@${json}"
+    echo $json
+    # es_client "${url}" -X PUT --data-binary "@${json}"
   done
 }
