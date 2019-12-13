@@ -16,7 +16,7 @@ function execute_jsonnet() {
     "$@"
 }
 
-function matches_exist () {
+function matches_exist() {
   [ $# -gt 1 ] || [ -e "$1" ]
 }
 
@@ -43,7 +43,7 @@ function get_json_and_jsonnet() {
     exit 1
   fi
 
-  declare -p json_array > $array_file_path
+  declare -p json_array >$array_file_path
 }
 
 # ES5
