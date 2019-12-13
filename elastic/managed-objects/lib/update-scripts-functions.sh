@@ -16,18 +16,22 @@ function execute_jsonnet() {
     "$@"
 }
 
+function matches_exist() {
+  [ -e "$1" ]
+}
+
 function get_json_and_jsonnet() {
   export array_file_path=/tmp/get_json_and_jsonnet.array
   declare -a json_array
 
-  if [ -e ./*.json ]; then
+  if matches_exist ./*.json; then
     for i in "${SCRIPT_DIR}"/*.json; do
       json_content=$(jq -c '.' "${i}")
       json_array+=("${json_content}")
     done
   fi
 
-  if [ -e ./*.jsonnet ]; then
+  if matches_exist ./*.jsonnet; then
     for i in "${SCRIPT_DIR}"/*.jsonnet; do
       json_content="$(execute_jsonnet "${i}" | jq -c '.')" # Compile jsonnet and compact with jq
       json_array+=("${json_content}")
