@@ -24,6 +24,8 @@ function get_json_and_jsonnet() {
   export array_file_path="${SCRIPT_DIR}/get_json_and_jsonnet.array"
   declare -a json_array
 
+  echo "${#json_array[@]}"
+
   if matches_exist ./*.json; then
     for i in "${SCRIPT_DIR}"/*.json; do
       json_content=$(jq -c '.' "${i}")
@@ -38,7 +40,7 @@ function get_json_and_jsonnet() {
     done
   fi
 
-  echo "${json_array[@]}"
+  echo "${#json_array[@]}"
 
   if [ ${#json_array[@]} -eq 0 ]; then
     echo "No json or jsonnet files found."
