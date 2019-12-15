@@ -22,7 +22,8 @@ function matches_exist() {
 
 function get_json_and_jsonnet() {
   export array_file_path="${SCRIPT_DIR}/get_json_and_jsonnet.array"
-  declare -a json_array
+  # declare -a json_array
+  json_array=()
 
   echo "${#json_array[@]}"
 
