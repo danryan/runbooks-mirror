@@ -45,7 +45,7 @@ function get_json_and_jsonnet() {
     exit 1
   fi
 
-  declare -p json_array >$array_file_path
+  declare -p json_array >"${array_file_path}"
 }
 
 # ES5
@@ -102,7 +102,7 @@ function ES7_index-template_exec_jsonnet_and_upload_json() {
 function ES7_set_cluster_settings() {
   url="_cluster/settings"
   get_json_and_jsonnet
-  source $array_file_path
+  source "${array_file_path}"
 
   for json in "${json_array[@]}"; do
     es_client "${url}" -X PUT --data-binary "${json}"
