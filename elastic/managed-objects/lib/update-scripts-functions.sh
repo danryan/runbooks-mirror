@@ -21,7 +21,7 @@ function matches_exist() {
 }
 
 function get_json_and_jsonnet() {
-  export array_file_path=/tmp/get_json_and_jsonnet.array
+  export array_file_path="${SCRIPT_DIR}/get_json_and_jsonnet.array"
   declare -a json_array
 
   if matches_exist ./*.json; then
