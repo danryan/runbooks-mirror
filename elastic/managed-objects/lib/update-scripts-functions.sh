@@ -38,7 +38,7 @@ function get_json_and_jsonnet() {
     done
   fi
 
-  echo $json_array
+  echo "${json_array[@]}"
 
   if [ ${#json_array[@]} -eq 0 ]; then
     echo "No json or jsonnet files found."
