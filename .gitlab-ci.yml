@@ -216,6 +216,8 @@ update_elastic_log_gprd_cluster_settings:
   script:
   - ./elastic/managed-objects/log_gprd/cluster-settings/update-cluster-settings.sh
   only:
+    refs:
+      - master
     changes:
       - elastic/managed-objects/log_gprd/cluster-settings/*
     variables:
