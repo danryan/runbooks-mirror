@@ -21,7 +21,7 @@
           allocation: {
             total_shards_per_node: 6,
           },
-        }
+        },
       },
       number_of_shards: 6,
       // number_of_replicas: 1,
