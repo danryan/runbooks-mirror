@@ -72,6 +72,7 @@ function ES5_watches_exec_jsonnet_and_upload_json() {
 function ES7_watches_upload_json() {
   for i in "${SCRIPT_DIR}"/*.json; do
     base_name=$(basename "$i")
+    echo "$base_name"
     name=${base_name%.json}
     es_client "_watcher/watch/${name}" -X PUT --data-binary "@${i}"
   done
