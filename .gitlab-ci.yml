@@ -280,6 +280,19 @@ update_elastic_nonprod-log_index_templates:
     variables:
       - $ES_NONPROD_URL
 
+update_elastic_nonprod-log_cluster_settings:
+  stage: deploy
+  image: "${CI_REGISTRY_IMAGE}/runtools_build:latest"
+  script:
+  - ./elastic/managed-objects/nonprod-log/cluster-settings/update-cluster-settings.sh
+  only:
+    refs:
+      - master
+    changes:
+      - elastic/managed-objects/nonprod-log/cluster-settings/*
+    variables:
+      - $ES_NONPROD_URL
+
 # monitoring-es7
 ################################################################################
 
