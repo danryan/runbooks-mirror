@@ -1,6 +1,6 @@
 {
   "attributes": {
-    "title": "pubsub-pages-inf-dr-*",
+    "title": "pubsub-pages-inf-pre-*",
     "timeFieldName": "json.time"
   }
 }
