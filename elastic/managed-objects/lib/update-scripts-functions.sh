@@ -90,7 +90,7 @@ function ES7_put_json() {
   done
 }
 
-function kibana_post_json(){
+function kibana_post_json() {
   # args:
   # $1 URL to use when uploading
   for i in "${SCRIPT_DIR}"/*.json; do
@@ -102,7 +102,7 @@ function kibana_post_json(){
   done
 }
 
-function kibana_put_json(){
+function kibana_put_json() {
   # args:
   # $1 URL to use when uploading
   for i in "${SCRIPT_DIR}"/*.json; do
