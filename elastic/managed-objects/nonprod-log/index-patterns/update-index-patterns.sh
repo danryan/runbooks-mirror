@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)"
-export ES_URL=$ES_LOG_GPRD_URL
+export ES_URL=$ES_NONPROD_URL
 source "${SCRIPT_DIR}"/../../lib/update-scripts-functions.sh
 
-ES7_upload_json "_watcher/watch/"
-ES7_watches_exec_jsonnet_and_upload_json
+kibana_upload_json "api/saved_objects/index-pattern/"
