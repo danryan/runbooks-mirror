@@ -12,7 +12,7 @@ function es_client() {
 function kibana_client() {
   url=$1
   shift
-  curl --retry 3 --fail -H 'Content-Type: application/json' "${KIBANA_URL}/${url}" "$@"
+  curl --retry 3 --fail -H 'Content-Type: application/json' -H 'kbn-xsrf: true' "${KIBANA_URL}/${url}" "$@"
 }
 
 function execute_jsonnet() {
@@ -78,7 +78,7 @@ function ES5_watches_exec_jsonnet_and_upload_json() {
 
 # ES7
 ################################################################################
-function ES7_upload_json() {
+function ES7_put_json() {
   # args:
   # $1 URL to use when uploading
   for i in "${SCRIPT_DIR}"/*.json; do
@@ -90,7 +90,19 @@ function ES7_upload_json() {
   done
 }
 
-function kibana_upload_json(){
+function kibana_post_json(){
+  # args:
+  # $1 URL to use when uploading
+  for i in "${SCRIPT_DIR}"/*.json; do
+    base_name=$(basename "$i")
+    echo ""
+    echo "$base_name"
+    name=${base_name%.json}
+    kibana_client "$1${name}" -X POST --data-binary "@${i}"
+  done
+}
+
+function kibana_put_json(){
   # args:
   # $1 URL to use when uploading
   for i in "${SCRIPT_DIR}"/*.json; do
@@ -101,7 +113,6 @@ function kibana_upload_json(){
     kibana_client "$1${name}" -X PUT --data-binary "@${i}"
   done
 }
-
 function ES7_watches_exec_jsonnet_and_upload_json() {
   for i in "${SCRIPT_DIR}"/*.jsonnet; do
     base_name=$(basename "$i")
