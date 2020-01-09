@@ -49,7 +49,7 @@ local ES_QUERY = {
           to: [
             '#alerts-test',
           ],
-          text: 'Stale nfs errors were detected. Please investigate this further. See: https://gitlab.com/gitlab-org/gitlab/issues/32718#note_233384831 for more information.',
+          text: 'Stale nfs errors were detected. Please investigate this further. See: https://gitlab.com/gitlab-org/gitlab/issues/32718#note_233384831 and https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/8227 for more information.',
         },
       },
     },
