@@ -110,6 +110,43 @@ tf import module.gitlab-gke.google_container_node_pool.node_pool[0] gitlab-produ
 * Pod Metrics for Mailroom: https://dashboards.gitlab.net/d/mailroom-pod/mailroom-pod-info?orgId=1&from=now-12h&to=now&var-PROMETHEUS_DS=Global&var-environment=gstg&var-cluster=gstg-gitlab-gke&var-namespace=gitlab&var-Node=All&var-Deployment=gitlab-mailroom
 * General service metrics for Registry: https://dashboards.gitlab.net/d/general-service/general-service-platform-metrics?orgId=1&var-type=registry&from=now-1h&to=now
 
+## Manual Scaling a Deployment
+
+In times of emergency, whether it be a security issue, identified abuse, and/or
+an incident where there's great pressure in our infrastructure, it may be
+necessary to manually set the scale of a Deployment.  When a Deployment is setup
+with a Horizontal Pod Autoscaler (HPA), and we need to manually scale, be aware
+that the HPA will eventually override our replica count.
+
+Due to an HPA having both minimums and maximums set, if we configure the scale
+to a number greater than the maximum, the HPA will come in and tune down the
+running Pods to the max configured and go about its business.  If we set the
+replica count to something lower than the minimum, the running Pods will
+terminate to match the desired count, but the HPA will eventually kick in and
+rescale the Pods as it deems necessary.  Usually within 3 minutes.  If the HPA
+minimum is set to 1, and we set the replica count to 0, then all Pods will
+terminate, and because we will no longer have metrics for the HPA to look at and
+determine scale, the count of Pods will never change.  To combat this set the
+replica count to at least the minimum value as configured in the HPA, and the
+HPA will take over.
+
+To check the HPA configuration, execute the following command:
+```
+kubectl get hpa
+```
+
+To scale a deployment, run the following example command:
+```
+kubectl scale <DEPLOYMENT_NAME> --replicas=<X>
+```
+
+The `DEPLOYMENT_NAME` represents the Deployment associated and managing the Pods
+that are running.  `X` represents the desired number of Pods you wish to run.
+
+Refer to existing Kubernetes documentation for reference:
+* https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+* https://github.com/kubernetes/community/blob/master/contributors/design-proposals/autoscaling/horizontal-pod-autoscaler.md
+
 ## Attaching to a running container
 
 ### Using Docker
