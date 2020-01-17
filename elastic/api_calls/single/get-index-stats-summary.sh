@@ -10,12 +10,12 @@ usage() {
 echo "
   print out pubsub index stats as csv
 
-  Usage: $(basename $0) [-d|-id]
+  Usage: $(basename "$0") [-d|-id]
 
     -id: summarize stats per index and day
     -i: summarize stats per index
 "
-exit -1
+exit 1
 }
 
 [ $# -ne 1 ] && usage
@@ -43,19 +43,19 @@ summarize_index_stats() {
   # print header
   echo "index,date,docs.count,pri.store.size"
 
-  while read line; do
+  while read -r line; do
   
     index_name=$(echo "$line" | awk '{print $3}' | sed 's/-[0-9]\{4\}\.[0-9]\{2\}\.[0-9]\{2\}.*//g')
     index_date=$(echo "$line" | awk '{print $3}' | sed "s/${index_name}-//" | sed 's/-.*//' | sed 's/\./-/g')
     doc_count=$(echo "$line" | awk '{print $7}')
-    primary_size=$(echo $line | awk '{print $10}')
+    primary_size=$(echo "$line" | awk '{print $10}')
 
     if [ "$old_date" == "none" ]; then old_date=$index_date; fi
     if [ "$old_name" == "none" ]; then old_name=$index_name; fi
 
     case $opt in
       -id)    # summarize for each index alias and day
-        if [ "$old_date" != "$index_date" -o "$old_name" != "$index_name" ]; then
+        if [ "$old_date" != "$index_date" ] || [ "$old_name" != "$index_name" ]; then
 
           # print out the sum and start counting from 0
           echo "$old_name,$old_date,$doc_count_sum,$primary_size_sum"
@@ -67,8 +67,8 @@ summarize_index_stats() {
 
         fi
 
-        doc_count_sum=$((${doc_count_sum} + $doc_count))
-        primary_size_sum=$((${primary_size_sum} + $primary_size))
+        doc_count_sum=$((doc_count_sum + doc_count))
+        primary_size_sum=$((primary_size_sum + primary_size))
         ;;
 
       -i)    # summarize for each index alias
@@ -84,8 +84,8 @@ summarize_index_stats() {
 
         fi
 
-        doc_count_sum=$((${doc_count_sum} + $doc_count))
-        primary_size_sum=$((${primary_size_sum} + $primary_size))
+        doc_count_sum=$((doc_count_sum + doc_count))
+        primary_size_sum=$((primary_size_sum + primary_size))
         ;;
       *)
         usage;;
