@@ -55,7 +55,7 @@ are using on our cluster, the desired retention period and how much log volume
 we want to add, then we can estimate the needed cluster size.
 
 Currently, fluentd is sending all logs to stackdriver and some logs to GCP
-PubSub. We have pubsubbeat nodes for each topic, stending the logs into elastic.
+PubSub. We have pubsubbeat nodes for each topic, sending the logs into elastic.
 
 ### What is going to Stackdriver?
 
