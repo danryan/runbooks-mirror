@@ -77,7 +77,7 @@ Total of **1.3TiB/day** as of 17-01-2020 (nginx being excluded).
 
 ### How much elastic storage are we using per day?
 
-As we have one index alias per pubsub topic and a naming convention for
+As we have one index alias per pubsub topic and in ES5 cluster (`gitlab-production`) we use a naming convention for
 rolled-over indices to add the date and a counter, we can grep the elastic cat
 api for each pubsub index alias and add together the size of all indices
 belonging to the same alias with the same day in the name to get the daily index
