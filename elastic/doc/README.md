@@ -46,7 +46,7 @@ TODO: link here design docs once they are ready
 
 ## Performing operations on the Elastic cluster ##
 
-One time Elastic operations should be documented as `api_call` s in this repo. Everything else should be managed using CI. 
+One time Elastic operations should be documented as `api_call` s in this repo. Everything else, for example cluster config, index templates, should be managed using CI (with the exception of dashboards and visualizations created in Kibana by users).
 
 ## Estimating Log Volume and Cluster Size
 
