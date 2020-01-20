@@ -2,7 +2,7 @@
 
 # This can be used to populate https://docs.google.com/spreadsheets/d/1RN7Ry2pI7iTFURqb0G5zjhNp7xkiPSVG-YsoBOO3TFw.
 # The last index for each index alias might be incomplete.
-# It only works with pubsub indices, as we rely on their naming pattern.
+# It only works with pubsub indices in the ES5 cluster, as we rely on their naming pattern which contains the day.
 
 set -eufo pipefail
 
