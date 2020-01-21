@@ -116,34 +116,35 @@ In times of emergency, whether it be a security issue, identified abuse, and/or
 an incident where there's great pressure in our infrastructure, it may be
 necessary to manually set the scale of a Deployment.  When a Deployment is setup
 with a Horizontal Pod Autoscaler (HPA), and we need to manually scale, be aware
-that the HPA will eventually override our replica count.
-
-Due to an HPA having both minimums and maximums set, if we configure the scale
-to a number greater than the maximum, the HPA will come in and tune down the
-running Pods to the max configured and go about its business.  If we set the
-replica count to something lower than the minimum, the running Pods will
-terminate to match the desired count, but the HPA will eventually kick in and
-rescale the Pods as it deems necessary.  Usually within 3 minutes.  If the HPA
-minimum is set to 1, and we set the replica count to 0, then all Pods will
-terminate, and because we will no longer have metrics for the HPA to look at and
-determine scale, the count of Pods will never change.  To combat this set the
-replica count to at least the minimum value as configured in the HPA, and the
-HPA will take over.
-
-To check the HPA configuration, execute the following command:
-```
-kubectl get hpa
-```
+that the HPA will fail to autoscale if we scale down to 0 Pods.  Also keep in
+mind that an HPA will process metrics on a regular cadence, if you scale w/i the
+window of the HPA configuration, the manual override will quickly be taken over
+by the HPA.
 
 To scale a deployment, run the following example command:
+
 ```
 kubectl scale <DEPLOYMENT_NAME> --replicas=<X>
+```
+
+Example, scale Deployment `gitlab-sidekiq-export` to 0 Pods:
+
+```
+kubectl scale deployments/gitlab-sidekiq-export --replicas=0
 ```
 
 The `DEPLOYMENT_NAME` represents the Deployment associated and managing the Pods
 that are running.  `X` represents the desired number of Pods you wish to run.
 
-Refer to existing Kubernetes documentation for reference:
+After an event is over, the HPA will need at least 1 Pod running in order to
+perform its task of autoscaling the Deployment.  For this, we can rerun a
+similar command above, using the below as an example:
+
+```
+kubectl scale deployments/gitlab-sidekiq-export --replicas=1
+```
+
+Refer to existing Kubernetes documentation for reference and further details:
 * https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 * https://github.com/kubernetes/community/blob/master/contributors/design-proposals/autoscaling/horizontal-pod-autoscaler.md
 
