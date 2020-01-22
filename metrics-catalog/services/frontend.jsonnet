@@ -31,6 +31,8 @@ local customQuery = metricsCatalog.customQuery;
         counter='haproxy_backend_response_errors_total',
         selector='type="frontend", backend!~"canary_.*"'
       ),
+
+      significantLabels: ['fqdn'],
     },
 
     cnyHttpServices: {
@@ -51,8 +53,10 @@ local customQuery = metricsCatalog.customQuery;
 
       errorRate: rateMetric(
         counter='haproxy_backend_response_errors_total',
-        selector='type="frontend", backend=~"canary_.*", '
+        selector='type="frontend", backend=~"canary_.*"'
       ),
+
+      significantLabels: ['fqdn'],
     },
 
     sshServices: {
@@ -66,7 +70,6 @@ local customQuery = metricsCatalog.customQuery;
         counter='haproxy_ssh_requests_total',
         selector='type="frontend"'
       ),
-
 
       // We only want to keep track of errors that our our fault (not the clients)
       // These are some explanations of the relevant codes, from the haproxy docs
@@ -92,6 +95,16 @@ local customQuery = metricsCatalog.customQuery;
         counter='haproxy_ssh_requests_terminated_total',
         selector='type="frontend", cause=~"K|S|s|P|I|D"'
       ),
+
+      significantLabels: ['fqdn'],
     },
   },
+
+  saturationTypes: [
+    'cpu',
+    'disk_space',
+    'memory',
+    'open_fds',
+    'single_node_cpu',
+  ],
 }
