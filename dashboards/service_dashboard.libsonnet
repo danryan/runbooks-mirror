@@ -21,29 +21,28 @@ local saturationDetail = import 'saturation_detail.libsonnet';
 local metricsCatalog = import 'metrics-catalog.libsonnet';
 local metricsCatalogDashboards = import 'metrics_catalog_dashboards.libsonnet';
 
-local overviewDashboard(type, tier) =
-  local selector = 'environment="$environment", type="%s", stage="$stage"' % [type];
+local overviewDashboard(type, tier, stage) =
+  local selector = 'environment="$environment", type="%s", stage="%s"' % [type, stage];
   local catalogServiceInfo = serviceCatalog.lookupService(type);
   local metricsCatalogServiceInfo = metricsCatalog.getService(type);
 
-  basic.dashboard(
+  local dashboard = basic.dashboard(
     'Overview',
-    tags=['type:' + type, 'tier:' + tier, type],
+    tags=['type:' + type, 'tier:' + tier, type, 'service overview'],
   )
-  .addTemplate(templates.stage)
-  .addTemplate(templates.sigma)
-  .addPanels(keyMetrics.headlineMetricsRow(type, '$stage', startRow=0))
-  .addPanel(serviceHealth.row(type, '$stage'), gridPos={ x: 0, y: 10 })
-  .addPanels(
+                    .addPanels(keyMetrics.headlineMetricsRow(type, stage, startRow=0))
+                    .addPanel(serviceHealth.row(type, stage), gridPos={ x: 0, y: 10 })
+                    .addPanels(
     metricsCatalogDashboards.componentOverviewMatrix(
       type,
+      stage,
       startRow=20
     )
   )
-  .addPanels(
+                    .addPanels(
     metricsCatalogDashboards.autoDetailRows(type, selector, startRow=100)
   )
-  .addPanel(
+                    .addPanel(
     nodeMetrics.nodeMetricsDetailRow(selector),
     gridPos={
       x: 0,
@@ -52,20 +51,26 @@ local overviewDashboard(type, tier) =
       h: 1,
     }
   )
-  .addPanel(
+                    .addPanel(
     saturationDetail.saturationDetailPanels(selector, components=metricsCatalogServiceInfo.saturationTypes),
     gridPos={ x: 0, y: 400, w: 24, h: 1 }
   );
 
+  // Optionally add the stage variable
+  local dashboardWithStage = if stage == '$stage' then dashboard.addTemplate(templates.stage) else dashboard;
+
+  dashboardWithStage.addTemplate(templates.sigma);
+
 {
-  overview(type, tier):: overviewDashboard(type, tier) {
+  overview(type, tier, stage='$stage'):: overviewDashboard(type, tier, stage) {
     _serviceType: type,
     _serviceTier: tier,
+    _stage: stage,
     overviewTrailer()::
       local s = self;
-      s.addPanel(capacityPlanning.capacityPlanningRow(s._serviceType, '$stage'), gridPos={ x: 0, y: 100000 })
+      s.addPanel(capacityPlanning.capacityPlanningRow(s._serviceType, s._stage), gridPos={ x: 0, y: 100000 })
       + {
-        links+: platformLinks.triage + serviceCatalog.getServiceLinks(s._serviceType) + platformLinks.services,
+        links+: platformLinks.triage + serviceCatalog.getServiceLinks(s._serviceType) + platformLinks.services + [platformLinks.dynamicLinks(s._serviceType + ' Detail', 'type:' + s._serviceType)],
       },
   },
 

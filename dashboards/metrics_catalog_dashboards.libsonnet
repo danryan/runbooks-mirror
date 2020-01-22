@@ -1,9 +1,9 @@
 local basic = import 'basic.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
+local keyMetrics = import 'key_metrics.libsonnet';
 local layout = import 'layout.libsonnet';
 local metricsCatalog = import 'metrics-catalog.libsonnet';
 local thresholds = import 'thresholds.libsonnet';
-local keyMetrics = import 'key_metrics.libsonnet';
 local row = grafana.row;
 
 local getLatencyPercentileForService(service) =
@@ -12,33 +12,31 @@ local getLatencyPercentileForService(service) =
   else
     0.95;
 
-local countKeyIndicatorsForComponent(component) =
-    (if std.objectHas(component, 'apdex') then 1 else 0) +
-    (if std.objectHas(component, 'requestRate') then 1 else 0) +
-    (if std.objectHas(component, 'errorRate') then 1 else 0);
-
-local componentOverviewMatrixRow(serviceType, componentName, component, startRow) =
+local componentOverviewMatrixRow(serviceType, serviceStage, componentName, component, startRow) =
   layout.grid(
     std.prune([
-        // Component apdex
-        if std.objectHas(component, 'apdex') then
-          keyMetrics.singleComponentApdexPanel(serviceType, '$stage', componentName)
-        else
-          null,
+      // Component apdex
+      if std.objectHas(component, 'apdex') then
+        keyMetrics.singleComponentApdexPanel(serviceType, serviceStage, componentName)
+      else
+        null,
 
-        // Error rate
-        if std.objectHas(component, 'errorRate') then
-          keyMetrics.singleComponentErrorRates(serviceType, '$stage', componentName)
-        else
-          null,
+      // Error rate
+      if std.objectHas(component, 'errorRate') then
+        keyMetrics.singleComponentErrorRates(serviceType, serviceStage, componentName)
+      else
+        null,
 
-        // Component request rate
-        if std.objectHas(component, 'requestRate') then
-          keyMetrics.singleComponentQPSPanel(serviceType, '$stage', componentName)
-        else
-          null,
+      // Component request rate
+      if std.objectHas(component, 'requestRate') && std.objectHasAll(component.requestRate, 'rateQuery') then
+        keyMetrics.singleComponentQPSPanel(serviceType, serviceStage, componentName)
+      else
+        null,
     ]),
-    cols=3, startRow=startRow, rowHeight=7);
+    cols=3,
+    startRow=startRow,
+    rowHeight=7
+  );
 
 {
   componentLatencyPanel(
@@ -125,21 +123,25 @@ local componentOverviewMatrixRow(serviceType, componentName, component, startRow
       yAxisLabel='Errors'
     ),
 
-  componentOverviewMatrix(serviceType, startRow)::
+  componentOverviewMatrix(serviceType, serviceStage, startRow)::
     local service = metricsCatalog.getService(serviceType);
     [
-      row.new(title='🔬 Component Level Indicators', collapse=false) { gridPos: { x: 0, y: startRow, w: 24, h: 1 } }
+      row.new(title='🔬 Component Level Indicators', collapse=false) { gridPos: { x: 0, y: startRow, w: 24, h: 1 } },
     ] +
     std.prune(
       std.flattenArrays(
-        std.mapWithIndex(function(i, c) componentOverviewMatrixRow(serviceType, c, service.components[c], startRow=startRow+1+i), std.objectFields(service.components))
+        std.mapWithIndex(function(i, c) componentOverviewMatrixRow(serviceType, serviceStage, c, service.components[c], startRow=startRow + 1 + i), std.objectFields(service.components))
       )
     ),
 
   componentDetailMatrix(serviceType, componentName, selector, aggregationSets, minLatency=0.01)::
     local service = metricsCatalog.getService(serviceType);
     local component = service.components[componentName];
-    local colCount = countKeyIndicatorsForComponent(component);
+    local colCount =
+      (if std.objectHas(component, 'apdex') then 1 else 0) +
+      (if std.objectHas(component, 'requestRate') && std.objectHasAll(component.requestRate, 'rateQuery') then 1 else 0) +
+      (if std.objectHas(component, 'errorRate') then 1 else 0);
+
 
     row.new(title='🔬 %(componentName)s Component Detail' % { componentName: componentName }, collapse=true)
     .addPanels(
@@ -174,7 +176,7 @@ local componentOverviewMatrixRow(serviceType, componentName, component, startRow
                   else
                     null,
 
-                  if std.objectHas(component, 'requestRate') then
+                  if std.objectHas(component, 'requestRate') && std.objectHasAll(component.requestRate, 'rateQuery') then
                     self.componentRPSPanel(
                       title=componentName + ' RPS - ' + aggregationSet.title,
                       serviceType=serviceType,
@@ -199,13 +201,14 @@ local componentOverviewMatrixRow(serviceType, componentName, component, startRow
 
     layout.grid(
       std.mapWithIndex(function(i, componentName)
-        local component = service.components[componentName];
-        local aggregationSets = [
-          { title: 'Overall', aggregationLabels: '', legendFormat: 'overall' },
-        ] +
-          std.map(function(c) { title: 'per ' + c, aggregationLabels: c, legendFormat: '{{' + c + '}}' }, component.significantLabels);
+                         local component = service.components[componentName];
+                         local aggregationSets = [
+                                                   { title: 'Overall', aggregationLabels: '', legendFormat: 'overall' },
+                                                 ] +
+                                                 std.map(function(c) { title: 'per ' + c, aggregationLabels: c, legendFormat: '{{' + c + '}}' }, component.significantLabels);
 
-        s.componentDetailMatrix(serviceType, componentName, selector, aggregationSets),
-      std.objectFields(service.components))
-    , cols=1, startRow=startRow),
+                         s.componentDetailMatrix(serviceType, componentName, selector, aggregationSets),
+                       std.objectFields(service.components))
+      , cols=1, startRow=startRow
+    ),
 }
