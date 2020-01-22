@@ -24,12 +24,12 @@ local customQuery = metricsCatalog.customQuery;
 
       requestRate: rateMetric(
         counter='haproxy_backend_http_responses_total',
-        selector='type="frontend", backend_name!~"canary_.*", backend_name!="api_rate_limit"'
+        selector='type="frontend", backend!~"canary_.*"'
       ),
 
       errorRate: rateMetric(
         counter='haproxy_backend_response_errors_total',
-        selector='type="frontend", backend_name!~"canary_.*", backend_name!="api_rate_limit"'
+        selector='type="frontend", backend!~"canary_.*"'
       ),
     },
 
@@ -40,18 +40,18 @@ local customQuery = metricsCatalog.customQuery;
 
       apdex: histogramApdex(
         histogram='haproxy_http_response_duration_seconds_bucket',
-        selector='type="frontend", backend_name~="canary_.*"',
+        selector='type="frontend", backend_name=~"canary_.*"',
         satisfiedThreshold=5
       ),
 
       requestRate: rateMetric(
         counter='haproxy_backend_http_responses_total',
-        selector='type="frontend", backend_name~="canary_.*"'
+        selector='type="frontend", backend=~"canary_.*"'
       ),
 
       errorRate: rateMetric(
         counter='haproxy_backend_response_errors_total',
-        selector='type="frontend", backend_name~="canary_.*", '
+        selector='type="frontend", backend=~"canary_.*", '
       ),
     },
 
