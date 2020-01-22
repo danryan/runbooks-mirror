@@ -18,7 +18,7 @@ local customQuery = metricsCatalog.customQuery;
 
       apdex: histogramApdex(
         histogram='haproxy_http_response_duration_seconds_bucket',
-        selector='type="frontend", backend_name!~"canary_.*", backend_name!="api_rate_limit"',
+        selector='type="frontend", backend_name!~"canary_.*", backend_name!="api_rate_limit", backend_name!="websockets"',
         satisfiedThreshold=5
       ),
 
@@ -35,23 +35,23 @@ local customQuery = metricsCatalog.customQuery;
 
     cnyHttpServices: {
       staticLabels: {
-        stage: 'main',
+        stage: 'cny',
       },
 
       apdex: histogramApdex(
         histogram='haproxy_http_response_duration_seconds_bucket',
-        selector='type="frontend", backend_name!="canary_.*"',
+        selector='type="frontend", backend_name~="canary_.*"',
         satisfiedThreshold=5
       ),
 
       requestRate: rateMetric(
         counter='haproxy_backend_http_responses_total',
-        selector='type="frontend", backend_name!="canary_.*"'
+        selector='type="frontend", backend_name~="canary_.*"'
       ),
 
       errorRate: rateMetric(
         counter='haproxy_backend_response_errors_total',
-        selector='type="frontend", backend_name!="canary_.*", '
+        selector='type="frontend", backend_name~="canary_.*", '
       ),
     },
 
@@ -68,6 +68,9 @@ local customQuery = metricsCatalog.customQuery;
       ),
 
 
+      // We only want to keep track of errors that our our fault (not the clients)
+      // These are some explanations of the relevant codes, from the haproxy docs
+      //
       // K : the session was actively killed by an admin operating on haproxy.
       // S : the TCP session was unexpectedly aborted by the server, or the server explicitly refused it.
       // s : the server-side timeout expired while waiting for the server to send or receive data.
