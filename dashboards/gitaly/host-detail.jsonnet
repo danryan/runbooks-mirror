@@ -27,7 +27,7 @@ basic.dashboard(
   'Host Detail',
   tags=['type:gitaly'],
 )
-.addTemplate(templates.fqdn(query='gitlab_version_info{type="gitaly", component="gitaly", environment="$environment"}', current='file-01-stor-gprd.c.gitlab-production.internal'))
+.addTemplate(templates.fqdn(query='up{job="node",type="gitaly",environment="$environment"}', current='file-01-stor-gprd.c.gitlab-production.internal'))
 .addPanel(
   row.new(title='Node Performance'),
   gridPos={
