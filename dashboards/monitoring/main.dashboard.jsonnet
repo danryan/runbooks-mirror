@@ -36,28 +36,27 @@ serviceDashboard.overview('monitoring', 'inf')
     min=10
   )
   .addTarget(
-      promQuery.target(
-        |||
-          grafana_api_dataproxy_request_all_milliseconds{env="$environment",environment="$environment", quantile="0.9"}
-        |||,
-        legendFormat='p90 {{ fqdn }}',
-        intervalFactor=2,
-      )
+    promQuery.target(
+      |||
+        grafana_api_dataproxy_request_all_milliseconds{env="$environment",environment="$environment", quantile="0.9"}
+      |||,
+      legendFormat='p90 {{ fqdn }}',
+      intervalFactor=2,
     )
+  )
   .addTarget(
-      promQuery.target(
-        |||
-          grafana_api_dataproxy_request_all_milliseconds{env="$environment",environment="$environment", quantile="0.99"}
-        |||,
-        legendFormat='p99 {{ fqdn }}',
-        intervalFactor=2,
-      )
-    ) + {
-      thresholds: [
-        thresholds.warningLevel('gt', 10000),
-        thresholds.errorLevel('gt', 30000),
-      ],
-    }
-  ,
+    promQuery.target(
+      |||
+        grafana_api_dataproxy_request_all_milliseconds{env="$environment",environment="$environment", quantile="0.99"}
+      |||,
+      legendFormat='p99 {{ fqdn }}',
+      intervalFactor=2,
+    )
+  ) + {
+    thresholds: [
+      thresholds.warningLevel('gt', 10000),
+      thresholds.errorLevel('gt', 30000),
+    ],
+  },
 ], cols=1, rowHeight=10, startRow=1001))
 .overviewTrailer()
