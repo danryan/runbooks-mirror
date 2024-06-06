@@ -74,4 +74,5 @@
   import 'web.jsonnet',
   import 'websockets.jsonnet',
   import 'woodhouse.jsonnet',
+  import 'zoekt.jsonnet',
 ]
