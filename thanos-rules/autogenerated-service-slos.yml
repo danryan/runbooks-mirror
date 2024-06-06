@@ -3271,6 +3271,16 @@ groups:
       tier: sv
       type: woodhouse
     expr: "0.001000"
+  - record: slo:min:events:gitlab_service_apdex:ratio
+    labels:
+      tier: inf
+      type: zoekt
+    expr: "0.999000"
+  - record: slo:max:events:gitlab_service_errors:ratio
+    labels:
+      tier: inf
+      type: zoekt
+    expr: "0.001000"
   - record: gitlab_service:mapping:disable_ops_rate_prediction
     labels:
       tier: inf
