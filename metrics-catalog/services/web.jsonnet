@@ -14,7 +14,7 @@ local railsSelector = { job: 'gitlab-rails', type: 'web' };
 metricsCatalog.serviceDefinition({
   type: 'web',
   tier: 'sv',
-  tenants: [ 'gitlab-gprd', 'gitlab-gstg', 'gitlab-pre' ],
+  tenants: ['gitlab-gprd', 'gitlab-gstg', 'gitlab-pre'],
 
   tags: ['golang', 'rails', 'puma'],
 
@@ -61,6 +61,7 @@ metricsCatalog.serviceDefinition({
     search: true,
     consul: true,
     'google-cloud-storage': true,
+    zoekt: true,
   },
   recordingRuleMetrics: [
     'http_requests_total',

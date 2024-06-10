@@ -22,7 +22,7 @@ local baseSelector = { type: 'sidekiq' } + ignoredWorkers;
 metricsCatalog.serviceDefinition({
   type: 'sidekiq',
   tier: 'sv',
-  tenants: [ 'gitlab-gprd', 'gitlab-gstg', 'gitlab-pre' ],
+  tenants: ['gitlab-gprd', 'gitlab-gstg', 'gitlab-pre'],
   tags: ['rails'],
 
   // overrides monitoringThresholds for specific shards and SLIs
@@ -82,6 +82,7 @@ metricsCatalog.serviceDefinition({
     search: true,
     consul: true,
     'google-cloud-storage': true,
+    zoekt: true,
   },
   provisioning: {
     kubernetes: true,
