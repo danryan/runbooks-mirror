@@ -26,6 +26,9 @@ metricsCatalog.serviceDefinition({
       errorRatio: 0.90,
     },
   },
+  serviceDependencies: {
+    zoekt: true,
+  },
   serviceLevelIndicators: {
 
     elasticsearch_searching: {
