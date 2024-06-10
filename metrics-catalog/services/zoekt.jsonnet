@@ -9,4 +9,5 @@ metricsCatalog.serviceDefinition({
     errorRatio: 0.999,
   },
   serviceLevelIndicators: {},
+  skippedMaturityCriteria: {},
 })
