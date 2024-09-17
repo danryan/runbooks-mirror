@@ -78,7 +78,7 @@ teams:
   url: https://about.gitlab.com/handbook/engineering/development/analytics/product-analytics/
   slack_channel: g_monitor_product_analytics
   slack_alerts_channel: g_monitor_product_analytics_infra_alerts
-  slack_error_budget_channel: g_monitor_product_analytics
+  slack_error_budget_channel: s_monitor
   send_error_budget_weekly_to_slack: true
   alerts:
   - prod-1
