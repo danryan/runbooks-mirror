@@ -1,0 +1,12 @@
+title: websockets: Pod Info
+uid: websockets-pod
+title: websockets: Capacity Review
+uid: websockets-capacity-review
+title: websockets: Overview
+uid: websockets-main
+title: websockets: Kube Containers Detail
+uid: websockets-kube-containers
+title: websockets: Kube Deployment Detail
+uid: websockets-kube-deployments
+title: websockets: Regional Detail
+uid: websockets-regional

@@ -1,0 +1,6 @@
+title: sentry: Kube Sentry main
+uid: sentry-main-kube
+title: sentry: Events
+uid: sentry-events
+title: sentry: Overview
+uid: sentry-main

@@ -1,0 +1,12 @@
+title: nginx: Pod Info
+uid: nginx-pod
+title: nginx: Overview
+uid: nginx-main
+title: nginx: Capacity Review
+uid: nginx-capacity-review
+title: nginx: Kube Containers Detail
+uid: nginx-kube-containers
+title: nginx: Kube Deployment Detail
+uid: nginx-kube-deployments
+title: nginx: Regional Detail
+uid: nginx-regional

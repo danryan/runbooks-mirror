@@ -1,0 +1,2 @@
+title: postgresql: Postgres upgrade using logical
+uid: postgresql-pg-upgrade

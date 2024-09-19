@@ -1,0 +1,24 @@
+title: delivery: delivery-metrics deployment
+uid: delivery-delivery_metrics
+title: delivery: Rollback information
+uid: delivery-rollback_info
+title: delivery: Release Information
+uid: delivery-release_info
+title: delivery: Release Management Toil
+uid: delivery-release_management_toil
+title: delivery: Deployment Health
+uid: delivery-deployment_health
+title: delivery: jobs-duration
+uid: delivery-jobs_duration
+title: delivery: Deployment Blockers
+uid: delivery-deployment_blockers
+title: delivery: Auto-Deploy packages information
+uid: delivery-auto_deploy_packages
+title: delivery: Release Management
+uid: delivery-release_management
+title: delivery: deployment-metrics
+uid: delivery-deployment_metrics
+title: delivery: Deployment SLO
+uid: delivery-deployment_slo
+title: delivery: Percentage of Auto deploy environment states
+uid: delivery-auto_deploy_environment_state
