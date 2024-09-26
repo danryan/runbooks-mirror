@@ -60,6 +60,8 @@
     feature_categories: [
       'wiki',
       'pages',
+      'text_editors',
+      'markdown',
     ],
   },
   optimize: {
@@ -284,22 +286,13 @@
       'application_instrumentation',
     ],
   },
-  product_analytics: {
-    name: 'Product Analytics',
+  platform_insights: {
+    name: 'Platform Insights',
     stage: 'monitor',
     feature_categories: [
-      'product_analytics_visualization',
-      'product_analytics_data_management',
-    ],
-  },
-  observability: {
-    name: 'Observability',
-    stage: 'monitor',
-    feature_categories: [
-      'metrics',
-      'tracing',
-      'logging',
-      'error_tracking',
+      'custom_dashboards_foundation',
+      'observability',
+      'product_analytics',
     ],
   },
   respond: {

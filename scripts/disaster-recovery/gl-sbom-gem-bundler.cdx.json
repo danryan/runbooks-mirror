@@ -1,0 +1,961 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "serialNumber": "urn:uuid:5bd0a193-ed06-45f0-bf1a-329df388307b",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2024-09-26T12:02:29Z",
+    "tools": [
+      {
+        "vendor": "GitLab",
+        "name": "Gemnasium",
+        "version": "5.7.0"
+      }
+    ],
+    "authors": [
+      {
+        "name": "GitLab",
+        "email": "support@gitlab.com"
+      }
+    ],
+    "properties": [
+      {
+        "name": "gitlab:dependency_scanning:input_file:path",
+        "value": "scripts/disaster-recovery/Gemfile.lock"
+      },
+      {
+        "name": "gitlab:dependency_scanning:package_manager:name",
+        "value": "bundler"
+      },
+      {
+        "name": "gitlab:meta:schema_version",
+        "value": "1"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "activesupport",
+      "version": "7.2.1",
+      "purl": "pkg:gem/activesupport@7.2.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/activesupport@7.2.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "addressable",
+      "version": "2.8.7",
+      "purl": "pkg:gem/addressable@2.8.7",
+      "type": "library",
+      "bom-ref": "pkg:gem/addressable@2.8.7",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "ast",
+      "version": "2.4.2",
+      "purl": "pkg:gem/ast@2.4.2",
+      "type": "library",
+      "bom-ref": "pkg:gem/ast@2.4.2",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "base64",
+      "version": "0.2.0",
+      "purl": "pkg:gem/base64@0.2.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/base64@0.2.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "bigdecimal",
+      "version": "3.1.8",
+      "purl": "pkg:gem/bigdecimal@3.1.8",
+      "type": "library",
+      "bom-ref": "pkg:gem/bigdecimal@3.1.8",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "chef-utils",
+      "version": "18.4.12",
+      "purl": "pkg:gem/chef-utils@18.4.12",
+      "type": "library",
+      "bom-ref": "pkg:gem/chef-utils@18.4.12",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "concurrent-ruby",
+      "version": "1.3.4",
+      "purl": "pkg:gem/concurrent-ruby@1.3.4",
+      "type": "library",
+      "bom-ref": "pkg:gem/concurrent-ruby@1.3.4",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "connection_pool",
+      "version": "2.4.1",
+      "purl": "pkg:gem/connection_pool@2.4.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/connection_pool@2.4.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "declarative",
+      "version": "0.0.20",
+      "purl": "pkg:gem/declarative@0.0.20",
+      "type": "library",
+      "bom-ref": "pkg:gem/declarative@0.0.20",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "drb",
+      "version": "2.2.1",
+      "purl": "pkg:gem/drb@2.2.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/drb@2.2.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "faraday",
+      "version": "2.9.2",
+      "purl": "pkg:gem/faraday@2.9.2",
+      "type": "library",
+      "bom-ref": "pkg:gem/faraday@2.9.2",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "faraday-net_http",
+      "version": "3.1.1",
+      "purl": "pkg:gem/faraday-net_http@3.1.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/faraday-net_http@3.1.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "faraday-retry",
+      "version": "2.2.1",
+      "purl": "pkg:gem/faraday-retry@2.2.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/faraday-retry@2.2.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "gapic-common",
+      "version": "0.21.1",
+      "purl": "pkg:gem/gapic-common@0.21.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/gapic-common@0.21.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "git",
+      "version": "2.3.0",
+      "purl": "pkg:gem/git@2.3.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/git@2.3.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "gitlab-styles",
+      "version": "12.0.1",
+      "purl": "pkg:gem/gitlab-styles@12.0.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/gitlab-styles@12.0.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "google-apis-cloudresourcemanager_v1",
+      "version": "0.40.0",
+      "purl": "pkg:gem/google-apis-cloudresourcemanager_v1@0.40.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/google-apis-cloudresourcemanager_v1@0.40.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "google-apis-core",
+      "version": "0.15.0",
+      "purl": "pkg:gem/google-apis-core@0.15.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/google-apis-core@0.15.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "google-cloud-common",
+      "version": "1.6.0",
+      "purl": "pkg:gem/google-cloud-common@1.6.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/google-cloud-common@1.6.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "google-cloud-compute",
+      "version": "1.8.1",
+      "purl": "pkg:gem/google-cloud-compute@1.8.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/google-cloud-compute@1.8.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "google-cloud-compute-v1",
+      "version": "2.12.0",
+      "purl": "pkg:gem/google-cloud-compute-v1@2.12.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/google-cloud-compute-v1@2.12.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "google-cloud-core",
+      "version": "1.7.1",
+      "purl": "pkg:gem/google-cloud-core@1.7.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/google-cloud-core@1.7.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "google-cloud-env",
+      "version": "2.1.1",
+      "purl": "pkg:gem/google-cloud-env@2.1.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/google-cloud-env@2.1.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "google-cloud-errors",
+      "version": "1.4.0",
+      "purl": "pkg:gem/google-cloud-errors@1.4.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/google-cloud-errors@1.4.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "google-cloud-resource_manager",
+      "version": "0.38.0",
+      "purl": "pkg:gem/google-cloud-resource_manager@0.38.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/google-cloud-resource_manager@0.38.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "google-protobuf",
+      "version": "3.25.4",
+      "purl": "pkg:gem/google-protobuf@3.25.4",
+      "type": "library",
+      "bom-ref": "pkg:gem/google-protobuf@3.25.4",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "googleapis-common-protos",
+      "version": "1.5.0",
+      "purl": "pkg:gem/googleapis-common-protos@1.5.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/googleapis-common-protos@1.5.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "googleapis-common-protos-types",
+      "version": "1.14.0",
+      "purl": "pkg:gem/googleapis-common-protos-types@1.14.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/googleapis-common-protos-types@1.14.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "googleauth",
+      "version": "1.11.0",
+      "purl": "pkg:gem/googleauth@1.11.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/googleauth@1.11.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "grpc",
+      "version": "1.63.2",
+      "purl": "pkg:gem/grpc@1.63.2",
+      "type": "library",
+      "bom-ref": "pkg:gem/grpc@1.63.2",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "httpclient",
+      "version": "2.8.3",
+      "purl": "pkg:gem/httpclient@2.8.3",
+      "type": "library",
+      "bom-ref": "pkg:gem/httpclient@2.8.3",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "i18n",
+      "version": "1.14.5",
+      "purl": "pkg:gem/i18n@1.14.5",
+      "type": "library",
+      "bom-ref": "pkg:gem/i18n@1.14.5",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "json",
+      "version": "2.7.2",
+      "purl": "pkg:gem/json@2.7.2",
+      "type": "library",
+      "bom-ref": "pkg:gem/json@2.7.2",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "jwt",
+      "version": "2.8.2",
+      "purl": "pkg:gem/jwt@2.8.2",
+      "type": "library",
+      "bom-ref": "pkg:gem/jwt@2.8.2",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "language_server-protocol",
+      "version": "3.17.0.3",
+      "purl": "pkg:gem/language_server-protocol@3.17.0.3",
+      "type": "library",
+      "bom-ref": "pkg:gem/language_server-protocol@3.17.0.3",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "logger",
+      "version": "1.6.0",
+      "purl": "pkg:gem/logger@1.6.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/logger@1.6.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "mini_mime",
+      "version": "1.1.5",
+      "purl": "pkg:gem/mini_mime@1.1.5",
+      "type": "library",
+      "bom-ref": "pkg:gem/mini_mime@1.1.5",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "minitest",
+      "version": "5.25.1",
+      "purl": "pkg:gem/minitest@5.25.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/minitest@5.25.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "mixlib-shellout",
+      "version": "3.2.8",
+      "purl": "pkg:gem/mixlib-shellout@3.2.8",
+      "type": "library",
+      "bom-ref": "pkg:gem/mixlib-shellout@3.2.8",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "multi_json",
+      "version": "1.15.0",
+      "purl": "pkg:gem/multi_json@1.15.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/multi_json@1.15.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "net-http",
+      "version": "0.4.1",
+      "purl": "pkg:gem/net-http@0.4.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/net-http@0.4.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "optimist",
+      "version": "3.1.0",
+      "purl": "pkg:gem/optimist@3.1.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/optimist@3.1.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "os",
+      "version": "1.1.4",
+      "purl": "pkg:gem/os@1.1.4",
+      "type": "library",
+      "bom-ref": "pkg:gem/os@1.1.4",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "parallel",
+      "version": "1.26.3",
+      "purl": "pkg:gem/parallel@1.26.3",
+      "type": "library",
+      "bom-ref": "pkg:gem/parallel@1.26.3",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "parser",
+      "version": "3.3.5.0",
+      "purl": "pkg:gem/parser@3.3.5.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/parser@3.3.5.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "process_executer",
+      "version": "1.1.0",
+      "purl": "pkg:gem/process_executer@1.1.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/process_executer@1.1.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "public_suffix",
+      "version": "5.1.1",
+      "purl": "pkg:gem/public_suffix@5.1.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/public_suffix@5.1.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "racc",
+      "version": "1.8.1",
+      "purl": "pkg:gem/racc@1.8.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/racc@1.8.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rack",
+      "version": "3.1.7",
+      "purl": "pkg:gem/rack@3.1.7",
+      "type": "library",
+      "bom-ref": "pkg:gem/rack@3.1.7",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rainbow",
+      "version": "3.1.1",
+      "purl": "pkg:gem/rainbow@3.1.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/rainbow@3.1.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rchardet",
+      "version": "1.8.0",
+      "purl": "pkg:gem/rchardet@1.8.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/rchardet@1.8.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "regexp_parser",
+      "version": "2.9.2",
+      "purl": "pkg:gem/regexp_parser@2.9.2",
+      "type": "library",
+      "bom-ref": "pkg:gem/regexp_parser@2.9.2",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "representable",
+      "version": "3.2.0",
+      "purl": "pkg:gem/representable@3.2.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/representable@3.2.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "retriable",
+      "version": "3.1.2",
+      "purl": "pkg:gem/retriable@3.1.2",
+      "type": "library",
+      "bom-ref": "pkg:gem/retriable@3.1.2",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rexml",
+      "version": "3.3.7",
+      "purl": "pkg:gem/rexml@3.3.7",
+      "type": "library",
+      "bom-ref": "pkg:gem/rexml@3.3.7",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rubocop",
+      "version": "1.62.1",
+      "purl": "pkg:gem/rubocop@1.62.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/rubocop@1.62.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rubocop-ast",
+      "version": "1.32.3",
+      "purl": "pkg:gem/rubocop-ast@1.32.3",
+      "type": "library",
+      "bom-ref": "pkg:gem/rubocop-ast@1.32.3",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rubocop-capybara",
+      "version": "2.21.0",
+      "purl": "pkg:gem/rubocop-capybara@2.21.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/rubocop-capybara@2.21.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rubocop-factory_bot",
+      "version": "2.25.1",
+      "purl": "pkg:gem/rubocop-factory_bot@2.25.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/rubocop-factory_bot@2.25.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rubocop-graphql",
+      "version": "1.5.4",
+      "purl": "pkg:gem/rubocop-graphql@1.5.4",
+      "type": "library",
+      "bom-ref": "pkg:gem/rubocop-graphql@1.5.4",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rubocop-performance",
+      "version": "1.20.2",
+      "purl": "pkg:gem/rubocop-performance@1.20.2",
+      "type": "library",
+      "bom-ref": "pkg:gem/rubocop-performance@1.20.2",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rubocop-rails",
+      "version": "2.24.1",
+      "purl": "pkg:gem/rubocop-rails@2.24.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/rubocop-rails@2.24.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rubocop-rspec",
+      "version": "2.27.1",
+      "purl": "pkg:gem/rubocop-rspec@2.27.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/rubocop-rspec@2.27.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "ruby-progressbar",
+      "version": "1.13.0",
+      "purl": "pkg:gem/ruby-progressbar@1.13.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/ruby-progressbar@1.13.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "securerandom",
+      "version": "0.3.1",
+      "purl": "pkg:gem/securerandom@0.3.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/securerandom@0.3.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "signet",
+      "version": "0.19.0",
+      "purl": "pkg:gem/signet@0.19.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/signet@0.19.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "trailblazer-option",
+      "version": "0.1.2",
+      "purl": "pkg:gem/trailblazer-option@0.1.2",
+      "type": "library",
+      "bom-ref": "pkg:gem/trailblazer-option@0.1.2",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "tzinfo",
+      "version": "2.0.6",
+      "purl": "pkg:gem/tzinfo@2.0.6",
+      "type": "library",
+      "bom-ref": "pkg:gem/tzinfo@2.0.6",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "uber",
+      "version": "0.1.0",
+      "purl": "pkg:gem/uber@0.1.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/uber@0.1.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "unicode-display_width",
+      "version": "2.6.0",
+      "purl": "pkg:gem/unicode-display_width@2.6.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/unicode-display_width@2.6.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "uri",
+      "version": "0.13.1",
+      "purl": "pkg:gem/uri@0.13.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/uri@0.13.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    }
+  ]
+}

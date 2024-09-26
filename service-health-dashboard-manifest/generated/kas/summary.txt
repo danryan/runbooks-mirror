@@ -1,0 +1,16 @@
+title: kas: Overview
+uid: kas-main
+title: kas: Redis metrics
+uid: kas-redis
+title: kas: Pod Info
+uid: kas-pod
+title: kas: Miscellaneous metrics
+uid: kas-misc
+title: kas: GitOps metrics
+uid: kas-gitops
+title: kas: Kube Containers Detail
+uid: kas-kube-containers
+title: kas: Kube Deployment Detail
+uid: kas-kube-deployments
+title: kas: CI tunnel
+uid: kas-ci-tunnel
