@@ -161,11 +161,11 @@ groups:
       max by(env, environment, tier, type, stage, shard) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, tier, type, stage, shard, shard) (
+            sum by (env, environment, tier, type, stage, shard) (
               avg_over_time(sidekiq_running_jobs{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", env="gstg",type="sidekiq"}[5m])
             )
             /
-            sum by (env, environment, tier, type, stage, shard, shard) (
+            sum by (env, environment, tier, type, stage, shard) (
               avg_over_time(sidekiq_concurrency{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", env="gstg",type="sidekiq"}[5m])
             )
             ,
@@ -194,14 +194,14 @@ groups:
     labels:
       component: sidekiq_shard_workers
     expr: |
-      max by(environment, tier, type, stage, shard, shard) (
+      max by(environment, tier, type, stage, shard) (
         clamp_min(
           clamp_max(
-            sum by (environment, tier, type, stage, shard, shard) (
+            sum by (environment, tier, type, stage, shard) (
               avg_over_time(sidekiq_running_jobs{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", env="gstg",type="sidekiq"}[5m])
             )
             /
-            sum by (environment, tier, type, stage, shard, shard) (
+            sum by (environment, tier, type, stage, shard) (
               avg_over_time(sidekiq_concurrency{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", env="gstg",type="sidekiq"}[5m])
             )
             ,

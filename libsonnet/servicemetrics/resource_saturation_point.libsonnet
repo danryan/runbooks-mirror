@@ -234,7 +234,7 @@ local resourceSaturationPoint = function(options)
         rangeInterval: rangeInterval,
         selector: selectors.serializeHash(selectorHash),
         selectorWithoutType: selectors.serializeHash(selectors.without(selectorHash, ['type'])),
-        aggregationLabels: std.join(', ', queryAggregationLabelsExcludingStaticLabels),
+        aggregationLabels: std.join(', ', std.uniq(queryAggregationLabelsExcludingStaticLabels)),
       };
 
       local clampedPreaggregation = |||
@@ -256,7 +256,7 @@ local resourceSaturationPoint = function(options)
           )
         ||| % {
           quantileOverTimeQuery: strings.indent(clampedPreaggregation, 2),
-          maxAggregationLabels: std.join(', ', maxAggregationLabelsExcludingStaticLabels),
+          maxAggregationLabels: std.join(', ', std.uniq(maxAggregationLabelsExcludingStaticLabels)),
         }
       else
         |||
@@ -267,7 +267,7 @@ local resourceSaturationPoint = function(options)
         ||| % {
           quantileAggregation: definition.quantileAggregation,
           quantileOverTimeQuery: strings.indent(clampedPreaggregation, 2),
-          maxAggregationLabels: std.join(', ', maxAggregationLabelsExcludingStaticLabels),
+          maxAggregationLabels: std.join(', ', std.uniq(maxAggregationLabelsExcludingStaticLabels)),
         }
     ,
 

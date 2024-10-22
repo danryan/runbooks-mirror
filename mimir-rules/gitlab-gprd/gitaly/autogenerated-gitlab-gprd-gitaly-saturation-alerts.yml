@@ -661,11 +661,11 @@ groups:
       grafana_panel_id: "3803311012"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, shard) (
+        max by(environment, tier, type, stage, shard) (
           clamp_min(
             clamp_max(
               1 - (
-                sum by (environment, tier, type, stage, shard, shard) (
+                sum by (environment, tier, type, stage, shard) (
                   (
                     node_filesystem_avail_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} -
                     (node_filesystem_size_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} * 0.20)
@@ -674,7 +674,7 @@ groups:
                   (instance:node_filesystem_avail:ratio{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} > 0.20)
                 )
                 /
-                sum by (environment, tier, type, stage, shard, shard)(
+                sum by (environment, tier, type, stage, shard)(
                   node_filesystem_size_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"}
                 )
               )
@@ -684,11 +684,11 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, shard) (
+        max by(environment, tier, type, stage, shard) (
           clamp_min(
             clamp_max(
               1 - (
-                sum by (environment, tier, type, stage, shard, shard) (
+                sum by (environment, tier, type, stage, shard) (
                   (
                     node_filesystem_avail_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} -
                     (node_filesystem_size_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} * 0.20)
@@ -697,7 +697,7 @@ groups:
                   (instance:node_filesystem_avail:ratio{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} > 0.20)
                 )
                 /
-                sum by (environment, tier, type, stage, shard, shard)(
+                sum by (environment, tier, type, stage, shard)(
                   node_filesystem_size_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"}
                 )
               )
@@ -740,15 +740,15 @@ groups:
       grafana_panel_id: "998219612"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, shard) (
+        max by(environment, tier, type, stage, shard) (
           clamp_min(
             clamp_max(
               1 - (
-                sum by (environment, tier, type, stage, shard, shard) (
+                sum by (environment, tier, type, stage, shard) (
                   node_filesystem_avail_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", mountpoint="/var/opt/gitlab"}
                 )
                 /
-                sum by (environment, tier, type, stage, shard, shard) (
+                sum by (environment, tier, type, stage, shard) (
                   node_filesystem_size_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", mountpoint="/var/opt/gitlab"}
                 )
               )
@@ -758,15 +758,15 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, shard) (
+        max by(environment, tier, type, stage, shard) (
           clamp_min(
             clamp_max(
               1 - (
-                sum by (environment, tier, type, stage, shard, shard) (
+                sum by (environment, tier, type, stage, shard) (
                   node_filesystem_avail_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", mountpoint="/var/opt/gitlab"}
                 )
                 /
-                sum by (environment, tier, type, stage, shard, shard) (
+                sum by (environment, tier, type, stage, shard) (
                   node_filesystem_size_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", mountpoint="/var/opt/gitlab"}
                 )
               )
@@ -1152,10 +1152,10 @@ groups:
       grafana_panel_id: "1472933476"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, shard) (
+        max by(environment, tier, type, stage, shard) (
           clamp_min(
             clamp_max(
-              1 - avg by (environment, tier, type, stage, shard, shard) (
+              1 - avg by (environment, tier, type, stage, shard) (
                 rate(node_cpu_seconds_total{mode="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -1164,10 +1164,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, shard) (
+        max by(environment, tier, type, stage, shard) (
           clamp_min(
             clamp_max(
-              1 - avg by (environment, tier, type, stage, shard, shard) (
+              1 - avg by (environment, tier, type, stage, shard) (
                 rate(node_cpu_seconds_total{mode="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               ,

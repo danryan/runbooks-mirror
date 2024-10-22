@@ -32,10 +32,10 @@ groups:
       grafana_panel_id: "1465724101"
       grafana_variables: type
       promql_query: |
-        max by(type) (
+        max by(type, shard) (
           clamp_min(
             clamp_max(
-              1 - avg by (type) (
+              1 - avg by (type, shard) (
                 rate(node_cpu_seconds_total{mode="idle", type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -44,10 +44,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type) (
+        max by(type, shard) (
           clamp_min(
             clamp_max(
-              1 - avg by (type) (
+              1 - avg by (type, shard) (
                 rate(node_cpu_seconds_total{mode="idle", type="{{ $labels.type }}"}[5m])
               )
               ,

@@ -3966,11 +3966,11 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "clamp_min(\n  clamp_max(\n    max by(type) (\n  clamp_min(\n    clamp_max(\n      1 - avg by (type) (\n        rate(node_cpu_seconds_total{mode=\"idle\", type=\"praefect\"}[5m])\n      )\n      ,\n      1)\n  ,\n  0)\n)\n\n  ,1)\n,0)\n",
+              "expr": "clamp_min(\n  clamp_max(\n    max by(type, shard) (\n  clamp_min(\n    clamp_max(\n      1 - avg by (type, shard) (\n        rate(node_cpu_seconds_total{mode=\"idle\", type=\"praefect\"}[5m])\n      )\n      ,\n      1)\n  ,\n  0)\n)\n\n  ,1)\n,0)\n",
               "format": "time_series",
               "interval": "1m",
               "intervalFactor": 1,
-              "legendFormat": "{{ type }}",
+              "legendFormat": "{{ shard }}",
               "refId": "A"
             },
             {

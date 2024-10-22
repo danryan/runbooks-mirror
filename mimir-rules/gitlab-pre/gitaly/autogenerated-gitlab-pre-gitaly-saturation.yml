@@ -153,7 +153,7 @@ groups:
         clamp_min(
           clamp_max(
             1 - (
-              sum by (env, environment, tier, type, stage, shard, shard) (
+              sum by (env, environment, tier, type, stage, shard) (
                 (
                   node_filesystem_avail_bytes{env="pre",type="gitaly", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} -
                   (node_filesystem_size_bytes{env="pre",type="gitaly", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} * 0.20)
@@ -162,7 +162,7 @@ groups:
                 (instance:node_filesystem_avail:ratio{env="pre",type="gitaly", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} > 0.20)
               )
               /
-              sum by (env, environment, tier, type, stage, shard, shard)(
+              sum by (env, environment, tier, type, stage, shard)(
                 node_filesystem_size_bytes{env="pre",type="gitaly", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"}
               )
             )
@@ -179,11 +179,11 @@ groups:
         clamp_min(
           clamp_max(
             1 - (
-              sum by (env, environment, tier, type, stage, shard, shard) (
+              sum by (env, environment, tier, type, stage, shard) (
                 node_filesystem_avail_bytes{env="pre",type="gitaly", mountpoint="/var/opt/gitlab"}
               )
               /
-              sum by (env, environment, tier, type, stage, shard, shard) (
+              sum by (env, environment, tier, type, stage, shard) (
                 node_filesystem_size_bytes{env="pre",type="gitaly", mountpoint="/var/opt/gitlab"}
               )
             )
@@ -299,7 +299,7 @@ groups:
       max by(env, environment, tier, type, stage, shard) (
         clamp_min(
           clamp_max(
-            1 - avg by (env, environment, tier, type, stage, shard, shard) (
+            1 - avg by (env, environment, tier, type, stage, shard) (
               rate(node_cpu_seconds_total{mode="idle", env="pre",type="gitaly"}[5m])
             )
             ,

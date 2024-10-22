@@ -475,14 +475,14 @@ groups:
       grafana_panel_id: "836813313"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, shard) (
+        max by(environment, tier, type, stage, shard) (
           clamp_min(
             clamp_max(
-              sum by (environment, tier, type, stage, shard, shard) (
+              sum by (environment, tier, type, stage, shard) (
                 avg_over_time(sidekiq_running_jobs{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               /
-              sum by (environment, tier, type, stage, shard, shard) (
+              sum by (environment, tier, type, stage, shard) (
                 avg_over_time(sidekiq_concurrency{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -491,14 +491,14 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, shard) (
+        max by(environment, tier, type, stage, shard) (
           clamp_min(
             clamp_max(
-              sum by (environment, tier, type, stage, shard, shard) (
+              sum by (environment, tier, type, stage, shard) (
                 avg_over_time(sidekiq_running_jobs{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               /
-              sum by (environment, tier, type, stage, shard, shard) (
+              sum by (environment, tier, type, stage, shard) (
                 avg_over_time(sidekiq_concurrency{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               ,

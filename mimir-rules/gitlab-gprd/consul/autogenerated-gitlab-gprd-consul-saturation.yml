@@ -231,7 +231,7 @@ groups:
       max by(env, environment, tier, type, stage, shard) (
         clamp_min(
           clamp_max(
-            1 - avg by (env, environment, tier, type, stage, shard, shard) (
+            1 - avg by (env, environment, tier, type, stage, shard) (
               rate(node_cpu_seconds_total{mode="idle", env="gprd",type="consul"}[5m])
             )
             ,
