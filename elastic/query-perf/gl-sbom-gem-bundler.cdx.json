@@ -1,0 +1,194 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "serialNumber": "urn:uuid:7eb68d21-6f67-4d89-aa85-6d93add4df45",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2024-11-01T04:30:49Z",
+    "tools": [
+      {
+        "vendor": "GitLab",
+        "name": "Gemnasium",
+        "version": "5.8.0"
+      }
+    ],
+    "authors": [
+      {
+        "name": "GitLab",
+        "email": "support@gitlab.com"
+      }
+    ],
+    "properties": [
+      {
+        "name": "gitlab:dependency_scanning:input_file:path",
+        "value": "elastic/query-perf/Gemfile.lock"
+      },
+      {
+        "name": "gitlab:dependency_scanning:package_manager:name",
+        "value": "bundler"
+      },
+      {
+        "name": "gitlab:meta:schema_version",
+        "value": "1"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "HDRHistogram",
+      "version": "0.1.11",
+      "purl": "pkg:gem/HDRHistogram@0.1.11",
+      "type": "library",
+      "bom-ref": "pkg:gem/HDRHistogram@0.1.11",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "addressable",
+      "version": "2.8.6",
+      "purl": "pkg:gem/addressable@2.8.6",
+      "type": "library",
+      "bom-ref": "pkg:gem/addressable@2.8.6",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "base64",
+      "version": "0.2.0",
+      "purl": "pkg:gem/base64@0.2.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/base64@0.2.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "domain_name",
+      "version": "0.6.20240107",
+      "purl": "pkg:gem/domain_name@0.6.20240107",
+      "type": "library",
+      "bom-ref": "pkg:gem/domain_name@0.6.20240107",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "ffi",
+      "version": "1.16.3",
+      "purl": "pkg:gem/ffi@1.16.3",
+      "type": "library",
+      "bom-ref": "pkg:gem/ffi@1.16.3",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "ffi-compiler",
+      "version": "1.0.1",
+      "purl": "pkg:gem/ffi-compiler@1.0.1",
+      "type": "library",
+      "bom-ref": "pkg:gem/ffi-compiler@1.0.1",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "http",
+      "version": "5.2.0",
+      "purl": "pkg:gem/http@5.2.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/http@5.2.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "http-cookie",
+      "version": "1.0.5",
+      "purl": "pkg:gem/http-cookie@1.0.5",
+      "type": "library",
+      "bom-ref": "pkg:gem/http-cookie@1.0.5",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "http-form_data",
+      "version": "2.3.0",
+      "purl": "pkg:gem/http-form_data@2.3.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/http-form_data@2.3.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "llhttp-ffi",
+      "version": "0.5.0",
+      "purl": "pkg:gem/llhttp-ffi@0.5.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/llhttp-ffi@0.5.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "public_suffix",
+      "version": "5.0.4",
+      "purl": "pkg:gem/public_suffix@5.0.4",
+      "type": "library",
+      "bom-ref": "pkg:gem/public_suffix@5.0.4",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "rake",
+      "version": "13.1.0",
+      "purl": "pkg:gem/rake@13.1.0",
+      "type": "library",
+      "bom-ref": "pkg:gem/rake@13.1.0",
+      "properties": [
+        {
+          "name": "gitlab:dependency_scanning_component:reachability",
+          "value": "unknown"
+        }
+      ]
+    }
+  ]
+}

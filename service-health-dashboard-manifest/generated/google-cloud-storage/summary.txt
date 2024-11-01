@@ -1,0 +1,4 @@
+title: google-cloud-storage: Overview
+uid: google-cloud-storage-main
+title: google-cloud-storage: Artifact CDN Detail
+uid: google-cloud-storage-artifacts-cdn

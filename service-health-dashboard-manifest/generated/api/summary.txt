@@ -1,0 +1,16 @@
+title: api: Pod Info
+uid: api-pod
+title: api: Rails Controller
+uid: api-rails-controller
+title: api: Capacity Review
+uid: api-capacity-review
+title: api: Kube Containers Detail
+uid: api-kube-containers
+title: api: Kube Deployment Detail
+uid: api-kube-deployments
+title: api: Regional Detail
+uid: api-regional
+title: api: GraphQL
+uid: api-graphql
+title: api: Overview
+uid: api-main

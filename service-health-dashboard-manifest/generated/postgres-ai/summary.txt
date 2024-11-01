@@ -1,0 +1,2 @@
+title: postgres-ai: [Draft][postgres.ai] Postgres aggregated query performance analysis
+uid: postgres-ai-postgres-ai

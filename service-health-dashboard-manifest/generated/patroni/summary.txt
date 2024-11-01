@@ -1,0 +1,6 @@
+title: patroni: Overview
+uid: patroni-main
+title: patroni: Capacity Review
+uid: patroni-capacity-review
+title: patroni: Marginalia Sampler
+uid: patroni-marginalia-sampler

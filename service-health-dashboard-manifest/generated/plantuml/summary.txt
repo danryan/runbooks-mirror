@@ -1,0 +1,8 @@
+title: plantuml: Overview
+uid: plantuml-main
+title: plantuml: Capacity Review
+uid: plantuml-capacity-review
+title: plantuml: Kube Containers Detail
+uid: plantuml-kube-containers
+title: plantuml: Kube Deployment Detail
+uid: plantuml-kube-deployments

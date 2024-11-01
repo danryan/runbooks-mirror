@@ -1,0 +1,8 @@
+title: ops-gitlab-net: Capacity Review
+uid: ops-gitlab-net-capacity-review
+title: ops-gitlab-net: Kube Containers Detail
+uid: ops-gitlab-net-kube-containers
+title: ops-gitlab-net: Kube Deployment Detail
+uid: ops-gitlab-net-kube-deployments
+title: ops-gitlab-net: Overview
+uid: ops-gitlab-net-main

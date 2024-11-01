@@ -1,0 +1,8 @@
+title: ai-gateway: Language
+uid: ai-gateway-language
+title: ai-gateway: Capacity Review
+uid: ai-gateway-capacity-review
+title: ai-gateway: Regional Detail
+uid: ai-gateway-regional
+title: ai-gateway: Overview
+uid: ai-gateway-main

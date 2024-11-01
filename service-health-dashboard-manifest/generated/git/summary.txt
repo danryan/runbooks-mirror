@@ -1,0 +1,16 @@
+title: git: Pod Info
+uid: git-pod
+title: git: Rails Controller
+uid: git-rails-controller
+title: git: GitLab Shell - Pod Info
+uid: git-shell-pod
+title: git: Overview
+uid: git-main
+title: git: Capacity Review
+uid: git-capacity-review
+title: git: Kube Containers Detail
+uid: git-kube-containers
+title: git: Kube Deployment Detail
+uid: git-kube-deployments
+title: git: Regional Detail
+uid: git-regional
