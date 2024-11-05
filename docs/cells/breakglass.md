@@ -182,7 +182,7 @@ We should use `breakglass` as a last resort when we need to make an emergency ch
     gcloud beta pam grants create \
                     --entitlement="gld-readonly-entitlement" \
                     --requested-duration="1800s" \
-                    --justification="review of https://gitlab.com/gitlab-com/runbooks/-/merge_requests/7731/diffs" \
+                    --justification="$ISSUE_LINK" \
                     --location=global \
                     --project="amp-3c0d"
     ```
