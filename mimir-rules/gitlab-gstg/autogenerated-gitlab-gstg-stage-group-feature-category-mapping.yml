@@ -202,6 +202,13 @@ groups:
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
+      feature_category: component_catalog
+      monitor: global
+      product_stage: verify
+      stage_group: pipeline_authoring
+    expr: "1"
+  - record: gitlab:feature_category:stage_group:mapping
+    labels:
       feature_category: consumables_cost_management
       monitor: global
       product_stage: fulfillment
@@ -345,7 +352,7 @@ groups:
       feature_category: duo_workflow
       monitor: global
       product_stage: ai-powered
-      stage_group: ai_framework
+      stage_group: duo_workflow
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
@@ -587,34 +594,6 @@ groups:
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
-      feature_category: error_tracking
-      monitor: global
-      product_stage: monitor
-      stage_group: platform_insights
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
-      feature_category: logging
-      monitor: global
-      product_stage: monitor
-      stage_group: platform_insights
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
-      feature_category: metrics
-      monitor: global
-      product_stage: monitor
-      stage_group: platform_insights
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
-      feature_category: tracing
-      monitor: global
-      product_stage: monitor
-      stage_group: platform_insights
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
       feature_category: okr_management
       monitor: global
       product_stage: plan
@@ -700,20 +679,6 @@ groups:
   - record: gitlab:feature_category:stage_group:mapping
     labels:
       feature_category: product_analytics
-      monitor: global
-      product_stage: monitor
-      stage_group: platform_insights
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
-      feature_category: product_analytics_data_management
-      monitor: global
-      product_stage: monitor
-      stage_group: platform_insights
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
-      feature_category: product_analytics_visualization
       monitor: global
       product_stage: monitor
       stage_group: platform_insights

@@ -6,10 +6,4 @@
 //
 // Blank values will be ignored.
 {
-  metrics: 'observability',
-  tracing: 'observability',
-  logging: 'observability',
-  error_tracking: 'observability',
-  product_analytics_visualization: 'product_analytics',
-  product_analytics_data_management: 'product_analytics',
 }
