@@ -294,6 +294,45 @@ has this problem there are other tables not far behind that just
 haven't alerted yet. Run
 `sort_desc(pg_stat_user_tables_n_dead_tup)` [in prometheus](https://prometheus-db.gprd.gitlab.net/graph?g0.range_input=1h&g0.expr=sort_desc(pg_stat_user_tables_n_dead_tup)&g0.tab=1)  to see what the top offenders are.
 
+*Check DELETE and UPDATE activity*
+
+Dead tuples appear when DELETEs or UPDATEs are happening, and normally they
+should be frequently cleaned up by autovaccuum. The following PromQLs check if
+there were spikes of DELETEs and UPDATEs for `ci_builds`:
+
+```
+rate(pg_stat_user_tables_n_tup_del{relname="ci_builds"}[5m])
+rate(pg_stat_user_tables_n_tup_upd{relname="ci_builds"}[5m])
+```
+
+*Check autovacuum's behavior for particular table*
+
+Check when the table was last automatically or manually vacuumed:
+```
+select relname, n_live_tup, n_dead_tup, last_vacuum, last_autovacuum from
+pg_stat_user_tables where relname='ci_builds';
+```
+
+Check the currently processed tables, the progress for each, and tables which
+are "waiting": https://gitlab.com/snippets/1889668
+
+If you see that the table was recently processed, but n_dead_tup remains high,
+check PostgreSQL log looking for entries like this one:
+
+```
+2020-05-06 04:48:18.757 GMT,,,78011,,5eb22e40.130bb,5,,2020-05-06 03:25:52 GMT,272/33503244,0,LOG,00000,"automatic vacuum of table ""gitlabhq_production.public.web_hook_logs"": index scans: 1
+pages: 0 removed, 17658768 remain, 1 skipped due to pins, 531898 skipped frozen
+tuples: 85567 removed, 99648169 remain, 12457988 are dead but not yet removable
+buffer usage: 20658463 hits, 16906253 misses, 11366453 dirtied
+avg read rate: 26.704 MB/s, avg write rate: 17.954 MB/s
+system usage: CPU 347.69s/292.04u sec elapsed 4946.06 sec",,,,,,,,,""
+```
+
+-- in this example, `12457988 are dead but not yet removable` is a sign of the
+problem: autovacuum processed the table, but was unable to clean up the dead
+tuples. There may be several reasons of this.
+
+<!-- Nik: why do we talk about statistics in the section about dead tuples? I think this should be removed from this section.
 *Check that statistics are up to date for those offenders:*
 
 Log into the primary and check that statistics are present. If logging in
@@ -308,9 +347,10 @@ consider running `ANALYZE $table` to update statistics and try again.
 Example for table `ci_builds` (run inside `sudo gitlab-psql`):
 
 ```sql
-select n_live_tup, n_dead_tup, last_autoanalyze, last_analyze from
+select n_live_tup, n_dead_tup, last_autoanalyze, last_analyze, last_vacuum, last_autovacuum from
 pg_stat_user_tables where relname='ci_builds';
 ```
+-->
 
 If the alert is for "replication slot with stale xmin" or "long-lived
 transaction" then check the above charts to see if it's already
