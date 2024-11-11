@@ -106,6 +106,34 @@ Please read [GCP documentation about `VPC-native
 clusters`](https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips) to understand how the different
 ranges of the subnet are being used by GKE.
 
+### VPC Implementation for CI SaaS Hosted Runners
+
+The primary goal is to address scalability challenges due to the limitations of VPC peering and to improve performance, security, and manageability by implementing a shared VPC architecture. This new architecture enables greater flexibility and scalability for ephemeral projects, each linked to a corresponding shard within GCP.
+
+## VPC Architecture
+
+### Previous Architecture
+
+Previously, the CI SaaS infrastructure employed individual VPC peering per project. Each project was paired directly with the central network through unique VPC peering links, which resulted in a highly complex and difficult-to-manage architecture. This approach also led to quickly reaching the VPC peering limit of 70 connections in GCP, which constrained our ability to scale and required re-evaluation of our networking strategy.
+
+### New Architecture
+
+The new architecture transitions from individual VPC peerings to a Shared VPC model. This Shared VPC is managed within a central 'gitlab-ci' hub project, with each shard linked to its own isolated VPC network. By using a Shared VPC, multiple projects can securely communicate through a common network structure, reducing the need for direct VPC peerings and thereby addressing the peering limits.
+
+The architecture provides:
+
+* **Scalability:** Allowing for additional shards without reaching peering limits.
+* **Isolation:** Maintaining network security and separation between different shards.
+* **Improved Management:** Centralizing control through a single shared VPC with consistent firewall rules and policies.
+
+### Expected Benefits
+
+The new VPC structure provides the following performance and scalability benefits:
+
+* **Reduced Latency:** Shared VPC architecture reduces the need for cross-VPC peering, which minimizes latency and improves network performance.
+* **Improved Scalability:** The Shared VPC approach bypasses the previous 70-peer limit, enabling the CI infrastructure to scale without hitting GCP's peering constraints.
+* **Enhanced Isolation and Security:** With each shard operating within its own VPC network, network policies and firewall rules provide stronger isolation, reducing potential security risks.
+
 #### Network peering theory and issues
 
 As peering automatically adds routes, it may introduce a conflict if the network "in the middle" have two different
