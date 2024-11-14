@@ -19,6 +19,7 @@
 
 * [../ci-runners/ci_graphs.md](../ci-runners/ci_graphs.md)
 * [Chef Guidelines](../config_management/chef-guidelines.md)
+* [GitLab.com Disaster Recovery Confidence Measurements](../disaster-recovery/confidence.md)
 * [Zonal and Regional Recovery Guide](../disaster-recovery/recovery.md)
 * [../elastic/advanced-search-in-gitlab.md](../elastic/advanced-search-in-gitlab.md)
 * [Kubernetes-Agent Disable Integrations](../kas/kubernetes-agent-disable-integrations.md)

@@ -16,6 +16,7 @@
 
 ## Troubleshooting Pointers
 
+* [GitLab.com Disaster Recovery Confidence Measurements](../disaster-recovery/confidence.md)
 * [../duo/code_suggestion_failover.md](../duo/code_suggestion_failover.md)
 * [Privileged Access Management](privileged_access_management.md)
 * [../uncategorized/subnet-allocations.md](../uncategorized/subnet-allocations.md)
