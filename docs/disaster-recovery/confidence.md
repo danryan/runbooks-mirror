@@ -51,6 +51,40 @@ Confidence levels help define and communicate how mature the components process 
 
 ## GitLab.com Regional Recovery Confidence
 
+This is a work in progress and doesn't represent all the components and phases for regional recovery.
+
+| Category | Component | Phase | Time to Restore (Hours) | Number of SREs | Confidence | Tested in Staging? | Issue Links | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Services | Gitaly | Phase 1 | UNDETERMINED | 1 | No Confidence | No | | |
+| Services | Patroni | Phase 2 | UNDETERMINED | 0.5 | Low Confidence | No | | Patroni is regularly restored into a separate region during our automated testing. |
+| Services | Regional Clusters | Phase 2 | UNDETERMINED | 1 | No Confidence | No | | |
+| Services | Zonal Clusters | Phase 2 | UNDETERMINED | 1 | No Confidence | No | | |
+| Services | External Passthrough Loadbalancer | Phase ? | UNDETERMINED | 1 | No Confidence | No | | |
+
 ### Regional Phases and Phase Definitions
 
+Like Zonal phases above, breaking components into phases helps prioritize restoration efforts for regional reconstruction.
+Each phase should have it's components restored in parallel to minimize the time in a degraded state.
+Moving onto the next phase assumes the previous phase's components have been restored.
+
+- Phase 1 - Once these are completed we believe we will be available for customers
+- Phase 2 - This phase is to check components that may be in a degraded state
+- Phase 3 - This phase ensures operational tooling and processes work
+
 ### Regional Confidence Definitions
+
+These confidence levels are rough and considered a DRAFT for the time being.
+
+| Confidence Level | Parameters |
+| --- | --- |
+| No Confidence | 1. We do not have an emergency plan in place |
+| | 2. We do not have confidence that a service can be recreated in a new region |
+| Low Confidence | 1. We have ensured data is replicated and accessible in another region |
+| | 2. We do not have an emergency plan* in place |
+| Medium Confidence | 1. We have ensured data is replicated |
+| | 2. We have plans* to build infrastructure in place |
+| High Confidence | 1. We have automated testing for data that is replicated |
+| | 2. We have infrastructure ready to recieve traffic |
+
+# Updating this document
+
