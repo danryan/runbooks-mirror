@@ -12,8 +12,8 @@ These are specific to GitLab.com GPRD and GSTG right now, but could be expanded 
 | Services | PG Bouncer | Phase 1 | 0.5 | 1 | Medium Confidence | Yes | | Staging testing was concluded on 8/8/23. The next steps would be to plan a restore attempt in GPRD. |
 | Services | HAProxy | Phase 1 | 1 | 1 | Medium Confidence | Yes | | |
 | Services | CI Runners | Phase 1 | 3 | 1 | Medium Confidence | Yes | | |
-| Services | Redis | Phase 2 | 0 | 0.5 | Low Confidence | No | https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/issues/25642 | |
-| Services | Redis Cluster | Phase 2 | 0 | 0.5 | Low Confidence | No | https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/issues/25642 | |
+| Services | Redis | Phase 2 | 0 | 0.5 | Low Confidence | No | <https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/issues/25642> | |
+| Services | Redis Cluster | Phase 2 | 0 | 0.5 | Low Confidence | No | <https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/issues/25642> | |
 | Services | Regional Clusters | Phase 2 | 1 | 1 | Medium Confidence | Yes | | |
 | Services | CustomersDot | Phase 2 | 3 | 1 | Low Confidence | No | | CustomersDot has a Cloud Redis that is single zone. |
 | Services | Zonal Clusters | Phase 2 | 1 | 1 | Low Confidence | No | | |
