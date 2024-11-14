@@ -85,6 +85,3 @@ These confidence levels are rough and considered a DRAFT for the time being.
 | | 2. We have plans* to build infrastructure in place |
 | High Confidence | 1. We have automated testing for data that is replicated |
 | | 2. We have infrastructure ready to recieve traffic |
-
-# Updating this document
-
