@@ -1,4 +1,3 @@
-local datasource = import './datasource.libsonnet';
 local platformLinks = import './platform_links.libsonnet';
 local grafana = import 'github.com/grafana/grafonnet-lib/grafonnet/grafana.libsonnet';
 local metricsConfig = import 'gitlab-metrics-config.libsonnet';
@@ -6,6 +5,7 @@ local basic = import 'grafana/basic.libsonnet';
 local layout = import 'grafana/layout.libsonnet';
 local quantilePanel = import 'grafana/quantile_panel.libsonnet';
 local templates = import 'grafana/templates.libsonnet';
+local datasource = import 'grafonnet-dashboarding/gitlab-dashboards/datasource.libsonnet';
 local selectors = import 'promql/selectors.libsonnet';
 local metricsCatalog = import 'servicemetrics/metrics-catalog.libsonnet';
 
