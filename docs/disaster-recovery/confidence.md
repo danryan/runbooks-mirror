@@ -1,14 +1,14 @@
 # GitLab.com Disaster Recovery Confidence Measurements
 
-These are tables that help express our current confidence levels in the processes used for recoverying from a Zonal or Regional degredation/outage.
-These are specific to GitLab.com GPRD and GSTG right now, but could be expanded in the future to account for other instances or environments.
+These tables help express our current confidence levels in the processes used to recover from a Zonal or Regional degradation/outage.
+These are specific to GitLab.com `GPRD` and `GSTG` right now, but could be expanded to account for other instances or environments.
 
 ## GitLab.com Zonal Recovery Confidence
 
 | Category | Component | Phase | Time to Restore (Hours) | Number of SREs | Confidence | Tested in Staging? | Issue Links | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Services | Gitaly | Phase 1 | 2 | 1 | Medium Confidence | Yes | | |
-| Services | Patroni | Phase 1 | 1 | 0.5 | Medium Confidence | Yes | | This has been test in staging in a RO capacity. I'm suggesting we add a patroni leader failover to the game day before increasing the confidence level to Medium. |
+| Services | Patroni | Phase 1 | 1 | 0.5 | Medium Confidence | Yes | | This has been tested in staging in a RO capacity. I'm suggesting we add a Patroni leader failover to the game day before increasing the confidence level to Medium. |
 | Services | PG Bouncer | Phase 1 | 0.5 | 1 | Medium Confidence | Yes | | Staging testing was concluded on 8/8/23. The next steps would be to plan a restore attempt in GPRD. |
 | Services | HAProxy | Phase 1 | 1 | 1 | Medium Confidence | Yes | | |
 | Services | CI Runners | Phase 1 | 3 | 1 | Medium Confidence | Yes | | |
@@ -84,4 +84,4 @@ These confidence levels are rough and considered a DRAFT for the time being.
 | Medium Confidence | 1. We have ensured data is replicated |
 | | 2. We have plans* to build infrastructure in place |
 | High Confidence | 1. We have automated testing for data that is replicated |
-| | 2. We have infrastructure ready to recieve traffic |
+| | 2. We have infrastructure ready to receive traffic |
