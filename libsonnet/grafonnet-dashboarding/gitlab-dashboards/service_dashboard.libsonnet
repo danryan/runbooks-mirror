@@ -1,6 +1,6 @@
 local datasource = import 'grafonnet-dashboarding/gitlab-dashboards/datasource.libsonnet';
-local basic = import 'grafonnet-dashboarding/grafana/basic.libsonnet';
 local commonAnnotations = import 'grafonnet-dashboarding/grafana/common_annotations.libsonnet';
+local dashboard = import 'grafonnet-dashboarding/grafana/dashboard.libsonnet';
 local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
 
 local gitlabMetricsConfig = import 'gitlab-metrics-config.libsonnet';
@@ -42,7 +42,7 @@ local overviewDashboard(
   else {};
 
   local d =
-    basic.dashboard(
+    dashboard(
       title,
       uid=uid,
       tags=['gitlab', 'type:' + type, type, 'service overview'],
