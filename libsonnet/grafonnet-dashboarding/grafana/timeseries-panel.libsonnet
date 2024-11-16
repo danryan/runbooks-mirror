@@ -2,13 +2,13 @@ local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
 local timeSeries = g.panel.timeSeries;
 local defaultFieldConfig = timeSeries.fieldConfig.defaults.custom;
 
-local stableId(stableId) = if stableId then { stableId: stableId } else {};
+local withStableId(stableId) = if stableId != null then { stableId: stableId } else {};
 
 // in Grafonnet-lib this was called a `graphPanel`
 function(
   title,
   linewidth=1,
-  fill=0,
+  fill=null,
   description='',
   decimals=2,
   sort='desc',
@@ -30,7 +30,8 @@ function(
   stack=false,
   bars=false,
 )
-  assert bars : 'use a barchart instead https://grafana.github.io/grafonnet/API/panel/barChart/index.html';
+  assert !bars : 'use a barchart instead https://grafana.github.io/grafonnet/API/panel/barChart/index.html';
+  assert fill == null : '`fill` is not supported by grafonnet, use opacity (I think)';
 
   local legendCalcs = if legend_values then
     (if legend_current then ['lastNotNull'] else [])
@@ -42,24 +43,19 @@ function(
   else [];
   local legendPlacement = if legend_rightSide then 'right' else 'bottom';
 
-  local defaultFieldConfigPointsMixin = if points then {
-    fieldConfig+: { defaults+: { custom+: { showPoints: 'always', pointSize: pointradius } } },
-  };
-
   local stackingConfig = if stack then defaultFieldConfig.stacking.withMode('normal') else {};
 
   timeSeries.new(title)
   + defaultFieldConfig.withLineWidth(linewidth)
-  + defaultFieldConfig.withLineFill(fill)
-  + defaultFieldConfigPointsMixin
+  + defaultFieldConfig.withShowPoints(if points then 'always' else 'auto')
   + timeSeries.panelOptions.withDescription(description)
   + timeSeries.standardOptions.withDecimals(decimals)
   + timeSeries.options.withLegend(
     timeSeries.options.legend.withShowLegend(legend_show)
-    + timeSeries.options.legend.withWithSortDesc(sort == 'desc')
+    + timeSeries.options.legend.withSortDesc(sort == 'desc')
     + timeSeries.options.legend.withAsTable()
     + timeSeries.options.legend.withCalcs(legendCalcs)
     + timeSeries.options.legend.withPlacement(legendPlacement)
   )
   + stackingConfig
-  + stableId(stableId)
+  + withStableId(stableId)

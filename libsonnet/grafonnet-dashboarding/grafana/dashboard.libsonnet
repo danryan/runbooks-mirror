@@ -60,6 +60,18 @@ function(
     + if uid != null then g.dashboard.withUid(uid) else {};
 
   dashboard {
+    addPanels(panels)::
+      assert std.isArray(panels) : 'dashboard.addPanels: panels needs to be an array';
+
+      self
+      + g.dashboard.withPanelsMixin(panels),
+
+    addAnnotationIf(condition, annotation)::
+      if condition then
+        self + g.dashboard.withAnnotationsMixin([annotation])
+      else
+        self,
+
     trailer()::
       self
       + g.dashboard.withPanelsMixin([

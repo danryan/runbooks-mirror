@@ -1,7 +1,7 @@
 local datasource = import 'grafonnet-dashboarding/gitlab-dashboards/datasource.libsonnet';
 local commonAnnotations = import 'grafonnet-dashboarding/grafana/common_annotations.libsonnet';
 local dashboard = import 'grafonnet-dashboarding/grafana/dashboard.libsonnet';
-local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
+local headlineMetricsRow = import 'grafonnet-dashboarding/panels/headline-metrics-row.libsonnet';
 
 local gitlabMetricsConfig = import 'gitlab-metrics-config.libsonnet';
 local aggregationSets = gitlabMetricsConfig.aggregationSets;
@@ -9,7 +9,6 @@ local aggregationSets = gitlabMetricsConfig.aggregationSets;
 local metricsCatalog = import 'servicemetrics/metrics-catalog.libsonnet';
 
 local defaultEnvironmentSelector = gitlabMetricsConfig.grafanaEnvironmentSelector;
-
 
 local overviewDashboard(
   type,
@@ -36,10 +35,7 @@ local overviewDashboard(
       { stage: '$stage' };
 
   local environmentStageSelectorHash = environmentSelectorHash + stageLabels;
-
-  local extraAnnotations = if metricsCatalogServiceInfo.getProvisioning().runway then
-    g.dashboard.withAnnotationsMixin(commonAnnotations.deploymentsForRunway(type))
-  else {};
+  local selectorHash = environmentStageSelectorHash { type: type };
 
   local d =
     dashboard(
@@ -50,7 +46,22 @@ local overviewDashboard(
       includeEnvironmentTemplate=!omitEnvironmentDropdown && std.objectHas(environmentStageSelectorHash, 'environment'),
       defaultDatasource=datasource.defaultDatasourceForService(metricsCatalogServiceInfo)
     )
-    + extraAnnotations;
+    .addAnnotationIf(metricsCatalogServiceInfo.getProvisioning().runway, commonAnnotations.deploymentsForRunway(type))
+    .addPanels(
+      [headlineMetricsRow(
+        serviceType=type,
+        startRow=0,
+        rowTitle='🌡️ Aggregated Service Level Indicators (𝙎𝙇𝙄𝙨)',
+        selectorHash=selectorHash,
+        stableIdPrefix='',
+        showApdex=metricsCatalogServiceInfo.hasApdex(),
+        showErrorRatio=metricsCatalogServiceInfo.hasErrorRatio(),
+        showOpsRate=metricsCatalogServiceInfo.hasRequestRate(),
+        showSaturationCell=std.length(metricsCatalogServiceInfo.applicableSaturationTypes()) > 0,
+        compact=false,
+        rowHeight=10
+      )]
+    );
 
 
   d {

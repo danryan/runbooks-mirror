@@ -1,4 +1,8 @@
+local aggregationSets = (import 'gitlab-metrics-config.libsonnet').aggregationSets;
 local timeSeriesPanel = import 'grafonnet-dashboarding/grafana/timeseries-panel.libsonnet';
+local layout = import 'grafonnet-dashboarding/grafana/layout.libsonnet';
+
+local sliPromQL = import 'key-metric-panels/sli_promql.libsonnet';
 
 local apdexPanel(
   title,
@@ -20,8 +24,10 @@ local apdexPanel(
     description=description,
     sort=sort,
     legend_show=!compact,
-    lineWidth=if expectMultipleSeries then 1 else 2,
+    linewidth=if expectMultipleSeries then 1 else 2,
   );
+
+local apdexStatusDescriptionPanel() = {};
 
 local metricsRow(
   serviceType,
@@ -42,33 +48,53 @@ local metricsRow(
   fixedThreshold=null,
   shardLevelSli=false,
       ) =
+  local formatConfig = {
+    titlePrefix: titlePrefix,
+    legendFormatPrefix: legendFormatPrefix,
+    stableIdPrefix: stableIdPrefix,
+    aggregationId: aggregationSet.id,
+    // grafanaURLPairs: selectorToGrafanaURLParams(selectorHash),
+  };
+  local typeSelector = if serviceType == null then {} else { type: serviceType };
+  local selectorHashWithExtras = selectorHash + typeSelector;
 
-  local apdexPanels = if showApdex then [
+  local apdexPanels = if showApdex then
     [
-      apdexPanel(),
+      apdexPanel(
+        title='%(titlePrefix)s Apdex' % formatConfig,
+        sli=sli,
+        aggregationSet=aggregationSet,
+        selectorHash=selectorHashWithExtras,
+        stableId='%(stableIdPrefix)s-apdex' % formatConfig,
+        legendFormat='%(legendFormatPrefix)s apdex' % formatConfig,
+        description=apdexDescription,
+        expectMultipleSeries=expectMultipleSeries,
+        compact=compact,
+        fixedThreshold=fixedThreshold,
+        includeLastWeek=includeLastWeek,
+        shardLevelSli=shardLevelSli
+      ),
     ]
-    + if expectMultipleSeries then [] else [
-      apdexStatusDescriptionPanel(),
-    ],
-  ] else [];
+  else [];
 
-  local errorRatioPanels = if showErrorRatio then [
-    [
-      errorRatioPanel(),
-    ]
-    + if expectMultipleSeries then [] else [
-      errorRatioStatusDescriptionPanel(),
-    ],
-  ] else [];
+  // local errorRatioPanels = if showErrorRatio then [
+  //   [
+  //     errorRatioPanel(),
+  //   ]
+  //   + if expectMultipleSeries then [] else [
+  //     errorRatioStatusDescriptionPanel(),
+  //   ],
+  // ] else [];
 
-  local opsRatePanels = if showOpsRate then [
-    [
-      opsRatePanel(),
-    ],
-  ] else [];
+  // local opsRatePanels = if showOpsRate then [
+  //   [
+  //     opsRatePanel(),
+  //   ],
+  // ] else [];
 
 
-  apdexPanels + errorRatioPanels + opsRatePanels;
+  apdexPanels  // + errorRatioPanels + opsRatePanels
+;
 
 function(
   serviceType,
@@ -77,7 +103,6 @@ function(
   selectorHash={},
   stableIdPrefix='',
   showApdex=true,
-  apdexDescription=null,
   showErrorRatio=true,
   showOpsRate=true,
   showSaturationCell=true,
@@ -90,4 +115,28 @@ function(
   includeLastWeek=true,
   fixedThreshold=null
 )
-  {}
+  local formatConfig = { serviceType: serviceType, stableIdPrefix: stableIdPrefix };
+  local titlePrefix = if staticTitlePrefix == null then '%(serviceType)s Service' % formatConfig else staticTitlePrefix;
+
+  local columns = metricsRow(
+    serviceType=serviceType,
+    sli=null,  // No SLI for headline metrics
+    aggregationSet=aggregationSet,
+    selectorHash=selectorHash,
+    titlePrefix=titlePrefix,
+    stableIdPrefix='%(stableIdPrefix)sservice-%(serviceType)s' % formatConfig,
+    legendFormatPrefix=if legendFormatPrefix == null then serviceType else legendFormatPrefix,
+    showApdex=showApdex,
+    apdexDescription=null,
+    showErrorRatio=showErrorRatio,
+    showOpsRate=showOpsRate,
+    includePredictions=true,
+    compact=compact,
+    includeLastWeek=includeLastWeek,
+    fixedThreshold=fixedThreshold
+  );
+
+  if rowTitle != null then
+    layout.titleRowWithPanels(rowTitle, std.trace('columns: --%s--' % [columns], columns), false, 0)
+  else
+    layout.grid(columns, cols=columns.size)
