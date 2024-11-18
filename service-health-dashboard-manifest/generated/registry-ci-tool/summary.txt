@@ -1,0 +1,2 @@
+title: registry-ci-tool: CI Analitics
+uid: registry-ci-tool-CI_Analitics

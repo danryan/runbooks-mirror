@@ -1,0 +1,12 @@
+title: consul: Overview
+uid: consul-main
+title: consul: Consul Client Pod Info
+uid: consul-pod
+title: consul: Capacity Review
+uid: consul-capacity-review
+title: consul: Kube Containers Detail
+uid: consul-kube-containers
+title: consul: Kube Deployment Detail
+uid: consul-kube-deployments
+title: consul: Regional Detail
+uid: consul-regional

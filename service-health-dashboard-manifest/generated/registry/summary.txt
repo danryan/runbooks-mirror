@@ -1,0 +1,26 @@
+title: registry: Redis Detail
+uid: registry-redis
+title: registry: Application Detail
+uid: registry-app
+title: registry: Pod Info
+uid: registry-pod
+title: registry: Garbage Collection Detail
+uid: registry-gc
+title: registry: Storage Detail
+uid: registry-storage
+title: registry: Webhook Notifications Detail
+uid: registry-notifications
+title: registry: Overview
+uid: registry-main
+title: registry: Rails Detail
+uid: registry-rails
+title: registry: Capacity Review
+uid: registry-capacity-review
+title: registry: Database Detail
+uid: registry-database
+title: registry: Kube Containers Detail
+uid: registry-kube-containers
+title: registry: Kube Deployment Detail
+uid: registry-kube-deployments
+title: registry: Regional Detail
+uid: registry-regional

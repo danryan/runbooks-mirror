@@ -1,0 +1,14 @@
+title: web: Pod Info
+uid: web-pod
+title: web: Rails Controller
+uid: web-rails-controller
+title: web: Overview
+uid: web-main
+title: web: Capacity Review
+uid: web-capacity-review
+title: web: Kube Containers Detail
+uid: web-kube-containers
+title: web: Kube Deployment Detail
+uid: web-kube-deployments
+title: web: Regional Detail
+uid: web-regional

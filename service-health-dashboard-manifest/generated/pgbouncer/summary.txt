@@ -1,0 +1,4 @@
+title: pgbouncer: Capacity Review
+uid: pgbouncer-capacity-review
+title: pgbouncer: Overview
+uid: pgbouncer-main

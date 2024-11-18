@@ -1,0 +1,4 @@
+title: nat: Overview
+uid: nat-main
+title: nat: Cloud NAT Detail
+uid: nat-detail

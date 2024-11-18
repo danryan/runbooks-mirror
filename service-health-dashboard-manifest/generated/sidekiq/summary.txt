@@ -1,0 +1,26 @@
+title: sidekiq: Shard Detail
+uid: sidekiq-shard-detail
+title: sidekiq: Worker Concurency Detail
+uid: sidekiq-concurrency
+title: sidekiq: Application Info
+uid: sidekiq-app
+title: sidekiq: Pod Info
+uid: sidekiq-pod
+title: sidekiq: Worker Detail
+uid: sidekiq-worker-detail
+title: sidekiq: Bitbucket Importer
+uid: sidekiq-bitbucket-importer
+title: sidekiq: Bitbucket Server Importer
+uid: sidekiq-bitbucket-server-importer
+title: sidekiq: Overview
+uid: sidekiq-main
+title: sidekiq: Loose Foreign Keys Processing
+uid: sidekiq-loose-foreign-keys
+title: sidekiq: Queue Detail
+uid: sidekiq-queue-detail
+title: sidekiq: Capacity Review
+uid: sidekiq-capacity-review
+title: sidekiq: Kube Containers Detail
+uid: sidekiq-kube-containers
+title: sidekiq: Kube Deployment Detail
+uid: sidekiq-kube-deployments

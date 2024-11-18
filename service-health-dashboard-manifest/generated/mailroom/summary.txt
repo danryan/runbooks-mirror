@@ -1,0 +1,10 @@
+title: mailroom: Pod Info
+uid: mailroom-pod
+title: mailroom: Capacity Review
+uid: mailroom-capacity-review
+title: mailroom: Overview
+uid: mailroom-main
+title: mailroom: Kube Containers Detail
+uid: mailroom-kube-containers
+title: mailroom: Kube Deployment Detail
+uid: mailroom-kube-deployments

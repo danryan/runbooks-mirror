@@ -1,0 +1,248 @@
+title: alerts: GCP Load Balancer Alert
+uid: alerts-gcplbunhealthy
+title: alerts: Gitaly Capacity Planner
+uid: alerts-gitaly_capacity_planner
+title: alerts: pg User Table Alerts Primary
+uid: alerts-pg_user_tables_primary
+title: alerts: pg User Table Alerts Replicas
+uid: alerts-pg_user_tables_replica
+title: alerts: Long running transactions
+uid: alerts-long_running_transactions
+title: alerts: Saturation Component Alert
+uid: alerts-saturation_component
+title: alerts: Global Node-Aggregated SLI Metrics Apdex SLO Analysis
+uid: alerts-component_node_slo_apdex
+title: alerts: Global Node-Aggregated SLI Metrics Error SLO Analysis
+uid: alerts-component_node_slo_error
+title: alerts: excluded sidekiq thread contention: Saturation Detail
+uid: alerts-exclude_sidekiq_thread_contention
+title: alerts: gcp quota limit: Saturation Detail
+uid: alerts-gcp_quota_limit
+title: alerts: http router cpu: Saturation Detail
+uid: alerts-http-router-capacity-review
+title: alerts: Global Shard-Aggregated SLI Metrics Apdex SLO Analysis
+uid: alerts-component_shard_slo_apdex
+title: alerts: kube container throttling: Saturation Detail
+uid: alerts-kube_container_throttling
+title: alerts: max concurrent inferences: Saturation Detail
+uid: alerts-max_concurrent_inferences
+title: alerts: max concurrent inferences per engine: Saturation Detail
+uid: alerts-max_inferences_per_engine
+title: alerts: pg active db connections primary: Saturation Detail
+uid: alerts-sat_active_db_conns_primary
+title: alerts: pg active db connections replica: Saturation Detail
+uid: alerts-sat_active_db_conns_replica
+title: alerts: cgroup memory: Saturation Detail
+uid: alerts-sat_cgroup_memory
+title: alerts: Global Shard-Aggregated SLI Metrics Error SLO Analysis
+uid: alerts-component_shard_slo_error
+title: alerts: cloudsql cpu: Saturation Detail
+uid: alerts-sat_cloudsql_cpu
+title: alerts: cloudsql disk: Saturation Detail
+uid: alerts-sat_cloudsql_disk
+title: alerts: cloudsql memory: Saturation Detail
+uid: alerts-sat_cloudsql_memory
+title: alerts: nf conntrack entries: Saturation Detail
+uid: alerts-sat_conntrack
+title: alerts: cpu: Saturation Detail
+uid: alerts-sat_cpu
+title: alerts: disk inodes: Saturation Detail
+uid: alerts-sat_disk_inodes
+title: alerts: disk space: Saturation Detail
+uid: alerts-sat_disk_space
+title: alerts: Global SLI Metrics Apdex SLO Analysis
+uid: alerts-component_slo_apdex
+title: alerts: disk sustained read iops: Saturation Detail
+uid: alerts-sat_disk_sus_read_iops
+title: alerts: disk sustained read throughput: Saturation Detail
+uid: alerts-sat_disk_sus_read_throughput
+title: alerts: disk sustained write iops: Saturation Detail
+uid: alerts-sat_disk_sus_write_iops
+title: alerts: disk sustained write throughput: Saturation Detail
+uid: alerts-sat_disk_sus_write_throughput
+title: alerts: elastic cpu: Saturation Detail
+uid: alerts-sat_elastic_cpu
+title: alerts: elastic disk space: Saturation Detail
+uid: alerts-sat_elastic_disk_space
+title: alerts: Global SLI Metrics Error SLO Analysis
+uid: alerts-component_slo_error
+title: alerts: elastic jvm heap memory: Saturation Detail
+uid: alerts-sat_elastic_jvm_heap_memory
+title: alerts: elastic single node disk space: Saturation Detail
+uid: alerts-sat_elastic_node_disk_space
+title: alerts: elastic single node cpu: Saturation Detail
+uid: alerts-sat_elastic_single_node_cpu
+title: alerts: elastic thread pools: Saturation Detail
+uid: alerts-sat_elastic_thread_pools
+title: alerts: disk maximum capacity: Saturation Detail
+uid: alerts-sat_gcp_maximum_disk_capacity
+title: alerts: gcp quota limit vertex ai: Saturation Detail
+uid: alerts-sat_gcp_quota_limit_vertex_ai
+title: alerts: Regional SLI Metrics Apdex SLO Analysis
+uid: alerts-regional_component_slo_apdex
+title: alerts: gitaly active node available space: Saturation Detail
+uid: alerts-sat_gitaly_active_available_space
+title: alerts: gitaly total disk space: Saturation Detail
+uid: alerts-sat_gitaly_total_disk_space
+title: alerts: go goroutines: Saturation Detail
+uid: alerts-sat_go_goroutines
+title: alerts: go memory: Saturation Detail
+uid: alerts-sat_go_memory
+title: alerts: kube container cpu: Saturation Detail
+uid: alerts-sat_kube_container_cpu
+title: alerts: kube container cpu limit: Saturation Detail
+uid: alerts-sat_kube_container_cpu_limit
+title: alerts: Regional SLI Metrics Error SLO Analysis
+uid: alerts-regional_component_slo_error
+title: alerts: kube container memory: Saturation Detail
+uid: alerts-sat_kube_container_memory
+title: alerts: kube container rss: Saturation Detail
+uid: alerts-sat_kube_container_rss
+title: alerts: Global Service-Node-Aggregated Metrics Apdex SLO Analysis
+uid: alerts-service_node_slo_apdex
+title: alerts: kube go memory: Saturation Detail
+uid: alerts-sat_kube_go_memory
+title: alerts: kube horizontalpodautoscaler desired replicas: Saturation Detail
+uid: alerts-sat_kube_horizontalpodautoscaler
+title: alerts: kube node ips: Saturation Detail
+uid: alerts-sat_kube_node_ips
+title: alerts: Global Service-Node-Aggregated Metrics Error SLO Analysis
+uid: alerts-service_node_slo_error
+title: alerts: kube pool cpu: Saturation Detail
+uid: alerts-sat_kube_pool_cpu
+title: alerts: kube pool max nodes: Saturation Detail
+uid: alerts-sat_kube_pool_max_nodes
+title: alerts: kube persistent volume claim disk space: Saturation Detail
+uid: alerts-sat_kube_pvc_disk_space
+title: alerts: Global Service-Regional-Aggregated Metrics Apdex SLO Analysis
+uid: alerts-service_regional_slo_apdex
+title: alerts: kube persistent volume claim inodes: Saturation Detail
+uid: alerts-sat_kube_pvc_inodes
+title: alerts: memory: Saturation Detail
+uid: alerts-sat_memory
+title: alerts: memory redis cache: Saturation Detail
+uid: alerts-sat_memory_redis_cache
+title: alerts: nat gateway port allocation: Saturation Detail
+uid: alerts-sat_nat_gw_port_allocation
+title: alerts: nat host port allocation: Saturation Detail
+uid: alerts-sat_nat_host_port_allocation
+title: alerts: Global Service-Regional-Aggregated Metrics Error SLO Analysis
+uid: alerts-service_regional_slo_error
+title: alerts: node schedstat waiting: Saturation Detail
+uid: alerts-sat_node_schedstat_waiting
+title: alerts: open fds: Saturation Detail
+uid: alerts-sat_open_fds
+title: alerts: pg anon memory: Saturation Detail
+uid: alerts-sat_patroni_anon_memory
+title: alerts: pg memory: Saturation Detail
+uid: alerts-sat_patroni_memory
+title: alerts: pg btree bloat: Saturation Detail
+uid: alerts-sat_pg_btree_bloat
+title: alerts: Global Service-Aggregated Metrics Apdex SLO Analysis
+uid: alerts-service_slo_apdex
+title: alerts: pg int4 id: Saturation Detail
+uid: alerts-sat_pg_int4_id
+title: alerts: pg primary cpu: Saturation Detail
+uid: alerts-sat_pg_primary_cpu
+title: alerts: Global Service-Aggregated Metrics Error SLO Analysis
+uid: alerts-service_slo_error
+title: alerts: pg table bloat: Saturation Detail
+uid: alerts-sat_pg_table_bloat
+title: alerts: pg txid vacuum to wraparound: Saturation Detail
+uid: alerts-sat_pg_txid_vac_wraparound
+title: alerts: Component Apdex Series Missing
+uid: alerts-component_apdex_missing
+title: alerts: pg vacuum activity v2: Saturation Detail
+uid: alerts-sat_pg_vacuum_activity_v2
+title: alerts: Component Error Rate Series Missing
+uid: alerts-component_error_missing
+title: alerts: Component Request Rate Series Missing
+uid: alerts-component_opsrate_missing
+title: alerts: pg walsender cpu: Saturation Detail
+uid: alerts-sat_pg_walsender_cpu
+title: alerts: pg xid wraparound: Saturation Detail
+uid: alerts-sat_pg_xid_wraparound
+title: alerts: Containers Waiting
+uid: alerts-kube_containers_waiting
+title: alerts: pgbouncer client conn primary: Saturation Detail
+uid: alerts-sat_pgb_client_conn_primary
+title: alerts: pgbouncer client conn replicas: Saturation Detail
+uid: alerts-sat_pgb_client_conn_replicas
+title: alerts: pgbouncer sync primary pool: Saturation Detail
+uid: alerts-sat_pgb_sync_pool_primary
+title: alerts: pgbouncer sync replica pool: Saturation Detail
+uid: alerts-sat_pgb_sync_pool_replica
+title: alerts: pgbouncer async primary pool: Saturation Detail
+uid: alerts-sat_pgbouncer_async_pool_primary
+title: alerts: pgbouncer async replica pool: Saturation Detail
+uid: alerts-sat_pgbouncer_async_pool_replica
+title: alerts: pgbouncer single core: Saturation Detail
+uid: alerts-sat_pgbouncer_single_core
+title: alerts: private runners: Saturation Detail
+uid: alerts-sat_private_runners
+title: alerts: puma workers: Saturation Detail
+uid: alerts-sat_puma_workers
+title: alerts: saas linux large amd64 runners: Saturation Detail
+uid: alerts-sat_r_saas_l_l_amd64
+title: alerts: saas linux medium amd64 runners: Saturation Detail
+uid: alerts-sat_r_saas_l_m_amd64
+title: alerts: saas linux medium amd64 gpu standard runners: Saturation Detail
+uid: alerts-sat_r_saas_l_m_amd64_g_s
+title: alerts: saas linux small amd64 runners: Saturation Detail
+uid: alerts-sat_r_saas_l_s_amd64
+title: alerts: saas macos medium m1 runners: Saturation Detail
+uid: alerts-sat_r_saas_m_m_m1
+title: alerts: saas macos staging runners: Saturation Detail
+uid: alerts-sat_r_saas_m_s
+title: alerts: rails db connection pool: Saturation Detail
+uid: alerts-sat_rails_db_connection_pool
+title: alerts: redis clients: Saturation Detail
+uid: alerts-sat_redis_clients
+title: alerts: redis cluster clients: Saturation Detail
+uid: alerts-sat_redis_cluster_clients
+title: alerts: redis cluster memory: Saturation Detail
+uid: alerts-sat_redis_cluster_memory
+title: alerts: redis cluster primary cpu: Saturation Detail
+uid: alerts-sat_redis_cluster_primary_cpu
+title: alerts: redis memory: Saturation Detail
+uid: alerts-sat_redis_memory
+title: alerts: redis memory cache: Saturation Detail
+uid: alerts-sat_redis_memory_cache
+title: alerts: redis memory sessions: Saturation Detail
+uid: alerts-sat_redis_memory_sessions
+title: alerts: redis memory shared state: Saturation Detail
+uid: alerts-sat_redis_memory_shared_state
+title: alerts: redis memory tracechunks: Saturation Detail
+uid: alerts-sat_redis_memory_tracechunks
+title: alerts: redis primary cpu: Saturation Detail
+uid: alerts-sat_redis_primary_cpu
+title: alerts: redis secondary cpu: Saturation Detail
+uid: alerts-sat_redis_secondary_cpu
+title: alerts: redis sentinel clients: Saturation Detail
+uid: alerts-sat_redis_sentinel_clients
+title: alerts: ruby thread contention: Saturation Detail
+uid: alerts-sat_ruby_thread_contention
+title: alerts: runway container cpu utilization: Saturation Detail
+uid: alerts-sat_runway_container_cpu
+title: alerts: runway container instance utilization: Saturation Detail
+uid: alerts-sat_runway_container_instance
+title: alerts: runway container max concurrent requests: Saturation Detail
+uid: alerts-sat_runway_container_max_con_reqs
+title: alerts: runway container memory utilization: Saturation Detail
+uid: alerts-sat_runway_container_memory
+title: alerts: shard cpu: Saturation Detail
+uid: alerts-sat_shard_cpu
+title: alerts: shared runners gitlab: Saturation Detail
+uid: alerts-sat_shared_runners_gitlab
+title: alerts: sidekiq shard workers: Saturation Detail
+uid: alerts-sat_sidekiq_shard_workers
+title: alerts: sidekiq thread contention: Saturation Detail
+uid: alerts-sat_sidekiq_thread_contention
+title: alerts: single node cpu: Saturation Detail
+uid: alerts-sat_single_node_cpu
+title: alerts: gcp quota limit vertex ai code gecko: Saturation Detail
+uid: alerts-sat_vertex_ai_code_gecko_quota
+title: alerts: workhorse image scaling: Saturation Detail
+uid: alerts-sat_wh_image_scaling
+title: alerts: windows shared runners: Saturation Detail
+uid: alerts-sat_windows_shared_runners

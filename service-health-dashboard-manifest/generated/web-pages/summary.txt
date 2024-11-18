@@ -1,0 +1,14 @@
+title: web-pages: Overview
+uid: web-pages-main
+title: web-pages: HAProxy rejections due to rate limiting and blocks
+uid: web-pages-haproxy-rejections
+title: web-pages: Pod Info
+uid: web-pages-pod
+title: web-pages: Capacity Review
+uid: web-pages-capacity-review
+title: web-pages: Kube Containers Detail
+uid: web-pages-kube-containers
+title: web-pages: Kube Deployment Detail
+uid: web-pages-kube-deployments
+title: web-pages: Regional Detail
+uid: web-pages-regional

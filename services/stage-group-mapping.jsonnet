@@ -172,7 +172,7 @@
   },
   static_analysis: {
     name: 'Static Analysis',
-    stage: 'secure',
+    stage: 'application_security_testing',
     feature_categories: [
       'static_application_security_testing',
       'code_quality',
@@ -180,14 +180,14 @@
   },
   secret_detection: {
     name: 'Secret Detection',
-    stage: 'secure',
+    stage: 'application_security_testing',
     feature_categories: [
       'secret_detection',
     ],
   },
   dynamic_analysis: {
     name: 'Dynamic Analysis',
-    stage: 'secure',
+    stage: 'application_security_testing',
     feature_categories: [
       'dynamic_application_security_testing',
       'fuzz_testing',
@@ -197,7 +197,7 @@
   },
   composition_analysis: {
     name: 'Composition Analysis',
-    stage: 'secure',
+    stage: 'application_security_testing',
     feature_categories: [
       'software_composition_analysis',
       'container_scanning',
@@ -205,7 +205,7 @@
   },
   vulnerability_research: {
     name: 'Vulnerability Research',
-    stage: 'secure',
+    stage: 'application_security_testing',
     feature_categories: [
       'advisory_database',
     ],
@@ -225,7 +225,7 @@
   },
   authentication: {
     name: 'Authentication',
-    stage: 'govern',
+    stage: 'software_supply_chain_security',
     feature_categories: [
       'user_management',
       'system_access',
@@ -233,29 +233,14 @@
   },
   authorization: {
     name: 'Authorization',
-    stage: 'govern',
+    stage: 'software_supply_chain_security',
     feature_categories: [
       'permissions',
     ],
   },
-  security_policies: {
-    name: 'Security Policies',
-    stage: 'govern',
-    feature_categories: [
-      'security_policy_management',
-    ],
-  },
-  threat_insights: {
-    name: 'Threat Insights',
-    stage: 'govern',
-    feature_categories: [
-      'vulnerability_management',
-      'dependency_management',
-    ],
-  },
   compliance: {
     name: 'Compliance',
-    stage: 'govern',
+    stage: 'software_supply_chain_security',
     feature_categories: [
       'audit_events',
       'compliance_management',
@@ -265,7 +250,7 @@
   },
   'anti-abuse': {
     name: 'Anti-Abuse',
-    stage: 'govern',
+    stage: 'software_supply_chain_security',
     feature_categories: [
       'instance_resiliency',
       'insider_threat',
@@ -273,10 +258,39 @@
   },
   pipeline_security: {
     name: 'Pipeline Security',
-    stage: 'govern',
+    stage: 'software_supply_chain_security',
     feature_categories: [
       'secure_artifacts',
       'secrets_management',
+    ],
+  },
+  security_policies: {
+    name: 'Security Policies',
+    stage: 'security_risk_management',
+    feature_categories: [
+      'security_policy_management',
+    ],
+  },
+  security_insights: {
+    name: 'Threat Insights',
+    stage: 'security_risk_management',
+    feature_categories: [
+      'vulnerability_management',
+      'dependency_management',
+    ],
+  },
+  security_infrastructure: {
+    name: 'Security Infrastructure',
+    stage: 'security_risk_management',
+    feature_categories: [
+
+    ],
+  },
+  security_platform_management: {
+    name: 'Security Platform Management',
+    stage: 'security_risk_management',
+    feature_categories: [
+
     ],
   },
   analytics_instrumentation: {
@@ -367,27 +381,63 @@
       'cloud_native_installation',
     ],
   },
-  gitaly_cluster: {
-    name: 'Gitaly::Cluster',
-    stage: 'systems',
+  gitaly: {
+    name: 'Gitaly',
+    stage: 'data_access',
     feature_categories: [
       'gitaly',
     ],
   },
   git: {
     name: 'Git',
-    stage: 'systems',
+    stage: 'data_access',
     feature_categories: [
       'git',
     ],
   },
+  database_frameworks: {
+    name: 'Database Frameworks',
+    stage: 'data_access',
+    feature_categories: [
+      'database',
+    ],
+  },
+  database_operations: {
+    name: 'Database Operations',
+    stage: 'data_access',
+    feature_categories: [
+
+    ],
+  },
+  durability: {
+    name: 'Durability',
+    stage: 'data_access',
+    feature_categories: [
+      'backup_restore',
+    ],
+  },
+  organizations: {
+    name: 'Organizations',
+    stage: 'tenant_scale',
+    feature_categories: [
+      'groups_and_projects',
+      'user_profile',
+      'organization',
+    ],
+  },
+  cells_infrastructure: {
+    name: 'Cells Infrastructure',
+    stage: 'tenant_scale',
+    feature_categories: [
+      'cell',
+    ],
+  },
   geo: {
     name: 'Geo',
-    stage: 'systems',
+    stage: 'tenant_scale',
     feature_categories: [
       'geo_replication',
       'disaster_recovery',
-      'backup_restore',
     ],
   },
   global_search: {
@@ -396,23 +446,6 @@
     feature_categories: [
       'global_search',
       'code_search',
-    ],
-  },
-  database: {
-    name: 'Database',
-    stage: 'data_stores',
-    feature_categories: [
-      'database',
-    ],
-  },
-  tenant_scale: {
-    name: 'Tenant Scale',
-    stage: 'data_stores',
-    feature_categories: [
-      'cell',
-      'groups_and_projects',
-      'user_profile',
-      'organization',
     ],
   },
   delivery: {

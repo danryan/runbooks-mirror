@@ -1,0 +1,10 @@
+title: gitaly: Overview
+uid: gitaly-main
+title: gitaly: Gitaly multi-project move
+uid: gitaly-multi-project-move
+title: gitaly: Gitaly Feature Status
+uid: gitaly-feature-status
+title: gitaly: Host Detail
+uid: gitaly-host-detail
+title: gitaly: Rebalance Dashboard
+uid: gitaly-rebalancing

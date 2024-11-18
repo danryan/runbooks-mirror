@@ -1,0 +1,714 @@
+{
+  "ai-assisted": [
+    "https://dashboards.gitlab.net/d/ai-assisted-main/ai-assisted3a-overview"
+  ],
+  "ai-gateway": [
+    "https://dashboards.gitlab.net/d/ai-gateway-capacity-review/ai-gateway3a-capacity-review",
+    "https://dashboards.gitlab.net/d/ai-gateway-language/ai-gateway3a-language",
+    "https://dashboards.gitlab.net/d/ai-gateway-main/ai-gateway3a-overview",
+    "https://dashboards.gitlab.net/d/ai-gateway-regional/ai-gateway3a-regional-detail"
+  ],
+  "alerts": [
+    "https://dashboards.gitlab.net/d/alerts-component_apdex_missing/alerts3a-component-apdex-series-missing",
+    "https://dashboards.gitlab.net/d/alerts-component_error_missing/alerts3a-component-error-rate-series-missing",
+    "https://dashboards.gitlab.net/d/alerts-component_node_slo_apdex/87446e6",
+    "https://dashboards.gitlab.net/d/alerts-component_node_slo_error/20f5e9f",
+    "https://dashboards.gitlab.net/d/alerts-component_opsrate_missing/alerts3a-component-request-rate-series-missing",
+    "https://dashboards.gitlab.net/d/alerts-component_shard_slo_apdex/26242f7",
+    "https://dashboards.gitlab.net/d/alerts-component_shard_slo_error/0638389",
+    "https://dashboards.gitlab.net/d/alerts-component_slo_apdex/alerts3a-global-sli-metrics-apdex-slo-analysis",
+    "https://dashboards.gitlab.net/d/alerts-component_slo_error/alerts3a-global-sli-metrics-error-slo-analysis",
+    "https://dashboards.gitlab.net/d/alerts-exclude_sidekiq_thread_contention/50b9cc1",
+    "https://dashboards.gitlab.net/d/alerts-gcp_quota_limit/alerts3a-gcp-quota-limit3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-gcplbunhealthy/alerts3a-gcp-load-balancer-alert",
+    "https://dashboards.gitlab.net/d/alerts-gitaly_capacity_planner/alerts3a-gitaly-capacity-planner",
+    "https://dashboards.gitlab.net/d/alerts-http-router-capacity-review/alerts3a-http-router-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-kube_container_throttling/40d275d",
+    "https://dashboards.gitlab.net/d/alerts-kube_containers_waiting/alerts3a-containers-waiting",
+    "https://dashboards.gitlab.net/d/alerts-long_running_transactions/alerts3a-long-running-transactions",
+    "https://dashboards.gitlab.net/d/alerts-max_concurrent_inferences/842d3c0",
+    "https://dashboards.gitlab.net/d/alerts-max_inferences_per_engine/f6a8f8f",
+    "https://dashboards.gitlab.net/d/alerts-pg_user_tables_primary/alerts3a-pg-user-table-alerts-primary",
+    "https://dashboards.gitlab.net/d/alerts-pg_user_tables_replica/alerts3a-pg-user-table-alerts-replicas",
+    "https://dashboards.gitlab.net/d/alerts-regional_component_slo_apdex/alerts3a-regional-sli-metrics-apdex-slo-analysis",
+    "https://dashboards.gitlab.net/d/alerts-regional_component_slo_error/alerts3a-regional-sli-metrics-error-slo-analysis",
+    "https://dashboards.gitlab.net/d/alerts-sat_active_db_conns_primary/f239d3a",
+    "https://dashboards.gitlab.net/d/alerts-sat_active_db_conns_replica/ae34119",
+    "https://dashboards.gitlab.net/d/alerts-sat_cgroup_memory/alerts3a-cgroup-memory3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_cloudsql_cpu/alerts3a-cloudsql-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_cloudsql_disk/alerts3a-cloudsql-disk3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_cloudsql_memory/alerts3a-cloudsql-memory3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_conntrack/alerts3a-nf-conntrack-entries3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_cpu/alerts3a-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_disk_inodes/alerts3a-disk-inodes3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_disk_space/alerts3a-disk-space3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_disk_sus_read_iops/d53e148",
+    "https://dashboards.gitlab.net/d/alerts-sat_disk_sus_read_throughput/bcdf829",
+    "https://dashboards.gitlab.net/d/alerts-sat_disk_sus_write_iops/90ae473",
+    "https://dashboards.gitlab.net/d/alerts-sat_disk_sus_write_throughput/9b884db",
+    "https://dashboards.gitlab.net/d/alerts-sat_elastic_cpu/alerts3a-elastic-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_elastic_disk_space/alerts3a-elastic-disk-space3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_elastic_jvm_heap_memory/e013b2b",
+    "https://dashboards.gitlab.net/d/alerts-sat_elastic_node_disk_space/8a8b492",
+    "https://dashboards.gitlab.net/d/alerts-sat_elastic_single_node_cpu/d871365",
+    "https://dashboards.gitlab.net/d/alerts-sat_elastic_thread_pools/alerts3a-elastic-thread-pools3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_gcp_maximum_disk_capacity/alerts3a-disk-maximum-capacity3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_gcp_quota_limit_vertex_ai/82dfe9e",
+    "https://dashboards.gitlab.net/d/alerts-sat_gitaly_active_available_space/c8221f0",
+    "https://dashboards.gitlab.net/d/alerts-sat_gitaly_total_disk_space/c2c03f4",
+    "https://dashboards.gitlab.net/d/alerts-sat_go_goroutines/alerts3a-go-goroutines3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_go_memory/alerts3a-go-memory3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_container_cpu/alerts3a-kube-container-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_container_cpu_limit/f1a8a3a",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_container_memory/alerts3a-kube-container-memory3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_container_rss/alerts3a-kube-container-rss3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_go_memory/alerts3a-kube-go-memory3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_horizontalpodautoscaler/7dfc42b",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_node_ips/alerts3a-kube-node-ips3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_pool_cpu/alerts3a-kube-pool-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_pool_max_nodes/alerts3a-kube-pool-max-nodes3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_pvc_disk_space/b227f28",
+    "https://dashboards.gitlab.net/d/alerts-sat_kube_pvc_inodes/87845cc",
+    "https://dashboards.gitlab.net/d/alerts-sat_memory/alerts3a-memory3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_memory_redis_cache/alerts3a-memory-redis-cache3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_nat_gw_port_allocation/fd6ae2c",
+    "https://dashboards.gitlab.net/d/alerts-sat_nat_host_port_allocation/f23b385",
+    "https://dashboards.gitlab.net/d/alerts-sat_node_schedstat_waiting/7f90ce2",
+    "https://dashboards.gitlab.net/d/alerts-sat_open_fds/alerts3a-open-fds3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_patroni_anon_memory/alerts3a-pg-anon-memory3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_patroni_memory/alerts3a-pg-memory3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_pg_btree_bloat/alerts3a-pg-btree-bloat3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_pg_int4_id/alerts3a-pg-int4-id3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_pg_primary_cpu/alerts3a-pg-primary-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_pg_table_bloat/alerts3a-pg-table-bloat3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_pg_txid_vac_wraparound/cfda3ba",
+    "https://dashboards.gitlab.net/d/alerts-sat_pg_vacuum_activity_v2/alerts3a-pg-vacuum-activity-v23a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_pg_walsender_cpu/alerts3a-pg-walsender-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_pg_xid_wraparound/alerts3a-pg-xid-wraparound3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_pgb_client_conn_primary/8bc23c9",
+    "https://dashboards.gitlab.net/d/alerts-sat_pgb_client_conn_replicas/cb6dbc5",
+    "https://dashboards.gitlab.net/d/alerts-sat_pgb_sync_pool_primary/ee386b7",
+    "https://dashboards.gitlab.net/d/alerts-sat_pgb_sync_pool_replica/263d3d9",
+    "https://dashboards.gitlab.net/d/alerts-sat_pgbouncer_async_pool_primary/0a45b08",
+    "https://dashboards.gitlab.net/d/alerts-sat_pgbouncer_async_pool_replica/806d679",
+    "https://dashboards.gitlab.net/d/alerts-sat_pgbouncer_single_core/alerts3a-pgbouncer-single-core3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_private_runners/alerts3a-private-runners3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_puma_workers/alerts3a-puma-workers3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_r_saas_l_l_amd64/fae2bdc",
+    "https://dashboards.gitlab.net/d/alerts-sat_r_saas_l_m_amd64/9b2769b",
+    "https://dashboards.gitlab.net/d/alerts-sat_r_saas_l_m_amd64_g_s/d671697",
+    "https://dashboards.gitlab.net/d/alerts-sat_r_saas_l_s_amd64/b0a37f4",
+    "https://dashboards.gitlab.net/d/alerts-sat_r_saas_m_m_m1/02a4950",
+    "https://dashboards.gitlab.net/d/alerts-sat_r_saas_m_s/8be0642",
+    "https://dashboards.gitlab.net/d/alerts-sat_rails_db_connection_pool/ead81a9",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_clients/alerts3a-redis-clients3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_cluster_clients/alerts3a-redis-cluster-clients3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_cluster_memory/alerts3a-redis-cluster-memory3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_cluster_primary_cpu/4ccbd47",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_memory/alerts3a-redis-memory3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_memory_cache/alerts3a-redis-memory-cache3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_memory_sessions/alerts3a-redis-memory-sessions3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_memory_shared_state/29c9788",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_memory_tracechunks/55bf35d",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_primary_cpu/alerts3a-redis-primary-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_secondary_cpu/alerts3a-redis-secondary-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_redis_sentinel_clients/28ad640",
+    "https://dashboards.gitlab.net/d/alerts-sat_ruby_thread_contention/3426fee",
+    "https://dashboards.gitlab.net/d/alerts-sat_runway_container_cpu/ae405d9",
+    "https://dashboards.gitlab.net/d/alerts-sat_runway_container_instance/4d5fd49",
+    "https://dashboards.gitlab.net/d/alerts-sat_runway_container_max_con_reqs/acd6b10",
+    "https://dashboards.gitlab.net/d/alerts-sat_runway_container_memory/bd506bb",
+    "https://dashboards.gitlab.net/d/alerts-sat_shard_cpu/alerts3a-shard-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_shared_runners_gitlab/alerts3a-shared-runners-gitlab3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_sidekiq_shard_workers/alerts3a-sidekiq-shard-workers3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_sidekiq_thread_contention/5a7d0e3",
+    "https://dashboards.gitlab.net/d/alerts-sat_single_node_cpu/alerts3a-single-node-cpu3a-saturation-detail",
+    "https://dashboards.gitlab.net/d/alerts-sat_vertex_ai_code_gecko_quota/4dce141",
+    "https://dashboards.gitlab.net/d/alerts-sat_wh_image_scaling/14acef0",
+    "https://dashboards.gitlab.net/d/alerts-sat_windows_shared_runners/347b3ba",
+    "https://dashboards.gitlab.net/d/alerts-saturation_component/alerts3a-saturation-component-alert",
+    "https://dashboards.gitlab.net/d/alerts-service_node_slo_apdex/b910d61",
+    "https://dashboards.gitlab.net/d/alerts-service_node_slo_error/a7ef3cb",
+    "https://dashboards.gitlab.net/d/alerts-service_regional_slo_apdex/8911fda",
+    "https://dashboards.gitlab.net/d/alerts-service_regional_slo_error/0b70f1f",
+    "https://dashboards.gitlab.net/d/alerts-service_slo_apdex/2694a14",
+    "https://dashboards.gitlab.net/d/alerts-service_slo_error/1953ded"
+  ],
+  "analytics-instrumentation": [
+    "https://dashboards.gitlab.net/d/analytics-instrumentation-main/d668a4a"
+  ],
+  "api": [
+    "https://dashboards.gitlab.net/d/api-capacity-review/api3a-capacity-review",
+    "https://dashboards.gitlab.net/d/api-graphql/api3a-graphql",
+    "https://dashboards.gitlab.net/d/api-kube-containers/api3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/api-kube-deployments/api3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/api-main/api3a-overview",
+    "https://dashboards.gitlab.net/d/api-pod/api3a-pod-info",
+    "https://dashboards.gitlab.net/d/api-rails-controller/api3a-rails-controller",
+    "https://dashboards.gitlab.net/d/api-regional/api3a-regional-detail"
+  ],
+  "atlantis": [
+    "https://dashboards.gitlab.net/d/atlantis-main/atlantis3a-overview"
+  ],
+  "camoproxy": [
+    "https://dashboards.gitlab.net/d/camoproxy-main/camoproxy3a-overview"
+  ],
+  "cells": [
+    "https://dashboards.gitlab.net/d/cells-main/cells3a-performance"
+  ],
+  "ci-partitioning": [
+    "https://dashboards.gitlab.net/d/ci-partitioning-main/ci-partitioning3a-ci-data-partitions-tracking"
+  ],
+  "ci-runners": [
+    "https://dashboards.gitlab.net/d/ci-runners-autoscaling-algorithm/ci-runners3a-autoscaling-algorithm",
+    "https://dashboards.gitlab.net/d/ci-runners-business-stats/ci-runners3a-business-metrics",
+    "https://dashboards.gitlab.net/d/ci-runners-deployment/ci-runners3a-deployment-overview",
+    "https://dashboards.gitlab.net/d/ci-runners-dm-to-autoscaler-migration/b9be31c",
+    "https://dashboards.gitlab.net/d/ci-runners-incident-autoscaling-new/ci-runners3a-incident-support3a-autoscaling-new",
+    "https://dashboards.gitlab.net/d/ci-runners-incident-autoscaling/ci-runners3a-incident-support3a-autoscaling",
+    "https://dashboards.gitlab.net/d/ci-runners-incident-database/ci-runners3a-incident-support3a-database",
+    "https://dashboards.gitlab.net/d/ci-runners-incident-gitlab-application/ci-runners3a-incident-support3a-gitlab-application",
+    "https://dashboards.gitlab.net/d/ci-runners-incident-runner-manager/ci-runners3a-incident-support3a-runner-manager",
+    "https://dashboards.gitlab.net/d/ci-runners-main/ci-runners3a-overview",
+    "https://dashboards.gitlab.net/d/ci-runners-queuing-overview/ci-runners3a-jobs-queuing-overview"
+  ],
+  "cloud-cost": [
+    "https://dashboards.gitlab.net/d/cloud-cost-open_ai/cloud-cost3a-openai-cost-tracking"
+  ],
+  "cloud-sql": [
+    "https://dashboards.gitlab.net/d/cloud-sql-main/cloud-sql3a-overview"
+  ],
+  "cloudflare": [
+    "https://dashboards.gitlab.net/d/cloudflare-main/cloudflare3a-overview"
+  ],
+  "consul": [
+    "https://dashboards.gitlab.net/d/consul-capacity-review/consul3a-capacity-review",
+    "https://dashboards.gitlab.net/d/consul-kube-containers/consul3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/consul-kube-deployments/consul3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/consul-main/consul3a-overview",
+    "https://dashboards.gitlab.net/d/consul-pod/consul3a-consul-client-pod-info",
+    "https://dashboards.gitlab.net/d/consul-regional/consul3a-regional-detail"
+  ],
+  "customersdot": [
+    "https://dashboards.gitlab.net/d/customersdot-main/customersdot3a-overview"
+  ],
+  "delivery": [
+    "https://dashboards.gitlab.net/d/delivery-auto_deploy_environment_state/7d4e563",
+    "https://dashboards.gitlab.net/d/delivery-auto_deploy_packages/delivery3a-auto-deploy-packages-information",
+    "https://dashboards.gitlab.net/d/delivery-delivery_metrics/delivery3a-delivery-metrics-deployment",
+    "https://dashboards.gitlab.net/d/delivery-deployment_blockers/delivery3a-deployment-blockers",
+    "https://dashboards.gitlab.net/d/delivery-deployment_health/delivery3a-deployment-health",
+    "https://dashboards.gitlab.net/d/delivery-deployment_metrics/delivery3a-deployment-metrics",
+    "https://dashboards.gitlab.net/d/delivery-deployment_slo/delivery3a-deployment-slo",
+    "https://dashboards.gitlab.net/d/delivery-jobs_duration/delivery3a-jobs-duration",
+    "https://dashboards.gitlab.net/d/delivery-release_info/delivery3a-release-information",
+    "https://dashboards.gitlab.net/d/delivery-release_management/delivery3a-release-management",
+    "https://dashboards.gitlab.net/d/delivery-release_management_toil/delivery3a-release-management-toil",
+    "https://dashboards.gitlab.net/d/delivery-rollback_info/delivery3a-rollback-information"
+  ],
+  "diagrams": [
+    "https://dashboards.gitlab.net/d/diagrams-main/diagrams3a-overview-diagrams"
+  ],
+  "errortracking": [
+    "https://dashboards.gitlab.net/d/errortracking-main/errortracking3a-overview"
+  ],
+  "ext-pvs": [
+    "https://dashboards.gitlab.net/d/ext-pvs-main/ext-pvs3a-overview"
+  ],
+  "external-dns": [
+    "https://dashboards.gitlab.net/d/external-dns-main/external-dns3a-overview"
+  ],
+  "frontend": [
+    "https://dashboards.gitlab.net/d/frontend-git/frontend3a-git-utilization",
+    "https://dashboards.gitlab.net/d/frontend-main/frontend3a-overview"
+  ],
+  "general": [
+    "https://dashboards.gitlab.net/d/general-application-demand/general3a-application-demand-indicators",
+    "https://dashboards.gitlab.net/d/general-application-sli-violations/general3a-application-sli-violations",
+    "https://dashboards.gitlab.net/d/general-availability-indicator/general3a-availability-indicator",
+    "https://dashboards.gitlab.net/d/general-egress_ingress/general3a-network-ingress-egress-overview",
+    "https://dashboards.gitlab.net/d/general-fs/general3a-filesystems",
+    "https://dashboards.gitlab.net/d/general-incident-budget-explorer/general3a-incident-budget-explorer",
+    "https://dashboards.gitlab.net/d/general-kubernetes_version/general3a-kubernetes-version-matrix",
+    "https://dashboards.gitlab.net/d/general-mtbf/general3a-mean-time-between-failure",
+    "https://dashboards.gitlab.net/d/general-occurence-slas/general3a-occurence-slas",
+    "https://dashboards.gitlab.net/d/general-pagespeed/general3a-pagespeed",
+    "https://dashboards.gitlab.net/d/general-playlist-database/general3a-triage-playlist3a-databases",
+    "https://dashboards.gitlab.net/d/general-playlist-frontend-aux/general3a-triage-playlist3a-other-services",
+    "https://dashboards.gitlab.net/d/general-playlist-frontend-rails/general3a-triage-playlist3a-rails-services",
+    "https://dashboards.gitlab.net/d/general-playlist-storage/general3a-triage-playlist3a-storage",
+    "https://dashboards.gitlab.net/d/general-public-splashscreen/general3a-gitlab-dashboards",
+    "https://dashboards.gitlab.net/d/general-rails-controller/general3a-rails-controller",
+    "https://dashboards.gitlab.net/d/general-service/general3a-service-platform-metrics",
+    "https://dashboards.gitlab.net/d/general-slas/general3a-slas",
+    "https://dashboards.gitlab.net/d/general-triage/general3a-platform-triage"
+  ],
+  "git": [
+    "https://dashboards.gitlab.net/d/git-capacity-review/git3a-capacity-review",
+    "https://dashboards.gitlab.net/d/git-kube-containers/git3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/git-kube-deployments/git3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/git-main/git3a-overview",
+    "https://dashboards.gitlab.net/d/git-pod/git3a-pod-info",
+    "https://dashboards.gitlab.net/d/git-rails-controller/git3a-rails-controller",
+    "https://dashboards.gitlab.net/d/git-regional/git3a-regional-detail",
+    "https://dashboards.gitlab.net/d/git-shell-pod/git3a-gitlab-shell-pod-info"
+  ],
+  "gitaly": [
+    "https://dashboards.gitlab.net/d/gitaly-feature-status/gitaly3a-gitaly-feature-status",
+    "https://dashboards.gitlab.net/d/gitaly-host-detail/gitaly3a-host-detail",
+    "https://dashboards.gitlab.net/d/gitaly-main/gitaly3a-overview",
+    "https://dashboards.gitlab.net/d/gitaly-multi-project-move/gitaly3a-gitaly-multi-project-move",
+    "https://dashboards.gitlab.net/d/gitaly-rebalancing/gitaly3a-rebalance-dashboard"
+  ],
+  "gitlab-static": [
+    "https://dashboards.gitlab.net/d/gitlab-static-main/gitlab-static3a-overview"
+  ],
+  "glgo": [
+    "https://dashboards.gitlab.net/d/glgo-main/glgo3a-overview"
+  ],
+  "google-cloud-storage": [
+    "https://dashboards.gitlab.net/d/google-cloud-storage-artifacts-cdn/google-cloud-storage3a-artifact-cdn-detail",
+    "https://dashboards.gitlab.net/d/google-cloud-storage-main/google-cloud-storage3a-overview"
+  ],
+  "http-router": [
+    "https://dashboards.gitlab.net/d/http-router-capacity-review/http-router3a-capacity-review",
+    "https://dashboards.gitlab.net/d/http-router-main/http-router3a-overview"
+  ],
+  "importers": [
+    "https://dashboards.gitlab.net/d/importers-github-importer/importers3a-github-importer"
+  ],
+  "internal-api": [
+    "https://dashboards.gitlab.net/d/internal-api-capacity-review/internal-api3a-capacity-review",
+    "https://dashboards.gitlab.net/d/internal-api-kube-containers/internal-api3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/internal-api-kube-deployments/internal-api3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/internal-api-main/internal-api3a-overview",
+    "https://dashboards.gitlab.net/d/internal-api-pod/internal-api3a-pod-info",
+    "https://dashboards.gitlab.net/d/internal-api-rails-controller/internal-api3a-rails-controller",
+    "https://dashboards.gitlab.net/d/internal-api-regional/internal-api3a-regional-detail"
+  ],
+  "istio": [
+    "https://dashboards.gitlab.net/d/istio-istio_control_plane/istio3a-istio-control-plane-dashboard",
+    "https://dashboards.gitlab.net/d/istio-istio_ingress_loki/98243ca",
+    "https://dashboards.gitlab.net/d/istio-istio_mesh/istio3a-istio-mesh-dashboard",
+    "https://dashboards.gitlab.net/d/istio-istio_performance/istio3a-istio-performance-dashboard",
+    "https://dashboards.gitlab.net/d/istio-istio_service/istio3a-istio-service-dashboard",
+    "https://dashboards.gitlab.net/d/istio-istio_workload/istio3a-istio-workload-dashboard",
+    "https://dashboards.gitlab.net/d/istio-main/istio3a-overview"
+  ],
+  "jaeger": [
+    "https://dashboards.gitlab.net/d/jaeger-main/jaeger3a-overview"
+  ],
+  "kas": [
+    "https://dashboards.gitlab.net/d/kas-ci-tunnel/kas3a-ci-tunnel",
+    "https://dashboards.gitlab.net/d/kas-gitops/kas3a-gitops-metrics",
+    "https://dashboards.gitlab.net/d/kas-kube-containers/kas3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/kas-kube-deployments/kas3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/kas-main/kas3a-overview",
+    "https://dashboards.gitlab.net/d/kas-misc/kas3a-miscellaneous-metrics",
+    "https://dashboards.gitlab.net/d/kas-pod/kas3a-pod-info",
+    "https://dashboards.gitlab.net/d/kas-redis/kas3a-redis-metrics"
+  ],
+  "kube": [
+    "https://dashboards.gitlab.net/d/kube-main/kube3a-overview"
+  ],
+  "logging": [
+    "https://dashboards.gitlab.net/d/logging-capacity-review/logging3a-capacity-review",
+    "https://dashboards.gitlab.net/d/logging-kube-containers/logging3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/logging-kube-deployments/logging3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/logging-main/logging3a-overview"
+  ],
+  "mailgun": [
+    "https://dashboards.gitlab.net/d/mailgun-main/mailgun3a-overview"
+  ],
+  "mailroom": [
+    "https://dashboards.gitlab.net/d/mailroom-capacity-review/mailroom3a-capacity-review",
+    "https://dashboards.gitlab.net/d/mailroom-kube-containers/mailroom3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/mailroom-kube-deployments/mailroom3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/mailroom-main/mailroom3a-overview",
+    "https://dashboards.gitlab.net/d/mailroom-pod/mailroom3a-pod-info"
+  ],
+  "memorystore": [
+    "https://dashboards.gitlab.net/d/memorystore-main/memorystore3a-overview"
+  ],
+  "mimir": [
+    "https://dashboards.gitlab.net/d/mimir-main/mimir3a-overview"
+  ],
+  "monitoring": [
+    "https://dashboards.gitlab.net/d/monitoring-main/monitoring3a-overview",
+    "https://dashboards.gitlab.net/d/monitoring-prometheus-cardinality/monitoring3a-prometheus-cardinality-metrics"
+  ],
+  "nat": [
+    "https://dashboards.gitlab.net/d/nat-detail/nat3a-cloud-nat-detail",
+    "https://dashboards.gitlab.net/d/nat-main/nat3a-overview"
+  ],
+  "nginx": [
+    "https://dashboards.gitlab.net/d/nginx-capacity-review/nginx3a-capacity-review",
+    "https://dashboards.gitlab.net/d/nginx-kube-containers/nginx3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/nginx-kube-deployments/nginx3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/nginx-main/nginx3a-overview",
+    "https://dashboards.gitlab.net/d/nginx-pod/nginx3a-pod-info",
+    "https://dashboards.gitlab.net/d/nginx-regional/nginx3a-regional-detail"
+  ],
+  "observability": [
+    "https://dashboards.gitlab.net/d/observability-clickhouse/observability3a-clickhouse",
+    "https://dashboards.gitlab.net/d/observability-dataingestion/observability3a-data-ingestion",
+    "https://dashboards.gitlab.net/d/observability-errortracking/observability3a-errortracking-api",
+    "https://dashboards.gitlab.net/d/observability-gatekeeper/observability3a-gatekeeper",
+    "https://dashboards.gitlab.net/d/observability-ingress/observability3a-ingress",
+    "https://dashboards.gitlab.net/d/observability-tracing/observability3a-tracing"
+  ],
+  "ops-gitlab-net": [
+    "https://dashboards.gitlab.net/d/ops-gitlab-net-capacity-review/ops-gitlab-net3a-capacity-review",
+    "https://dashboards.gitlab.net/d/ops-gitlab-net-kube-containers/ops-gitlab-net3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/ops-gitlab-net-kube-deployments/ops-gitlab-net3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/ops-gitlab-net-main/ops-gitlab-net3a-overview"
+  ],
+  "packagecloud": [
+    "https://dashboards.gitlab.net/d/packagecloud-capacity-review/packagecloud3a-capacity-review",
+    "https://dashboards.gitlab.net/d/packagecloud-kube-containers/packagecloud3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/packagecloud-kube-deployments/packagecloud3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/packagecloud-main/packagecloud3a-overview"
+  ],
+  "patroni": [
+    "https://dashboards.gitlab.net/d/patroni-capacity-review/patroni3a-capacity-review",
+    "https://dashboards.gitlab.net/d/patroni-main/patroni3a-overview",
+    "https://dashboards.gitlab.net/d/patroni-marginalia-sampler/patroni3a-marginalia-sampler"
+  ],
+  "patroni-ci": [
+    "https://dashboards.gitlab.net/d/patroni-ci-main/patroni-ci3a-overview"
+  ],
+  "patroni-embedding": [
+    "https://dashboards.gitlab.net/d/patroni-embedding-main/patroni-embedding3a-overview"
+  ],
+  "patroni-registry": [
+    "https://dashboards.gitlab.net/d/patroni-registry-main/patroni-registry3a-overview"
+  ],
+  "pd-event-logger-7760xa": [
+    "https://dashboards.gitlab.net/d/pd-event-logger-7760xa-main/pd-event-logger-7760xa3a-overview"
+  ],
+  "pgbouncer": [
+    "https://dashboards.gitlab.net/d/pgbouncer-capacity-review/pgbouncer3a-capacity-review",
+    "https://dashboards.gitlab.net/d/pgbouncer-main/pgbouncer3a-overview"
+  ],
+  "pgbouncer-ci": [
+    "https://dashboards.gitlab.net/d/pgbouncer-ci-main/pgbouncer-ci3a-overview"
+  ],
+  "pgbouncer-embedding": [
+    "https://dashboards.gitlab.net/d/pgbouncer-embedding-main/pgbouncer-embedding3a-overview"
+  ],
+  "pgbouncer-registry": [
+    "https://dashboards.gitlab.net/d/pgbouncer-registry-main/pgbouncer-registry3a-overview"
+  ],
+  "plantuml": [
+    "https://dashboards.gitlab.net/d/plantuml-capacity-review/plantuml3a-capacity-review",
+    "https://dashboards.gitlab.net/d/plantuml-kube-containers/plantuml3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/plantuml-kube-deployments/plantuml3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/plantuml-main/plantuml3a-overview"
+  ],
+  "postgres-ai": [
+    "https://dashboards.gitlab.net/d/postgres-ai-agg-query-perf-analysis/501b523",
+    "https://dashboards.gitlab.net/d/postgres-ai-node-performance-overview/43309ba"
+  ],
+  "postgres-archive": [
+    "https://dashboards.gitlab.net/d/postgres-archive-main/postgres-archive3a-overview"
+  ],
+  "postgresql": [
+    "https://dashboards.gitlab.net/d/postgresql-pg-upgrade/postgresql3a-postgres-upgrade-using-logical"
+  ],
+  "product": [
+    "https://dashboards.gitlab.net/d/product-ai-powered_error_budget/product3a-error-budgets-ai-powered",
+    "https://dashboards.gitlab.net/d/product-create_error_budget/product3a-error-budgets-create",
+    "https://dashboards.gitlab.net/d/product-data_stores_error_budget/product3a-error-budgets-data-stores",
+    "https://dashboards.gitlab.net/d/product-engineering_product_error_budget/product3a-error-budgets-engineering-productivity",
+    "https://dashboards.gitlab.net/d/product-foundations_error_budget/product3a-error-budgets-foundations",
+    "https://dashboards.gitlab.net/d/product-govern_error_budget/product3a-error-budgets-govern",
+    "https://dashboards.gitlab.net/d/product-monitor_error_budget/product3a-error-budgets-monitor",
+    "https://dashboards.gitlab.net/d/product-package_error_budget/product3a-error-budgets-package",
+    "https://dashboards.gitlab.net/d/product-plan_error_budget/product3a-error-budgets-plan",
+    "https://dashboards.gitlab.net/d/product-secure_error_budget/product3a-error-budgets-secure",
+    "https://dashboards.gitlab.net/d/product-systems_error_budget/product3a-error-budgets-systems",
+    "https://dashboards.gitlab.net/d/product-unlisted_stage_error_budget/product3a-error-budgets-unlisted-stage",
+    "https://dashboards.gitlab.net/d/product-verify_error_budget/product3a-error-budgets-verify"
+  ],
+  "rate-limiting": [
+    "https://dashboards.gitlab.net/d/rate-limiting-rate-limiting_overview/rate-limiting3a-rate-limiting3a-overview"
+  ],
+  "redis": [
+    "https://dashboards.gitlab.net/d/redis-main/redis3a-overview"
+  ],
+  "redis-cluster-cache": [
+    "https://dashboards.gitlab.net/d/redis-cluster-cache-main/redis-cluster-cache3a-overview"
+  ],
+  "redis-cluster-chat-cache": [
+    "https://dashboards.gitlab.net/d/redis-cluster-chat-cache-main/redis-cluster-chat-cache3a-overview"
+  ],
+  "redis-cluster-feature-flag": [
+    "https://dashboards.gitlab.net/d/redis-cluster-feature-flag-main/redis-cluster-feature-flag3a-overview"
+  ],
+  "redis-cluster-queues-meta": [
+    "https://dashboards.gitlab.net/d/redis-cluster-queues-meta-main/redis-cluster-queues-meta3a-overview"
+  ],
+  "redis-cluster-ratelimiting": [
+    "https://dashboards.gitlab.net/d/redis-cluster-ratelimiting-main/redis-cluster-ratelimiting3a-overview"
+  ],
+  "redis-cluster-repo-cache": [
+    "https://dashboards.gitlab.net/d/redis-cluster-repo-cache-main/redis-cluster-repo-cache3a-overview"
+  ],
+  "redis-cluster-shared-state": [
+    "https://dashboards.gitlab.net/d/redis-cluster-shared-state-main/redis-cluster-shared-state3a-overview"
+  ],
+  "redis-db-load-balancing": [
+    "https://dashboards.gitlab.net/d/redis-db-load-balancing-main/redis-db-load-balancing3a-overview"
+  ],
+  "redis-pubsub": [
+    "https://dashboards.gitlab.net/d/redis-pubsub-main/redis-pubsub3a-overview"
+  ],
+  "redis-registry-cache": [
+    "https://dashboards.gitlab.net/d/redis-registry-cache-main/redis-registry-cache3a-overview"
+  ],
+  "redis-sessions": [
+    "https://dashboards.gitlab.net/d/redis-sessions-main/redis-sessions3a-overview"
+  ],
+  "redis-sidekiq": [
+    "https://dashboards.gitlab.net/d/redis-sidekiq-main/redis-sidekiq3a-overview"
+  ],
+  "redis-tracechunks": [
+    "https://dashboards.gitlab.net/d/redis-tracechunks-main/redis-tracechunks3a-overview"
+  ],
+  "registry": [
+    "https://dashboards.gitlab.net/d/registry-app/registry3a-application-detail",
+    "https://dashboards.gitlab.net/d/registry-capacity-review/registry3a-capacity-review",
+    "https://dashboards.gitlab.net/d/registry-database/registry3a-database-detail",
+    "https://dashboards.gitlab.net/d/registry-gc/registry3a-garbage-collection-detail",
+    "https://dashboards.gitlab.net/d/registry-kube-containers/registry3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/registry-kube-deployments/registry3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/registry-main/registry3a-overview",
+    "https://dashboards.gitlab.net/d/registry-notifications/registry3a-webhook-notifications-detail",
+    "https://dashboards.gitlab.net/d/registry-pod/registry3a-pod-info",
+    "https://dashboards.gitlab.net/d/registry-rails/registry3a-rails-detail",
+    "https://dashboards.gitlab.net/d/registry-redis/registry3a-redis-detail",
+    "https://dashboards.gitlab.net/d/registry-regional/registry3a-regional-detail",
+    "https://dashboards.gitlab.net/d/registry-storage/registry3a-storage-detail"
+  ],
+  "registry-ci-tool": [
+    "https://dashboards.gitlab.net/d/registry-ci-tool-CI_Analitics/registry-ci-tool3a-ci-analitics"
+  ],
+  "runway": [
+    "https://dashboards.gitlab.net/d/runway-job/runway3a-runway-job-metrics",
+    "https://dashboards.gitlab.net/d/runway-loadbalancer/runway3a-runway-load-balancer-metrics",
+    "https://dashboards.gitlab.net/d/runway-main/runway3a-overview",
+    "https://dashboards.gitlab.net/d/runway-service/runway3a-runway-service-metrics"
+  ],
+  "sast-service": [
+    "https://dashboards.gitlab.net/d/sast-service-main/sast-service3a-overview"
+  ],
+  "search": [
+    "https://dashboards.gitlab.net/d/search-main/search3a-overview",
+    "https://dashboards.gitlab.net/d/search-zoekt/search3a-zoekt-info"
+  ],
+  "secret-detection": [
+    "https://dashboards.gitlab.net/d/secret-detection-main/secret-detection3a-overview"
+  ],
+  "sentry": [
+    "https://dashboards.gitlab.net/d/sentry-events/sentry3a-events",
+    "https://dashboards.gitlab.net/d/sentry-main-kube/sentry3a-kube-sentry-main",
+    "https://dashboards.gitlab.net/d/sentry-main/sentry3a-overview"
+  ],
+  "sidekiq": [
+    "https://dashboards.gitlab.net/d/sidekiq-app/sidekiq3a-application-info",
+    "https://dashboards.gitlab.net/d/sidekiq-bitbucket-importer/sidekiq3a-bitbucket-importer",
+    "https://dashboards.gitlab.net/d/sidekiq-bitbucket-server-importer/sidekiq3a-bitbucket-server-importer",
+    "https://dashboards.gitlab.net/d/sidekiq-capacity-review/sidekiq3a-capacity-review",
+    "https://dashboards.gitlab.net/d/sidekiq-concurrency/sidekiq3a-worker-concurency-detail",
+    "https://dashboards.gitlab.net/d/sidekiq-kube-containers/sidekiq3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/sidekiq-kube-deployments/sidekiq3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/sidekiq-loose-foreign-keys/sidekiq3a-loose-foreign-keys-processing",
+    "https://dashboards.gitlab.net/d/sidekiq-main/sidekiq3a-overview",
+    "https://dashboards.gitlab.net/d/sidekiq-pod/sidekiq3a-pod-info",
+    "https://dashboards.gitlab.net/d/sidekiq-queue-detail/sidekiq3a-queue-detail",
+    "https://dashboards.gitlab.net/d/sidekiq-shard-detail/sidekiq3a-shard-detail",
+    "https://dashboards.gitlab.net/d/sidekiq-worker-detail/sidekiq3a-worker-detail"
+  ],
+  "spamcheck": [
+    "https://dashboards.gitlab.net/d/spamcheck-main/spamcheck3a-overview"
+  ],
+  "stage-groups": [
+    "https://dashboards.gitlab.net/d/stage-groups-acquisition/stage-groups3a-acquisition3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-activation/stage-groups3a-activation3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-ai_framework/stage-groups3a-ai-framework3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-ai_model_validation/23f131d",
+    "https://dashboards.gitlab.net/d/stage-groups-analytics_instrumentation/5a4408a",
+    "https://dashboards.gitlab.net/d/stage-groups-anti-abuse/stage-groups3a-anti-abuse3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-authentication/stage-groups3a-authentication3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-authorization/stage-groups3a-authorization3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-ci_platform/stage-groups3a-ci-platform3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-cloud_connector/stage-groups3a-cloud-connector3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-code_creation/stage-groups3a-code-creation3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-code_review/stage-groups3a-code-review3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-compliance/stage-groups3a-compliance3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-composition_analysis/efdc821",
+    "https://dashboards.gitlab.net/d/stage-groups-container_registry/fef390f",
+    "https://dashboards.gitlab.net/d/stage-groups-contributor_success/62a8c84",
+    "https://dashboards.gitlab.net/d/stage-groups-custom_models/stage-groups3a-custom-models3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-dedicated/stage-groups3a-gitlab-dedicated3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-design_system/stage-groups3a-design-system3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-acquisition/8528e48",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-activation/4e1e84b",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-ai_framework/84238dd",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-ai_model_validation/ea3b30d",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-analytics_instrument/f753785",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-anti-abuse/5b17a0f",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-authentication/9a79d11",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-authorization/cc99635",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-ci_platform/c6838e1",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-cloud_connector/a062d41",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-code_creation/c704560",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-code_review/c9ce11e",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-compliance/1ec5152",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-composition_analysis/cba9dee",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-container_registry/91fd9ee",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-contributor_success/02f609c",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-custom_models/72806cc",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-database/7ef4e07",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-dataops/stage-groups3a-dataops3a-group-error-budget-detail",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-dedicated/8b551aa",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-delivery/4f89d43",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-design_system/daa8ba7",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-distribution_build/9199261",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-distribution_deploy/0c5a262",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-duo_chat/f59442e",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-duo_workflow/7765c58",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-dynamic_analysis/ac4c050",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-editor_extensions/a7695d1",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-engineering_analytic/cbfb3c6",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-engineering_producti/f56f37d",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-environments/1167fa9",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-fulfillment_platform/62d3d7b",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-gdk/stage-groups3a-gdk3a-group-error-budget-detail",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-geo/stage-groups3a-geo3a-group-error-budget-detail",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-gitaly/stage-groups3a-gitaly3a-group-error-budget-detail",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-global_search/3c07952",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-hosted_runners/9fd3ed3",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-import_and_integrate/79c0dea",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-infrastructure/5f7db04",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-knowledge/7bd7d67",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-mlops/stage-groups3a-mlops3a-group-error-budget-detail",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-optimize/c41c667",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-package_registry/79a577c",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-personal_productivit/2756947",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-pipeline_authoring/1db1e69",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-pipeline_execution/67fd354",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-pipeline_security/493beba",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-platform_insights/a919c8c",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-product_planning/40f472c",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-project_management/c14a14b",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-provision/b640c8c",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-pubsec_services/a856d66",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-quality/stage-groups3a-quality3a-group-error-budget-detail",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-remote_development/1270664",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-runner/stage-groups3a-runner3a-group-error-budget-detail",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-scalability/816c852",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-secret_detection/bd6f943",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-security_policies/577702c",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-source_code/d926234",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-static_analysis/55ca714",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-subscription_managem/190dffb",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-switchboard/c3ef46c",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-technical_writing/cf746d2",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-tenant_scale/8d5aecc",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-threat_insights/622f4cd",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-utilization/0769c8a",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-ux_paper_cuts/7cecfef",
+    "https://dashboards.gitlab.net/d/stage-groups-detail-vulnerability_resear/b47ac76",
+    "https://dashboards.gitlab.net/d/stage-groups-duo_chat/stage-groups3a-duo-chat3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-duo_workflow/stage-groups3a-duo-workflow3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-dynamic_analysis/stage-groups3a-dynamic-analysis3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-editor_extensions/stage-groups3a-editor-extensions3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-engineering_analytics/7a79084",
+    "https://dashboards.gitlab.net/d/stage-groups-engineering_productivity/a77f1ee",
+    "https://dashboards.gitlab.net/d/stage-groups-environments/stage-groups3a-environments3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-fulfillment_platform/aa588f9",
+    "https://dashboards.gitlab.net/d/stage-groups-gdk/stage-groups3a-gdk3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-geo/stage-groups3a-geo3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-gitaly/stage-groups3a-gitaly3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-global_search/stage-groups3a-global-search3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-hosted_runners/stage-groups3a-hosted-runners3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-import_and_integrate/3b7bbb6",
+    "https://dashboards.gitlab.net/d/stage-groups-infrastructure/stage-groups3a-infrastructure3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-knowledge/stage-groups3a-knowledge3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-not_owned/stage-groups3a-not-owned3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-optimize/stage-groups3a-optimize3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-package_registry/stage-groups3a-package-registry3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-personal_productivity/1a3542b",
+    "https://dashboards.gitlab.net/d/stage-groups-pipeline_authoring/168421b",
+    "https://dashboards.gitlab.net/d/stage-groups-pipeline_execution/c791104",
+    "https://dashboards.gitlab.net/d/stage-groups-pipeline_security/stage-groups3a-pipeline-security3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-platform_insights/stage-groups3a-platform-insights3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-product_planning/stage-groups3a-product-planning3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-project_management/5467547",
+    "https://dashboards.gitlab.net/d/stage-groups-provision/stage-groups3a-provision3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-pubsec_services/ef3621f",
+    "https://dashboards.gitlab.net/d/stage-groups-quality/stage-groups3a-quality3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-remote_development/29b1e41",
+    "https://dashboards.gitlab.net/d/stage-groups-runner/stage-groups3a-runner3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-secret_detection/stage-groups3a-secret-detection3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-security_policies/stage-groups3a-security-policies3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-source_code/stage-groups3a-source-code3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-static_analysis/stage-groups3a-static-analysis3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-subscription_management/6729f14",
+    "https://dashboards.gitlab.net/d/stage-groups-switchboard/stage-groups3a-switchboard3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-technical_writing/stage-groups3a-technical-writing3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-tenant_scale/stage-groups3a-tenant-scale3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-threat_insights/stage-groups3a-threat-insights3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-utilization/stage-groups3a-utilization3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-ux_paper_cuts/stage-groups3a-ux-paper-cuts3a-group-dashboard",
+    "https://dashboards.gitlab.net/d/stage-groups-vulnerability_research/97fcc04"
+  ],
+  "topology-rest": [
+    "https://dashboards.gitlab.net/d/topology-rest-main/topology-rest3a-overview"
+  ],
+  "tracing": [
+    "https://dashboards.gitlab.net/d/tracing-main/tracing3a-overview"
+  ],
+  "vault": [
+    "https://dashboards.gitlab.net/d/vault-main/vault3a-overview"
+  ],
+  "web": [
+    "https://dashboards.gitlab.net/d/web-capacity-review/web3a-capacity-review",
+    "https://dashboards.gitlab.net/d/web-kube-containers/web3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/web-kube-deployments/web3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/web-main/web3a-overview",
+    "https://dashboards.gitlab.net/d/web-pod/web3a-pod-info",
+    "https://dashboards.gitlab.net/d/web-rails-controller/web3a-rails-controller",
+    "https://dashboards.gitlab.net/d/web-regional/web3a-regional-detail"
+  ],
+  "web-pages": [
+    "https://dashboards.gitlab.net/d/web-pages-capacity-review/web-pages3a-capacity-review",
+    "https://dashboards.gitlab.net/d/web-pages-haproxy-rejections/a099cc6",
+    "https://dashboards.gitlab.net/d/web-pages-kube-containers/web-pages3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/web-pages-kube-deployments/web-pages3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/web-pages-main/web-pages3a-overview",
+    "https://dashboards.gitlab.net/d/web-pages-pod/web-pages3a-pod-info",
+    "https://dashboards.gitlab.net/d/web-pages-regional/web-pages3a-regional-detail"
+  ],
+  "websockets": [
+    "https://dashboards.gitlab.net/d/websockets-capacity-review/websockets3a-capacity-review",
+    "https://dashboards.gitlab.net/d/websockets-kube-containers/websockets3a-kube-containers-detail",
+    "https://dashboards.gitlab.net/d/websockets-kube-deployments/websockets3a-kube-deployment-detail",
+    "https://dashboards.gitlab.net/d/websockets-main/websockets3a-overview",
+    "https://dashboards.gitlab.net/d/websockets-pod/websockets3a-pod-info",
+    "https://dashboards.gitlab.net/d/websockets-regional/websockets3a-regional-detail"
+  ],
+  "wiz-runtime-sensor": [
+    "https://dashboards.gitlab.net/d/wiz-runtime-sensor-main/wiz-runtime-sensor3a-overview"
+  ],
+  "woodhouse": [
+    "https://dashboards.gitlab.net/d/woodhouse-main/woodhouse3a-overview"
+  ],
+  "woodhouse-slack": [
+    "https://dashboards.gitlab.net/d/woodhouse-slack-main/woodhouse-slack3a-overview"
+  ],
+  "zoekt": [
+    "https://dashboards.gitlab.net/d/zoekt-main/zoekt3a-overview"
+  ]
+}
