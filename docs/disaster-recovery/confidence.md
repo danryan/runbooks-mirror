@@ -8,7 +8,7 @@ These are specific to GitLab.com `GPRD` and `GSTG` right now, but could be expan
 | Category | Component | Phase | Time to Restore (Hours) | Number of SREs | Confidence | Tested in Staging? | Issue Links | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Services | Gitaly | Phase 1 | 2 | 1 | Medium Confidence | Yes | | |
-| Services | Patroni | Phase 1 | 1 | 0.5 | Medium Confidence | Yes | | This has been tested in staging in a RO capacity. I'm suggesting we add a Patroni leader failover to the game day before increasing the confidence level to Medium. |
+| Services | Patroni | Phase 1 | 1 | 0.5 | Medium Confidence | Yes | | |
 | Services | PG Bouncer | Phase 1 | 0.5 | 1 | Medium Confidence | Yes | | Staging testing was concluded on 8/8/23. The next steps would be to plan a restore attempt in GPRD. |
 | Services | HAProxy | Phase 1 | 1 | 1 | Medium Confidence | Yes | | |
 | Services | CI Runners | Phase 1 | 3 | 1 | Medium Confidence | Yes | | |
