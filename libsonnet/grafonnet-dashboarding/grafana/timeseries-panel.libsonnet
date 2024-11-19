@@ -45,17 +45,23 @@ function(
 
   local stackingConfig = if stack then defaultFieldConfig.stacking.withMode('normal') else {};
 
-  timeSeries.new(title)
-  + defaultFieldConfig.withLineWidth(linewidth)
-  + defaultFieldConfig.withShowPoints(if points then 'always' else 'auto')
-  + timeSeries.panelOptions.withDescription(description)
-  + timeSeries.standardOptions.withDecimals(decimals)
-  + timeSeries.options.withLegend(
-    timeSeries.options.legend.withShowLegend(legend_show)
-    + timeSeries.options.legend.withSortDesc(sort == 'desc')
-    + timeSeries.options.legend.withAsTable()
-    + timeSeries.options.legend.withCalcs(legendCalcs)
-    + timeSeries.options.legend.withPlacement(legendPlacement)
-  )
-  + stackingConfig
-  + withStableId(stableId)
+  local panel =
+    timeSeries.new(title)
+    + defaultFieldConfig.withLineWidth(linewidth)
+    + defaultFieldConfig.withShowPoints(if points then 'always' else 'auto')
+    + timeSeries.panelOptions.withDescription(description)
+    + timeSeries.standardOptions.withDecimals(decimals)
+    + timeSeries.options.withLegend(
+      timeSeries.options.legend.withShowLegend(legend_show)
+      + timeSeries.options.legend.withSortDesc(sort == 'desc')
+      + timeSeries.options.legend.withAsTable()
+      + timeSeries.options.legend.withCalcs(legendCalcs)
+      + timeSeries.options.legend.withPlacement(legendPlacement)
+    )
+    + stackingConfig
+    + withStableId(stableId);
+
+  panel {
+    addTarget(query)::
+      self + timeSeries.queryOptions.withTargetsMixin(query),
+  }

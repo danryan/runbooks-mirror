@@ -1,3 +1,5 @@
+//TODO: move this file to `gitlab-dashboarding/panels/promql`
+
 local labelTaxonomy = import 'label-taxonomy/label-taxonomy.libsonnet';
 local multiburnFactors = import 'mwmbr/multiburn_factors.libsonnet';
 local aggregations = import 'promql/aggregations.libsonnet';

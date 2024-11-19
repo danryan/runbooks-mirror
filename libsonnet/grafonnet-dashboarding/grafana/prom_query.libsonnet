@@ -8,7 +8,7 @@ local config = import 'gitlab-metrics-config.libsonnet';
     format='time_series',
     intervalFactor=1,
     legendFormat='',
-    datasource='$PROMETHEUS_DS',
+    datasource='${PROMETHEUS_DS}',
     interval='1m',
     instant=null,
   )::

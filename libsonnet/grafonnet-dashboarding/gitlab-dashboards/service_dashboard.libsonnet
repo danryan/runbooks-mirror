@@ -48,7 +48,7 @@ local overviewDashboard(
     )
     .addAnnotationIf(metricsCatalogServiceInfo.getProvisioning().runway, commonAnnotations.deploymentsForRunway(type))
     .addPanels(
-      [headlineMetricsRow(
+      headlineMetricsRow(
         serviceType=type,
         startRow=0,
         rowTitle='🌡️ Aggregated Service Level Indicators (𝙎𝙇𝙄𝙨)',
@@ -60,7 +60,7 @@ local overviewDashboard(
         showSaturationCell=std.length(metricsCatalogServiceInfo.applicableSaturationTypes()) > 0,
         compact=false,
         rowHeight=10
-      )]
+      )
     );
 
 

@@ -1,6 +1,7 @@
 local aggregationSets = (import 'gitlab-metrics-config.libsonnet').aggregationSets;
 local timeSeriesPanel = import 'grafonnet-dashboarding/grafana/timeseries-panel.libsonnet';
 local layout = import 'grafonnet-dashboarding/grafana/layout.libsonnet';
+local promQuery = import 'grafonnet-dashboarding/grafana/prom_query.libsonnet';
 
 local sliPromQL = import 'key-metric-panels/sli_promql.libsonnet';
 
@@ -25,6 +26,12 @@ local apdexPanel(
     sort=sort,
     legend_show=!compact,
     linewidth=if expectMultipleSeries then 1 else 2,
+    stableId=stableId,
+  ).addTarget(
+    promQuery.query(
+      expr=sliPromQL.apdexQuery(aggregationSet, null, selectorHash, '$__interval', worstCase=true),
+      legendFormat=legendFormat + ' avg',
+    )
   );
 
 local apdexStatusDescriptionPanel() = {};
@@ -137,6 +144,6 @@ function(
   );
 
   if rowTitle != null then
-    layout.titleRowWithPanels(rowTitle, std.trace('columns: --%s--' % [columns], columns), false, 0)
+    layout.titleRowWithPanels(rowTitle, columns, false, 0)
   else
     layout.grid(columns, cols=columns.size)

@@ -74,12 +74,18 @@ function(
 
     trailer()::
       self
-      + g.dashboard.withPanelsMixin([
-        g.panel.text.new('Source')
-        + g.panel.text.options.code.withLanguage('markdown')
-        + g.panel.text.options.withContent(|||
-          Made with ❤️ and [Grafonnet](https://github.com/grafana/grafonnet). [Contribute to this dashboard on GitLab.com](https://gitlab.com/gitlab-com/runbooks/blob/master/dashboards)
-        |||)
-        + g.panel.text.panelOptions.withGridPos(x=0, y=110000, w=24, h=2),
-      ]),
+      + g.dashboard.withPanelsMixin(
+        g.util.grid.wrapPanels(
+          [
+            g.panel.text.new('Source')
+            + g.panel.text.options.code.withLanguage('markdown')
+            + g.panel.text.options.withContent(|||
+              Made with ❤️ and [Grafonnet](https://github.com/grafana/grafonnet). [Contribute to this dashboard on GitLab.com](https://gitlab.com/gitlab-com/runbooks/blob/master/dashboards)
+            |||),
+          ],
+          panelWidth=24,
+          panelHeight=2,
+          startY=11000
+        )
+      ),
   }
