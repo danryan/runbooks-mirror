@@ -63,5 +63,7 @@ function(
 
   panel {
     addTarget(query)::
-      self + timeSeries.queryOptions.withTargetsMixin(query),
+      self + timeSeries.queryOptions.withTargetsMixin([query]),
+    addSeriesOverride(override)::
+      self + timeSeries.standardOptions.withOverridesMixin(override),
   }

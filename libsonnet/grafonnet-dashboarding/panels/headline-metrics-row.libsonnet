@@ -1,8 +1,13 @@
-local aggregationSets = (import 'gitlab-metrics-config.libsonnet').aggregationSets;
-local timeSeriesPanel = import 'grafonnet-dashboarding/grafana/timeseries-panel.libsonnet';
+local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
 local layout = import 'grafonnet-dashboarding/grafana/layout.libsonnet';
+local overrides = import 'grafonnet-dashboarding/grafana/overrides.libsonnet';
 local promQuery = import 'grafonnet-dashboarding/grafana/prom_query.libsonnet';
+local timeSeriesPanel = import 'grafonnet-dashboarding/grafana/timeseries-panel.libsonnet';
 
+local aggregationSets = (import 'gitlab-metrics-config.libsonnet').aggregationSets;
+
+// These requires need to move into `grafonnet-dashboarding`.
+local seriesOverrides = import 'grafana/series_overrides.libsonnet';
 local sliPromQL = import 'key-metric-panels/sli_promql.libsonnet';
 
 local apdexPanel(
@@ -20,19 +25,39 @@ local apdexPanel(
   fixedThreshold=null,
   shardLevelSli
       ) =
-  timeSeriesPanel(
-    title=title,
-    description=description,
-    sort=sort,
-    legend_show=!compact,
-    linewidth=if expectMultipleSeries then 1 else 2,
-    stableId=stableId,
-  ).addTarget(
-    promQuery.query(
-      expr=sliPromQL.apdexQuery(aggregationSet, null, selectorHash, '$__interval', worstCase=true),
-      legendFormat=legendFormat + ' avg',
+  local panel =
+    timeSeriesPanel(
+      title=title,
+      description=description,
+      sort=sort,
+      legend_show=!compact,
+      linewidth=if expectMultipleSeries then 1 else 2,
+      stableId=stableId,
     )
-  );
+    .addTarget(
+      promQuery.query(
+        expr=sliPromQL.apdexQuery(aggregationSet, null, selectorHash, '$__interval', worstCase=true),
+        legendFormat=legendFormat,
+      )
+    )
+    .addTarget(  // Min apdex score SLO for gitlab_service_errors:ratio metric
+      promQuery.query(
+        sliPromQL.apdex.serviceApdexDegradationSLOQuery(selectorHash, fixedThreshold, shardLevelSli),
+        interval='5m',
+        legendFormat='6h Degradation SLO (5% of monthly error budget)' + (if shardLevelSli then ' - {{ shard }} shard' else ''),
+      ),
+    )
+    .addTarget(  // Double apdex SLO is Outage-level SLO
+      promQuery.query(
+        sliPromQL.apdex.serviceApdexOutageSLOQuery(selectorHash, fixedThreshold, shardLevelSli),
+        interval='5m',
+        legendFormat='1h Outage SLO (2% of monthly error budget)' + (if shardLevelSli then ' - {{ shard }} shard' else ''),
+      ),
+    )
+    .addSeriesOverride(overrides.forPanel(g.panel.timeSeries).fromOptions(seriesOverrides.outageSlo))
+    .addSeriesOverride(overrides.forPanel(g.panel.timeSeries).fromOptions(seriesOverrides.degradationSlo));
+
+  panel;
 
 local apdexStatusDescriptionPanel() = {};
 

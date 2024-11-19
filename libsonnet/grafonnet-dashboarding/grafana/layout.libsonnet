@@ -10,6 +10,7 @@ local row = g.panel.row;
       + row.withPanels(panels)
       + row.withCollapsed(collapse)
       + row.withGridPos(startRow);
+    // TODO: don't duplicate this, but it's nicer to work with for now
     self.grid([rowWithPanels, rowWithPanels], cols=std.length(panels)),
 
 
