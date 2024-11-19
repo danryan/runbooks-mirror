@@ -18,7 +18,7 @@ local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
             {}
         )
         + (
-          if options.dashes then
+          if std.get(options, 'dashes') == true then
             custom.lineStyle.withFill('dash')
             + custom.lineStyle.withDash([options.dashLength, options.spaceLength])
           else
@@ -31,7 +31,7 @@ local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
             {}
         )
         + (
-          if !options.legend then
+          if std.get(options, 'legend') == false then
             custom.hideFrom.withLegend(true)
           else
             {}

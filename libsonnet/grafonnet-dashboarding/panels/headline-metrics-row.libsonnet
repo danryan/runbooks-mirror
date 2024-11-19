@@ -26,38 +26,121 @@ local apdexPanel(
   shardLevelSli
       ) =
   local panel =
-    timeSeriesPanel(
+    timeSeriesPanel.new(
       title=title,
       description=description,
       sort=sort,
       legend_show=!compact,
-      linewidth=if expectMultipleSeries then 1 else 2,
+      linewidth=if expectMultipleSeries then 2 else 4,
       stableId=stableId,
     )
-    .addTarget(
+    + timeSeriesPanel.panel.queryOptions.withTargetsMixin([
       promQuery.query(
         expr=sliPromQL.apdexQuery(aggregationSet, null, selectorHash, '$__interval', worstCase=true),
         legendFormat=legendFormat,
-      )
-    )
-    .addTarget(  // Min apdex score SLO for gitlab_service_errors:ratio metric
+      ),
       promQuery.query(
         sliPromQL.apdex.serviceApdexDegradationSLOQuery(selectorHash, fixedThreshold, shardLevelSli),
         interval='5m',
         legendFormat='6h Degradation SLO (5% of monthly error budget)' + (if shardLevelSli then ' - {{ shard }} shard' else ''),
       ),
-    )
-    .addTarget(  // Double apdex SLO is Outage-level SLO
       promQuery.query(
         sliPromQL.apdex.serviceApdexOutageSLOQuery(selectorHash, fixedThreshold, shardLevelSli),
         interval='5m',
         legendFormat='1h Outage SLO (2% of monthly error budget)' + (if shardLevelSli then ' - {{ shard }} shard' else ''),
       ),
+    ])
+    + timeSeriesPanel.panel.standardOptions.withOverridesMixin(
+      overrides.forPanel(timeSeriesPanel.panel).fromOptions(seriesOverrides.outageSlo)
     )
-    .addSeriesOverride(overrides.forPanel(g.panel.timeSeries).fromOptions(seriesOverrides.outageSlo))
-    .addSeriesOverride(overrides.forPanel(g.panel.timeSeries).fromOptions(seriesOverrides.degradationSlo));
+    + timeSeriesPanel.panel.standardOptions.withOverridesMixin(
+      overrides.forPanel(timeSeriesPanel.panel).fromOptions(seriesOverrides.degradationSlo)
+    )
+    + timeSeriesPanel.panel.standardOptions.withUnit('percentunit')
+    + timeSeriesPanel.panel.standardOptions.withMax(1)
+    + timeSeriesPanel.panel.standardOptions.withMin(0)
+    + timeSeriesPanel.panel.standardOptions.withDecimals(1)
+    + (if !compact then timeSeriesPanel.defaultFieldConfig.withAxisLabel('Apdex %') else {})
+    + (
+      if !expectMultipleSeries then
+        timeSeriesPanel.panel.queryOptions.withTargetsMixin([
+          promQuery.query(
+            sliPromQL.apdexQuery(aggregationSet, null, selectorHash, '$__interval', worstCase=false),
+            legendFormat=legendFormat + ' avg',
+          ),
+        ])
+        + timeSeriesPanel.panel.standardOptions.withOverridesMixin(
+          overrides.forPanel(timeSeriesPanel.panel).fromOptions(seriesOverrides.averageCaseSeries(legendFormat + ' avg', { fillBelowTo: legendFormat }))
+        )
+      else {}
+    )
+    + (
+      if !expectMultipleSeries && includeLastWeek then
+        timeSeriesPanel.panel.queryOptions.withTargetsMixin([
+          promQuery.query(
+            sliPromQL.apdexQuery(
+              aggregationSet,
+              null,
+              selectorHash,
+              range=null,
+              offset='1w',
+              clampToExpression=sliPromQL.apdex.serviceApdexOutageSLOQuery(selectorHash, fixedThreshold)
+            ),
+            legendFormat='last week',
+          ),
+        ])
+        + timeSeriesPanel.panel.standardOptions.withOverridesMixin(
+          overrides.forPanel(timeSeriesPanel.panel).fromOptions(seriesOverrides.lastWeek)
+        )
+      else
+        {}
+    );
 
-  panel;
+  local confidenceIntervalLevel =
+    if !expectMultipleSeries && sli != null && sli.usesConfidenceLevelForSLIAlerts() then
+      sli.getConfidenceLevel()
+    else
+      null;
+
+  // Add a confidence interval SLI if its enabled for the SLI AND
+  // We aggregation set supports confidence level recording rules
+  // at 5m (which is what we display SLIs at)
+  local confidenceSLI =
+    if confidenceIntervalLevel != null then
+      aggregationSet.getApdexRatioConfidenceIntervalMetricForBurnRate('5m')
+    else
+      null;
+
+  local panelWithConfidenceIndicator =
+    if confidenceSLI != null then
+      local confidenceSignalSeriesName = 'Apdex SLI (upper %s confidence boundary)' % [confidenceIntervalLevel];
+      panel
+      + timeSeriesPanel.panel.queryOptions.withTargetsMixin([
+        promQuery.query(
+          sliPromQL.apdexConfidenceQuery(confidenceIntervalLevel, aggregationSet, null, selectorHash, '$__interval', worstCase=false),
+          legendFormat=confidenceSignalSeriesName,
+        ),
+      ])
+      + timeSeriesPanel.panel.standardOptions.withOverridesMixin(
+        overrides.forPanel(timeSeriesPanel.panel).fromOptions(  // If there is a confidence SLI, we use that as the golden signal
+          seriesOverrides.goldenMetric(confidenceSignalSeriesName)
+        )
+      )
+      + timeSeriesPanel.panel.standardOptions.withOverridesMixin(
+        overrides.forPanel(timeSeriesPanel.panel).fromOptions({
+          alias: legendFormat,
+          color: '#082e69',
+          lines: true,
+        })
+      )
+    else
+      // If there is no confidence SLI, we use the main (non-confidence) signal as the golden signal
+      panel
+      + timeSeriesPanel.panel.standardOptions.withOverridesMixin(
+        overrides.forPanel(timeSeriesPanel.panel).fromOptions(seriesOverrides.goldenMetric(legendFormat))
+      );
+
+  panelWithConfidenceIndicator;
 
 local apdexStatusDescriptionPanel() = {};
 
