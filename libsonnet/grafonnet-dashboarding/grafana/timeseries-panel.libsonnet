@@ -35,12 +35,11 @@ local withStableId(stableId) = if stableId != null then { stableId: stableId } e
     assert fill == null : '`fill` is not supported by grafonnet, use opacity (I think)';
 
     local legendCalcs = if legend_values then
-      (if legend_current then ['lastNotNull'] else [])
+      (if legend_current then ['last'] else [])
       + (if legend_min then ['min'] else [])
       + (if legend_max then ['max'] else [])
       + (if legend_max then ['avg'] else [])
       + (if legend_total then ['total'] else [])
-      + (if legend_values then ['values'] else [])
     else [];
     local legendPlacement = if legend_rightSide then 'right' else 'bottom';
 
@@ -52,23 +51,24 @@ local withStableId(stableId) = if stableId != null then { stableId: stableId } e
       + defaultFieldConfig.withShowPoints(if points then 'always' else 'auto')
       + timeSeries.panelOptions.withDescription(description)
       + timeSeries.standardOptions.withDecimals(decimals)
-      + timeSeries.options.withLegend(
-        timeSeries.options.legend.withShowLegend(legend_show)
-        + timeSeries.options.legend.withSortDesc(sort == 'desc')
-        + timeSeries.options.legend.withAsTable()
-        + timeSeries.options.legend.withCalcs(legendCalcs)
-        + timeSeries.options.legend.withPlacement(legendPlacement)
-      )
+      // + timeSeries.options.withLegendMixin(
+      + timeSeries.options.legend.withShowLegend(legend_show)
+      + timeSeries.options.legend.withSortDesc(sort == 'desc')
+      + timeSeries.options.legend.withDisplayMode('table')
+      + timeSeries.options.legend.withCalcsMixin(legendCalcs)
+      + timeSeries.options.legend.withPlacement(legendPlacement)
+      // )
       + stackingConfig
       + withStableId(stableId);
 
     panel {
+      // I'm on the fence
       addTarget(query)::
         self + timeSeries.queryOptions.withTargetsMixin([query]),
       addSeriesOverride(override)::
         self + timeSeries.standardOptions.withOverridesMixin(override),
     },
 
-  panel:: timeSeries,
+  g:: timeSeries,
   defaultFieldConfig:: defaultFieldConfig,
 }
