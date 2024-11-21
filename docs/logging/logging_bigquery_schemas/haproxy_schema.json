@@ -15,7 +15,7 @@
         "fields": [
           {
             "mode": "NULLABLE",
-            "name": "instance_id",
+            "name": "project_id",
             "type": "STRING"
           },
           {
@@ -25,7 +25,7 @@
           },
           {
             "mode": "NULLABLE",
-            "name": "project_id",
+            "name": "instance_id",
             "type": "STRING"
           }
         ],
@@ -47,22 +47,22 @@
     "fields": [
       {
         "mode": "NULLABLE",
+        "name": "ident",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
         "name": "host",
         "type": "STRING"
       },
       {
         "mode": "NULLABLE",
-        "name": "pid",
+        "name": "shard",
         "type": "STRING"
       },
       {
         "mode": "NULLABLE",
-        "name": "message",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "ident",
+        "name": "tier",
         "type": "STRING"
       },
       {
@@ -72,7 +72,7 @@
       },
       {
         "mode": "NULLABLE",
-        "name": "hostname",
+        "name": "type",
         "type": "STRING"
       },
       {
@@ -82,52 +82,22 @@
       },
       {
         "mode": "NULLABLE",
-        "name": "verb",
+        "name": "stage",
         "type": "STRING"
       },
       {
         "mode": "NULLABLE",
-        "name": "t",
+        "name": "pid",
         "type": "STRING"
       },
       {
         "mode": "NULLABLE",
-        "name": "ssl_version",
+        "name": "hostname",
         "type": "STRING"
       },
       {
         "mode": "NULLABLE",
-        "name": "tw",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "status_code",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "path",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "ps",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "tc",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "server",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "syslog_host",
+        "name": "message",
         "type": "STRING"
       },
       {
@@ -142,6 +112,111 @@
       },
       {
         "mode": "NULLABLE",
+        "name": "tc",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "syslog_host",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "t",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "status_code",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "ssl_version",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "tr",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "c_ip",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "c_req_c",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "srv_q",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "ps",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "b_read",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "tw",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "back_q",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "c_port",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "verb",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "tt",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "backend",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "term_state",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "syslog_time",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "act_conn",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "c_resp_c",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
         "name": "tq",
         "type": "STRING"
       },
@@ -152,67 +227,7 @@
       },
       {
         "mode": "NULLABLE",
-        "name": "term_state",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "back_q",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "srv_q",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "c_resp_c",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
         "name": "fe_conn",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "c_req_c",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "srv_conn",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "b_read",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "act_conn",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "tr",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "backend",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "c_port",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "c_ip",
         "type": "STRING"
       },
       {
@@ -222,7 +237,12 @@
       },
       {
         "mode": "NULLABLE",
-        "name": "u_agent",
+        "name": "captured_headers",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "srv_conn",
         "type": "STRING"
       },
       {
@@ -232,27 +252,12 @@
       },
       {
         "mode": "NULLABLE",
-        "name": "tt",
+        "name": "path",
         "type": "STRING"
       },
       {
         "mode": "NULLABLE",
-        "name": "syslog_time",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "captured_headers",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "retr",
-        "type": "STRING"
-      },
-      {
-        "mode": "NULLABLE",
-        "name": "t_state",
+        "name": "server",
         "type": "STRING"
       },
       {
@@ -267,12 +272,27 @@
       },
       {
         "mode": "NULLABLE",
+        "name": "feconn",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "retr",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
         "name": "srv_queue",
         "type": "STRING"
       },
       {
         "mode": "NULLABLE",
-        "name": "feconn",
+        "name": "response_headers",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "request_headers",
         "type": "STRING"
       }
     ],
@@ -456,6 +476,28 @@
     ],
     "mode": "NULLABLE",
     "name": "sourceLocation",
+    "type": "RECORD"
+  },
+  {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "uid",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "index",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "totalSplits",
+        "type": "INTEGER"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "split",
     "type": "RECORD"
   }
 ]
