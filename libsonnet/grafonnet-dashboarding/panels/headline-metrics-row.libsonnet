@@ -2,6 +2,8 @@ local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
 local layout = import 'grafonnet-dashboarding/grafana/layout.libsonnet';
 
 local apdexPanel = import 'grafonnet-dashboarding/panels/apdex-panel.libsonnet';
+local errorRatioPanel = import 'grafonnet-dashboarding/panels/error-ratio-panel.libsonnet';
+
 local aggregationSets = (import 'gitlab-metrics-config.libsonnet').aggregationSets;
 
 local metricsRow(
@@ -43,7 +45,7 @@ local metricsRow(
         stableId='%(stableIdPrefix)s-apdex' % formatConfig,
         legendFormat='%(legendFormatPrefix)s apdex' % formatConfig,
         description=apdexDescription,
-        expectMultipleSeries=expectMultipleSeries,
+        linewidth=if expectMultipleSeries then 2 else 4,
         compact=compact,
         fixedThreshold=fixedThreshold,
         includeLastWeek=includeLastWeek,
@@ -52,14 +54,23 @@ local metricsRow(
     ]
   else [];
 
-  // local errorRatioPanels = if showErrorRatio then [
-  //   [
-  //     errorRatioPanel(),
-  //   ]
-  //   + if expectMultipleSeries then [] else [
-  //     errorRatioStatusDescriptionPanel(),
-  //   ],
-  // ] else [];
+  local errorRatioPanels = if showErrorRatio then [
+    [
+      errorRatioPanel(
+        '%(titlePrefix)s Error Ratio' % formatConfig,
+        sli=sli,
+        aggregationSet=aggregationSet,
+        selectorHash=selectorHashWithExtras,
+        stableId='%(stableIdPrefix)s-error-rate' % formatConfig,
+        legendFormat='%(legendFormatPrefix)s error ratio' % formatConfig,
+        expectMultipleSeries=expectMultipleSeries,
+        compact=compact,
+        fixedThreshold=fixedThreshold,
+        includeLastWeek=includeLastWeek,
+        shardLevelSli=shardLevelSli
+      ),
+    ],
+  ] else [];
 
   // local opsRatePanels = if showOpsRate then [
   //   [

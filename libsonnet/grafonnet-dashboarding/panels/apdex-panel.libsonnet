@@ -52,10 +52,7 @@ function(
     + timeSeriesPanel.g.standardOptions.withOverridesMixin(
       overrides.forPanel(timeSeriesPanel.g).fromOptions(seriesOverrides.degradationSlo)
     )
-    + timeSeriesPanel.g.standardOptions.withUnit('percentunit')
-    + timeSeriesPanel.g.standardOptions.withMax(1)
-    + timeSeriesPanel.g.standardOptions.withMin(0)
-    + timeSeriesPanel.g.standardOptions.withDecimals(1)
+    + timeSeriesPanel.ratioOptions
     + (if !compact then timeSeriesPanel.defaultFieldConfig.withAxisLabel('Apdex %') else {})
     + (
       if !expectMultipleSeries then

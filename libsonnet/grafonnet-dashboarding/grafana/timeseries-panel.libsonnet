@@ -71,4 +71,11 @@ local withStableId(stableId) = if stableId != null then { stableId: stableId } e
 
   g:: timeSeries,
   defaultFieldConfig:: defaultFieldConfig,
+
+  ratioOptions::
+    timeSeriesPanel.g.standardOptions.withUnit('percentunit')
+    + timeSeriesPanel.g.standardOptions.withMax(1)
+    + timeSeriesPanel.g.standardOptions.withMin(0)
+    + timeSeriesPanel.g.standardOptions.withDecimals(1),
+
 }
