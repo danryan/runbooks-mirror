@@ -17,7 +17,8 @@ function(
   compact=false,
   sort='increasing',
   includeLastWeek=true,
-  expectMultipleSeries=false,
+  includeAvg=true,
+  linewidth=2,
   fixedThreshold=null,
   shardLevelSli
 )
@@ -27,7 +28,7 @@ function(
       description=description,
       sort=sort,
       legend_show=!compact,
-      linewidth=if expectMultipleSeries then 2 else 4,
+      linewidth=linewidth,
       stableId=stableId,
     )
     + timeSeriesPanel.g.queryOptions.withTargetsMixin([
@@ -46,16 +47,13 @@ function(
         legendFormat='1h Outage SLO (2% of monthly error budget)' + (if shardLevelSli then ' - {{ shard }} shard' else ''),
       ),
     ])
-    + timeSeriesPanel.g.standardOptions.withOverridesMixin(
-      overrides.forPanel(timeSeriesPanel.g).fromOptions(seriesOverrides.outageSlo)
-    )
-    + timeSeriesPanel.g.standardOptions.withOverridesMixin(
-      overrides.forPanel(timeSeriesPanel.g).fromOptions(seriesOverrides.degradationSlo)
-    )
     + timeSeriesPanel.ratioOptions
+    + overrides.forPanel(timeSeriesPanel.g).sloOverrides
     + (if !compact then timeSeriesPanel.defaultFieldConfig.withAxisLabel('Apdex %') else {})
+    + timeSeriesPanel.defaultFieldConfig.withAxisBorderShow(false)
+    + timeSeriesPanel.defaultFieldConfig.withAxisSoftMax(1)
     + (
-      if !expectMultipleSeries then
+      if includeAvg then
         timeSeriesPanel.g.queryOptions.withTargetsMixin([
           promQuery.query(
             sliPromQL.apdexQuery(aggregationSet, null, selectorHash, '$__interval', worstCase=false),
@@ -68,7 +66,7 @@ function(
       else {}
     )
     + (
-      if !expectMultipleSeries && includeLastWeek then
+      if includeLastWeek then
         timeSeriesPanel.g.queryOptions.withTargetsMixin([
           promQuery.query(
             sliPromQL.apdexQuery(
@@ -90,7 +88,7 @@ function(
     );
 
   local confidenceIntervalLevel =
-    if !expectMultipleSeries && sli != null && sli.usesConfidenceLevelForSLIAlerts() then
+    if sli != null && sli.usesConfidenceLevelForSLIAlerts() then
       sli.getConfidenceLevel()
     else
       null;

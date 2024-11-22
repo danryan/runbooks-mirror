@@ -14,6 +14,13 @@ local compact(arrs) =
 
     std.foldl(foldable, arrs, []);
 
+local indexOf(arr, e) =
+  if std.member(arr, e) then
+    std.find(e, arr)[0]
+  else
+    -1;
+
 {
   compact:: compact,
+  indexOf:: indexOf,
 }

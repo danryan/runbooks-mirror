@@ -55,7 +55,7 @@ local overviewDashboard(
         selectorHash=selectorHash,
         stableIdPrefix='',
         showApdex=metricsCatalogServiceInfo.hasApdex(),
-        showErrorRatio=metricsCatalogServiceInfo.hasErrorRatio(),
+        showErrorRatio=metricsCatalogServiceInfo.hasErrorRate(),
         showOpsRate=metricsCatalogServiceInfo.hasRequestRate(),
         showSaturationCell=std.length(metricsCatalogServiceInfo.applicableSaturationTypes()) > 0,
         compact=false,

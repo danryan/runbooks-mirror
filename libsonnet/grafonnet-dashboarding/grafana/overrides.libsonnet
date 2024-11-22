@@ -1,10 +1,21 @@
 local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
 
+// move this into `grafonnet-dashboarding
+local seriesOverrides = import 'grafana/series_overrides.libsonnet';
+
 {
   forPanel(p):: {
     local standardOptions = p.standardOptions,
     local override = standardOptions.override,
     local custom = p.fieldConfig.defaults.custom,
+
+    sloOverrides::
+      p.standardOptions.withOverridesMixin(
+        self.fromOptions(seriesOverrides.outageSlo)
+      )
+      + p.standardOptions.withOverridesMixin(
+        self.fromOptions(seriesOverrides.degradationSlo),
+      ),
 
     fromOptions(options)::
       override.byRegexp.new(options.alias)

@@ -18,7 +18,7 @@ local metricsRow(
   apdexDescription=null,
   showErrorRatio,
   showOpsRate,
-  includePredictions=false,
+  includeOpsPredictions=false,
   expectMultipleSeries=false,
   compact=false,
   includeLastWeek=true,
@@ -45,16 +45,17 @@ local metricsRow(
         stableId='%(stableIdPrefix)s-apdex' % formatConfig,
         legendFormat='%(legendFormatPrefix)s apdex' % formatConfig,
         description=apdexDescription,
-        linewidth=if expectMultipleSeries then 2 else 4,
+        linewidth=if expectMultipleSeries then 1 else 2,
         compact=compact,
         fixedThreshold=fixedThreshold,
-        includeLastWeek=includeLastWeek,
+        includeLastWeek=includeLastWeek && !expectMultipleSeries,
+        includeAvg=!expectMultipleSeries,
         shardLevelSli=shardLevelSli
       ),
     ]
   else [];
 
-  local errorRatioPanels = if showErrorRatio then [
+  local errorRatioPanels = if showErrorRatio then
     [
       errorRatioPanel(
         '%(titlePrefix)s Error Ratio' % formatConfig,
@@ -63,14 +64,15 @@ local metricsRow(
         selectorHash=selectorHashWithExtras,
         stableId='%(stableIdPrefix)s-error-rate' % formatConfig,
         legendFormat='%(legendFormatPrefix)s error ratio' % formatConfig,
-        expectMultipleSeries=expectMultipleSeries,
+        linewidth=if expectMultipleSeries then 1 else 2,
         compact=compact,
         fixedThreshold=fixedThreshold,
-        includeLastWeek=includeLastWeek,
+        includeLastWeek=includeLastWeek && !expectMultipleSeries,
+        includeAvg=!expectMultipleSeries,
         shardLevelSli=shardLevelSli
       ),
-    ],
-  ] else [];
+    ]
+  else [];
 
   // local opsRatePanels = if showOpsRate then [
   //   [
@@ -79,7 +81,7 @@ local metricsRow(
   // ] else [];
 
 
-  apdexPanels  // + errorRatioPanels + opsRatePanels
+  apdexPanels + errorRatioPanels  //+ opsRatePanels
 ;
 
 function(
@@ -116,13 +118,13 @@ function(
     apdexDescription=null,
     showErrorRatio=showErrorRatio,
     showOpsRate=showOpsRate,
-    includePredictions=true,
+    includeOpsPredictions=true,
     compact=compact,
     includeLastWeek=includeLastWeek,
     fixedThreshold=fixedThreshold
   );
 
   if rowTitle != null then
-    layout.titleRowWithPanels(rowTitle, columns, false, 0)
+    layout.titleRowWithPanels(rowTitle, columns)
   else
     layout.grid(columns, cols=columns.size)

@@ -2,7 +2,7 @@ local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
 local row = g.panel.row;
 
 {
-  titleRowWithPanels(title, panels, collapse=false, startRow=true)::
+  titleRowWithPanels(title, panels, collapse=false, startRow=0)::
     assert std.isArray(panels) : 'layout.titleRowWithPanels: panels needs to be an array';
 
     local rowWithPanels =
