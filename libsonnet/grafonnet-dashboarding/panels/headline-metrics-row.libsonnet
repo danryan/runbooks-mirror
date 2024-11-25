@@ -33,7 +33,7 @@ local metricsRow(
     // grafanaURLPairs: selectorToGrafanaURLParams(selectorHash),
   };
   local typeSelector = if serviceType == null then {} else { type: serviceType };
-  local selectorHashWithExtras = selectorHash + typeSelector;
+  local selectorHashWithExtras = aggregationSet.selector + typeSelector + selectorHash;
 
   local apdexPanels = if showApdex then
     [
