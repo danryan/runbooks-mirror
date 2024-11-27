@@ -27,7 +27,6 @@ local layout = import 'grafana/layout.libsonnet';
       targetBlank: true,
     };
 
-
     layout.grid([
       basic.latencyTimeseries(
         title='p95 Latency Estimate',
@@ -155,76 +154,53 @@ local layout = import 'grafana/layout.libsonnet';
       .addDataLink(elasticRailsDataLink)
       .addDataLink(elasticRailsVisDataLink),
       basic.timeseries(
-        title='Middleware check path traversal execution time (non rejected requests)',
-        description='Apdex of the middleware check path traversal execution time with a threshold of 1ms for non rejected requests.',
-        yAxisLabel='Apdex %',
+        title='Middleware check path traversal executions rate',
+        description='Middleware check path traversal executions rate.',
+        legendFormat='{{path_traversal_attempt_rejected}}',
         query=|||
-          (
-            sum(
-              rate(
-                gitlab_sli_path_traversal_check_request_duration_s_apdex_success_total{
-                  path_traversal_attempt_rejected="false",
-                  environment="$environment",
-                  type="%(serviceType)s",
-                  stage="%(serviceStage)s",
-                  job="gitlab-rails"
-                }[$__rate_interval]
-              )
-            ) /
-            sum(
-              rate(
-                gitlab_sli_path_traversal_check_request_duration_s_apdex_total{
-                  path_traversal_attempt_rejected="false",
-                  environment="$environment",
-                  type="%(serviceType)s",
-                  stage="%(serviceStage)s",
-                  job="gitlab-rails"
-                }[$__rate_interval]
-              )
+          sum by(path_traversal_attempt_rejected)(
+            rate(
+              gitlab_sli_path_traversal_check_request_duration_s_apdex_success_total{
+                environment="$environment",
+                type="%(serviceType)s",
+                stage="%(serviceStage)s",
+                job="gitlab-rails"
+              }[$__rate_interval]
             )
-          ) * 100
+          )
         ||| % formatConfig,
-        max=100,
-        min=92,
         interval='1m',
-        intervalFactor=2,
-        legendFormat='Apdex'
+        intervalFactor=2
       ),
-      basic.timeseries(
-        title='Middleware check path traversal execution time (rejected requests)',
-        description='Apdex of the middleware check path traversal execution time with a threshold of 1ms for non rejected requests.',
+      basic.percentageTimeseries(
+        title='Middleware check path traversal execution time Apdex',
+        description='Apdex of the middleware check path traversal executions with a threshold of 1ms.',
         yAxisLabel='Apdex %',
+        legendFormat='{{path_traversal_attempt_rejected}}',
         query=|||
-          (
-            sum(
-              rate(
-                gitlab_sli_path_traversal_check_request_duration_s_apdex_success_total{
-                  path_traversal_attempt_rejected="true",
-                  environment="$environment",
-                  type="%(serviceType)s",
-                  stage="%(serviceStage)s",
-                  job="gitlab-rails"
-                }[$__rate_interval]
-              )
-            ) /
-            sum(
-              rate(
-                gitlab_sli_path_traversal_check_request_duration_s_apdex_total{
-                  path_traversal_attempt_rejected="true",
-                  environment="$environment",
-                  type="%(serviceType)s",
-                  stage="%(serviceStage)s",
-                  job="gitlab-rails"
-                }[$__rate_interval]
-              )
+          sum by(path_traversal_attempt_rejected)(
+            rate(
+              gitlab_sli_path_traversal_check_request_duration_s_apdex_success_total{
+                environment="$environment",
+                type="%(serviceType)s",
+                stage="%(serviceStage)s",
+                job="gitlab-rails"
+              }[$__rate_interval]
             )
-          ) * 100
+          ) /
+          sum by(path_traversal_attempt_rejected)(
+            rate(
+              gitlab_sli_path_traversal_check_request_duration_s_apdex_total{
+                environment="$environment",
+                type="%(serviceType)s",
+                stage="%(serviceStage)s",
+                job="gitlab-rails"
+              }[$__rate_interval]
+            )
+          )
         ||| % formatConfig,
-        max=100,
-        min=92,
         interval='1m',
-        intervalFactor=2,
-        legendFormat='Apdex'
+        intervalFactor=2
       ),
     ], cols=2, rowHeight=10, startRow=startRow),
 
