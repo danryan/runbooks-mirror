@@ -35,10 +35,6 @@ function(
     )
     + timeSeriesPanel.g.queryOptions.withTargetsMixin([
       promQuery.query(
-        expr=sliPromQL.errorRatioQuery(aggregationSet, null, selectorHash, '$__interval', worstCase=true),
-        legendFormat=legendFormat,
-      ),
-      promQuery.query(
         sliPromQL.errorRate.serviceErrorRateDegradationSLOQuery(selectorHash, fixedThreshold, shardLevelSli),
         interval='5m',
         legendFormat='6h Degradation SLO (5% of monthly error budget)' + (if shardLevelSli then ' - {{ shard }} shard' else ''),
@@ -86,7 +82,13 @@ function(
         )
       else
         {}
-    );
+    )
+    + timeSeriesPanel.g.queryOptions.withTargetsMixin([
+      promQuery.query(
+        expr=sliPromQL.errorRatioQuery(aggregationSet, null, selectorHash, '$__interval', worstCase=true),
+        legendFormat=legendFormat,
+      ),
+    ]);
 
   local confidenceIntervalLevel =
     if sli != null && sli.usesConfidenceLevelForSLIAlerts() then

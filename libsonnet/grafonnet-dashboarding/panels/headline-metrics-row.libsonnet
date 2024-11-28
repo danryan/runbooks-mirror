@@ -3,6 +3,7 @@ local layout = import 'grafonnet-dashboarding/grafana/layout.libsonnet';
 
 local apdexPanel = import 'grafonnet-dashboarding/panels/apdex-panel.libsonnet';
 local errorRatioPanel = import 'grafonnet-dashboarding/panels/error-ratio-panel.libsonnet';
+local opsRatePanel = import 'grafonnet-dashboarding/panels/ops-rate-panel.libsonnet';
 
 local aggregationSets = (import 'gitlab-metrics-config.libsonnet').aggregationSets;
 
@@ -35,6 +36,8 @@ local metricsRow(
   local typeSelector = if serviceType == null then {} else { type: serviceType };
   local selectorHashWithExtras = aggregationSet.selector + typeSelector + selectorHash;
 
+  local linewidth = if expectMultipleSeries then 2 else 4;
+
   local apdexPanels = if showApdex then
     [
       apdexPanel(
@@ -45,7 +48,7 @@ local metricsRow(
         stableId='%(stableIdPrefix)s-apdex' % formatConfig,
         legendFormat='%(legendFormatPrefix)s apdex' % formatConfig,
         description=apdexDescription,
-        linewidth=if expectMultipleSeries then 1 else 2,
+        linewidth=linewidth,
         compact=compact,
         fixedThreshold=fixedThreshold,
         includeLastWeek=includeLastWeek && !expectMultipleSeries,
@@ -64,7 +67,7 @@ local metricsRow(
         selectorHash=selectorHashWithExtras,
         stableId='%(stableIdPrefix)s-error-rate' % formatConfig,
         legendFormat='%(legendFormatPrefix)s error ratio' % formatConfig,
-        linewidth=if expectMultipleSeries then 1 else 2,
+        linewidth=linewidth,
         compact=compact,
         fixedThreshold=fixedThreshold,
         includeLastWeek=includeLastWeek && !expectMultipleSeries,
@@ -74,15 +77,24 @@ local metricsRow(
     ]
   else [];
 
-  // local opsRatePanels = if showOpsRate then [
-  //   [
-  //     opsRatePanel(),
-  //   ],
-  // ] else [];
+  local opsRatePanels = if showOpsRate then [
+    [
+      opsRatePanel(
+        '%(titlePrefix)s RPS - Requests per Second' % formatConfig,
+        aggregationSet=aggregationSet,
+        selectorHash=selectorHashWithExtras,
+        stableId='%(stableIdPrefix)s-ops-rate' % formatConfig,
+        legendFormat='%(legendFormatPrefix)s RPS' % formatConfig,
+        expectMultipleSeries=!expectMultipleSeries,
+        includePredictions=!expectMultipleSeries && includeOpsPredictions,
+        includeLastWeek=!expectMultipleSeries && includeLastWeek,
+        compact=compact,
+      ),
+    ],
+  ] else [];
 
 
-  apdexPanels + errorRatioPanels  //+ opsRatePanels
-;
+  apdexPanels + errorRatioPanels + opsRatePanels;
 
 function(
   serviceType,

@@ -33,10 +33,6 @@ function(
     )
     + timeSeriesPanel.g.queryOptions.withTargetsMixin([
       promQuery.query(
-        expr=sliPromQL.apdexQuery(aggregationSet, null, selectorHash, '$__interval', worstCase=true),
-        legendFormat=legendFormat,
-      ),
-      promQuery.query(
         sliPromQL.apdex.serviceApdexDegradationSLOQuery(selectorHash, fixedThreshold, shardLevelSli),
         interval='5m',
         legendFormat='6h Degradation SLO (5% of monthly error budget)' + (if shardLevelSli then ' - {{ shard }} shard' else ''),
@@ -85,7 +81,14 @@ function(
         )
       else
         {}
-    );
+    )
+    // Add the main target last, so it's on top
+    + timeSeriesPanel.g.queryOptions.withTargetsMixin([
+      promQuery.query(
+        expr=sliPromQL.apdexQuery(aggregationSet, null, selectorHash, '$__interval', worstCase=true),
+        legendFormat=legendFormat,
+      ),
+    ]);
 
   local confidenceIntervalLevel =
     if sli != null && sli.usesConfidenceLevelForSLIAlerts() then

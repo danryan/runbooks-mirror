@@ -1,6 +1,5 @@
 local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
 local prometheus = g.query.prometheus;
-local config = import 'gitlab-metrics-config.libsonnet';
 
 {
   query(
