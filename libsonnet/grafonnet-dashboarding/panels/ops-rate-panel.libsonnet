@@ -8,5 +8,4 @@ function(
   includePredictions=false,
   includeLastWeek=true,
   linewidth=2,
-)
-  {}
+) {}
