@@ -131,6 +131,7 @@ During an incident, we have [roles defined in the handbook](https://about.gitlab
 - [Checking PostgreSQL health with postgres-checkup](docs/patroni/postgres-checkup.md)
 - [Reducing table and index bloat using pg_repack](docs/patroni/pg_repack.md)
 - [Maintenance](docs/patroni/postgres-maintenance.md)
+- [Wait Event Analysis](docs/patroni/postgresql-wait-event.md)
 
 ### Frontend Services
 

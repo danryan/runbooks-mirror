@@ -85,6 +85,8 @@
 * [Deleted Project Restoration](../uncategorized/deleted-project-restore.md)
 * [Rails is down](../uncategorized/rails-is-down.md)
 * [Application Database Queries](../uncategorized/tracing-app-db-queries.md)
+* [PostgreSQL Wait Event Analysis](postgresql-wait-event.md)
+
 <!-- END_MARKER -->
 
 <!-- ## Summary -->
