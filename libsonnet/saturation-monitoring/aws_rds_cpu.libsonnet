@@ -18,7 +18,6 @@ local rdsMonitoring = std.get(config.options, 'rdsMonitoring', false);
     |||,
     grafana_dashboard_uid: 'aws_rds_cpu_utilization',
     resourceLabels: [],
-    linear_prediction_saturation_alert: '6h',  // Alert if this is going to exceed the hard threshold within 6h
 
     // This value is presented as a percentage.  We divide by 100 such that it is more consistent with our metrics system.
     query: 'aws_rds_cpuutilization_maximum / 100',

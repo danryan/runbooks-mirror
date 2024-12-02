@@ -21,7 +21,6 @@ local rdsInstanceRAMBytes = std.get(config.options, 'rdsInstanceRAMBytes', null)
     |||,
     grafana_dashboard_uid: 'aws_rds_memory_saturation',
     resourceLabels: [],
-    linear_prediction_saturation_alert: '6h',  // Alert if this is going to exceed the hard threshold within 6h
 
     // Note we are doing an inverse of the supplied metric in order
     // to leverage saturation in a more universal way.  Example
