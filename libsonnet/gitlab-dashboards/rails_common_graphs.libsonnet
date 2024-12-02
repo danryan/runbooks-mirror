@@ -156,11 +156,11 @@ local layout = import 'grafana/layout.libsonnet';
       basic.timeseries(
         title='Middleware check path traversal executions rate',
         description='Middleware check path traversal executions rate.',
-        legendFormat='{{path_traversal_attempt_rejected}}',
+        legendFormat='request rejected: {{request_rejected}}',
         query=|||
-          sum by(path_traversal_attempt_rejected)(
+          sum by(request_rejected)(
             rate(
-              gitlab_sli_path_traversal_check_request_duration_s_apdex_success_total{
+              gitlab_sli_path_traversal_check_request_apdex_success_total{
                 environment="$environment",
                 type="%(serviceType)s",
                 stage="%(serviceStage)s",
@@ -176,11 +176,11 @@ local layout = import 'grafana/layout.libsonnet';
         title='Middleware check path traversal execution time Apdex',
         description='Apdex of the middleware check path traversal executions with a threshold of 1ms.',
         yAxisLabel='Apdex %',
-        legendFormat='{{path_traversal_attempt_rejected}}',
+        legendFormat='request rejected: {{request_rejected}}',
         query=|||
-          sum by(path_traversal_attempt_rejected)(
+          sum by(request_rejected)(
             rate(
-              gitlab_sli_path_traversal_check_request_duration_s_apdex_success_total{
+              gitlab_sli_path_traversal_check_request_apdex_success_total{
                 environment="$environment",
                 type="%(serviceType)s",
                 stage="%(serviceStage)s",
@@ -188,9 +188,9 @@ local layout = import 'grafana/layout.libsonnet';
               }[$__rate_interval]
             )
           ) /
-          sum by(path_traversal_attempt_rejected)(
+          sum by(request_rejected)(
             rate(
-              gitlab_sli_path_traversal_check_request_duration_s_apdex_total{
+              gitlab_sli_path_traversal_check_request_apdex_total{
                 environment="$environment",
                 type="%(serviceType)s",
                 stage="%(serviceStage)s",
