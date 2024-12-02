@@ -8,6 +8,7 @@
 //
 local aggregations = import 'promql/aggregations.libsonnet';
 local selectors = import 'promql/selectors.libsonnet';
+local optionalFilterExpr = import 'recording-rules/lib/optional-filter-expr.libsonnet';
 local optionalOffset = import 'recording-rules/lib/optional-offset.libsonnet';
 local metricsLabelRegistry = import 'servicemetrics/metric-label-registry.libsonnet';
 local metricsCatalog = import 'servicemetrics/metrics-catalog.libsonnet';
@@ -106,7 +107,8 @@ local resolveRecordingRuleFor(metricName, requiredAggregationLabels, selector, d
     metricName=null,
     rangeInterval='5m',
     selector={},
-    offset=null
+    offset=null,
+    filterExpr=''
   )::
     // Currently only support sum/rate recording rules,
     // possibly support other options in future
@@ -118,10 +120,11 @@ local resolveRecordingRuleFor(metricName, requiredAggregationLabels, selector, d
         null
       else
         local recordingRuleWithOffset = resolvedRecordingRule + optionalOffset(offset);
+        local recordingRule = recordingRuleWithOffset + optionalFilterExpr(filterExpr);
         if aggregationFunction == 'sum' then
-          aggregations.aggregateOverQuery(aggregationFunction, aggregationLabels, recordingRuleWithOffset)
+          aggregations.aggregateOverQuery(aggregationFunction, aggregationLabels, recordingRule)
         else if aggregationFunction == null then
-          recordingRuleWithOffset
+          recordingRule
         else
           null,
 

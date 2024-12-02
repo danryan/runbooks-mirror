@@ -14,7 +14,7 @@ groups:
       type: redis-tracechunks
     expr: |
       sum by (env,environment) (
-        sli_aggregations:redis_commands_processed_total:rate_5m{env="pre",type="redis-tracechunks"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_5m{env="pre",type="redis-tracechunks"} offset 30s and on (instance) redis_instance_info{role="master"}
       )
   - record: gitlab:component:feature_category:execution:apdex:success:rate_5m
     labels:
@@ -90,7 +90,7 @@ groups:
       type: redis-tracechunks
     expr: |
       sum by (env,environment) (
-        sli_aggregations:redis_commands_processed_total:rate_5m{env="pre",type="redis-tracechunks"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_5m{env="pre",type="redis-tracechunks"} offset 30s and on (instance) redis_instance_info{role="slave"}
       )
 - name: 'Feature Category Metrics: redis-tracechunks - Burn-Rate 30m'
   interval: 2m
@@ -105,7 +105,7 @@ groups:
       type: redis-tracechunks
     expr: |
       sum by (env,environment) (
-        sli_aggregations:redis_commands_processed_total:rate_30m{env="pre",type="redis-tracechunks"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_30m{env="pre",type="redis-tracechunks"} offset 30s and on (instance) redis_instance_info{role="master"}
       )
   - record: gitlab:component:feature_category:execution:apdex:success:rate_30m
     labels:
@@ -181,7 +181,7 @@ groups:
       type: redis-tracechunks
     expr: |
       sum by (env,environment) (
-        sli_aggregations:redis_commands_processed_total:rate_30m{env="pre",type="redis-tracechunks"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_30m{env="pre",type="redis-tracechunks"} offset 30s and on (instance) redis_instance_info{role="slave"}
       )
 - name: 'Feature Category Metrics: redis-tracechunks - Burn-Rate 1h'
   interval: 1m
@@ -196,7 +196,7 @@ groups:
       type: redis-tracechunks
     expr: |
       sum by (env,environment) (
-        sli_aggregations:redis_commands_processed_total:rate_1h{env="pre",type="redis-tracechunks"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_1h{env="pre",type="redis-tracechunks"} offset 30s and on (instance) redis_instance_info{role="master"}
       )
   - record: gitlab:component:feature_category:execution:apdex:success:rate_1h
     labels:
@@ -272,7 +272,7 @@ groups:
       type: redis-tracechunks
     expr: |
       sum by (env,environment) (
-        sli_aggregations:redis_commands_processed_total:rate_1h{env="pre",type="redis-tracechunks"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_1h{env="pre",type="redis-tracechunks"} offset 30s and on (instance) redis_instance_info{role="slave"}
       )
 - name: 'Feature Category Metrics: redis-tracechunks - Burn-Rate 6h'
   interval: 2m

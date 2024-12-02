@@ -142,9 +142,9 @@ groups:
       type: patroni-registry
     expr: |
       sum by (env,environment) (
-        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[5m] offset 30s) and on (instance) (pg_replication_is_replica == 0), "_c", "0", "", "")
+        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[5m] offset 30s) and on (fqdn) (pg_replication_is_replica == 0), "_c", "0", "", "")
         or
-        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[5m] offset 30s) and on (instance) (pg_replication_is_replica == 0), "_c", "1", "", "")
+        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[5m] offset 30s) and on (fqdn) (pg_replication_is_replica == 0), "_c", "1", "", "")
       )
   - record: gitlab_component_errors:rate_5m
     labels:
@@ -156,7 +156,7 @@ groups:
     expr: |
       (
         sum by (env,environment) (
-          sli_aggregations:pg_stat_database_xact_rollback:rate_5m{env="gstg",tier="db",type="patroni-registry"} offset 30s
+          sli_aggregations:pg_stat_database_xact_rollback:rate_5m{env="gstg",tier="db",type="patroni-registry"} offset 30s and on (fqdn) (pg_replication_is_replica == 0)
         )
       )
       or
@@ -202,9 +202,9 @@ groups:
       type: patroni-registry
     expr: |
       sum by (env,environment) (
-        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[5m] offset 30s) and on (instance) (pg_replication_is_replica == 1), "_c", "0", "", "")
+        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[5m] offset 30s) and on (fqdn) (pg_replication_is_replica == 1), "_c", "0", "", "")
         or
-        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[5m] offset 30s) and on (instance) (pg_replication_is_replica == 1), "_c", "1", "", "")
+        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[5m] offset 30s) and on (fqdn) (pg_replication_is_replica == 1), "_c", "1", "", "")
       )
   - record: gitlab_component_errors:rate_5m
     labels:
@@ -216,7 +216,7 @@ groups:
     expr: |
       (
         sum by (env,environment) (
-          sli_aggregations:pg_stat_database_xact_rollback:rate_5m{env="gstg",tier="db",type="patroni-registry"} offset 30s
+          sli_aggregations:pg_stat_database_xact_rollback:rate_5m{env="gstg",tier="db",type="patroni-registry"} offset 30s and on (fqdn) (pg_replication_is_replica == 1)
         )
       )
       or
@@ -394,9 +394,9 @@ groups:
       type: patroni-registry
     expr: |
       sum by (env,environment) (
-        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[30m] offset 30s) and on (instance) (pg_replication_is_replica == 0), "_c", "0", "", "")
+        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[30m] offset 30s) and on (fqdn) (pg_replication_is_replica == 0), "_c", "0", "", "")
         or
-        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[30m] offset 30s) and on (instance) (pg_replication_is_replica == 0), "_c", "1", "", "")
+        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[30m] offset 30s) and on (fqdn) (pg_replication_is_replica == 0), "_c", "1", "", "")
       )
   - record: gitlab_component_errors:rate_30m
     labels:
@@ -408,7 +408,7 @@ groups:
     expr: |
       (
         sum by (env,environment) (
-          sli_aggregations:pg_stat_database_xact_rollback:rate_30m{env="gstg",tier="db",type="patroni-registry"} offset 30s
+          sli_aggregations:pg_stat_database_xact_rollback:rate_30m{env="gstg",tier="db",type="patroni-registry"} offset 30s and on (fqdn) (pg_replication_is_replica == 0)
         )
       )
       or
@@ -454,9 +454,9 @@ groups:
       type: patroni-registry
     expr: |
       sum by (env,environment) (
-        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[30m] offset 30s) and on (instance) (pg_replication_is_replica == 1), "_c", "0", "", "")
+        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[30m] offset 30s) and on (fqdn) (pg_replication_is_replica == 1), "_c", "0", "", "")
         or
-        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[30m] offset 30s) and on (instance) (pg_replication_is_replica == 1), "_c", "1", "", "")
+        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[30m] offset 30s) and on (fqdn) (pg_replication_is_replica == 1), "_c", "1", "", "")
       )
   - record: gitlab_component_errors:rate_30m
     labels:
@@ -468,7 +468,7 @@ groups:
     expr: |
       (
         sum by (env,environment) (
-          sli_aggregations:pg_stat_database_xact_rollback:rate_30m{env="gstg",tier="db",type="patroni-registry"} offset 30s
+          sli_aggregations:pg_stat_database_xact_rollback:rate_30m{env="gstg",tier="db",type="patroni-registry"} offset 30s and on (fqdn) (pg_replication_is_replica == 1)
         )
       )
       or
@@ -646,9 +646,9 @@ groups:
       type: patroni-registry
     expr: |
       sum by (env,environment) (
-        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[1h] offset 30s) and on (instance) (pg_replication_is_replica == 0), "_c", "0", "", "")
+        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[1h] offset 30s) and on (fqdn) (pg_replication_is_replica == 0), "_c", "0", "", "")
         or
-        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[1h] offset 30s) and on (instance) (pg_replication_is_replica == 0), "_c", "1", "", "")
+        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[1h] offset 30s) and on (fqdn) (pg_replication_is_replica == 0), "_c", "1", "", "")
       )
   - record: gitlab_component_errors:rate_1h
     labels:
@@ -660,7 +660,7 @@ groups:
     expr: |
       (
         sum by (env,environment) (
-          sli_aggregations:pg_stat_database_xact_rollback:rate_1h{env="gstg",tier="db",type="patroni-registry"} offset 30s
+          sli_aggregations:pg_stat_database_xact_rollback:rate_1h{env="gstg",tier="db",type="patroni-registry"} offset 30s and on (fqdn) (pg_replication_is_replica == 0)
         )
       )
       or
@@ -706,9 +706,9 @@ groups:
       type: patroni-registry
     expr: |
       sum by (env,environment) (
-        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[1h] offset 30s) and on (instance) (pg_replication_is_replica == 1), "_c", "0", "", "")
+        label_replace(rate(pg_stat_database_xact_commit{env="gstg",tier="db",type="patroni-registry"}[1h] offset 30s) and on (fqdn) (pg_replication_is_replica == 1), "_c", "0", "", "")
         or
-        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[1h] offset 30s) and on (instance) (pg_replication_is_replica == 1), "_c", "1", "", "")
+        label_replace(rate(pg_stat_database_xact_rollback{env="gstg",tier="db",type="patroni-registry"}[1h] offset 30s) and on (fqdn) (pg_replication_is_replica == 1), "_c", "1", "", "")
       )
   - record: gitlab_component_errors:rate_1h
     labels:
@@ -720,7 +720,7 @@ groups:
     expr: |
       (
         sum by (env,environment) (
-          sli_aggregations:pg_stat_database_xact_rollback:rate_1h{env="gstg",tier="db",type="patroni-registry"} offset 30s
+          sli_aggregations:pg_stat_database_xact_rollback:rate_1h{env="gstg",tier="db",type="patroni-registry"} offset 30s and on (fqdn) (pg_replication_is_replica == 1)
         )
       )
       or

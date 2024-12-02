@@ -70,19 +70,19 @@ function(
         rateMetric(
           counter='pg_stat_database_xact_commit',
           selector=baseSelector,
-          instanceFilter='(pg_replication_is_replica == 0)'
+          filterExpr='and on (fqdn) (pg_replication_is_replica == 0)'
         ),
         rateMetric(
           counter='pg_stat_database_xact_rollback',
           selector=baseSelector,
-          instanceFilter='(pg_replication_is_replica == 0)'
+          filterExpr='and on (fqdn) (pg_replication_is_replica == 0)'
         ),
       ]),
 
       errorRate: rateMetric(
         counter='pg_stat_database_xact_rollback',
         selector=baseSelector,
-        instanceFilter='(pg_replication_is_replica == 0)'
+        filterExpr='and on (fqdn) (pg_replication_is_replica == 0)'
       ),
 
       significantLabels: ['fqdn'],
@@ -103,19 +103,19 @@ function(
         rateMetric(
           counter='pg_stat_database_xact_commit',
           selector=baseSelector,
-          instanceFilter='(pg_replication_is_replica == 1)'
+          filterExpr='and on (fqdn) (pg_replication_is_replica == 1)'
         ),
         rateMetric(
           counter='pg_stat_database_xact_rollback',
           selector=baseSelector,
-          instanceFilter='(pg_replication_is_replica == 1)'
+          filterExpr='and on (fqdn) (pg_replication_is_replica == 1)'
         ),
       ]),
 
       errorRate: rateMetric(
         counter='pg_stat_database_xact_rollback',
         selector=baseSelector,
-        instanceFilter='(pg_replication_is_replica == 1)'
+        filterExpr='and on (fqdn) (pg_replication_is_replica == 1)'
       ),
 
       significantLabels: ['fqdn'],

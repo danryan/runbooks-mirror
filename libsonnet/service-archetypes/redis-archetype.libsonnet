@@ -62,7 +62,7 @@ function(
         requestRate: rateMetric(
           counter='redis_commands_processed_total',
           selector=baseSelector,
-          instanceFilter='redis_instance_info{role="master"}'
+          filterExpr='and on (instance) redis_instance_info{role="master"}'
         ),
 
         significantLabels: ['instance'],
@@ -81,7 +81,7 @@ function(
         requestRate: rateMetric(
           counter='redis_commands_processed_total',
           selector=baseSelector,
-          instanceFilter='redis_instance_info{role="slave"}'
+          filterExpr='and on (instance) redis_instance_info{role="slave"}'
         ),
 
         significantLabels: ['instance'],

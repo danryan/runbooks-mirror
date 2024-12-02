@@ -154,7 +154,7 @@ test.suite({
     expectContains: {
       requestRate: {
         counter: 'gitlab_sli_hello_sli_total',
-        instanceFilter: '',
+        filterExpr: '',
         selector: {},
         metricNames: ['gitlab_sli_hello_sli_total'],
       },
@@ -166,7 +166,7 @@ test.suite({
       },
       errorRate: {
         counter: 'gitlab_sli_hello_sli_error_total',
-        instanceFilter: '',
+        filterExpr: '',
         selector: {},
         metricNames: ['gitlab_sli_hello_sli_error_total'],
       },

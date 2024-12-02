@@ -380,7 +380,7 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 0)
+          rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 0)
         )
       runbook: docs/patroni-registry/README.md
     labels:
@@ -429,7 +429,7 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 0)
+          rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 0)
         )
       runbook: docs/patroni-registry/README.md
     labels:
@@ -478,9 +478,9 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          label_replace(rate(pg_stat_database_xact_commit{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 0), "_c", "0", "", "")
+          label_replace(rate(pg_stat_database_xact_commit{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 0), "_c", "0", "", "")
           or
-          label_replace(rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 0), "_c", "1", "", "")
+          label_replace(rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 0), "_c", "1", "", "")
         )
       runbook: docs/patroni-registry/README.md
     labels:
@@ -518,9 +518,9 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          label_replace(rate(pg_stat_database_xact_commit{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 0), "_c", "0", "", "")
+          label_replace(rate(pg_stat_database_xact_commit{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 0), "_c", "0", "", "")
           or
-          label_replace(rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 0), "_c", "1", "", "")
+          label_replace(rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 0), "_c", "1", "", "")
         )
       runbook: docs/patroni-registry/README.md
     labels:
@@ -556,7 +556,7 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 1)
+          rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 1)
         )
       runbook: docs/patroni-registry/README.md
     labels:
@@ -605,7 +605,7 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 1)
+          rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 1)
         )
       runbook: docs/patroni-registry/README.md
     labels:
@@ -654,9 +654,9 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          label_replace(rate(pg_stat_database_xact_commit{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 1), "_c", "0", "", "")
+          label_replace(rate(pg_stat_database_xact_commit{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 1), "_c", "0", "", "")
           or
-          label_replace(rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 1), "_c", "1", "", "")
+          label_replace(rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 1), "_c", "1", "", "")
         )
       runbook: docs/patroni-registry/README.md
     labels:
@@ -694,9 +694,9 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          label_replace(rate(pg_stat_database_xact_commit{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 1), "_c", "0", "", "")
+          label_replace(rate(pg_stat_database_xact_commit{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 1), "_c", "0", "", "")
           or
-          label_replace(rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (instance) (pg_replication_is_replica == 1), "_c", "1", "", "")
+          label_replace(rate(pg_stat_database_xact_rollback{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",tier="db",type="patroni-registry"}[5m]) and on (fqdn) (pg_replication_is_replica == 1), "_c", "1", "", "")
         )
       runbook: docs/patroni-registry/README.md
     labels:

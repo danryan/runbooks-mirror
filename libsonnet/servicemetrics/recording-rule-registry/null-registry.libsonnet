@@ -6,7 +6,8 @@
     metricName=null,
     rangeInterval='5m',
     selector={},
-    offset=null
+    offset=null,
+    filterExpr=''
   ):: null,
 
   recordingRuleForMetricAtBurnRate(metricName, rangeInterval):: false,

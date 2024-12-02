@@ -1,40 +1,34 @@
 local metric = import './metric.libsonnet';
 local aggregations = import 'promql/aggregations.libsonnet';
 local selectors = import 'promql/selectors.libsonnet';
+local optionalFilterExpr = import 'recording-rules/lib/optional-filter-expr.libsonnet';
 local optionalOffset = import 'recording-rules/lib/optional-offset.libsonnet';
 local metricLabelsSelectorsMixin = (import './metrics-mixin.libsonnet').metricLabelsSelectorsMixin;
-
-local generateInstanceFilterQuery(instanceFilter) =
-  if instanceFilter == '' then
-    ''
-  else
-    ' and on (instance) ' + instanceFilter;
-
 
 // Generates a range-vector function using the provided functions
 local generateRangeFunctionQuery(rate, rangeFunction, additionalSelectors, rangeInterval, withoutLabels, offset) =
   local selector = selectors.merge(additionalSelectors, rate.selector);
   local selectorWithout = selectors.without(selector, withoutLabels);
 
-  '%(rangeFunction)s(%(counter)s{%(selector)s}[%(rangeInterval)s]%(optionalOffset)s)%(instanceFilterQuery)s' % {
+  '%(rangeFunction)s(%(counter)s{%(selector)s}[%(rangeInterval)s]%(optionalOffset)s)%(filterExpr)s' % {
     rangeFunction: rangeFunction,
     counter: rate.counter,
     selector: selectors.serializeHash(selectorWithout),
     rangeInterval: rangeInterval,
-    instanceFilterQuery: generateInstanceFilterQuery(rate.instanceFilter),
     optionalOffset: optionalOffset(offset),
+    filterExpr: optionalFilterExpr(rate.filterExpr),
   };
 
 {
   rateMetric(
     counter,
     selector={},
-    instanceFilter='',
+    filterExpr='',
     useRecordingRuleRegistry=true,
   ):: metric.new({
     counter: counter,
     selector: selector,
-    instanceFilter: instanceFilter,
+    filterExpr: filterExpr,
     useRecordingRuleRegistry:: useRecordingRuleRegistry,
 
     // This creates a rate query of the form
@@ -60,6 +54,7 @@ local generateRangeFunctionQuery(rate, rangeFunction, additionalSelectors, range
         rangeInterval=rangeInterval,
         selector=combinedSelector,
         offset=offset,
+        filterExpr=filterExpr,
       );
 
       if !useRecordingRuleRegistry || resolvedRecordingRule == null then
@@ -86,12 +81,12 @@ local generateRangeFunctionQuery(rate, rangeFunction, additionalSelectors, range
   derivMetric(
     counter,
     selector='',
-    instanceFilter='',
+    filterExpr='',
     clampMinZero=false,
   ):: metric.new({
     counter: counter,
     selector: selector,
-    instanceFilter: instanceFilter,
+    filterExpr: filterExpr,
     clampMinZero: clampMinZero,
     useRecordingRuleRegistry:: false,
 

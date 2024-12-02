@@ -7,6 +7,7 @@ local sliMetricDescriptor = import 'servicemetrics/sli_metric_descriptor.libsonn
 local selectors = import 'promql/selectors.libsonnet';
 local aggregations = import 'promql/aggregations.libsonnet';
 local optionalOffset = import 'recording-rules/lib/optional-offset.libsonnet';
+local optionalFilterExpr = import 'recording-rules/lib/optional-filter-expr.libsonnet';
 local metricsConfig = import 'gitlab-metrics-config.libsonnet';
 local metricsCatalog = import 'servicemetrics/metrics-catalog.libsonnet';
 
@@ -179,16 +180,18 @@ local generateRecordingRuleGroups(serviceDefinition, burnRate, extraSelector) =
     metricName=null,
     rangeInterval='5m',
     selector={},
-    offset=null
+    offset=null,
+    filterExpr=''
   )::
     if rangeVectorFunction != 'rate' then null
     else
       local resolvedRecordingRule = resolveRecordingRuleFor(metricName, aggregationLabels, selector, rangeInterval);
       local recordingRuleWithOffset = resolvedRecordingRule + optionalOffset(offset);
+      local recordingRule = recordingRuleWithOffset + optionalFilterExpr(filterExpr);
       if aggregationFunction == 'sum' then
-        aggregations.aggregateOverQuery(aggregationFunction, aggregationLabels, recordingRuleWithOffset)
+        aggregations.aggregateOverQuery(aggregationFunction, aggregationLabels, recordingRule)
       else if aggregationFunction == null then
-        recordingRuleWithOffset
+        recordingRule
       else
         assert false : 'unsupported aggregation %s' % [aggregationFunction];
         null,

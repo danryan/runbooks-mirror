@@ -355,12 +355,12 @@ test.suite({
         rateMetric(
           counter='pg_stat_database_xact_commit',
           selector={ type: 'fake_service', tier: 'db' },
-          instanceFilter='(pg_replication_is_replica == 0)'
+          filterExpr='and on (fqdn) (pg_replication_is_replica == 0)'
         ),
         rateMetric(
           counter='pg_stat_database_xact_rollback',
           selector={ type: 'fake_service', tier: 'db', some_label: 'true' },
-          instanceFilter='(pg_replication_is_replica == 0)'
+          filterExpr='and on (fqdn) (pg_replication_is_replica == 0)'
         ),
       ]),
       errorRate: rateMetric('some_total_count'),
