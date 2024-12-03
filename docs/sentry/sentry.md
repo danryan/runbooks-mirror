@@ -74,6 +74,14 @@ For the purposes of supporting Sentry (e.g. adding new projects, configuring exi
 1. If the options under `Organization Role` are greyed out, force refresh the page.
 1. Select the new role and click **Save Member**.
 
+### SRE Admin Access
+
+1. Login in to Sentry with Okta SSO using Okta ops-contact / `ops-contact+sentry@gitlab.com` from 1Pass. You will need to add it to Okta verify if not already.
+1. When prompted select "Google Authenticator" as the 2FA option, and use the 1TP from the contact in 1password - not the Okta option as this won't work.
+1. At this point it should log you in to Sentry.
+1. Sentry will prompt for another 1TP or ask for a recovery key if you don't have it.
+1. In 1pass there is another contact New Sentry Ops admin login. Use the 1TP from this account.
+
 ### Projects and teams
 
 The `Member` role does not allow people to create new projects or teams in Sentry, so they have to be provisioned by us manually. This gives us the opportunity to gatekeep a little. Ensure that:
@@ -85,7 +93,7 @@ The `Member` role does not allow people to create new projects or teams in Sentr
 
 ### Data
 
-Sentry stores it's data in a combination of CloudSQL running Postgresql and BigTable. The event data is stored for 30 days before deleted.
+Sentry stores its data in a combination of CloudSQL running Postgresql and BigTable. The event data is stored for 30 days before deleted.
 
 ## Integrations
 
@@ -234,7 +242,7 @@ There are a few different reasons for this. Check the following:
 
     As per [this comment](https://github.com/getsentry/self-hosted/issues/2019#issuecomment-1470769713), the `snuba-post-processor` group was actually removed, so we shouldn't have this anymore. The ultimate fix here was to run `JMX_PORT="" /opt/bitnami/kafka/bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group snuba-post-processor --delete`
 
-1. We may not be processing messages fast enough on a particular topic. In that case, we will need to add partitions and consumers to that topic.
+1. We may not be processing messages fast enough on a particular topic.  This can be because of normal growth or because of a sudden influx in a new error type.  If it is due to normal growth, we will need to add partitions and consumers to that topic.
     1. Decide how many consumers you want on the topic, then modify `values.yaml` so that the `replicaCount` of the consumer group and `TOPIC_PARTITION_COUNTS` (under `config.snubaSettingsPy`) match the new number of consumers.
         1. You cannot decrease the number of consumers (without a lot of work), only increase!
         1. Note that merging and deploying your changes at this stage doesn't actually affect the number of partitions yet, only the replica count of the consumer group.
@@ -242,6 +250,11 @@ There are a few different reasons for this. Check the following:
     1. Bring up a shell on one of the Kafka pods (doesn't matter which).
     1. Run `JMX_PORT="" /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --topic <topic> --partitions <num-partitions>`
     1. Run `JMX_PORT="" /opt/bitnami/kafka/bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --all-groups -describe`. If the repartitioning was successful, you should see a message like `Warning: Consumer group 'snuba-consumers' is rebalancing.`
+
+1. If the issue is due to a sudden influx of errors, it's possible to [filter out specific errors.](https://docs.sentry.io/pricing/quotas/manage-event-stream-guide/#filter-by-error-message).
+    1. Log in as an admin user if you do not have admin access.  Instructions are [here](https://gitlab.com/gitlab-com/runbooks/-/blob/master/docs/sentry/sentry.md?ref_type=heads#SRE-Admin-Access).
+    1. Go to the settings for the project that has the error.  In most cases, it's likely to be [gitlabcom](https://new-sentry.gitlab.net/settings/gitlab/projects/gitlabcom/filters/data-filters/).
+    1. In the customs filter section at the bottom, put in the full title of the error message (ex. `JWT::DecodeError: Not enough or too many segments (JWT::DecodeError).`).  There is no save button, to save you need to click out of that field and it will save.
 
 #### Pods crashlooping with `KafkaError: UNKNOWN_PARTITION`
 
