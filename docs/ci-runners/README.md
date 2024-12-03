@@ -367,7 +367,7 @@ Every new CIDR should start at directly after the previously reserved one ends.
 **When adding any new ephemeral-runners subnetwork don't forget to update the
 [`ci-gateway` firewall](#ci-gateway-ilb-firewall)!**
 
-| Environment                                | Network `{$PROJECT/}$VPC/$SUBNETWORK        | CIDR             |
+| Environment                                | Network `{$PROJECT}/$VPC/$SUBNETWORK`       | CIDR             |
 |--------------------------------------------|---------------------------------------------|------------------|
 | `GCP/gitlab-ci-plan-free-7`                | `ephemeral-runners/ephemeral-runners`       | `10.10.0.0/21`   |
 | `GCP/gitlab-ci-plan-free-6`                | `ephemeral-runners/ephemeral-runners`       | `10.10.8.0/21`   |
@@ -410,9 +410,6 @@ Every new CIDR should start at directly after the previously reserved one ends.
 | `GCP/gitlab-r-saas-l-m-amd64-gitlab-org-4` | `ephemeral-runners/ephemeral-runners`       | `10.11.56.0/21`  |
 | `GCP/gitlab-ci-private-5`                  | `ephemeral-runners/ephemeral-runners`       | `10.11.64.0/21`  |
 | `GCP/gitlab-ci-private-6`                  | `ephemeral-runners/ephemeral-runners`       | `10.11.72.0/21`  |
-| `GCP/gitlab-r-saas-l-m-amd64-gpu-1`        | `ephemeral-runners/tmp-ephemeral-runners`   | `10.11.80.0/21`  |
-| `GCP/gitlab-r-saas-l-m-amd64-gpu-2`        | `ephemeral-runners/tmp-ephemeral-runners`   | `10.11.88.0/21`  |
-| `GCP/gitlab-r-saas-l-m-amd64-gpu-3`        | `ephemeral-runners/tmp-ephemeral-runners`   | `10.11.96.0/21`  |
 | `GCP/gitlab-r-saas-l-xl-amd64-1`           | `ephemeral-runners/ephemeral-runners`       | `10.11.104.0/21` |
 | `GCP/gitlab-r-saas-l-xl-amd64-2`           | `ephemeral-runners/ephemeral-runners`       | `10.11.112.0/21` |
 | `GCP/gitlab-r-saas-l-xl-amd64-3`           | `ephemeral-runners/ephemeral-runners`       | `10.11.120.0/21` |
@@ -450,6 +447,38 @@ Every new CIDR should start at directly after the previously reserved one ends.
 | `GCP/gitlab-ci-private-4`                  | `gitlab-ci/gitlab-ci-private/p6`            | `10.13.40.0/21`  |
 | `GCP/gitlab-ci-private-5`                  | `gitlab-ci/gitlab-ci-private/p7`            | `10.13.48.0/21`  |
 | `GCP/gitlab-ci-private-6`                  | `gitlab-ci/gitlab-ci-private/p8`            | `10.13.56.0/21`  |
+| `GCP/r-saas-l-m-amd64-1`                   | `gitlab-ci/r-saas-l-m-amd64/p1`             | `10.13.64.0/21`  |
+| `GCP/r-saas-l-m-amd64-2`                   | `gitlab-ci/r-saas-l-m-amd64/p2`             | `10.13.72.0/21`  |
+| `GCP/r-saas-l-m-amd64-3`                   | `gitlab-ci/r-saas-l-m-amd64/p3`             | `10.13.80.0/21`  |
+| `GCP/r-saas-l-m-amd64-4`                   | `gitlab-ci/r-saas-l-m-amd64/p4`             | `10.13.88.0/21`  |
+| `GCP/r-saas-l-m-amd64-5`                   | `gitlab-ci/r-saas-l-m-amd64/p5`             | `10.13.96.0/21`  |
+| `GCP/r-saas-l-l-amd64-1`                   | `gitlab-ci/r-saas-l-l-amd64/p1`             | `10.13.104.0/21` |
+| `GCP/r-saas-l-l-amd64-2`                   | `gitlab-ci/r-saas-l-l-amd64/p2`             | `10.13.112.0/21` |
+| `GCP/r-saas-l-l-amd64-3`                   | `gitlab-ci/r-saas-l-l-amd64/p3`             | `10.13.120.0/21` |
+| `GCP/r-saas-l-l-amd64-4`                   | `gitlab-ci/r-saas-l-l-amd64/p4`             | `10.13.128.0/21` |
+| `GCP/r-saas-l-l-amd64-5`                   | `gitlab-ci/r-saas-l-l-amd64/p5`             | `10.13.136.0/21` |
+| `GCP/r-saas-l-xl-amd64-1`                  | `gitlab-ci/r-saas-l-xl-amd64/p1`            | `10.13.144.0/21` |
+| `GCP/r-saas-l-xl-amd64-2`                  | `gitlab-ci/r-saas-l-xl-amd64/p2`            | `10.13.152.0/21` |
+| `GCP/r-saas-l-xl-amd64-3`                  | `gitlab-ci/r-saas-l-xl-amd64/p3`            | `10.13.160.0/21` |
+| `GCP/r-saas-l-xl-amd64-4`                  | `gitlab-ci/r-saas-l-xl-amd64/p4`            | `10.13.168.0/21` |
+| `GCP/r-saas-l-xl-amd64-5`                  | `gitlab-ci/r-saas-l-xl-amd64/p5`            | `10.13.176.0/21` |
+| `GCP/r-saas-l-2xl-amd64-1`                 | `gitlab-ci/r-saas-l-2xl-amd64/p1`           | `10.13.184.0/21` |
+| `GCP/r-saas-l-2xl-amd64-2`                 | `gitlab-ci/r-saas-l-2xl-amd64/p2`           | `10.13.192.0/21` |
+| `GCP/r-saas-l-2xl-amd64-3`                 | `gitlab-ci/r-saas-l-2xl-amd64/p3`           | `10.13.200.0/21` |
+| `GCP/r-saas-l-2xl-amd64-4`                 | `gitlab-ci/r-saas-l-2xl-amd64/p4`           | `10.13.208.0/21` |
+| `GCP/r-saas-l-2xl-amd64-5`                 | `gitlab-ci/r-saas-l-2xl-amd64/p5`           | `10.13.216.0/21` |
+| `GCP/r-saas-l-m-arm64-1`                   | `gitlab-ci/r-saas-l-m-arm64/p1`             | `10.13.224.0/21` |
+| `GCP/r-saas-l-m-arm64-2`                   | `gitlab-ci/r-saas-l-m-arm64/p2`             | `10.13.232.0/21` |
+| `GCP/r-saas-l-m-arm64-3`                   | `gitlab-ci/r-saas-l-m-arm64/p3`             | `10.13.240.0/21` |
+| `GCP/r-saas-l-l-arm64-1`                   | `gitlab-ci/r-saas-l-l-arm64/p1`             | `10.13.248.0/21` |
+| `GCP/r-saas-l-l-arm64-2`                   | `gitlab-ci/r-saas-l-l-arm64/p2`             | `10.14.0.0/21`   |
+| `GCP/r-saas-l-l-arm64-3`                   | `gitlab-ci/r-saas-l-l-arm64/p3`             | `10.14.8.0/21`   |
+| `GCP/r-saas-l-m-amd64-org-1`               | `gitlab-ci/r-saas-l-m-amd64-org/p1`         | `10.14.16.0/21`  |
+| `GCP/r-saas-l-m-amd64-org-2`               | `gitlab-ci/r-saas-l-m-amd64-org/p2`         | `10.14.24.0/21`  |
+| `GCP/r-saas-l-m-amd64-org-3`               | `gitlab-ci/r-saas-l-m-amd64-org/p3`         | `10.14.32.0/21`  |
+| `GCP/r-saas-l-m-amd64-org-4`               | `gitlab-ci/r-saas-l-m-amd64-org/p4`         | `10.14.40.0/21`  |
+| `GCP/r-saas-l-m-amd64-org-5`               | `gitlab-ci/r-saas-l-m-amd64-org/p5`         | `10.14.48.0/21`  |
+| `GCP/r-saas-l-m-amd64-org-6`               | `gitlab-ci/r-saas-l-m-amd64-org/p6`         | `10.14.56.0/21`  |
 | `AWS/r-saas-m-staging`                     | `jobs-vpc/saas-macos-staging-blue-1`        | `10.20.0.0/21`   |
 | `AWS/r-saas-m-staging`                     | `jobs-vpc/saas-macos-staging-blue-2`        | `10.20.8.0/21`   |
 | `AWS/r-saas-m-staging`                     | `jobs-vpc/saas-macos-staging-green-1`       | `10.20.16.0/21`  |
