@@ -18,6 +18,20 @@ groups:
     expr: "0.000500"
   - record: slo:min:events:gitlab_service_apdex:ratio
     labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: "0.950000"
+  - record: slo:max:events:gitlab_service_errors:ratio
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: "0.000500"
+  - record: slo:min:events:gitlab_service_apdex:ratio
+    labels:
       component: grpc_requests
       monitor: global
       tier: sv
@@ -42,6 +56,16 @@ groups:
       tier: sv
       type: kas
     expr: "0.000500"
+  - record: gitlab_component_service:mapping
+    labels:
+      component: connections
+      global_aggregation: "no"
+      monitor: global
+      regional_aggregation: "no"
+      service_aggregation: "yes"
+      tier: sv
+      type: kas
+    expr: "1"
   - record: gitlab_component_service:mapping
     labels:
       component: grpc_requests

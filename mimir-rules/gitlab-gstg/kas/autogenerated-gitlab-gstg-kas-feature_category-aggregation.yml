@@ -4,6 +4,36 @@ groups:
 - name: 'Feature Category Metrics: kas - Burn-Rate 5m'
   interval: 1m
   rules:
+  - record: gitlab:component:feature_category:execution:ops:rate_5m
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:accepted_connections_total:rate_5m{env="gstg",type="kas"} offset 30s
+      )
+  - record: gitlab:component:feature_category:execution:error:rate_5m
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      (
+        sum by (env,environment,stage) (
+          sli_aggregations:redis_expiring_hash_api_gc_deleted_keys_count_total:rate_5m{env="gstg",expiring_hash_name=~"^listener_conns_",type="kas"} offset 30s
+        )
+      )
+      or
+      (
+        0 * group by(env,environment,stage) (
+          gitlab:component:feature_category:execution:ops:rate_5m{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}
+        )
+      )
   - record: gitlab:component:feature_category:execution:apdex:success:rate_5m
     labels:
       component: grpc_requests
@@ -59,6 +89,36 @@ groups:
 - name: 'Feature Category Metrics: kas - Burn-Rate 30m'
   interval: 2m
   rules:
+  - record: gitlab:component:feature_category:execution:ops:rate_30m
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:accepted_connections_total:rate_30m{env="gstg",type="kas"} offset 30s
+      )
+  - record: gitlab:component:feature_category:execution:error:rate_30m
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      (
+        sum by (env,environment,stage) (
+          sli_aggregations:redis_expiring_hash_api_gc_deleted_keys_count_total:rate_30m{env="gstg",expiring_hash_name=~"^listener_conns_",type="kas"} offset 30s
+        )
+      )
+      or
+      (
+        0 * group by(env,environment,stage) (
+          gitlab:component:feature_category:execution:ops:rate_30m{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}
+        )
+      )
   - record: gitlab:component:feature_category:execution:apdex:success:rate_30m
     labels:
       component: grpc_requests
@@ -114,6 +174,36 @@ groups:
 - name: 'Feature Category Metrics: kas - Burn-Rate 1h'
   interval: 1m
   rules:
+  - record: gitlab:component:feature_category:execution:ops:rate_1h
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:accepted_connections_total:rate_1h{env="gstg",type="kas"} offset 30s
+      )
+  - record: gitlab:component:feature_category:execution:error:rate_1h
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      (
+        sum by (env,environment,stage) (
+          sli_aggregations:redis_expiring_hash_api_gc_deleted_keys_count_total:rate_1h{env="gstg",expiring_hash_name=~"^listener_conns_",type="kas"} offset 30s
+        )
+      )
+      or
+      (
+        0 * group by(env,environment,stage) (
+          gitlab:component:feature_category:execution:ops:rate_1h{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}
+        )
+      )
   - record: gitlab:component:feature_category:execution:apdex:success:rate_1h
     labels:
       component: grpc_requests
@@ -171,6 +261,50 @@ groups:
   rules:
   - record: gitlab:component:feature_category:execution:apdex:success:rate_6h
     labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab:component:feature_category:execution:apdex:success:rate_1h{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}[6h] offset 30s)
+      )
+  - record: gitlab:component:feature_category:execution:apdex:weight:score_6h
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab:component:feature_category:execution:apdex:weight:score_1h{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}[6h] offset 30s)
+      )
+  - record: gitlab:component:feature_category:execution:ops:rate_6h
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab:component:feature_category:execution:ops:rate_1h{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}[6h] offset 30s)
+      )
+  - record: gitlab:component:feature_category:execution:error:rate_6h
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab:component:feature_category:execution:error:rate_1h{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}[6h] offset 30s)
+      )
+  - record: gitlab:component:feature_category:execution:apdex:success:rate_6h
+    labels:
       component: grpc_requests
       feature_category: deployment_management
       monitor: global
@@ -216,6 +350,50 @@ groups:
 - name: 'Feature Category Metrics: kas - Burn-Rate 3d'
   interval: 2m
   rules:
+  - record: gitlab:component:feature_category:execution:apdex:success:rate_3d
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab:component:feature_category:execution:apdex:success:rate_1h{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}[3d] offset 30s)
+      )
+  - record: gitlab:component:feature_category:execution:apdex:weight:score_3d
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab:component:feature_category:execution:apdex:weight:score_1h{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}[3d] offset 30s)
+      )
+  - record: gitlab:component:feature_category:execution:ops:rate_3d
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab:component:feature_category:execution:ops:rate_1h{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}[3d] offset 30s)
+      )
+  - record: gitlab:component:feature_category:execution:error:rate_3d
+    labels:
+      component: connections
+      feature_category: deployment_management
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab:component:feature_category:execution:error:rate_1h{component="connections",env="gstg",feature_category="deployment_management",monitor="global",tier="sv",type="kas"}[3d] offset 30s)
+      )
   - record: gitlab:component:feature_category:execution:apdex:success:rate_3d
     labels:
       component: grpc_requests

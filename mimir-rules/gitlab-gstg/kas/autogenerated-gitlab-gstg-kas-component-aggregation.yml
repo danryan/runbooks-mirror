@@ -4,6 +4,62 @@ groups:
 - name: 'Global SLI Metrics: kas - Burn-Rate 5m'
   interval: 1m
   rules:
+  - record: gitlab_component_ops:rate_5m
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:accepted_connections_total:rate_5m{env="gstg",type="kas"} offset 30s
+      )
+  - record: gitlab_component_errors:rate_5m
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      (
+        sum by (env,environment,stage) (
+          sli_aggregations:redis_expiring_hash_api_gc_deleted_keys_count_total:rate_5m{env="gstg",expiring_hash_name=~"^listener_conns_",type="kas"} offset 30s
+        )
+      )
+      or
+      (
+        0 * group by(env,environment,stage) (
+          gitlab_component_ops:rate_5m{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}
+        )
+      )
+  - record: gitlab_component_errors:ratio_5m
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_5m{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_5m{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_5m
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_5m{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_5m{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
   - record: gitlab_component_apdex:success:rate_5m
     labels:
       component: grpc_requests
@@ -83,6 +139,62 @@ groups:
 - name: 'Global SLI Metrics: kas - Burn-Rate 30m'
   interval: 2m
   rules:
+  - record: gitlab_component_ops:rate_30m
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:accepted_connections_total:rate_30m{env="gstg",type="kas"} offset 30s
+      )
+  - record: gitlab_component_errors:rate_30m
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      (
+        sum by (env,environment,stage) (
+          sli_aggregations:redis_expiring_hash_api_gc_deleted_keys_count_total:rate_30m{env="gstg",expiring_hash_name=~"^listener_conns_",type="kas"} offset 30s
+        )
+      )
+      or
+      (
+        0 * group by(env,environment,stage) (
+          gitlab_component_ops:rate_30m{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}
+        )
+      )
+  - record: gitlab_component_errors:ratio_30m
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_30m{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_30m{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_30m
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_30m{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_30m{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
   - record: gitlab_component_apdex:success:rate_30m
     labels:
       component: grpc_requests
@@ -162,6 +274,62 @@ groups:
 - name: 'Global SLI Metrics: kas - Burn-Rate 1h'
   interval: 1m
   rules:
+  - record: gitlab_component_ops:rate_1h
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:accepted_connections_total:rate_1h{env="gstg",type="kas"} offset 30s
+      )
+  - record: gitlab_component_errors:rate_1h
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      (
+        sum by (env,environment,stage) (
+          sli_aggregations:redis_expiring_hash_api_gc_deleted_keys_count_total:rate_1h{env="gstg",expiring_hash_name=~"^listener_conns_",type="kas"} offset 30s
+        )
+      )
+      or
+      (
+        0 * group by(env,environment,stage) (
+          gitlab_component_ops:rate_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}
+        )
+      )
+  - record: gitlab_component_errors:ratio_1h
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_1h
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
   - record: gitlab_component_apdex:success:rate_1h
     labels:
       component: grpc_requests
@@ -243,6 +411,74 @@ groups:
   rules:
   - record: gitlab_component_apdex:success:rate_6h
     labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:success:rate_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}[6h] offset 30s)
+      )
+  - record: gitlab_component_apdex:weight:score_6h
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:weight:score_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}[6h] offset 30s)
+      )
+  - record: gitlab_component_ops:rate_6h
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_ops:rate_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}[6h] offset 30s)
+      )
+  - record: gitlab_component_errors:rate_6h
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_errors:rate_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}[6h] offset 30s)
+      )
+  - record: gitlab_component_errors:ratio_6h
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_6h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_6h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_6h
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_6h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_6h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+  - record: gitlab_component_apdex:success:rate_6h
+    labels:
       component: grpc_requests
       monitor: global
       tier: sv
@@ -312,6 +548,74 @@ groups:
 - name: 'Global SLI Metrics: kas - Burn-Rate 3d'
   interval: 2m
   rules:
+  - record: gitlab_component_apdex:success:rate_3d
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:success:rate_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}[3d] offset 30s)
+      )
+  - record: gitlab_component_apdex:weight:score_3d
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:weight:score_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}[3d] offset 30s)
+      )
+  - record: gitlab_component_ops:rate_3d
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_ops:rate_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}[3d] offset 30s)
+      )
+  - record: gitlab_component_errors:rate_3d
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_errors:rate_1h{component="connections",env="gstg",monitor="global",tier="sv",type="kas"}[3d] offset 30s)
+      )
+  - record: gitlab_component_errors:ratio_3d
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_3d{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_3d{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_3d
+    labels:
+      component: connections
+      monitor: global
+      tier: sv
+      type: kas
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_3d{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_3d{component="connections",env="gstg",monitor="global",tier="sv",type="kas"} offset 30s
+      )
   - record: gitlab_component_apdex:success:rate_3d
     labels:
       component: grpc_requests

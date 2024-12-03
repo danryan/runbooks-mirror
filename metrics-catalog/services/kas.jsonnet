@@ -2,6 +2,9 @@ local metricsCatalog = import 'servicemetrics/metrics.libsonnet';
 local histogramApdex = metricsCatalog.histogramApdex;
 local rateMetric = metricsCatalog.rateMetric;
 local toolingLinks = import 'toolinglinks/toolinglinks.libsonnet';
+local baseSelector = {
+    type: 'kas',
+};
 
 metricsCatalog.serviceDefinition({
   type: 'kas',
@@ -46,9 +49,6 @@ metricsCatalog.serviceDefinition({
     grpc_requests: {
       userImpacting: true,
       featureCategory: 'deployment_management',
-      local baseSelector = {
-        type: 'kas',
-      },
 
       apdex: histogramApdex(
         histogram='tunnel_routing_duration_seconds_bucket',
@@ -85,6 +85,24 @@ metricsCatalog.serviceDefinition({
         toolingLinks.sentry(projectId=11, variables=['environment']),
         toolingLinks.kibana(title='Kubernetes Agent Server', index='kas', type='kas'),
       ],
+    },
+    connections: {
+      userImpacting: true,
+      featureCategory: 'deployment_management',
+
+      requestRate: rateMetric(
+        counter='accepted_connections_total',
+        selector=baseSelector
+      ),
+
+      errorRate: rateMetric(
+        counter='redis_expiring_hash_api_gc_deleted_keys_count_total',
+        selector=baseSelector {
+          expiring_hash_name: { re: '^listener_conns_' },
+        },
+      ),
+
+      significantLabels: ['expiring_hash_name'],
     },
   },
 } + {
