@@ -35,6 +35,10 @@ metricsCatalog.serviceDefinition({
     vms: false,
   },
   serviceLevelIndicators: {
+
+
+    local sentryQuerySelector = { namespace: 'sentry' },
+
     sentry_events: {
       severity: 's3',
       userImpacting: false,
@@ -44,6 +48,12 @@ metricsCatalog.serviceDefinition({
         Sentry is an application monitoring platform.
         This SLI monitors the sentry API. 5xx responses are considered failures.
       |||,
+
+      apdex: histogramApdex(
+        histogram='sentry_jobs_duration',
+        selector=sentryQuerySelector,
+        satisfiedThreshold=10,
+      ),
 
       requestRate: rateMetric(
         counter='sentry_events_processed',
@@ -62,9 +72,6 @@ metricsCatalog.serviceDefinition({
         Sentry is an application monitoring platform.
         This SLI monitors the sentry API. 5xx responses are considered failures.
       |||,
-
-      local sentryQuerySelector = { namespace: 'sentry' },
-
 
       apdex: histogramApdex(
         histogram='nginx_ingress_controller_request_duration_seconds_bucket',
@@ -170,6 +177,44 @@ metricsCatalog.serviceDefinition({
       ),
 
       significantLabels: [],
+    },
+
+    redis_primary_server: {
+      apdexSkip: 'apdex for redis is measured clientside',
+      userImpacting: false,
+      featureCategory: 'not_owned',
+      serviceAggregation: false,
+      description: |||
+        Operations on the Redis primary for sentry's instance
+      |||,
+
+      requestRate: rateMetric(
+        counter='redis_commands_processed_total',
+        selector=sentryQuerySelector,
+        instanceFilter='redis_instance_info{role="master"}'
+      ),
+
+      significantLabels: ['instance'],
+
+      toolingLinks: [],
+    },
+
+    redis_secondary_servers: {
+      apdexSkip: 'apdex for redis is measured clientside',
+      userImpacting: false,  // userImpacting for data redundancy reasons
+      featureCategory: 'not_owned',
+      description: |||
+        Operations on the Redis secondaries for the sentry instance.
+      |||,
+
+      requestRate: rateMetric(
+        counter='redis_commands_processed_total',
+        selector=sentryQuerySelector,
+        instanceFilter='redis_instance_info{role="slave"}'
+      ),
+
+      significantLabels: ['instance'],
+      serviceAggregation: false,
     },
 
     rabbitmq_messages: {

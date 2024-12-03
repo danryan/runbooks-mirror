@@ -44,6 +44,14 @@ groups:
       sum by (component,env,environment,feature_category,fqdn,job,product_stage,region,shard,stage,stage_group,tier,type) (
         rate(rabbitmq_global_messages_unroutable_returned_total{env="ops",job=~"sentry-rabbitmq",type=~"sentry"}[5m] offset 30s)
       )
+- name: 'SLI Aggregations: sentry - redis_primary_server - 5m burn-rate'
+  interval: 1m
+  rules:
+  - record: sli_aggregations:redis_commands_processed_total:rate_5m
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,instance,namespace,product_stage,region,shard,stage,stage_group,tier,type) (
+        rate(redis_commands_processed_total{env="ops",namespace=~"sentry",type=~"sentry"}[5m] offset 30s)
+      )
 - name: 'SLI Aggregations: sentry - sentry_events - 5m burn-rate'
   interval: 1m
   rules:
@@ -51,6 +59,11 @@ groups:
     expr: |
       sum by (component,env,environment,feature_category,fqdn,job,product_stage,region,shard,stage,stage_group,tier,type) (
         rate(sentry_events_processed{env="ops",job=~"sentry-metrics",type=~"sentry"}[5m] offset 30s)
+      )
+  - record: sli_aggregations:sentry_jobs_duration:rate_5m
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,le,namespace,product_stage,region,shard,stage,stage_group,tier,type) (
+        rate(sentry_jobs_duration{env="ops",namespace=~"sentry",type=~"sentry"}[5m] offset 30s)
       )
 - name: 'SLI Aggregations: sentry - sentry_nginx - 5m burn-rate'
   interval: 1m
@@ -108,6 +121,14 @@ groups:
       sum by (component,env,environment,feature_category,fqdn,job,product_stage,region,shard,stage,stage_group,tier,type) (
         rate(rabbitmq_global_messages_unroutable_returned_total{env="ops",job=~"sentry-rabbitmq",type=~"sentry"}[30m] offset 30s)
       )
+- name: 'SLI Aggregations: sentry - redis_primary_server - 30m burn-rate'
+  interval: 2m
+  rules:
+  - record: sli_aggregations:redis_commands_processed_total:rate_30m
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,instance,namespace,product_stage,region,shard,stage,stage_group,tier,type) (
+        rate(redis_commands_processed_total{env="ops",namespace=~"sentry",type=~"sentry"}[30m] offset 30s)
+      )
 - name: 'SLI Aggregations: sentry - sentry_events - 30m burn-rate'
   interval: 2m
   rules:
@@ -115,6 +136,11 @@ groups:
     expr: |
       sum by (component,env,environment,feature_category,fqdn,job,product_stage,region,shard,stage,stage_group,tier,type) (
         rate(sentry_events_processed{env="ops",job=~"sentry-metrics",type=~"sentry"}[30m] offset 30s)
+      )
+  - record: sli_aggregations:sentry_jobs_duration:rate_30m
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,le,namespace,product_stage,region,shard,stage,stage_group,tier,type) (
+        rate(sentry_jobs_duration{env="ops",namespace=~"sentry",type=~"sentry"}[30m] offset 30s)
       )
 - name: 'SLI Aggregations: sentry - sentry_nginx - 30m burn-rate'
   interval: 2m
@@ -172,6 +198,14 @@ groups:
       sum by (component,env,environment,feature_category,fqdn,job,product_stage,region,shard,stage,stage_group,tier,type) (
         rate(rabbitmq_global_messages_unroutable_returned_total{env="ops",job=~"sentry-rabbitmq",type=~"sentry"}[1h] offset 30s)
       )
+- name: 'SLI Aggregations: sentry - redis_primary_server - 1h burn-rate'
+  interval: 1m
+  rules:
+  - record: sli_aggregations:redis_commands_processed_total:rate_1h
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,instance,namespace,product_stage,region,shard,stage,stage_group,tier,type) (
+        rate(redis_commands_processed_total{env="ops",namespace=~"sentry",type=~"sentry"}[1h] offset 30s)
+      )
 - name: 'SLI Aggregations: sentry - sentry_events - 1h burn-rate'
   interval: 1m
   rules:
@@ -179,6 +213,11 @@ groups:
     expr: |
       sum by (component,env,environment,feature_category,fqdn,job,product_stage,region,shard,stage,stage_group,tier,type) (
         rate(sentry_events_processed{env="ops",job=~"sentry-metrics",type=~"sentry"}[1h] offset 30s)
+      )
+  - record: sli_aggregations:sentry_jobs_duration:rate_1h
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,le,namespace,product_stage,region,shard,stage,stage_group,tier,type) (
+        rate(sentry_jobs_duration{env="ops",namespace=~"sentry",type=~"sentry"}[1h] offset 30s)
       )
 - name: 'SLI Aggregations: sentry - sentry_nginx - 1h burn-rate'
   interval: 1m

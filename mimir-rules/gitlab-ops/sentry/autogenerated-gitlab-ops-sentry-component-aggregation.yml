@@ -230,6 +230,102 @@ groups:
       )
   - record: gitlab_component_ops:rate_5m
     labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:redis_commands_processed_total:rate_5m{env="ops",namespace="sentry"} offset 30s
+      )
+  - record: gitlab_component_errors:ratio_5m
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_5m{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_5m{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_5m
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_5m{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_5m{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_ops:rate_5m
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:redis_commands_processed_total:rate_5m{env="ops",namespace="sentry"} offset 30s
+      )
+  - record: gitlab_component_errors:ratio_5m
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_5m{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_5m{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_5m
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_5m{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_5m{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:success:rate_5m
+    labels:
+      component: sentry_events
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:sentry_jobs_duration:rate_5m{env="ops",le="10",namespace="sentry"}
+      )
+  - record: gitlab_component_apdex:weight:score_5m
+    labels:
+      component: sentry_events
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:sentry_jobs_duration:rate_5m{env="ops",le="+Inf",namespace="sentry"}
+      )
+  - record: gitlab_component_ops:rate_5m
+    labels:
       component: sentry_events
       monitor: global
       tier: inf
@@ -571,6 +667,102 @@ groups:
       )
   - record: gitlab_component_ops:rate_30m
     labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:redis_commands_processed_total:rate_30m{env="ops",namespace="sentry"} offset 30s
+      )
+  - record: gitlab_component_errors:ratio_30m
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_30m{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_30m{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_30m
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_30m{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_30m{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_ops:rate_30m
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:redis_commands_processed_total:rate_30m{env="ops",namespace="sentry"} offset 30s
+      )
+  - record: gitlab_component_errors:ratio_30m
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_30m{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_30m{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_30m
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_30m{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_30m{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:success:rate_30m
+    labels:
+      component: sentry_events
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:sentry_jobs_duration:rate_30m{env="ops",le="10",namespace="sentry"}
+      )
+  - record: gitlab_component_apdex:weight:score_30m
+    labels:
+      component: sentry_events
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:sentry_jobs_duration:rate_30m{env="ops",le="+Inf",namespace="sentry"}
+      )
+  - record: gitlab_component_ops:rate_30m
+    labels:
       component: sentry_events
       monitor: global
       tier: inf
@@ -909,6 +1101,102 @@ groups:
       /
       sum by (env,environment,stage) (
         gitlab_component_apdex:weight:score_1h{component="rabbitmq_messages",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_ops:rate_1h
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:redis_commands_processed_total:rate_1h{env="ops",namespace="sentry"} offset 30s
+      )
+  - record: gitlab_component_errors:ratio_1h
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_1h
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_ops:rate_1h
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:redis_commands_processed_total:rate_1h{env="ops",namespace="sentry"} offset 30s
+      )
+  - record: gitlab_component_errors:ratio_1h
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_1h
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:success:rate_1h
+    labels:
+      component: sentry_events
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:sentry_jobs_duration:rate_1h{env="ops",le="10",namespace="sentry"}
+      )
+  - record: gitlab_component_apdex:weight:score_1h
+    labels:
+      component: sentry_events
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        sli_aggregations:sentry_jobs_duration:rate_1h{env="ops",le="+Inf",namespace="sentry"}
       )
   - record: gitlab_component_ops:rate_1h
     labels:
@@ -1298,6 +1586,142 @@ groups:
       /
       sum by (env,environment,stage) (
         gitlab_component_apdex:weight:score_6h{component="rabbitmq_messages",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:success:rate_6h
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:success:rate_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"}[6h] offset 30s)
+      )
+  - record: gitlab_component_apdex:weight:score_6h
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:weight:score_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"}[6h] offset 30s)
+      )
+  - record: gitlab_component_ops:rate_6h
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_ops:rate_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"}[6h] offset 30s)
+      )
+  - record: gitlab_component_errors:rate_6h
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_errors:rate_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"}[6h] offset 30s)
+      )
+  - record: gitlab_component_errors:ratio_6h
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_6h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_6h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_6h
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_6h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_6h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:success:rate_6h
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:success:rate_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"}[6h] offset 30s)
+      )
+  - record: gitlab_component_apdex:weight:score_6h
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:weight:score_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"}[6h] offset 30s)
+      )
+  - record: gitlab_component_ops:rate_6h
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_ops:rate_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"}[6h] offset 30s)
+      )
+  - record: gitlab_component_errors:rate_6h
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_errors:rate_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"}[6h] offset 30s)
+      )
+  - record: gitlab_component_errors:ratio_6h
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_6h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_6h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_6h
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_6h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_6h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
       )
   - record: gitlab_component_apdex:success:rate_6h
     labels:
@@ -1709,6 +2133,142 @@ groups:
       /
       sum by (env,environment,stage) (
         gitlab_component_apdex:weight:score_3d{component="rabbitmq_messages",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:success:rate_3d
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:success:rate_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"}[3d] offset 30s)
+      )
+  - record: gitlab_component_apdex:weight:score_3d
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:weight:score_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"}[3d] offset 30s)
+      )
+  - record: gitlab_component_ops:rate_3d
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_ops:rate_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"}[3d] offset 30s)
+      )
+  - record: gitlab_component_errors:rate_3d
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_errors:rate_1h{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"}[3d] offset 30s)
+      )
+  - record: gitlab_component_errors:ratio_3d
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_3d{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_3d{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_3d
+    labels:
+      component: redis_primary_server
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_3d{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_3d{component="redis_primary_server",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:success:rate_3d
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:success:rate_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"}[3d] offset 30s)
+      )
+  - record: gitlab_component_apdex:weight:score_3d
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_apdex:weight:score_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"}[3d] offset 30s)
+      )
+  - record: gitlab_component_ops:rate_3d
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_ops:rate_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"}[3d] offset 30s)
+      )
+  - record: gitlab_component_errors:rate_3d
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        avg_over_time(gitlab_component_errors:rate_1h{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"}[3d] offset 30s)
+      )
+  - record: gitlab_component_errors:ratio_3d
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_errors:rate_3d{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_ops:rate_3d{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+  - record: gitlab_component_apdex:ratio_3d
+    labels:
+      component: redis_secondary_servers
+      monitor: global
+      tier: inf
+      type: sentry
+    expr: |
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:success:rate_3d{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
+      )
+      /
+      sum by (env,environment,stage) (
+        gitlab_component_apdex:weight:score_3d{component="redis_secondary_servers",env="ops",monitor="global",tier="inf",type="sentry"} offset 30s
       )
   - record: gitlab_component_apdex:success:rate_3d
     labels:
