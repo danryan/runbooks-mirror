@@ -84,6 +84,24 @@ In the past, the 2 most important dashboards have been:
 1. `stream records age`: the most important because it measures how long events are sitting in Kinesis (which means they’re not getting enriched, in the past we have had problem with it backing up)
 1. `Auto-scaling group size`: if we see collectors scaling up, but not scaling back down, we may need to increase the number of collectors to make sure we’re always ready to ingest bigger event traffic
 
+## Refreshing EC2 instances within auto-scaling group
+
+The Snowplow collector and enricher instances are started with launch configuration templates.
+These launch configuration templates include the Snowplow configs- `collector-user-data.sh` and `enricher-user-data.sh`.
+
+The Snowplow configs are used to configure how the Snowplow collector/enricher and the Kinesis stream interact, and may occasionally need to be updated, here are the steps:
+
+1. Within the .sh file(s), update the Snowplow config values
+1. Create an MR to apply the changes, which should update the aws_launch_configuration resource, [example MR](https://ops.gitlab.net/gitlab-com/gl-infra/config-mgmt/-/merge_requests/9788)
+1. The instances need to be terminated/recreated for them to use the updated config. To access the `instance_refresh` tab in the UI:
+    * go to EC2 -> Auto Scaling groups -> click 'snowplow PRD enricher' or 'snowplow PRD collector' -> Instance refresh
+1. Once in the 'Instance refresh' tab, click 'Start instance refresh'
+1. For settings, use:
+    * Terminate and launch (default already)
+    * Set healthy percentage, Min=`95%`
+    * the rest of the settings, you can leave as is
+1. Click 'Start instance refresh', and track its progress
+
 ## How to SSH into EC2 instances
 
 There are 2 ways to SSH into EC2 instance:
