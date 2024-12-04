@@ -6,8 +6,7 @@
 
 # What is Sidekiq and why do we use it?
 
-Sidekiq is a background job processor for Ruby-on-Rails (arguably the most well
-known/popular one, although there are others). We use it to pull processing out of the web and API tiers, to keep the
+Sidekiq is a background job processor for Ruby-on-Rails. Sidekiq is arguably the most popular background job processor used in ruby environments today because it is multi-threaded and capable of very high throughput for non CPU-bound workloads [compared](https://github.com/mperham/sidekiq#performance) to it's single-threaded predecessor Resque. Note the Redis keys mentioned [below](#how-do-jobs-get-into-sidekiq) still use the Resque namespace. We use it to pull processing out of the web and API tiers, to keep the
 responsiveness of web requests acceptable for our users by keeping our front-end fleet workers (of which we have a
 limited number) being kept busy waiting on 3rd party services with unknown and unpredictable latency and delays. The
 classic example is sending e-mails in response to user actions, but GitLab also uses background jobs for other local
