@@ -76,7 +76,7 @@ For the purposes of supporting Sentry (e.g. adding new projects, configuring exi
 
 ### SRE Admin Access
 
-1. Login in to Sentry with Okta SSO using Okta ops-contact / `ops-contact+sentry@gitlab.com` from 1Pass. You will need to add it to Okta verify if not already.
+1. Login in to [Sentry](https://new-sentry.gitlab.net) with Okta SSO using the `Okta ops-contact` entry from 1Pass. You will need to add it to Okta Verify before you proceed (see instructions below).
 1. Select `Google Authenticator` to verify, and enter the OTP from the `Okta ops-contact` entry in 1Password (no, you don't need to actually use Google Authenticator here).
 1. At this point Sentry will prompt for 2FA. Use the OTP (or a recovery code) from the `New Sentry Ops admin login` entry in 1Password.
 1. You should now be logged into Sentry as the `ops-contact+sentry@gitlab.com` user.
