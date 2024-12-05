@@ -15,10 +15,12 @@ Depending on the features that are required from Mailgun, the configuration will
 When using Mailgun's email tracking feature, the following is required:
 
 Mailgun domains:
+
 - example.com
 - email.example.com
 
 DNS:
+
 - TXT example.com -> DKIM record
 - TXT example.com -> SPF record
 - MX example.com -> mxa.mailgun.org
@@ -30,9 +32,11 @@ DNS:
 If the email tracking feature is not required, simply do not create the associated CNAME, and registering the additional email.example.com domain is not required. The requirements are then:
 
 Mailgun domains:
+
 - example.com
 
 DNS:
+
 - TXT example.com -> DKIM record
 - TXT example.com -> SPF record
 - MX example.com -> mxa.mailgun.org
