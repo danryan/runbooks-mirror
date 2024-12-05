@@ -479,6 +479,11 @@ Every new CIDR should start at directly after the previously reserved one ends.
 | `GCP/r-saas-l-m-amd64-org-4`               | `gitlab-ci/r-saas-l-m-amd64-org/p4`         | `10.14.40.0/21`  |
 | `GCP/r-saas-l-m-amd64-org-5`               | `gitlab-ci/r-saas-l-m-amd64-org/p5`         | `10.14.48.0/21`  |
 | `GCP/r-saas-l-m-amd64-org-6`               | `gitlab-ci/r-saas-l-m-amd64-org/p6`         | `10.14.56.0/21`  |
+| `GCP/r-saas-l-s-amd64-1`                   | `gitlab-ci/r-saas-l-s-amd64/p1`             | `10.14.64.0/21`  |
+| `GCP/r-saas-l-s-amd64-2`                   | `gitlab-ci/r-saas-l-s-amd64/p2`             | `10.14.72.0/21`  |
+| `GCP/r-saas-l-s-amd64-3`                   | `gitlab-ci/r-saas-l-s-amd64/p3`             | `10.14.80.0/21`  |
+| `GCP/r-saas-l-s-amd64-4`                   | `gitlab-ci/r-saas-l-s-amd64/p4`             | `10.14.88.0/21`  |
+| `GCP/r-saas-l-s-amd64-5`                   | `gitlab-ci/r-saas-l-s-amd64/p5`             | `10.14.96.0/21`  |
 | `AWS/r-saas-m-staging`                     | `jobs-vpc/saas-macos-staging-blue-1`        | `10.20.0.0/21`   |
 | `AWS/r-saas-m-staging`                     | `jobs-vpc/saas-macos-staging-blue-2`        | `10.20.8.0/21`   |
 | `AWS/r-saas-m-staging`                     | `jobs-vpc/saas-macos-staging-green-1`       | `10.20.16.0/21`  |
