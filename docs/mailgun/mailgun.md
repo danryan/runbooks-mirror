@@ -14,6 +14,10 @@ Depending on the features that are required from Mailgun, the configuration will
 
 When using Mailgun's email tracking feature, the following is required:
 
+Mailgun domains:
+- example.com
+- email.example.com
+
 DNS:
 - TXT example.com -> DKIM record
 - TXT example.com -> SPF record
@@ -23,7 +27,16 @@ DNS:
 
 **Important**: You _must_ configure an additional sending domain in Mailgun for `email.example.com` when this CNAME is created. This is important as otherwise a malicious user could add the domain in their account, and this domain will already have valid MX records pointing back to Mailgun (because mailgun.org contains the same MX records). This would potentially allow them to receive email from this GitLab owned domain. When adding this additional sending domain, DO NOT add any additional DNS records for it, we are only configuring this in Mailgun to prevent other parties from claiming it.
 
-If the email tracking feature is not required, simply do not create the associated CNAME, and registering the additional email.example.com domain is not required.
+If the email tracking feature is not required, simply do not create the associated CNAME, and registering the additional email.example.com domain is not required. The requirements are then:
+
+Mailgun domains:
+- example.com
+
+DNS:
+- TXT example.com -> DKIM record
+- TXT example.com -> SPF record
+- MX example.com -> mxa.mailgun.org
+- MX example.com -> mxb.mailgun.org
 
 ## Sending Mail
 
