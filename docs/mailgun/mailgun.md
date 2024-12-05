@@ -4,6 +4,27 @@
 
 [TOC]
 
+## Configuring a domain
+
+When configuring a new domain in Mailgun, it is important to configure all of the appropriate DNS records and sending domains in Mailgun's system.
+
+Depending on the features that are required from Mailgun, the configuration will be different. Using example.com as an example:
+
+### Email tracking feature
+
+When using Mailgun's email tracking feature, the following is required:
+
+DNS:
+- TXT example.com -> DKIM record
+- TXT example.com -> SPF record
+- MX example.com -> mxa.mailgun.org
+- MX example.com -> mxb.mailgun.org
+- CNAME email.example.com -> mailgun.org
+
+**Important**: You _must_ configure an additional sending domain in Mailgun for email.example.com when this CNAME is created. This is important as otherwise a malicious user could add the domain in their account, and this domain will already have valid MX records pointing back to Mailgun (because mailgun.org contains the same MX records), potentially allowing them to receive email from this GitLab owned domain. When adding this additional sending domain, DO NOT add any additional DNS records for it, we are only configuring this in Mailgun to prevent other parties from claiming it.
+
+If the email tracking feature is not required, simply do not create the associated CNAME, and registering the additional email.example.com domain is not required.
+
 ## Sending Mail
 
 The application is provided credentials to use authenticated SMTP to deliver outbound email to Mailgun. These values are defined in [the helm charts for GitLab.com](https://gitlab.com/gitlab-com/gl-infra/k8s-workloads/gitlab-com).
