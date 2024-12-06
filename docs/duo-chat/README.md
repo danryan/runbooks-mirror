@@ -215,7 +215,7 @@ Compare the default `env` variables from [staging](https://gitlab.com/gitlab-org
 
 When a customer reports a problem with Duo Chat in the IDE, it can be difficult to tell if the problem is IDE-specific or not.
 
-The first step is to have the customer test their query on the web version of Duo Chat. If they have the same problem on web, it is not IDE-specific. 
+The first step is to have the customer test their query on the web version of Duo Chat. If they have the same problem on web, it is not IDE-specific.
 
 Then, they can perform these steps to determine if it is a backend (AI Gateway) problem, or client-side on the editor:
 
