@@ -102,6 +102,22 @@ Here is an example of how to find correlated logs in the AI Gateway:
 - Filter for the logs with `json.jsonPayload.correlation_id : <correlation_id`
 - _optional_: Click on the expanded logs icon and select "Surrounding documents" to view logs within relative same time stamp.
 
+### How to determine global user ID for a user
+When troubleshooting requests from self-managed users on the AI Gateway, it may be helpful to find their global user ID to narrow down requests.
+They should run this command on their instance rails console:
+```ruby
+u = User.find_by_username(<USERNAME>)
+Gitlab::GlobalAnonymousId.user_id(u)
+```
+
+You can also attempt to figure it out if you know the `gitlab_host_name` and approximate timestamp.
+1. Go to [AI Gateway log (Duo Chat)](https://log.gprd.gitlab.net/app/r/s/DhMe1)
+2. Filter by the `gitlab_host_name `
+3. Narrow down the request due to the timestamp given by the customer
+4. Look at the requests in the given time period and try to determine a `gitlab_global_user_id` that fits. 
+
+This process involves guesswork, so it is best to ask the customer directly.
+
 ### Extra Kibana links
 
 You can find other helpful log searches by looking at saved Kibana objects with the [`group::ai_framework` tag](https://log.gprd.gitlab.net/app/management/kibana/objects).
