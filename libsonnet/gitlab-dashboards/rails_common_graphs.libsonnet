@@ -27,7 +27,6 @@ local layout = import 'grafana/layout.libsonnet';
       targetBlank: true,
     };
 
-
     layout.grid([
       basic.latencyTimeseries(
         title='p95 Latency Estimate',
@@ -154,6 +153,55 @@ local layout = import 'grafana/layout.libsonnet';
       )
       .addDataLink(elasticRailsDataLink)
       .addDataLink(elasticRailsVisDataLink),
+      basic.timeseries(
+        title='Middleware check path traversal executions rate',
+        description='Middleware check path traversal executions rate.',
+        legendFormat='request rejected: {{request_rejected}}',
+        query=|||
+          sum by(request_rejected)(
+            rate(
+              gitlab_sli_path_traversal_check_request_apdex_total{
+                environment="$environment",
+                type="%(serviceType)s",
+                stage="%(serviceStage)s",
+                job="gitlab-rails"
+              }[$__rate_interval]
+            )
+          )
+        ||| % formatConfig,
+        interval='1m',
+        intervalFactor=2
+      ),
+      basic.percentageTimeseries(
+        title='Middleware check path traversal execution time Apdex',
+        description='Apdex of the middleware check path traversal executions with a threshold of 1ms.',
+        yAxisLabel='Apdex %',
+        legendFormat='request rejected: {{request_rejected}}',
+        query=|||
+          sum by(request_rejected)(
+            rate(
+              gitlab_sli_path_traversal_check_request_apdex_success_total{
+                environment="$environment",
+                type="%(serviceType)s",
+                stage="%(serviceStage)s",
+                job="gitlab-rails"
+              }[$__rate_interval]
+            )
+          ) /
+          sum by(request_rejected)(
+            rate(
+              gitlab_sli_path_traversal_check_request_apdex_total{
+                environment="$environment",
+                type="%(serviceType)s",
+                stage="%(serviceStage)s",
+                job="gitlab-rails"
+              }[$__rate_interval]
+            )
+          )
+        ||| % formatConfig,
+        interval='1m',
+        intervalFactor=2
+      ),
     ], cols=2, rowHeight=10, startRow=startRow),
 
 }
