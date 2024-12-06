@@ -113,6 +113,7 @@ Gitlab::GlobalAnonymousId.user_id(u)
 ```
 
 You can also attempt to figure it out if you know the `gitlab_host_name` and approximate timestamp.
+
 1. Go to [AI Gateway log (Duo Chat)](https://log.gprd.gitlab.net/app/r/s/DhMe1)
 2. Filter by the `gitlab_host_name `
 3. Narrow down the request due to the timestamp given by the customer
