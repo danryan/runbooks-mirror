@@ -42,7 +42,7 @@ groups:
       grafana_panel_id: "1515902021"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, base_model, region, location) (
+        max by(base_model,environment,location,region,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -56,7 +56,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, base_model, region, location) (
+        max by(base_model,environment,location,region,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -102,7 +102,7 @@ groups:
       grafana_panel_id: "3658506870"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, base_model, region, location) (
+        max by(base_model,environment,location,region,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -116,7 +116,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, base_model, region, location) (
+        max by(base_model,environment,location,region,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -166,24 +166,24 @@ groups:
       grafana_panel_id: "621984338"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, model_engine, model_name) (
+        max by(environment,model_engine,model_name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (environment, tier, type, stage, shard, model_engine, model_name)(max_over_time(model_inferences_in_flight{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
+              sum by (environment,model_engine,model_name,shard,stage,tier,type)(max_over_time(model_inferences_in_flight{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
               /
-              min by (environment, tier, type, stage, shard, model_engine, model_name)(min_over_time(model_inferences_max_concurrent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
+              min by (environment,model_engine,model_name,shard,stage,tier,type)(min_over_time(model_inferences_max_concurrent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
               ,
               1)
           ,
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, model_engine, model_name) (
+        max by(environment,model_engine,model_name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (environment, tier, type, stage, shard, model_engine, model_name)(max_over_time(model_inferences_in_flight{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
+              sum by (environment,model_engine,model_name,shard,stage,tier,type)(max_over_time(model_inferences_in_flight{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
               /
-              min by (environment, tier, type, stage, shard, model_engine, model_name)(min_over_time(model_inferences_max_concurrent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
+              min by (environment,model_engine,model_name,shard,stage,tier,type)(min_over_time(model_inferences_max_concurrent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
               ,
               1)
           ,
@@ -226,24 +226,24 @@ groups:
       grafana_panel_id: "2029158470"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, model_engine) (
+        max by(environment,model_engine,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (environment, tier, type, stage, shard, model_engine)(max_over_time(model_inferences_in_flight{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
+              sum by (environment,model_engine,shard,stage,tier,type)(max_over_time(model_inferences_in_flight{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
               /
-              max by (environment, tier, type, stage, shard, model_engine)(min_over_time(model_inferences_max_concurrent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
+              max by (environment,model_engine,shard,stage,tier,type)(min_over_time(model_inferences_max_concurrent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
               ,
               1)
           ,
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, model_engine) (
+        max by(environment,model_engine,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (environment, tier, type, stage, shard, model_engine)(max_over_time(model_inferences_in_flight{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
+              sum by (environment,model_engine,shard,stage,tier,type)(max_over_time(model_inferences_in_flight{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
               /
-              max by (environment, tier, type, stage, shard, model_engine)(min_over_time(model_inferences_max_concurrent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
+              max by (environment,model_engine,shard,stage,tier,type)(min_over_time(model_inferences_max_concurrent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[10m]))
               ,
               1)
           ,
@@ -282,7 +282,7 @@ groups:
       grafana_panel_id: "1001792825"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, job, instance) (
+        max by(environment,instance,job,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -302,7 +302,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, job, instance) (
+        max by(environment,instance,job,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -353,10 +353,10 @@ groups:
       grafana_panel_id: "1050857443"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, type, shard, revision_name, region, location) (
+        max by(environment,location,region,revision_name,shard,type) (
           clamp_min(
             clamp_max(
-              histogram_quantile(0.9999, sum by(le, environment, type, shard, revision_name, region, location)
+              histogram_quantile(0.9999, sum by(le, environment,location,region,revision_name,shard,type)
                 (
                   avg_over_time(
                     stackdriver_cloud_run_revision_run_googleapis_com_container_cpu_utilizations_bucket{job="runway-exporter",environment="{{ $labels.environment }}",type="{{ $labels.type }}"}[30m]
@@ -369,10 +369,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, type, shard, revision_name, region, location) (
+        max by(environment,location,region,revision_name,shard,type) (
           clamp_min(
             clamp_max(
-              histogram_quantile(0.9999, sum by(le, environment, type, shard, revision_name, region, location)
+              histogram_quantile(0.9999, sum by(le, environment,location,region,revision_name,shard,type)
                 (
                   avg_over_time(
                     stackdriver_cloud_run_revision_run_googleapis_com_container_cpu_utilizations_bucket{job="runway-exporter",environment="{{ $labels.environment }}",type="{{ $labels.type }}"}[30m]
@@ -415,10 +415,10 @@ groups:
       grafana_panel_id: "1738137433"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, type, shard, revision_name, region, location) (
+        max by(environment,location,region,revision_name,shard,type) (
           clamp_min(
             clamp_max(
-              sum by (environment, type, shard, revision_name, region, location) (
+              sum by (environment,location,region,revision_name,shard,type) (
                 stackdriver_cloud_run_revision_run_googleapis_com_container_instance_count{job="runway-exporter",state="active",environment="{{ $labels.environment }}",type="{{ $labels.type }}"}
               )
               /
@@ -429,10 +429,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, type, shard, revision_name, region, location) (
+        max by(environment,location,region,revision_name,shard,type) (
           clamp_min(
             clamp_max(
-              sum by (environment, type, shard, revision_name, region, location) (
+              sum by (environment,location,region,revision_name,shard,type) (
                 stackdriver_cloud_run_revision_run_googleapis_com_container_instance_count{job="runway-exporter",state="active",environment="{{ $labels.environment }}",type="{{ $labels.type }}"}
               )
               /
@@ -473,10 +473,10 @@ groups:
       grafana_panel_id: "4285373877"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, type, shard, revision_name, region, location) (
+        max by(environment,location,region,revision_name,shard,type) (
           clamp_min(
             clamp_max(
-              histogram_quantile(0.9999, sum by(le, environment, type, shard, revision_name, region, location)
+              histogram_quantile(0.9999, sum by(le, environment,location,region,revision_name,shard,type)
                 (
                   rate(
                     stackdriver_cloud_run_revision_run_googleapis_com_container_max_request_concurrencies_bucket{job="runway-exporter",state="active",environment="{{ $labels.environment }}",type="{{ $labels.type }}"}[30m]
@@ -489,10 +489,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, type, shard, revision_name, region, location) (
+        max by(environment,location,region,revision_name,shard,type) (
           clamp_min(
             clamp_max(
-              histogram_quantile(0.9999, sum by(le, environment, type, shard, revision_name, region, location)
+              histogram_quantile(0.9999, sum by(le, environment,location,region,revision_name,shard,type)
                 (
                   rate(
                     stackdriver_cloud_run_revision_run_googleapis_com_container_max_request_concurrencies_bucket{job="runway-exporter",state="active",environment="{{ $labels.environment }}",type="{{ $labels.type }}"}[30m]
@@ -535,10 +535,10 @@ groups:
       grafana_panel_id: "377718254"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, type, shard, revision_name, region) (
+        max by(environment,region,revision_name,shard,type) (
           clamp_min(
             clamp_max(
-              histogram_quantile(0.9999, sum by(le, environment, type, shard, revision_name, region)
+              histogram_quantile(0.9999, sum by(le, environment,region,revision_name,shard,type)
                 (
                   avg_over_time(
                     stackdriver_cloud_run_revision_run_googleapis_com_container_memory_utilizations_bucket{job="runway-exporter",environment="{{ $labels.environment }}",type="{{ $labels.type }}"}[30m]
@@ -551,10 +551,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, type, shard, revision_name, region) (
+        max by(environment,region,revision_name,shard,type) (
           clamp_min(
             clamp_max(
-              histogram_quantile(0.9999, sum by(le, environment, type, shard, revision_name, region)
+              histogram_quantile(0.9999, sum by(le, environment,region,revision_name,shard,type)
                 (
                   avg_over_time(
                     stackdriver_cloud_run_revision_run_googleapis_com_container_memory_utilizations_bucket{job="runway-exporter",environment="{{ $labels.environment }}",type="{{ $labels.type }}"}[30m]

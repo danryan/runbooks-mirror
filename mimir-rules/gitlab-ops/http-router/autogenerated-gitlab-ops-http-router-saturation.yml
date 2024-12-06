@@ -8,7 +8,7 @@ groups:
     labels:
       component: http_router_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             max_over_time(cloudflare_worker_cpu_time{quantile="P999", env=~"gprd|gstg",type="http-router"}[1m]) / (50 * 1000)

@@ -4213,7 +4213,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "clamp_min(\n  clamp_max(\n    max by(type, pod, container) (\n  clamp_min(\n    clamp_max(\n      sum by (type, pod, container) (\n        rate(container_cpu_usage_seconds_total:labeled{container!=\"\", container!=\"POD\", type=\"sidekiq\"}[5m])\n      )\n      /\n      sum by(type, pod, container) (\n        container_spec_cpu_quota:labeled{container!=\"\", container!=\"POD\", type=\"sidekiq\"}\n        /\n        container_spec_cpu_period:labeled{container!=\"\", container!=\"POD\", type=\"sidekiq\"}\n      )\n      ,\n      1)\n  ,\n  0)\n)\n\n  ,1)\n,0)\n",
+              "expr": "clamp_min(\n  clamp_max(\n    max by(container,pod,type) (\n  clamp_min(\n    clamp_max(\n      sum by (container,pod,type) (\n        rate(container_cpu_usage_seconds_total:labeled{container!=\"\", container!=\"POD\", type=\"sidekiq\"}[5m])\n      )\n      /\n      sum by(container,pod,type) (\n        container_spec_cpu_quota:labeled{container!=\"\", container!=\"POD\", type=\"sidekiq\"}\n        /\n        container_spec_cpu_period:labeled{container!=\"\", container!=\"POD\", type=\"sidekiq\"}\n      )\n      ,\n      1)\n  ,\n  0)\n)\n\n  ,1)\n,0)\n",
               "format": "time_series",
               "interval": "1m",
               "intervalFactor": 1,

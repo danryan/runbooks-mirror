@@ -40,7 +40,7 @@ groups:
       grafana_panel_id: "3017284519"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, shard, database_id) (
+        max by(database_id,environment,shard) (
           clamp_min(
             clamp_max(
               avg_over_time(stackdriver_cloudsql_database_cloudsql_googleapis_com_database_cpu_utilization{environment="{{ $labels.environment }}"}[5m])
@@ -50,7 +50,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, shard, database_id) (
+        max by(database_id,environment,shard) (
           clamp_min(
             clamp_max(
               avg_over_time(stackdriver_cloudsql_database_cloudsql_googleapis_com_database_cpu_utilization{environment="{{ $labels.environment }}"}[5m])
@@ -90,7 +90,7 @@ groups:
       grafana_panel_id: "2351208402"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, shard, database_id) (
+        max by(database_id,environment,shard) (
           clamp_min(
             clamp_max(
               avg_over_time(stackdriver_cloudsql_database_cloudsql_googleapis_com_database_disk_utilization{environment="{{ $labels.environment }}"}[5m])
@@ -100,7 +100,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, shard, database_id) (
+        max by(database_id,environment,shard) (
           clamp_min(
             clamp_max(
               avg_over_time(stackdriver_cloudsql_database_cloudsql_googleapis_com_database_disk_utilization{environment="{{ $labels.environment }}"}[5m])
@@ -140,7 +140,7 @@ groups:
       grafana_panel_id: "395749012"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, shard, database_id) (
+        max by(database_id,environment,shard) (
           clamp_min(
             clamp_max(
               avg_over_time(stackdriver_cloudsql_database_cloudsql_googleapis_com_database_memory_utilization{environment="{{ $labels.environment }}"}[5m])
@@ -150,7 +150,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, shard, database_id) (
+        max by(database_id,environment,shard) (
           clamp_min(
             clamp_max(
               avg_over_time(stackdriver_cloudsql_database_cloudsql_googleapis_com_database_memory_utilization{environment="{{ $labels.environment }}"}[5m])

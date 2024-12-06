@@ -8,10 +8,10 @@ groups:
     labels:
       component: cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            1 - avg by (env, environment, tier, type, stage, shard) (
+            1 - avg by (env,environment,shard,stage,tier,type) (
               rate(node_cpu_seconds_total{mode="idle", env="gstg",type="jaeger"}[5m])
             )
             ,
@@ -23,7 +23,7 @@ groups:
     labels:
       component: disk_inodes
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             1 - (
@@ -40,10 +40,10 @@ groups:
     labels:
       component: disk_maximum_capacity
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            max by (env, environment, tier, type, stage, shard, fqdn, device) (
+            max by (device,env,environment,fqdn,shard,stage,tier,type) (
               node_filesystem_size_bytes{fstype=~"ext.|xfs", env="gstg",type="jaeger"} - node_filesystem_avail_bytes{fstype=~"ext.|xfs", env="gstg",type="jaeger"}
             ) / (64*2^40)
             ,
@@ -55,7 +55,7 @@ groups:
     labels:
       component: disk_space
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -70,7 +70,7 @@ groups:
     labels:
       component: memory
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             instance:node_memory_utilization:ratio{env="gstg",type="jaeger"} or instance:node_memory_utilisation:ratio{env="gstg",type="jaeger"}
@@ -83,7 +83,7 @@ groups:
     labels:
       component: nf_conntrack_entries
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             max_over_time(node_nf_conntrack_entries{env="gstg",type="jaeger"}[1m])
@@ -98,7 +98,7 @@ groups:
     labels:
       component: node_schedstat_waiting
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             avg without (cpu) (rate(node_schedstat_waiting_seconds_total{env="gstg",type="jaeger"}[1h]))
@@ -111,7 +111,7 @@ groups:
     labels:
       component: open_fds
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -134,10 +134,10 @@ groups:
     labels:
       component: shard_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            1 - avg by (env, environment, tier, type, stage, shard) (
+            1 - avg by (env,environment,shard,stage,tier,type) (
               rate(node_cpu_seconds_total{mode="idle", env="gstg",type="jaeger"}[5m])
             )
             ,
@@ -149,7 +149,7 @@ groups:
     labels:
       component: single_node_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             avg without(cpu, mode) (1 - rate(node_cpu_seconds_total{mode="idle", env="gstg",type="jaeger"}[5m]))

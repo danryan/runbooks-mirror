@@ -42,7 +42,7 @@ groups:
       grafana_panel_id: "3250352017"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, script_name) (
+        max by(environment,script_name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               max_over_time(cloudflare_worker_cpu_time{quantile="P999", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1m]) / (50 * 1000)
@@ -52,7 +52,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, script_name) (
+        max by(environment,script_name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               max_over_time(cloudflare_worker_cpu_time{quantile="P999", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1m]) / (50 * 1000)

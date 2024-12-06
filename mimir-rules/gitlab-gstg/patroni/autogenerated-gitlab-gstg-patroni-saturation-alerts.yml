@@ -38,10 +38,10 @@ groups:
       grafana_panel_id: "1465724101"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard) (
+        max by(environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              1 - avg by (environment, tier, type, stage, shard) (
+              1 - avg by (environment,shard,stage,tier,type) (
                 rate(node_cpu_seconds_total{mode="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -50,10 +50,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard) (
+        max by(environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              1 - avg by (environment, tier, type, stage, shard) (
+              1 - avg by (environment,shard,stage,tier,type) (
                 rate(node_cpu_seconds_total{mode="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -92,7 +92,7 @@ groups:
       grafana_panel_id: "39965907"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               1 - (
@@ -106,7 +106,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               1 - (
@@ -151,7 +151,7 @@ groups:
       grafana_panel_id: "39965907"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               1 - (
@@ -165,7 +165,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               1 - (
@@ -214,10 +214,10 @@ groups:
       grafana_panel_id: "1042809451"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              max by (environment, tier, type, stage, shard, fqdn, device) (
+              max by (device,environment,fqdn,shard,stage,tier,type) (
                 node_filesystem_size_bytes{fstype=~"ext.|xfs", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} - node_filesystem_avail_bytes{fstype=~"ext.|xfs", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
               ) / (64*2^40)
               ,
@@ -226,10 +226,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              max by (environment, tier, type, stage, shard, fqdn, device) (
+              max by (device,environment,fqdn,shard,stage,tier,type) (
                 node_filesystem_size_bytes{fstype=~"ext.|xfs", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} - node_filesystem_avail_bytes{fstype=~"ext.|xfs", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
               ) / (64*2^40)
               ,
@@ -267,7 +267,7 @@ groups:
       grafana_panel_id: "2661375984"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -279,7 +279,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -320,7 +320,7 @@ groups:
       grafana_panel_id: "2661375984"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -332,7 +332,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -375,7 +375,7 @@ groups:
       grafana_panel_id: "3942129027"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               rate(node_disk_reads_completed_total{device!="sda", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[20m])
@@ -387,7 +387,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               rate(node_disk_reads_completed_total{device!="sda", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[20m])
@@ -427,7 +427,7 @@ groups:
       grafana_panel_id: "3120931940"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               rate(node_disk_read_bytes_total{device!="sda", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[20m])
@@ -439,7 +439,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               rate(node_disk_read_bytes_total{device!="sda", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[20m])
@@ -483,7 +483,7 @@ groups:
       grafana_panel_id: "1520756669"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               rate(node_disk_writes_completed_total{device!="sda", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[20m])
@@ -495,7 +495,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               rate(node_disk_writes_completed_total{device!="sda", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[20m])
@@ -539,7 +539,7 @@ groups:
       grafana_panel_id: "374696527"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               rate(node_disk_written_bytes_total{device!="sda", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[20m])
@@ -551,7 +551,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, device) (
+        max by(device,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               rate(node_disk_written_bytes_total{device!="sda", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[20m])
@@ -593,7 +593,7 @@ groups:
       grafana_panel_id: "503581002"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, instance) (
+        max by(environment,fqdn,instance,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               max_over_time(node_nf_conntrack_entries{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1m])
@@ -605,7 +605,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, instance) (
+        max by(environment,fqdn,instance,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               max_over_time(node_nf_conntrack_entries{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1m])
@@ -649,7 +649,7 @@ groups:
       grafana_panel_id: "1415313189"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, shard) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               avg without (cpu) (rate(node_schedstat_waiting_seconds_total{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1h]))
@@ -659,7 +659,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, shard) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               avg without (cpu) (rate(node_schedstat_waiting_seconds_total{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1h]))
@@ -701,7 +701,7 @@ groups:
       grafana_panel_id: "1001792825"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, job, instance) (
+        max by(environment,instance,job,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -721,7 +721,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, job, instance) (
+        max by(environment,instance,job,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -772,13 +772,13 @@ groups:
       grafana_panel_id: "1954311497"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               sum without (state) (
                 pg_stat_activity_count{datname=~"gitlabhq_production|gitlabhq_registry", state!="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} unless on(instance) (pg_replication_is_replica == 1)
               )
-              / on (environment, tier, type, stage, shard, fqdn)
+              / on (environment,fqdn,shard,stage,tier,type)
               pg_settings_max_connections{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
               ,
               1)
@@ -786,13 +786,13 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               sum without (state) (
                 pg_stat_activity_count{datname=~"gitlabhq_production|gitlabhq_registry", state!="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} unless on(instance) (pg_replication_is_replica == 1)
               )
-              / on (environment, tier, type, stage, shard, fqdn)
+              / on (environment,fqdn,shard,stage,tier,type)
               pg_settings_max_connections{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
               ,
               1)
@@ -830,13 +830,13 @@ groups:
       grafana_panel_id: "3266646533"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               sum without (state) (
                 pg_stat_activity_count{datname=~"gitlabhq_production|gitlabhq_registry", state!="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} and on(instance) (pg_replication_is_replica == 1)
               )
-              / on (environment, tier, type, stage, shard, fqdn)
+              / on (environment,fqdn,shard,stage,tier,type)
               pg_settings_max_connections{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
               ,
               1)
@@ -844,13 +844,13 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               sum without (state) (
                 pg_stat_activity_count{datname=~"gitlabhq_production|gitlabhq_registry", state!="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} and on(instance) (pg_replication_is_replica == 1)
               )
-              / on (environment, tier, type, stage, shard, fqdn)
+              / on (environment,fqdn,shard,stage,tier,type)
               pg_settings_max_connections{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
               ,
               1)
@@ -892,7 +892,7 @@ groups:
       grafana_panel_id: "1671220473"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -908,7 +908,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -957,24 +957,24 @@ groups:
       grafana_panel_id: "2387842464"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (environment, tier, type, stage, shard, fqdn) (last_over_time(gitlab_database_bloat_btree_bloat_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1h]))
+              sum by (environment,fqdn,shard,stage,tier,type) (last_over_time(gitlab_database_bloat_btree_bloat_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1h]))
               /
-              sum by (environment, tier, type, stage, shard, fqdn) (last_over_time(gitlab_database_bloat_btree_real_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1h]))
+              sum by (environment,fqdn,shard,stage,tier,type) (last_over_time(gitlab_database_bloat_btree_real_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1h]))
               ,
               1)
           ,
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (environment, tier, type, stage, shard, fqdn) (last_over_time(gitlab_database_bloat_btree_bloat_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1h]))
+              sum by (environment,fqdn,shard,stage,tier,type) (last_over_time(gitlab_database_bloat_btree_bloat_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1h]))
               /
-              sum by (environment, tier, type, stage, shard, fqdn) (last_over_time(gitlab_database_bloat_btree_real_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1h]))
+              sum by (environment,fqdn,shard,stage,tier,type) (last_over_time(gitlab_database_bloat_btree_real_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1h]))
               ,
               1)
           ,
@@ -1013,10 +1013,10 @@ groups:
       grafana_panel_id: "3254820333"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, column_name) (
+        max by(column_name,environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              max by (environment, tier, type, stage, shard, column_name) (
+              max by (column_name,environment,shard,stage,tier,type) (
                 pg_int4_saturation_current_largest_value{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}",column_name!~".+(.|-|_)iid"} / pg_int4_saturation_column_max_value{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}",column_name!~".+(.|-|_)iid"}
               )
               ,
@@ -1025,10 +1025,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, column_name) (
+        max by(column_name,environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              max by (environment, tier, type, stage, shard, column_name) (
+              max by (column_name,environment,shard,stage,tier,type) (
                 pg_int4_saturation_current_largest_value{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}",column_name!~".+(.|-|_)iid"} / pg_int4_saturation_column_max_value{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}",column_name!~".+(.|-|_)iid"}
               )
               ,
@@ -1072,7 +1072,7 @@ groups:
       grafana_panel_id: "1735812993"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               1 - (
@@ -1086,7 +1086,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               1 - (
@@ -1129,7 +1129,7 @@ groups:
       grafana_panel_id: "3989464622"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(env, environment, tier, type, stage, shard, fqdn) (
+        max by(env,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               avg without(cpu, mode) (
@@ -1147,7 +1147,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(env, environment, tier, type, stage, shard, fqdn) (
+        max by(env,environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               avg without(cpu, mode) (
@@ -1194,24 +1194,24 @@ groups:
       grafana_panel_id: "773890326"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (environment, tier, type, stage, shard, fqdn) (avg_over_time(gitlab_database_bloat_table_bloat_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[58m]))
+              sum by (environment,fqdn,shard,stage,tier,type) (avg_over_time(gitlab_database_bloat_table_bloat_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[58m]))
               /
-              sum by (environment, tier, type, stage, shard, fqdn) (avg_over_time(gitlab_database_bloat_table_real_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[58m]))
+              sum by (environment,fqdn,shard,stage,tier,type) (avg_over_time(gitlab_database_bloat_table_real_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[58m]))
               ,
               1)
           ,
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (environment, tier, type, stage, shard, fqdn) (avg_over_time(gitlab_database_bloat_table_bloat_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[58m]))
+              sum by (environment,fqdn,shard,stage,tier,type) (avg_over_time(gitlab_database_bloat_table_bloat_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[58m]))
               /
-              sum by (environment, tier, type, stage, shard, fqdn) (avg_over_time(gitlab_database_bloat_table_real_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[58m]))
+              sum by (environment,fqdn,shard,stage,tier,type) (avg_over_time(gitlab_database_bloat_table_real_size{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[58m]))
               ,
               1)
           ,
@@ -1254,11 +1254,11 @@ groups:
       grafana_panel_id: "4019870218"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard) (
+        max by(environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
-                sum by (environment, tier, type, stage, shard) (
+                sum by (environment,shard,stage,tier,type) (
                   increase(fluentd_pg_auto_vacuum_elapsed_seconds_total{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1d])
                 )
                 / on(environment, type) group_left() (
@@ -1271,7 +1271,7 @@ groups:
                 (2^31 - 10^6)
                 /
                 (
-                  avg by (environment, tier, type, stage, shard) (
+                  avg by (environment,shard,stage,tier,type) (
                     deriv(pg_txid_current{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1d]) and
                     on (instance) pg_replication_is_replica == 0
                   )
@@ -1283,11 +1283,11 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard) (
+        max by(environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
-                sum by (environment, tier, type, stage, shard) (
+                sum by (environment,shard,stage,tier,type) (
                   increase(fluentd_pg_auto_vacuum_elapsed_seconds_total{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1d])
                 )
                 / on(environment, type) group_left() (
@@ -1300,7 +1300,7 @@ groups:
                 (2^31 - 10^6)
                 /
                 (
-                  avg by (environment, tier, type, stage, shard) (
+                  avg by (environment,shard,stage,tier,type) (
                     deriv(pg_txid_current{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1d]) and
                     on (instance) pg_replication_is_replica == 0
                   )
@@ -1347,15 +1347,15 @@ groups:
       grafana_panel_id: "3412018865"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(env, environment, tier, type, stage, shard) (
+        max by(env,environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (env, environment, tier, type, stage, shard) (
+              sum by (env,environment,shard,stage,tier,type) (
                 rate(fluentd_pg_auto_vacuum_elapsed_seconds_total{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1d])
                 and on (fqdn) (pg_replication_is_replica{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} == 0)
               )
               /
-              avg by (env, environment, tier, type, stage, shard) (
+              avg by (env,environment,shard,stage,tier,type) (
                 pg_settings_autovacuum_max_workers{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
                 and on (instance, job) (pg_replication_is_replica{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} == 0)
               )
@@ -1365,15 +1365,15 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(env, environment, tier, type, stage, shard) (
+        max by(env,environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (env, environment, tier, type, stage, shard) (
+              sum by (env,environment,shard,stage,tier,type) (
                 rate(fluentd_pg_auto_vacuum_elapsed_seconds_total{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1d])
                 and on (fqdn) (pg_replication_is_replica{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} == 0)
               )
               /
-              avg by (env, environment, tier, type, stage, shard) (
+              avg by (env,environment,shard,stage,tier,type) (
                 pg_settings_autovacuum_max_workers{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
                 and on (instance, job) (pg_replication_is_replica{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} == 0)
               )
@@ -1415,16 +1415,16 @@ groups:
       grafana_panel_id: "1879384722"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(env, environment, tier, type, stage, shard) (
+        max by(env,environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (env, environment, tier, type, stage, shard) (
-                sum by(env, environment, tier, type, stage, shard, fqdn) (
+              sum by (env,environment,shard,stage,tier,type) (
+                sum by(env,environment,shard,stage,tier,type, fqdn) (
                   rate(namedprocess_namegroup_cpu_seconds_total{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", groupname=~"pg.worker.walsender|pg.worker.walwriter|wal-g"}[5m])
                   and on (fqdn) (pg_replication_is_replica{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} == 0)
                 )
                 /
-                count by (env, environment, tier, type, stage, shard, fqdn) (
+                count by (env,environment,shard,stage,tier,type, fqdn) (
                   node_cpu_seconds_total{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", mode="idle"} and on(fqdn) (pg_replication_is_replica{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} == 0)
                 )
               )
@@ -1434,16 +1434,16 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(env, environment, tier, type, stage, shard) (
+        max by(env,environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              sum by (env, environment, tier, type, stage, shard) (
-                sum by(env, environment, tier, type, stage, shard, fqdn) (
+              sum by (env,environment,shard,stage,tier,type) (
+                sum by(env,environment,shard,stage,tier,type, fqdn) (
                   rate(namedprocess_namegroup_cpu_seconds_total{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", groupname=~"pg.worker.walsender|pg.worker.walwriter|wal-g"}[5m])
                   and on (fqdn) (pg_replication_is_replica{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} == 0)
                 )
                 /
-                count by (env, environment, tier, type, stage, shard, fqdn) (
+                count by (env,environment,shard,stage,tier,type, fqdn) (
                   node_cpu_seconds_total{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}", mode="idle"} and on(fqdn) (pg_replication_is_replica{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"} == 0)
                 )
               )
@@ -1501,7 +1501,7 @@ groups:
       grafana_panel_id: "3666116359"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, datname) (
+        max by(datname,environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -1520,7 +1520,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, datname) (
+        max by(datname,environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -1570,7 +1570,7 @@ groups:
       grafana_panel_id: "4069682945"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, instance, database) (
+        max by(database,environment,fqdn,instance,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -1579,8 +1579,8 @@ groups:
                 avg_over_time(pgbouncer_pools_server_used_connections{user="gitlab", database=~"gitlabhq_production_sidekiq.*", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m]) +
                 avg_over_time(pgbouncer_pools_server_login_connections{user="gitlab", database=~"gitlabhq_production_sidekiq.*", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
-              / on(environment, tier, type, stage, shard, fqdn, instance, database) group_left()
-              sum by (environment, tier, type, stage, shard, fqdn, instance, database) (
+              / on(database,environment,fqdn,instance,shard,stage,tier,type) group_left()
+              sum by (database,environment,fqdn,instance,shard,stage,tier,type) (
                 label_replace(
                   avg_over_time(pgbouncer_databases_pool_size{name=~"gitlabhq_production_sidekiq.*", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m]),
                   "database", "$1", "name", "(.*)"
@@ -1592,7 +1592,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, instance, database) (
+        max by(database,environment,fqdn,instance,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -1601,8 +1601,8 @@ groups:
                 avg_over_time(pgbouncer_pools_server_used_connections{user="gitlab", database=~"gitlabhq_production_sidekiq.*", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m]) +
                 avg_over_time(pgbouncer_pools_server_login_connections{user="gitlab", database=~"gitlabhq_production_sidekiq.*", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
-              / on(environment, tier, type, stage, shard, fqdn, instance, database) group_left()
-              sum by (environment, tier, type, stage, shard, fqdn, instance, database) (
+              / on(database,environment,fqdn,instance,shard,stage,tier,type) group_left()
+              sum by (database,environment,fqdn,instance,shard,stage,tier,type) (
                 label_replace(
                   avg_over_time(pgbouncer_databases_pool_size{name=~"gitlabhq_production_sidekiq.*", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m]),
                   "database", "$1", "name", "(.*)"
@@ -1648,7 +1648,7 @@ groups:
       grafana_panel_id: "3093058894"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               max_over_time(pgbouncer_used_clients{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
@@ -1660,7 +1660,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               max_over_time(pgbouncer_used_clients{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
@@ -1703,7 +1703,7 @@ groups:
       grafana_panel_id: "1214397558"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, groupname) (
+        max by(environment,fqdn,groupname,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               sum without(cpu, mode) (
@@ -1717,7 +1717,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, groupname) (
+        max by(environment,fqdn,groupname,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               sum without(cpu, mode) (
@@ -1764,7 +1764,7 @@ groups:
       grafana_panel_id: "2061891964"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn, instance) (
+        max by(environment,fqdn,instance,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -1773,8 +1773,8 @@ groups:
                 avg_over_time(pgbouncer_pools_server_used_connections{user=~"gitlab|gitlab-registry", database=~"gitlabhq_registry|gitlabhq_production", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m]) +
                 avg_over_time(pgbouncer_pools_server_login_connections{user=~"gitlab|gitlab-registry", database=~"gitlabhq_registry|gitlabhq_production", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
-              / on(environment, tier, type, stage, shard, fqdn, instance) group_left()
-              sum by (environment, tier, type, stage, shard, fqdn, instance) (
+              / on(environment,fqdn,instance,shard,stage,tier,type) group_left()
+              sum by (environment,fqdn,instance,shard,stage,tier,type) (
                 avg_over_time(pgbouncer_databases_pool_size{name=~"gitlabhq_registry|gitlabhq_production", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -1783,7 +1783,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn, instance) (
+        max by(environment,fqdn,instance,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -1792,8 +1792,8 @@ groups:
                 avg_over_time(pgbouncer_pools_server_used_connections{user=~"gitlab|gitlab-registry", database=~"gitlabhq_registry|gitlabhq_production", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m]) +
                 avg_over_time(pgbouncer_pools_server_login_connections{user=~"gitlab|gitlab-registry", database=~"gitlabhq_registry|gitlabhq_production", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
-              / on(environment, tier, type, stage, shard, fqdn, instance) group_left()
-              sum by (environment, tier, type, stage, shard, fqdn, instance) (
+              / on(environment,fqdn,instance,shard,stage,tier,type) group_left()
+              sum by (environment,fqdn,instance,shard,stage,tier,type) (
                 avg_over_time(pgbouncer_databases_pool_size{name=~"gitlabhq_registry|gitlabhq_production", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -1830,10 +1830,10 @@ groups:
       grafana_panel_id: "1472933476"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard) (
+        max by(environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              1 - avg by (environment, tier, type, stage, shard) (
+              1 - avg by (environment,shard,stage,tier,type) (
                 rate(node_cpu_seconds_total{mode="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -1842,10 +1842,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard) (
+        max by(environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              1 - avg by (environment, tier, type, stage, shard) (
+              1 - avg by (environment,shard,stage,tier,type) (
                 rate(node_cpu_seconds_total{mode="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -1884,7 +1884,7 @@ groups:
       grafana_panel_id: "3372411356"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               avg without(cpu, mode) (1 - rate(node_cpu_seconds_total{mode="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m]))
@@ -1894,7 +1894,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, fqdn) (
+        max by(environment,fqdn,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               avg without(cpu, mode) (1 - rate(node_cpu_seconds_total{mode="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m]))

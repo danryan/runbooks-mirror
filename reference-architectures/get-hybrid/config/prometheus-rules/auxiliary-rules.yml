@@ -32,10 +32,10 @@ groups:
       grafana_panel_id: "1465724101"
       grafana_variables: type
       promql_query: |
-        max by(type, shard) (
+        max by(shard,type) (
           clamp_min(
             clamp_max(
-              1 - avg by (type, shard) (
+              1 - avg by (shard,type) (
                 rate(node_cpu_seconds_total{mode="idle", type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -44,10 +44,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, shard) (
+        max by(shard,type) (
           clamp_min(
             clamp_max(
-              1 - avg by (type, shard) (
+              1 - avg by (shard,type) (
                 rate(node_cpu_seconds_total{mode="idle", type="{{ $labels.type }}"}[5m])
               )
               ,
@@ -84,7 +84,7 @@ groups:
       grafana_panel_id: "39965907"
       grafana_variables: type
       promql_query: |
-        max by(type, fqdn, device) (
+        max by(device,fqdn,type) (
           clamp_min(
             clamp_max(
               1 - (
@@ -98,7 +98,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, fqdn, device) (
+        max by(device,fqdn,type) (
           clamp_min(
             clamp_max(
               1 - (
@@ -141,7 +141,7 @@ groups:
       grafana_panel_id: "39965907"
       grafana_variables: type
       promql_query: |
-        max by(type, fqdn, device) (
+        max by(device,fqdn,type) (
           clamp_min(
             clamp_max(
               1 - (
@@ -155,7 +155,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, fqdn, device) (
+        max by(device,fqdn,type) (
           clamp_min(
             clamp_max(
               1 - (
@@ -198,7 +198,7 @@ groups:
       grafana_panel_id: "2661375984"
       grafana_variables: type
       promql_query: |
-        max by(type, node, device) (
+        max by(device,node,type) (
           clamp_min(
             clamp_max(
               (
@@ -210,7 +210,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, node, device) (
+        max by(device,node,type) (
           clamp_min(
             clamp_max(
               (
@@ -249,7 +249,7 @@ groups:
       grafana_panel_id: "2661375984"
       grafana_variables: type
       promql_query: |
-        max by(type, node, device) (
+        max by(device,node,type) (
           clamp_min(
             clamp_max(
               (
@@ -261,7 +261,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, node, device) (
+        max by(device,node,type) (
           clamp_min(
             clamp_max(
               (
@@ -306,10 +306,10 @@ groups:
       grafana_panel_id: "3712788301"
       grafana_variables: type
       promql_query: |
-        max by(type, fqdn, region, instance) (
+        max by(fqdn,instance,region,type) (
           clamp_min(
             clamp_max(
-              sum by (type, fqdn, region, instance) (
+              sum by (fqdn,instance,region,type) (
                 go_goroutines{type="{{ $labels.type }}"}
               )
               /
@@ -320,10 +320,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, fqdn, region, instance) (
+        max by(fqdn,instance,region,type) (
           clamp_min(
             clamp_max(
-              sum by (type, fqdn, region, instance) (
+              sum by (fqdn,instance,region,type) (
                 go_goroutines{type="{{ $labels.type }}"}
               )
               /
@@ -361,14 +361,14 @@ groups:
       grafana_panel_id: "3631721613"
       grafana_variables: type
       promql_query: |
-        max by(type, fqdn) (
+        max by(fqdn,type) (
           clamp_min(
             clamp_max(
-              max by (type, fqdn) (
+              max by (fqdn,type) (
                 go_memstats_alloc_bytes{type="{{ $labels.type }}"}
               )
               /
-              sum by (type, fqdn) (
+              sum by (fqdn,type) (
                 node_memory_MemTotal_bytes{type="{{ $labels.type }}"}
               )
               ,
@@ -377,14 +377,14 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, fqdn) (
+        max by(fqdn,type) (
           clamp_min(
             clamp_max(
-              max by (type, fqdn) (
+              max by (fqdn,type) (
                 go_memstats_alloc_bytes{type="{{ $labels.type }}"}
               )
               /
-              sum by (type, fqdn) (
+              sum by (fqdn,type) (
                 node_memory_MemTotal_bytes{type="{{ $labels.type }}"}
               )
               ,
@@ -421,14 +421,14 @@ groups:
       grafana_panel_id: "1262336683"
       grafana_variables: type
       promql_query: |
-        max by(type, pod, container) (
+        max by(container,pod,type) (
           clamp_min(
             clamp_max(
-              sum by (type, pod, container) (
+              sum by (container,pod,type) (
                 rate(container_cpu_usage_seconds_total:labeled{container!="", container!="POD", type="{{ $labels.type }}"}[5m])
               )
               /
-              sum by(type, pod, container) (
+              sum by(container,pod,type) (
                 container_spec_cpu_quota:labeled{container!="", container!="POD", type="{{ $labels.type }}"}
                 /
                 container_spec_cpu_period:labeled{container!="", container!="POD", type="{{ $labels.type }}"}
@@ -439,14 +439,14 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, pod, container) (
+        max by(container,pod,type) (
           clamp_min(
             clamp_max(
-              sum by (type, pod, container) (
+              sum by (container,pod,type) (
                 rate(container_cpu_usage_seconds_total:labeled{container!="", container!="POD", type="{{ $labels.type }}"}[5m])
               )
               /
-              sum by(type, pod, container) (
+              sum by(container,pod,type) (
                 container_spec_cpu_quota:labeled{container!="", container!="POD", type="{{ $labels.type }}"}
                 /
                 container_spec_cpu_period:labeled{container!="", container!="POD", type="{{ $labels.type }}"}
@@ -483,7 +483,7 @@ groups:
       grafana_panel_id: "172578411"
       grafana_variables: type
       promql_query: |
-        max by(type, deployment) (
+        max by(deployment,type) (
           clamp_min(
             clamp_max(
               container_memory_working_set_bytes:labeled{container!="", container!="POD", type="{{ $labels.type }}"}
@@ -495,7 +495,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, deployment) (
+        max by(deployment,type) (
           clamp_min(
             clamp_max(
               container_memory_working_set_bytes:labeled{container!="", container!="POD", type="{{ $labels.type }}"}
@@ -591,7 +591,7 @@ groups:
       grafana_panel_id: "4167694322"
       grafana_variables: type
       promql_query: |
-        max by(cluster, namespace, persistentvolumeclaim) (
+        max by(cluster,namespace,persistentvolumeclaim) (
           clamp_min(
             clamp_max(
               kubelet_volume_stats_used_bytes
@@ -603,7 +603,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(cluster, namespace, persistentvolumeclaim) (
+        max by(cluster,namespace,persistentvolumeclaim) (
           clamp_min(
             clamp_max(
               kubelet_volume_stats_used_bytes
@@ -695,7 +695,7 @@ groups:
       grafana_panel_id: "1955556769"
       grafana_variables: type
       promql_query: |
-        max by(type, node) (
+        max by(node,type) (
           clamp_min(
             clamp_max(
               instance:node_memory_utilization:ratio{type="{{ $labels.type }}"} or instance:node_memory_utilisation:ratio{type="{{ $labels.type }}"}
@@ -705,7 +705,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, node) (
+        max by(node,type) (
           clamp_min(
             clamp_max(
               instance:node_memory_utilization:ratio{type="{{ $labels.type }}"} or instance:node_memory_utilisation:ratio{type="{{ $labels.type }}"}
@@ -797,7 +797,7 @@ groups:
       grafana_panel_id: "1415313189"
       grafana_variables: type
       promql_query: |
-        max by(type, fqdn, shard) (
+        max by(fqdn,shard,type) (
           clamp_min(
             clamp_max(
               avg without (cpu) (rate(node_schedstat_waiting_seconds_total{type="{{ $labels.type }}"}[1h]))
@@ -807,7 +807,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, fqdn, shard) (
+        max by(fqdn,shard,type) (
           clamp_min(
             clamp_max(
               avg without (cpu) (rate(node_schedstat_waiting_seconds_total{type="{{ $labels.type }}"}[1h]))
@@ -900,7 +900,7 @@ groups:
       grafana_panel_id: "3372411356"
       grafana_variables: type
       promql_query: |
-        max by(type, node) (
+        max by(node,type) (
           clamp_min(
             clamp_max(
               avg without(cpu, mode) (1 - rate(node_cpu_seconds_total{mode="idle", type="{{ $labels.type }}"}[5m]))
@@ -910,7 +910,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(type, node) (
+        max by(node,type) (
           clamp_min(
             clamp_max(
               avg without(cpu, mode) (1 - rate(node_cpu_seconds_total{mode="idle", type="{{ $labels.type }}"}[5m]))

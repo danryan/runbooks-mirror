@@ -40,10 +40,10 @@ groups:
       grafana_panel_id: "961599757"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, shard) (
+        max by(environment,shard) (
           clamp_min(
             clamp_max(
-              sum by (environment, shard)
+              sum by (environment,shard)
               (
                 stackdriver_redis_instance_redis_googleapis_com_stats_cpu_utilization_main_thread{environment="{{ $labels.environment }}", role='primary'}
               ) / 60
@@ -53,10 +53,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, shard) (
+        max by(environment,shard) (
           clamp_min(
             clamp_max(
-              sum by (environment, shard)
+              sum by (environment,shard)
               (
                 stackdriver_redis_instance_redis_googleapis_com_stats_cpu_utilization_main_thread{environment="{{ $labels.environment }}", role='primary'}
               ) / 60
@@ -96,10 +96,10 @@ groups:
       grafana_panel_id: "3110369959"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, shard) (
+        max by(environment,shard) (
           clamp_min(
             clamp_max(
-              max by (environment, shard) (
+              max by (environment,shard) (
                 stackdriver_redis_instance_redis_googleapis_com_stats_memory_usage_ratio{environment="{{ $labels.environment }}", role = "primary"}
               )
               ,
@@ -108,10 +108,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, shard) (
+        max by(environment,shard) (
           clamp_min(
             clamp_max(
-              max by (environment, shard) (
+              max by (environment,shard) (
                 stackdriver_redis_instance_redis_googleapis_com_stats_memory_usage_ratio{environment="{{ $labels.environment }}", role = "primary"}
               )
               ,

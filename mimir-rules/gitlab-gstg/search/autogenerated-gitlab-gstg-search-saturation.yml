@@ -8,10 +8,10 @@ groups:
     labels:
       component: elastic_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            avg by (env, environment, tier, type, stage, shard) (
+            avg by (env,environment,shard,stage,tier,type) (
               avg_over_time(elasticsearch_process_cpu_percent{env="gstg",type="search"}[1m]) / 100
             )
             ,
@@ -23,15 +23,15 @@ groups:
     labels:
       component: elastic_disk_space
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             1 - (
-              sum by (env, environment, tier, type, stage, shard) (
+              sum by (env,environment,shard,stage,tier,type) (
                 (elasticsearch_filesystem_data_free_bytes{env="gstg",type="search"})
               )
               /
-              sum by (env, environment, tier, type, stage, shard) (
+              sum by (env,environment,shard,stage,tier,type) (
                 elasticsearch_filesystem_data_size_bytes{env="gstg",type="search"}
               )
             )
@@ -44,7 +44,7 @@ groups:
     labels:
       component: elastic_jvm_heap_memory
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             elasticsearch_jvm_memory_used_bytes{area="heap", env="gstg",type="search"}
@@ -59,7 +59,7 @@ groups:
     labels:
       component: elastic_single_node_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             avg_over_time(elasticsearch_process_cpu_percent{env="gstg",type="search"}[5m]) / 100
@@ -72,7 +72,7 @@ groups:
     labels:
       component: elastic_single_node_disk_space
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -93,7 +93,7 @@ groups:
     labels:
       component: elastic_thread_pools
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -110,7 +110,7 @@ groups:
     labels:
       component: open_fds
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (

@@ -8,7 +8,7 @@ groups:
     labels:
       component: excluded_sidekiq_thread_contention
     expr: |
-      quantile by(env, environment, tier, type, stage, shard) (
+      quantile by(env,environment,shard,stage,tier,type) (
         0.99,
         clamp_min(
           clamp_max(
@@ -22,20 +22,20 @@ groups:
     labels:
       component: kube_container_cpu
     expr: |
-      quantile by(env, environment, tier, type, stage, shard) (
+      quantile by(env,environment,shard,stage,tier,type) (
         0.99,
         clamp_min(
           clamp_max(
             (
-              sum by (env, environment, tier, type, stage, shard, pod, container) (
+              sum by (container,env,environment,pod,shard,stage,tier,type) (
                 rate(container_cpu_usage_seconds_total:labeled{container!="", container!="POD", env="pre",type="sidekiq"}[1h])
               )
-              unless on(env, environment, tier, type, stage, shard, pod, container) (
+              unless on(container,env,environment,pod,shard,stage,tier,type) (
                 last_over_time(container_spec_cpu_quota:labeled{container!="", container!="POD", env="pre",type="sidekiq"}[1h])
               )
             )
             /
-            sum by(env, environment, tier, type, stage, shard, pod, container) (
+            sum by(container,env,environment,pod,shard,stage,tier,type) (
               kube_pod_container_resource_requests:labeled{container!="", container!="POD", resource="cpu", env="pre",type="sidekiq"}
             )
             ,
@@ -47,14 +47,14 @@ groups:
     labels:
       component: kube_container_cpu_limit
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, tier, type, stage, shard, pod, container) (
+            sum by (container,env,environment,pod,shard,stage,tier,type) (
               rate(container_cpu_usage_seconds_total:labeled{container!="", container!="POD", env="pre",type="sidekiq"}[5m])
             )
             /
-            sum by(env, environment, tier, type, stage, shard, pod, container) (
+            sum by(container,env,environment,pod,shard,stage,tier,type) (
               container_spec_cpu_quota:labeled{container!="", container!="POD", env="pre",type="sidekiq"}
               /
               container_spec_cpu_period:labeled{container!="", container!="POD", env="pre",type="sidekiq"}
@@ -68,7 +68,7 @@ groups:
     labels:
       component: kube_container_rss
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             container_memory_rss:labeled{container!="", container!="POD", env="pre",type="sidekiq"}
@@ -83,11 +83,11 @@ groups:
     labels:
       component: kube_container_throttling
     expr: |
-      quantile by(env, environment, tier, type, stage, shard) (
+      quantile by(env,environment,shard,stage,tier,type) (
         0.99,
         clamp_min(
           clamp_max(
-            avg by (env, environment, tier, type, stage, shard, pod, container)(
+            avg by (container,env,environment,pod,shard,stage,tier,type)(
               rate(container_cpu_cfs_throttled_periods_total:labeled{container!="", env="pre",type="sidekiq"}[5m])
               /
               rate(container_cpu_cfs_periods_total:labeled{container!="", env="pre",type="sidekiq"}[5m])
@@ -101,7 +101,7 @@ groups:
     labels:
       component: kube_horizontalpodautoscaler_desired_replicas
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             kube_horizontalpodautoscaler_status_desired_replicas:labeled{env="pre",type="sidekiq", shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", namespace!~"pubsubbeat"}
@@ -116,7 +116,7 @@ groups:
     labels:
       component: open_fds
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -139,7 +139,7 @@ groups:
     labels:
       component: rails_db_connection_pool
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -158,14 +158,14 @@ groups:
     labels:
       component: sidekiq_shard_workers
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, tier, type, stage, shard) (
+            sum by (env,environment,shard,stage,tier,type) (
               avg_over_time(sidekiq_running_jobs{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", env="pre",type="sidekiq"}[5m])
             )
             /
-            sum by (env, environment, tier, type, stage, shard) (
+            sum by (env,environment,shard,stage,tier,type) (
               avg_over_time(sidekiq_concurrency{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", env="pre",type="sidekiq"}[5m])
             )
             ,
@@ -177,7 +177,7 @@ groups:
     labels:
       component: sidekiq_thread_contention
     expr: |
-      quantile by(env, environment, tier, type, stage, shard) (
+      quantile by(env,environment,shard,stage,tier,type) (
         0.99,
         clamp_min(
           clamp_max(
@@ -194,14 +194,14 @@ groups:
     labels:
       component: sidekiq_shard_workers
     expr: |
-      max by(environment, tier, type, stage, shard) (
+      max by(environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            sum by (environment, tier, type, stage, shard) (
+            sum by (environment,shard,stage,tier,type) (
               avg_over_time(sidekiq_running_jobs{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", env="pre",type="sidekiq"}[5m])
             )
             /
-            sum by (environment, tier, type, stage, shard) (
+            sum by (environment,shard,stage,tier,type) (
               avg_over_time(sidekiq_concurrency{shard!~"database-throttled|elasticsearch|gitaly-throttled|urgent-authorized-projects", env="pre",type="sidekiq"}[5m])
             )
             ,

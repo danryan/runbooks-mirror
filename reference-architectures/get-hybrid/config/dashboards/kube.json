@@ -3038,7 +3038,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "clamp_min(\n  clamp_max(\n    max by(cluster, namespace, persistentvolumeclaim) (\n  clamp_min(\n    clamp_max(\n      kubelet_volume_stats_used_bytes\n      /\n      kubelet_volume_stats_capacity_bytes\n      ,\n      1)\n  ,\n  0)\n)\n\n  ,1)\n,0)\n",
+              "expr": "clamp_min(\n  clamp_max(\n    max by(cluster,namespace,persistentvolumeclaim) (\n  clamp_min(\n    clamp_max(\n      kubelet_volume_stats_used_bytes\n      /\n      kubelet_volume_stats_capacity_bytes\n      ,\n      1)\n  ,\n  0)\n)\n\n  ,1)\n,0)\n",
               "format": "time_series",
               "interval": "1m",
               "intervalFactor": 1,

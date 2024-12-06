@@ -11,10 +11,10 @@ groups:
       tier: inf
       type: monitoring
     expr: |
-      max by(env, environment, shard) (
+      max by(env,environment,shard) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, shard)
+            sum by (env,environment,shard)
             (
               stackdriver_redis_instance_redis_googleapis_com_stats_cpu_utilization_main_thread{type="runway-redis-example", role='primary'}
             ) / 60
@@ -30,10 +30,10 @@ groups:
       tier: inf
       type: monitoring
     expr: |
-      max by(env, environment, shard) (
+      max by(env,environment,shard) (
         clamp_min(
           clamp_max(
-            max by (env, environment, shard) (
+            max by (env,environment,shard) (
               stackdriver_redis_instance_redis_googleapis_com_stats_memory_usage_ratio{type="runway-redis-example", role = "primary"}
             )
             ,

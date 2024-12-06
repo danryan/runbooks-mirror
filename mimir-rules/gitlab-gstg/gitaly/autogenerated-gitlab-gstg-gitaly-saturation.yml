@@ -8,7 +8,7 @@ groups:
     labels:
       component: cgroup_memory
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -27,10 +27,10 @@ groups:
     labels:
       component: cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            1 - avg by (env, environment, tier, type, stage, shard) (
+            1 - avg by (env,environment,shard,stage,tier,type) (
               rate(node_cpu_seconds_total{mode="idle", env="gstg",type="gitaly"}[5m])
             )
             ,
@@ -42,7 +42,7 @@ groups:
     labels:
       component: disk_inodes
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             1 - (
@@ -59,10 +59,10 @@ groups:
     labels:
       component: disk_maximum_capacity
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            max by (env, environment, tier, type, stage, shard, fqdn, device) (
+            max by (device,env,environment,fqdn,shard,stage,tier,type) (
               node_filesystem_size_bytes{fstype=~"ext.|xfs", env="gstg",type="gitaly"} - node_filesystem_avail_bytes{fstype=~"ext.|xfs", env="gstg",type="gitaly"}
             ) / (64*2^40)
             ,
@@ -74,7 +74,7 @@ groups:
     labels:
       component: disk_space
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -89,7 +89,7 @@ groups:
     labels:
       component: disk_sustained_read_iops
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             rate(node_disk_reads_completed_total{device!="sda", env="gstg",type="gitaly"}[20m])
@@ -104,7 +104,7 @@ groups:
     labels:
       component: disk_sustained_read_throughput
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             rate(node_disk_read_bytes_total{device!="sda", env="gstg",type="gitaly"}[20m])
@@ -119,7 +119,7 @@ groups:
     labels:
       component: disk_sustained_write_iops
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             rate(node_disk_writes_completed_total{device!="sda", env="gstg",type="gitaly"}[20m])
@@ -134,7 +134,7 @@ groups:
     labels:
       component: disk_sustained_write_throughput
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             rate(node_disk_written_bytes_total{device!="sda", env="gstg",type="gitaly"}[20m])
@@ -149,11 +149,11 @@ groups:
     labels:
       component: gitaly_active_node_available_space
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             1 - (
-              sum by (env, environment, tier, type, stage, shard) (
+              sum by (env,environment,shard,stage,tier,type) (
                 (
                   node_filesystem_avail_bytes{env="gstg",type="gitaly", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} -
                   (node_filesystem_size_bytes{env="gstg",type="gitaly", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} * 0.20)
@@ -162,7 +162,7 @@ groups:
                 (instance:node_filesystem_avail:ratio{env="gstg",type="gitaly", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"} > 0.20)
               )
               /
-              sum by (env, environment, tier, type, stage, shard)(
+              sum by (env,environment,shard,stage,tier,type)(
                 node_filesystem_size_bytes{env="gstg",type="gitaly", fqdn=~"gitaly-.*-stor-.*",mountpoint="/var/opt/gitlab",shard=~"default"}
               )
             )
@@ -175,15 +175,15 @@ groups:
     labels:
       component: gitaly_total_disk_space
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             1 - (
-              sum by (env, environment, tier, type, stage, shard) (
+              sum by (env,environment,shard,stage,tier,type) (
                 node_filesystem_avail_bytes{env="gstg",type="gitaly", mountpoint="/var/opt/gitlab"}
               )
               /
-              sum by (env, environment, tier, type, stage, shard) (
+              sum by (env,environment,shard,stage,tier,type) (
                 node_filesystem_size_bytes{env="gstg",type="gitaly", mountpoint="/var/opt/gitlab"}
               )
             )
@@ -196,10 +196,10 @@ groups:
     labels:
       component: go_goroutines
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, tier, type, stage, shard, fqdn, region, instance) (
+            sum by (env,environment,fqdn,instance,region,shard,stage,tier,type) (
               go_goroutines{env="gstg",type="gitaly"}
             )
             /
@@ -213,14 +213,14 @@ groups:
     labels:
       component: go_memory
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            max by (env, environment, tier, type, stage, shard, fqdn) (
+            max by (env,environment,fqdn,shard,stage,tier,type) (
               go_memstats_alloc_bytes{env="gstg",type="gitaly"}
             )
             /
-            sum by (env, environment, tier, type, stage, shard, fqdn) (
+            sum by (env,environment,fqdn,shard,stage,tier,type) (
               node_memory_MemTotal_bytes{env="gstg",type="gitaly"}
             )
             ,
@@ -232,7 +232,7 @@ groups:
     labels:
       component: memory
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             instance:node_memory_utilization:ratio{env="gstg",type="gitaly"} or instance:node_memory_utilisation:ratio{env="gstg",type="gitaly"}
@@ -245,7 +245,7 @@ groups:
     labels:
       component: nf_conntrack_entries
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             max_over_time(node_nf_conntrack_entries{env="gstg",type="gitaly"}[1m])
@@ -260,7 +260,7 @@ groups:
     labels:
       component: node_schedstat_waiting
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             avg without (cpu) (rate(node_schedstat_waiting_seconds_total{env="gstg",type="gitaly"}[1h]))
@@ -273,7 +273,7 @@ groups:
     labels:
       component: open_fds
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -296,10 +296,10 @@ groups:
     labels:
       component: shard_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            1 - avg by (env, environment, tier, type, stage, shard) (
+            1 - avg by (env,environment,shard,stage,tier,type) (
               rate(node_cpu_seconds_total{mode="idle", env="gstg",type="gitaly"}[5m])
             )
             ,
@@ -311,7 +311,7 @@ groups:
     labels:
       component: single_node_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             avg without(cpu, mode) (1 - rate(node_cpu_seconds_total{mode="idle", env="gstg",type="gitaly"}[5m]))

@@ -11,7 +11,7 @@ groups:
       tier: inf
       type: monitoring
     expr: |
-      max by(env, environment, shard) (
+      max by(env,environment,shard) (
         clamp_min(
           clamp_max(
             avg_over_time(stackdriver_cloudsql_database_cloudsql_googleapis_com_database_cpu_utilization{env="gprd",type="cloud-sql"}[5m])
@@ -27,7 +27,7 @@ groups:
       tier: inf
       type: monitoring
     expr: |
-      max by(env, environment, shard) (
+      max by(env,environment,shard) (
         clamp_min(
           clamp_max(
             avg_over_time(stackdriver_cloudsql_database_cloudsql_googleapis_com_database_disk_utilization{env="gprd",type="cloud-sql"}[5m])
@@ -43,7 +43,7 @@ groups:
       tier: inf
       type: monitoring
     expr: |
-      max by(env, environment, shard) (
+      max by(env,environment,shard) (
         clamp_min(
           clamp_max(
             avg_over_time(stackdriver_cloudsql_database_cloudsql_googleapis_com_database_memory_utilization{env="gprd",type="cloud-sql"}[5m])
