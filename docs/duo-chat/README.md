@@ -106,6 +106,7 @@ Here is an example of how to find correlated logs in the AI Gateway:
 
 When troubleshooting requests from self-managed users on the AI Gateway, it may be helpful to find their global user ID to narrow down requests.
 They should run this command on their instance rails console:
+
 ```ruby
 u = User.find_by_username(<USERNAME>)
 Gitlab::GlobalAnonymousId.user_id(u)
