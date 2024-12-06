@@ -160,7 +160,7 @@ local layout = import 'grafana/layout.libsonnet';
         query=|||
           sum by(request_rejected)(
             rate(
-              gitlab_sli_path_traversal_check_request_apdex_success_total{
+              gitlab_sli_path_traversal_check_request_apdex_total{
                 environment="$environment",
                 type="%(serviceType)s",
                 stage="%(serviceStage)s",
