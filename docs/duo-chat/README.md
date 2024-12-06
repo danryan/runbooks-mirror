@@ -209,3 +209,21 @@ Make sure you have access to Duo Chat on staging. If not, request access to Duo 
 
 If there is a problem only on staging but not production, the `env` variables may be at fault.
 Compare the default `env` variables from [staging](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/blob/main/.runway/env-staging.yml) and [production](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/blob/main/.runway/env-production.yml) to see if you can spot a relevant difference.
+
+
+## How to identify IDE-specific problems
+
+When a customer reports a problem with Duo Chat in the IDE, it can be difficult to tell if the problem is IDE-specific or not.
+
+The first step is to have the customer test their query on the web version of Duo Chat. If they have the same problem on web, it is not IDE-specific. 
+
+Then, they can perform these steps to determine if it is a backend (AI Gateway) problem, or client-side on the editor:
+
+1. Ask the question in web
+2. Observe it works
+3. Run the `/reset` command on the web version
+4. Ask the same question in the IDE plugin
+5. Go back to the web and refresh the page.
+6. Check if there is a response there
+
+If the response does not show up on web, it is likely an AI Gateway problem. If the response does show up on web, it is likely a client-side IDE problem.
