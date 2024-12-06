@@ -210,7 +210,6 @@ Make sure you have access to Duo Chat on staging. If not, request access to Duo 
 If there is a problem only on staging but not production, the `env` variables may be at fault.
 Compare the default `env` variables from [staging](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/blob/main/.runway/env-staging.yml) and [production](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/blob/main/.runway/env-production.yml) to see if you can spot a relevant difference.
 
-
 ## How to identify IDE-specific problems
 
 When a customer reports a problem with Duo Chat in the IDE, it can be difficult to tell if the problem is IDE-specific or not.
