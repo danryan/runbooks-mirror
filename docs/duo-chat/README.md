@@ -111,11 +111,12 @@ They should run this command on their instance rails console:
 u = User.find_by_username(<USERNAME>)
 Gitlab::GlobalAnonymousId.user_id(u)
 ```
+Then you can filter by `json.jsonPayload.gitlab_global_user_id` to see requests from that specific user.
 
 You can also attempt to figure it out if you know the `gitlab_host_name` and approximate timestamp.
 
 1. Go to [AI Gateway log (Duo Chat)](https://log.gprd.gitlab.net/app/r/s/DhMe1)
-2. Filter by the `gitlab_host_name `
+2. Filter by the `json.jsonPayload.gitlab_host_name `
 3. Narrow down the request due to the timestamp given by the customer
 4. Look at the requests in the given time period and try to determine a `gitlab_global_user_id` that fits.
 
