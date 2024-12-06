@@ -103,6 +103,7 @@ Here is an example of how to find correlated logs in the AI Gateway:
 - _optional_: Click on the expanded logs icon and select "Surrounding documents" to view logs within relative same time stamp.
 
 ### How to determine global user ID for a user
+
 When troubleshooting requests from self-managed users on the AI Gateway, it may be helpful to find their global user ID to narrow down requests.
 They should run this command on their instance rails console:
 ```ruby
