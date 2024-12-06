@@ -117,7 +117,7 @@ You can also attempt to figure it out if you know the `gitlab_host_name` and app
 
 1. Go to [AI Gateway log (Duo Chat)](https://log.gprd.gitlab.net/app/r/s/DhMe1)
 2. Filter by the `json.jsonPayload.gitlab_host_name `
-3. Narrow down the request due to the timestamp given by the customer
+3. Narrow down the request by the timestamp given by the customer
 4. Look at the requests in the given time period and try to determine a `gitlab_global_user_id` that fits.
 
 This process involves guesswork, so it is best to ask the customer directly.
