@@ -111,6 +111,7 @@ They should run this command on their instance rails console:
 u = User.find_by_username(<USERNAME>)
 Gitlab::GlobalAnonymousId.user_id(u)
 ```
+
 Then you can filter by `json.jsonPayload.gitlab_global_user_id` to see requests from that specific user.
 
 You can also attempt to figure it out if you know the `gitlab_host_name` and approximate timestamp.
