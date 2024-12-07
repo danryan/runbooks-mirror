@@ -61,7 +61,7 @@ GEM
     digest-crc (0.6.5)
       rake (>= 12.0.0, < 14.0.0)
     drb (2.2.1)
-    etc (1.4.4)
+    etc (1.4.5)
     faraday (2.9.2)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-http-cache (2.5.1)
