@@ -16,7 +16,7 @@ ruby         3.3.6 # datasource=ruby-version depName=ruby/ruby
 shellcheck   0.10.0 # datasource=github-releases depName=koalaman/shellcheck
 shfmt        3.10 # datasource=github-releases depName=mvdan/sh
 terraform    1.9.8 # datasource=github-releases depName=hashicorp/terraform
-thanos       0.37.0 # datasource=github-releases depName=thanos-io/thanos
+thanos       0.37.1 # datasource=github-releases depName=thanos-io/thanos
 vault        1.18.2 # datasource=github-releases depName=hashicorp/vault
 yq           4.44.5 # datasource=github-releases depName=mikefarah/yq
 mimirtool    2.12.0
