@@ -67,7 +67,7 @@ for example), you can run the eviction task manually to evict some of the namesp
 #### Removing a namespace from the zoekt node manually
 
 If the eviction task does not relieve pressure on the node,
-you can remove a namespace from Zoekt manually as a last resort.
+you can remove a namespace from Zoekt manually.
 
 1. Execute the script in rails console
 
@@ -90,16 +90,12 @@ you can remove a namespace from Zoekt manually as a last resort.
    namespace_id = sorted.last[0]
    namespace = Namespace.find(namespace_id)
 
-   # Disable Zoekt search for the namespace
-   zoekt_enabled_namespaces = ::Search::Zoekt::EnabledNamespace.for_root_namespace_id(namespace.id)
-   zoekt_enabled_namespaces.update!(search: false)
+    # Destroy all `::Search::Zoekt::Replica` records for the namespace
+    zoekt_replicas = ::Search::Zoekt::Replica.for_namespace(namespace_id)
+    zoekt_replicas.destroy_all
+  ```
 
-   # Destroy the `::Search::Zoekt::Index` record for the namespace
-   zoekt_indices = ::Search::Zoekt::Index.for_root_namespace_id(namespace.id)
-   zoekt_indices.destroy_all
-   ```
-
-1. Post namespace_ids on the incident issue as a private comment so that we can add these back later
+1. Post namespace_ids on the incident issue as a private comment so there is a record. The Zoekt architecture will handle allocating the namespaces and projects to a new node.
 
 #### Marking a zoekt node as lost
 
