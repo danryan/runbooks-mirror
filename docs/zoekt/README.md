@@ -228,6 +228,6 @@ As for `gitlab-zoekt-indexer` and `zoekt-webserver`, they write logs to stdout.
 
 ### `kube_persistent_volume_claim_disk_space`
 
-[Zoekt architecture](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/code_search_with_zoekt/) has logic which detects when nodes disk usage is over the limit. Projects will be removed from each node until it the node disk usage under the limit. If the disk space is not coming down quick enough, remove namespaces using the [eviction task](#evicting-namespaces-from-one-zoekt-node-to-another), [remove namepaces manually](#removing-a-namespace-from-the-zoekt-node-manually), or [mark the node as lost a last resort](#marking-a-zoekt-node-as-lost).
+[Zoekt architecture](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/code_search_with_zoekt/) has logic which detects when nodes disk usage is over the limit. Projects will be removed from each node until it the node disk usage under the limit. If the disk space is not coming down quick enough, remove namespaces using the [eviction task](#evicting-namespaces-from-a-zoekt-node), [remove namepaces manually](#removing-a-namespace-from-the-zoekt-node-manually), or [mark the node as lost a last resort](#marking-a-zoekt-node-as-lost).
 
 WARNING: The PVC disk size must not be increased manually. Zoekt nodes are sized with a specific PVC size and it must remain consistant across all nodes.
