@@ -30,6 +30,7 @@
 * [CloudFlare Troubleshooting](../cloudflare/troubleshooting.md)
 * [Chef Guidelines](../config_management/chef-guidelines.md)
 * [Chef Tips and Tools](../config_management/chef-workflow.md)
+* [Accessing the Rails Console as an SRE](../console/access.md)
 * [Interacting with Consul](../consul/interaction.md)
 * [CustomersDot main troubleshoot documentation](../customersdot/overview.md)
 * [Zonal and Regional Recovery Guide](../disaster-recovery/recovery.md)
