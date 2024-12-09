@@ -123,7 +123,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
-    json (2.8.2)
+    json (2.9.0)
     jwt (2.8.2)
       base64
     language_server-protocol (3.17.0.3)
