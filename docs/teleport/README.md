@@ -20,6 +20,7 @@
 ## Troubleshooting Pointers
 
 * [Set up bastions for Release managers](../bastions/rm-bastion-access.md)
+* [Accessing the Rails Console as an SRE](../console/access.md)
 * [CustomersDot main troubleshoot documentation](../customersdot/overview.md)
 * [Container Registry database post-deployment migrations](../registry/db-post-deployment-migrations.md)
 * [Connecting To a Database via Teleport](Connect_to_Database_Console_via_Teleport.md)

@@ -35,6 +35,7 @@
 * [../ci-runners/service-ci-runners.md](../ci-runners/service-ci-runners.md)
 * [Cloud SQL Troubleshooting](../cloud-sql/cloud-sql.md)
 * [Cloudflare Logs](../cloudflare/logging.md)
+* [Accessing the Rails Console as an SRE](access.md)
 * [customers.gitlab.com](../customersdot/api-key-rotation.md)
 * [CustomersDot main troubleshoot documentation](../customersdot/overview.md)
 * [../disaster-recovery/gameday.md](../disaster-recovery/gameday.md)
