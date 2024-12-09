@@ -8,6 +8,7 @@ local strings = import 'utils/strings.libsonnet';
 local validator = import 'utils/validator.libsonnet';
 local capacityPlanning = (import 'capacity-planning/validator.libsonnet');
 local filterLabelsFromLabelsHash = (import 'promql/labels.libsonnet').filterLabelsFromLabelsHash;
+local aggregations = import 'promql/aggregations.libsonnet';
 
 // The severity labels that we allow on resources
 local severities = std.set(['s1', 's2', 's3', 's4']);
@@ -234,7 +235,7 @@ local resourceSaturationPoint = function(options)
         rangeInterval: rangeInterval,
         selector: selectors.serializeHash(selectorHash),
         selectorWithoutType: selectors.serializeHash(selectors.without(selectorHash, ['type'])),
-        aggregationLabels: std.join(', ', queryAggregationLabelsExcludingStaticLabels),
+        aggregationLabels: aggregations.join(queryAggregationLabelsExcludingStaticLabels),
       };
 
       local clampedPreaggregation = |||
@@ -256,7 +257,7 @@ local resourceSaturationPoint = function(options)
           )
         ||| % {
           quantileOverTimeQuery: strings.indent(clampedPreaggregation, 2),
-          maxAggregationLabels: std.join(', ', maxAggregationLabelsExcludingStaticLabels),
+          maxAggregationLabels: aggregations.join(maxAggregationLabelsExcludingStaticLabels),
         }
       else
         |||
@@ -267,7 +268,7 @@ local resourceSaturationPoint = function(options)
         ||| % {
           quantileAggregation: definition.quantileAggregation,
           quantileOverTimeQuery: strings.indent(clampedPreaggregation, 2),
-          maxAggregationLabels: std.join(', ', maxAggregationLabelsExcludingStaticLabels),
+          maxAggregationLabels: aggregations.join(maxAggregationLabelsExcludingStaticLabels),
         }
     ,
 

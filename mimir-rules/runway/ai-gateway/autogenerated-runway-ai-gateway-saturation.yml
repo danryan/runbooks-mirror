@@ -8,7 +8,7 @@ groups:
     labels:
       component: gcp_quota_limit_vertex_ai
     expr: |
-      max by(env, environment, tier, type, stage, shard, base_model, region, location) (
+      max by(base_model,env,environment,location,region,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -25,7 +25,7 @@ groups:
     labels:
       component: gcp_quota_limit_vertex_ai_code_gecko
     expr: |
-      max by(env, environment, tier, type, stage, shard, base_model, region, location) (
+      max by(base_model,env,environment,location,region,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -42,12 +42,12 @@ groups:
     labels:
       component: max_concurrent_inferences
     expr: |
-      max by(env, environment, tier, type, stage, shard, model_engine, model_name) (
+      max by(env,environment,model_engine,model_name,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, tier, type, stage, shard, model_engine, model_name)(max_over_time(model_inferences_in_flight{type="ai-gateway"}[10m]))
+            sum by (env,environment,model_engine,model_name,shard,stage,tier,type)(max_over_time(model_inferences_in_flight{type="ai-gateway"}[10m]))
             /
-            min by (env, environment, tier, type, stage, shard, model_engine, model_name)(min_over_time(model_inferences_max_concurrent{type="ai-gateway"}[10m]))
+            min by (env,environment,model_engine,model_name,shard,stage,tier,type)(min_over_time(model_inferences_max_concurrent{type="ai-gateway"}[10m]))
             ,
             1)
         ,
@@ -57,12 +57,12 @@ groups:
     labels:
       component: max_concurrent_inferences_per_engine
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, tier, type, stage, shard, model_engine)(max_over_time(model_inferences_in_flight{type="ai-gateway"}[10m]))
+            sum by (env,environment,model_engine,shard,stage,tier,type)(max_over_time(model_inferences_in_flight{type="ai-gateway"}[10m]))
             /
-            max by (env, environment, tier, type, stage, shard, model_engine)(min_over_time(model_inferences_max_concurrent{type="ai-gateway"}[10m]))
+            max by (env,environment,model_engine,shard,stage,tier,type)(min_over_time(model_inferences_max_concurrent{type="ai-gateway"}[10m]))
             ,
             1)
         ,
@@ -72,7 +72,7 @@ groups:
     labels:
       component: open_fds
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -97,10 +97,10 @@ groups:
       stage: main
       tier: inf
     expr: |
-      max by(env, environment, type, shard) (
+      max by(env,environment,shard,type) (
         clamp_min(
           clamp_max(
-            histogram_quantile(0.9999, sum by(le, env, environment, type, shard, revision_name, region, location)
+            histogram_quantile(0.9999, sum by(le, env,environment,location,region,revision_name,shard,type)
               (
                 avg_over_time(
                   stackdriver_cloud_run_revision_run_googleapis_com_container_cpu_utilizations_bucket{job="runway-exporter",type="ai-gateway"}[30m]
@@ -118,10 +118,10 @@ groups:
       stage: main
       tier: inf
     expr: |
-      max by(env, environment, type, shard) (
+      max by(env,environment,shard,type) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, type, shard, revision_name, region, location) (
+            sum by (env,environment,location,region,revision_name,shard,type) (
               stackdriver_cloud_run_revision_run_googleapis_com_container_instance_count{job="runway-exporter",state="active",type="ai-gateway"}
             )
             /
@@ -137,10 +137,10 @@ groups:
       stage: main
       tier: inf
     expr: |
-      max by(env, environment, type, shard) (
+      max by(env,environment,shard,type) (
         clamp_min(
           clamp_max(
-            histogram_quantile(0.9999, sum by(le, env, environment, type, shard, revision_name, region, location)
+            histogram_quantile(0.9999, sum by(le, env,environment,location,region,revision_name,shard,type)
               (
                 rate(
                   stackdriver_cloud_run_revision_run_googleapis_com_container_max_request_concurrencies_bucket{job="runway-exporter",state="active",type="ai-gateway"}[30m]
@@ -158,10 +158,10 @@ groups:
       stage: main
       tier: inf
     expr: |
-      max by(env, environment, type, shard) (
+      max by(env,environment,shard,type) (
         clamp_min(
           clamp_max(
-            histogram_quantile(0.9999, sum by(le, env, environment, type, shard, revision_name, region)
+            histogram_quantile(0.9999, sum by(le, env,environment,region,revision_name,shard,type)
               (
                 avg_over_time(
                   stackdriver_cloud_run_revision_run_googleapis_com_container_memory_utilizations_bucket{job="runway-exporter",type="ai-gateway"}[30m]

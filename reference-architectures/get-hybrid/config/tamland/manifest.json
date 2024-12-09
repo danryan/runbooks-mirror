@@ -36,7 +36,7 @@
       },
       "description": "This resource measures average CPU utilization across an all cores in a service fleet.\nIf it is becoming saturated, it may indicate that the fleet needs\nhorizontal or vertical scaling.\n",
       "horizontallyScalable": true,
-      "raw_query": "1 - avg by () (\n  rate(node_cpu_seconds_total{mode=\"idle\", %(selector)s}[5m])\n)\n",
+      "raw_query": "1 - avg by (shard) (\n  rate(node_cpu_seconds_total{mode=\"idle\", %(selector)s}[5m])\n)\n",
       "severity": "s3",
       "slos": {
         "alertTriggerDuration": "5m",

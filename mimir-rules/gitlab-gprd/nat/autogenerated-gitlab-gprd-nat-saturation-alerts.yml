@@ -42,7 +42,7 @@ groups:
       grafana_panel_id: "1436589381"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, shard, gateway_name, project_id) (
+        max by(environment,gateway_name,project_id,shard) (
           clamp_min(
             clamp_max(
               sum without(nat_ip) (
@@ -70,7 +70,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, shard, gateway_name, project_id) (
+        max by(environment,gateway_name,project_id,shard) (
           clamp_min(
             clamp_max(
               sum without(nat_ip) (
@@ -133,7 +133,7 @@ groups:
       grafana_panel_id: "2254997722"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, shard, instance_id, nat_gateway_name, zone) (
+        max by(environment,instance_id,nat_gateway_name,shard,zone) (
           clamp_min(
             clamp_max(
               sum without(ip_protocol) (
@@ -161,7 +161,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, shard, instance_id, nat_gateway_name, zone) (
+        max by(environment,instance_id,nat_gateway_name,shard,zone) (
           clamp_min(
             clamp_max(
               sum without(ip_protocol) (

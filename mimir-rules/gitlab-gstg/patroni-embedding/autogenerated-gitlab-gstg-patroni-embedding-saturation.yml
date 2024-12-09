@@ -8,10 +8,10 @@ groups:
     labels:
       component: cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            1 - avg by (env, environment, tier, type, stage, shard) (
+            1 - avg by (env,environment,shard,stage,tier,type) (
               rate(node_cpu_seconds_total{mode="idle", env="gstg",type="patroni-embedding"}[5m])
             )
             ,
@@ -23,7 +23,7 @@ groups:
     labels:
       component: disk_inodes
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             1 - (
@@ -40,10 +40,10 @@ groups:
     labels:
       component: disk_maximum_capacity
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            max by (env, environment, tier, type, stage, shard, fqdn, device) (
+            max by (device,env,environment,fqdn,shard,stage,tier,type) (
               node_filesystem_size_bytes{fstype=~"ext.|xfs", env="gstg",type="patroni-embedding"} - node_filesystem_avail_bytes{fstype=~"ext.|xfs", env="gstg",type="patroni-embedding"}
             ) / (64*2^40)
             ,
@@ -55,7 +55,7 @@ groups:
     labels:
       component: disk_space
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -70,7 +70,7 @@ groups:
     labels:
       component: nf_conntrack_entries
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             max_over_time(node_nf_conntrack_entries{env="gstg",type="patroni-embedding"}[1m])
@@ -85,7 +85,7 @@ groups:
     labels:
       component: node_schedstat_waiting
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             avg without (cpu) (rate(node_schedstat_waiting_seconds_total{env="gstg",type="patroni-embedding"}[1h]))
@@ -98,7 +98,7 @@ groups:
     labels:
       component: open_fds
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -121,13 +121,13 @@ groups:
     labels:
       component: pg_active_db_connections_primary
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             sum without (state) (
               pg_stat_activity_count{datname=~"gitlabhq_production|gitlabhq_registry", state!="idle", env="gstg",type="patroni-embedding"} unless on(instance) (pg_replication_is_replica == 1)
             )
-            / on (env, environment, tier, type, stage, shard, fqdn)
+            / on (env,environment,fqdn,shard,stage,tier,type)
             pg_settings_max_connections{env="gstg",type="patroni-embedding"}
             ,
             1)
@@ -138,13 +138,13 @@ groups:
     labels:
       component: pg_active_db_connections_replica
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             sum without (state) (
               pg_stat_activity_count{datname=~"gitlabhq_production|gitlabhq_registry", state!="idle", env="gstg",type="patroni-embedding"} and on(instance) (pg_replication_is_replica == 1)
             )
-            / on (env, environment, tier, type, stage, shard, fqdn)
+            / on (env,environment,fqdn,shard,stage,tier,type)
             pg_settings_max_connections{env="gstg",type="patroni-embedding"}
             ,
             1)
@@ -155,7 +155,7 @@ groups:
     labels:
       component: pg_anon_memory
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -174,12 +174,12 @@ groups:
     labels:
       component: pg_btree_bloat
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, tier, type, stage, shard, fqdn) (last_over_time(gitlab_database_bloat_btree_bloat_size{env="gstg",type="patroni-embedding"}[1h]))
+            sum by (env,environment,fqdn,shard,stage,tier,type) (last_over_time(gitlab_database_bloat_btree_bloat_size{env="gstg",type="patroni-embedding"}[1h]))
             /
-            sum by (env, environment, tier, type, stage, shard, fqdn) (last_over_time(gitlab_database_bloat_btree_real_size{env="gstg",type="patroni-embedding"}[1h]))
+            sum by (env,environment,fqdn,shard,stage,tier,type) (last_over_time(gitlab_database_bloat_btree_real_size{env="gstg",type="patroni-embedding"}[1h]))
             ,
             1)
         ,
@@ -189,7 +189,7 @@ groups:
     labels:
       component: pg_memory
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             1 - (
@@ -206,7 +206,7 @@ groups:
     labels:
       component: pg_primary_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             avg without(cpu, mode) (
@@ -227,12 +227,12 @@ groups:
     labels:
       component: pg_table_bloat
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, tier, type, stage, shard, fqdn) (avg_over_time(gitlab_database_bloat_table_bloat_size{env="gstg",type="patroni-embedding"}[58m]))
+            sum by (env,environment,fqdn,shard,stage,tier,type) (avg_over_time(gitlab_database_bloat_table_bloat_size{env="gstg",type="patroni-embedding"}[58m]))
             /
-            sum by (env, environment, tier, type, stage, shard, fqdn) (avg_over_time(gitlab_database_bloat_table_real_size{env="gstg",type="patroni-embedding"}[58m]))
+            sum by (env,environment,fqdn,shard,stage,tier,type) (avg_over_time(gitlab_database_bloat_table_real_size{env="gstg",type="patroni-embedding"}[58m]))
             ,
             1)
         ,
@@ -242,11 +242,11 @@ groups:
     labels:
       component: pg_txid_vacuum_to_wraparound
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
-              sum by (env, environment, tier, type, stage, shard) (
+              sum by (env,environment,shard,stage,tier,type) (
                 increase(fluentd_pg_auto_vacuum_elapsed_seconds_total{env="gstg",type="patroni-embedding"}[1d])
               )
               / on(environment, type) group_left() (
@@ -259,7 +259,7 @@ groups:
               (2^31 - 10^6)
               /
               (
-                avg by (env, environment, tier, type, stage, shard) (
+                avg by (env,environment,shard,stage,tier,type) (
                   deriv(pg_txid_current{env="gstg",type="patroni-embedding"}[1d]) and
                   on (instance) pg_replication_is_replica == 0
                 )
@@ -274,15 +274,15 @@ groups:
     labels:
       component: pg_vacuum_activity_v2
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, tier, type, stage, shard) (
+            sum by (env,environment,shard,stage,tier,type) (
               rate(fluentd_pg_auto_vacuum_elapsed_seconds_total{env="gstg",type="patroni-embedding"}[1d])
               and on (fqdn) (pg_replication_is_replica{env="gstg",type="patroni-embedding"} == 0)
             )
             /
-            avg by (env, environment, tier, type, stage, shard) (
+            avg by (env,environment,shard,stage,tier,type) (
               pg_settings_autovacuum_max_workers{env="gstg",type="patroni-embedding"}
               and on (instance, job) (pg_replication_is_replica{env="gstg",type="patroni-embedding"} == 0)
             )
@@ -295,16 +295,16 @@ groups:
     labels:
       component: pg_walsender_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            sum by (env, environment, tier, type, stage, shard) (
-              sum by(env, environment, tier, type, stage, shard, fqdn) (
+            sum by (env,environment,shard,stage,tier,type) (
+              sum by(env,environment,shard,stage,tier,type, fqdn) (
                 rate(namedprocess_namegroup_cpu_seconds_total{env="gstg",type="patroni-embedding", groupname=~"pg.worker.walsender|pg.worker.walwriter|wal-g"}[5m])
                 and on (fqdn) (pg_replication_is_replica{env="gstg",type="patroni-embedding"} == 0)
               )
               /
-              count by (env, environment, tier, type, stage, shard, fqdn) (
+              count by (env,environment,shard,stage,tier,type, fqdn) (
                 node_cpu_seconds_total{env="gstg",type="patroni-embedding", mode="idle"} and on(fqdn) (pg_replication_is_replica{env="gstg",type="patroni-embedding"} == 0)
               )
             )
@@ -317,7 +317,7 @@ groups:
     labels:
       component: pg_xid_wraparound
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -339,7 +339,7 @@ groups:
     labels:
       component: pgbouncer_client_conn_replicas
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             max_over_time(pgbouncer_used_clients{env="gstg",type="patroni-embedding"}[5m])
@@ -354,7 +354,7 @@ groups:
     labels:
       component: pgbouncer_sync_replica_pool
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (
@@ -363,8 +363,8 @@ groups:
               avg_over_time(pgbouncer_pools_server_used_connections{user=~"gitlab|gitlab-registry", database=~"gitlabhq_registry|gitlabhq_production", env="gstg",type="patroni-embedding"}[5m]) +
               avg_over_time(pgbouncer_pools_server_login_connections{user=~"gitlab|gitlab-registry", database=~"gitlabhq_registry|gitlabhq_production", env="gstg",type="patroni-embedding"}[5m])
             )
-            / on(env, environment, tier, type, stage, shard, fqdn, instance) group_left()
-            sum by (env, environment, tier, type, stage, shard, fqdn, instance) (
+            / on(env,environment,fqdn,instance,shard,stage,tier,type) group_left()
+            sum by (env,environment,fqdn,instance,shard,stage,tier,type) (
               avg_over_time(pgbouncer_databases_pool_size{name=~"gitlabhq_registry|gitlabhq_production", env="gstg",type="patroni-embedding"}[5m])
             )
             ,
@@ -376,10 +376,10 @@ groups:
     labels:
       component: shard_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
-            1 - avg by (env, environment, tier, type, stage, shard, shard) (
+            1 - avg by (env,environment,shard,stage,tier,type) (
               rate(node_cpu_seconds_total{mode="idle", env="gstg",type="patroni-embedding"}[5m])
             )
             ,
@@ -391,7 +391,7 @@ groups:
     labels:
       component: single_node_cpu
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             avg without(cpu, mode) (1 - rate(node_cpu_seconds_total{mode="idle", env="gstg",type="patroni-embedding"}[5m]))

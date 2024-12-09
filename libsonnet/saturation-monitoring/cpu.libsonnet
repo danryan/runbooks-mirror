@@ -13,7 +13,8 @@ local resourceSaturationPoint = (import 'servicemetrics/resource_saturation_poin
       horizontal or vertical scaling.
     |||,
     grafana_dashboard_uid: 'sat_cpu',
-    resourceLabels: [],
+    resourceLabels: ['shard'],
+    useResourceLabelsAsMaxAggregationLabels: true,
     burnRatePeriod: '5m',
     query: |||
       1 - avg by (%(aggregationLabels)s) (

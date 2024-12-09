@@ -11,7 +11,7 @@ groups:
       tier: inf
       type: nat
     expr: |
-      max by(env, environment, shard) (
+      max by(env,environment,shard) (
         clamp_min(
           clamp_max(
             sum without(nat_ip) (
@@ -45,7 +45,7 @@ groups:
       tier: inf
       type: nat
     expr: |
-      max by(env, environment, shard) (
+      max by(env,environment,shard) (
         clamp_min(
           clamp_max(
             sum without(ip_protocol) (

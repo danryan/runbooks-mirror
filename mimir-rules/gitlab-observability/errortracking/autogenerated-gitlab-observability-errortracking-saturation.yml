@@ -8,7 +8,7 @@ groups:
     labels:
       component: open_fds
     expr: |
-      max by(env, environment, tier, type, stage, shard) (
+      max by(env,environment,shard,stage,tier,type) (
         clamp_min(
           clamp_max(
             (

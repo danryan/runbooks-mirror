@@ -40,10 +40,10 @@ groups:
       grafana_panel_id: "804418020"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard) (
+        max by(environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              avg by (environment, tier, type, stage, shard) (
+              avg by (environment,shard,stage,tier,type) (
                 avg_over_time(elasticsearch_process_cpu_percent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1m]) / 100
               )
               ,
@@ -52,10 +52,10 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard) (
+        max by(environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
-              avg by (environment, tier, type, stage, shard) (
+              avg by (environment,shard,stage,tier,type) (
                 avg_over_time(elasticsearch_process_cpu_percent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[1m]) / 100
               )
               ,
@@ -92,15 +92,15 @@ groups:
       grafana_panel_id: "2419103084"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard) (
+        max by(environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               1 - (
-                sum by (environment, tier, type, stage, shard) (
+                sum by (environment,shard,stage,tier,type) (
                   (elasticsearch_filesystem_data_free_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"})
                 )
                 /
-                sum by (environment, tier, type, stage, shard) (
+                sum by (environment,shard,stage,tier,type) (
                   elasticsearch_filesystem_data_size_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
                 )
               )
@@ -110,15 +110,15 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard) (
+        max by(environment,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               1 - (
-                sum by (environment, tier, type, stage, shard) (
+                sum by (environment,shard,stage,tier,type) (
                   (elasticsearch_filesystem_data_free_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"})
                 )
                 /
-                sum by (environment, tier, type, stage, shard) (
+                sum by (environment,shard,stage,tier,type) (
                   elasticsearch_filesystem_data_size_bytes{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
                 )
               )
@@ -157,7 +157,7 @@ groups:
       grafana_panel_id: "2329310959"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, name) (
+        max by(environment,name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               elasticsearch_jvm_memory_used_bytes{area="heap", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
@@ -169,7 +169,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, name) (
+        max by(environment,name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               elasticsearch_jvm_memory_used_bytes{area="heap", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}
@@ -211,7 +211,7 @@ groups:
       grafana_panel_id: "2230690360"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, name) (
+        max by(environment,name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               avg_over_time(elasticsearch_process_cpu_percent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m]) / 100
@@ -221,7 +221,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, name) (
+        max by(environment,name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               avg_over_time(elasticsearch_process_cpu_percent{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m]) / 100
@@ -259,7 +259,7 @@ groups:
       grafana_panel_id: "658552830"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, name) (
+        max by(environment,name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -277,7 +277,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, name) (
+        max by(environment,name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -325,7 +325,7 @@ groups:
       grafana_panel_id: "525964640"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, name, exported_type) (
+        max by(environment,exported_type,name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -339,7 +339,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, name, exported_type) (
+        max by(environment,exported_type,name,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -385,7 +385,7 @@ groups:
       grafana_panel_id: "1001792825"
       grafana_variables: environment,type,stage
       promql_query: |
-        max by(environment, tier, type, stage, shard, job, instance) (
+        max by(environment,instance,job,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
@@ -405,7 +405,7 @@ groups:
           0)
         )
       promql_template_1: |
-        max by(environment, tier, type, stage, shard, job, instance) (
+        max by(environment,instance,job,shard,stage,tier,type) (
           clamp_min(
             clamp_max(
               (
