@@ -49,7 +49,7 @@ To re-enable it again we can run the following chatops command
 
 Zoekt has an `eviction` task that runs on a [defined schedule for GitLab.com](https://gitlab.com/gitlab-org/gitlab/-/blob/master/ee/app/services/search/zoekt/scheduling_service.rb#L64). It detects nodes 
 which are over the watermark limit for disk utilization and removes namespaces until the node
-is back under the watermark lower limit. Those namespaces have Zoekt search disabled and are removed
+is back under the watermark lower limit. Those namespaces are removed
 from the node. The `eviction` task is responsible for removing namespaces. The `dot_com_rollout`
 handles adding namespaces to nodes with capacity.
 
