@@ -354,21 +354,6 @@ groups:
       )
   - record: gitlab_component_saturation:ratio
     labels:
-      component: shard_cpu
-    expr: |
-      max by(env,environment,shard,stage,tier,type) (
-        clamp_min(
-          clamp_max(
-            1 - avg by (env,environment,shard,stage,tier,type) (
-              rate(node_cpu_seconds_total{mode="idle", env="pre",type="redis"}[5m])
-            )
-            ,
-            1)
-        ,
-        0)
-      )
-  - record: gitlab_component_saturation:ratio
-    labels:
       component: single_node_cpu
     expr: |
       max by(env,environment,shard,stage,tier,type) (

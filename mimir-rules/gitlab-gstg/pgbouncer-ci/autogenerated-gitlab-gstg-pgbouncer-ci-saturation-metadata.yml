@@ -94,14 +94,6 @@ groups:
     expr: "0.95"
   - record: slo:max:soft:gitlab_component_saturation:ratio
     labels:
-      component: shard_cpu
-    expr: "0.85"
-  - record: slo:max:hard:gitlab_component_saturation:ratio
-    labels:
-      component: shard_cpu
-    expr: "0.95"
-  - record: slo:max:soft:gitlab_component_saturation:ratio
-    labels:
       component: single_node_cpu
     expr: "0.9"
   - record: slo:max:hard:gitlab_component_saturation:ratio
