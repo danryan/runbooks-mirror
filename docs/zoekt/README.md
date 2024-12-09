@@ -66,7 +66,7 @@ for example), you can run the eviction task manually to evict some of the namesp
 
 #### Removing a namespace from the zoekt node manually
 
-If the eviction task does not relieve pressure on the node,
+If the eviction task returns false or does not relieve pressure on the node,
 you can remove a namespace from Zoekt manually.
 
 1. Execute the script in rails console
