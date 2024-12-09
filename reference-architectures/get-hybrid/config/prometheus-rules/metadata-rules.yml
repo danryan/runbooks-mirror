@@ -240,7 +240,7 @@ groups:
     record: gitlab_component_saturation_info
   - expr: "1"
     labels:
-      capacity_planning_strategy: quantile95_1h
+      capacity_planning_strategy: exclude
       component: single_node_cpu
       horiz_scaling: "yes"
       quantile: max

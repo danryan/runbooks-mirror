@@ -25,5 +25,8 @@ local labelTaxonomy = import 'label-taxonomy/label-taxonomy.libsonnet';
       hard: 0.95,
       alertTriggerDuration: '10m',
     },
+    capacityPlanning: {
+      strategy: 'exclude',
+    },
   }),
 }
