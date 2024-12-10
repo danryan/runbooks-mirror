@@ -45,27 +45,29 @@ To re-enable it again we can run the following chatops command
   /chatops run feature set --group=root-group-path disable_zoekt_search_for_saas false --production
 ```
 
-#### Reallocating namespaces from one Zoekt node to another
+#### Evicting namespaces from a Zoekt node
 
-Zoekt has a `reallocation` task that runs on a [defined schedule for GitLab.com](https://gitlab.com/gitlab-org/gitlab/-/blob/master/ee/app/services/search/zoekt/scheduling_service.rb#L64). It detects nodes
+Zoekt has an `eviction` task that runs on a [defined schedule for GitLab.com](https://gitlab.com/gitlab-org/gitlab/-/blob/master/ee/app/services/search/zoekt/scheduling_service.rb#L64). It detects nodes
 which are over the watermark limit for disk utilization and removes namespaces until the node
-is back under the watermark lower limit. Those namespaces have Zoekt search disabled and are removed
-from the node. The `reallocation` task is responsible for removing namespaces. The `dot_com_rollout`
+is back under the watermark lower limit. Those namespaces are removed
+from the node. The `eviction` task is responsible for removing namespaces. The `dot_com_rollout`
 handles adding namespaces to nodes with capacity.
 
+Note: The `eviction` task is currently behind a default enabled feature flag named `zoekt_reallocation_task`
+
 If Zoekt search FF is disabled, but you still see that some nodes misbehave (OOM or disk usage too high
-for example), you can run the reallocation task manually to evict some of the namespaces from the node:
+for example), you can run the eviction task manually to evict some of the namespaces from the node:
 
 1. Execute the script in rails console
 
    ```ruby
-   ::Search::Zoekt::SchedulingService.execute(:reallocation)
+   ::Search::Zoekt::SchedulingService.execute(:eviction)
    ```
 
 #### Removing a namespace from the zoekt node manually
 
-If the reallocation task does not relieve pressure on the node,
-you can remove a namespace from Zoekt manually as a last resort.
+If the eviction task returns false or does not relieve pressure on the node,
+you can remove a namespace from Zoekt manually.
 
 1. Execute the script in rails console
 
@@ -88,20 +90,16 @@ you can remove a namespace from Zoekt manually as a last resort.
    namespace_id = sorted.last[0]
    namespace = Namespace.find(namespace_id)
 
-   # Disable Zoekt search for the namespace
-   zoekt_enabled_namespaces = ::Search::Zoekt::EnabledNamespace.for_root_namespace_id(namespace.id)
-   zoekt_enabled_namespaces.update!(search: false)
-
-   # Destroy the `::Search::Zoekt::Index` record for the namespace
-   zoekt_indices = ::Search::Zoekt::Index.for_root_namespace_id(namespace.id)
-   zoekt_indices.destroy_all
+   # Destroy all `::Search::Zoekt::Replica` records for the namespace
+   zoekt_replicas = ::Search::Zoekt::Replica.for_namespace(namespace_id)
+   zoekt_replicas.destroy_all
    ```
 
-1. Post namespace_ids on the incident issue as a private comment so that we can add these back later
+1. Post namespace_ids on the incident issue as a private comment so there is a record. The Zoekt architecture will handle allocating the namespaces and projects to a new node.
 
 #### Marking a zoekt node as lost
 
-When a Zoekt node PVC is over 80% of usage and reallocating or removing namespaces doesn't reduce the usage, you can quickly remove all namespaces from a Zoekt node by manually mark the node as lost. This is a safe operation because the lost node will reregister itself as a new node and the [Zoekt Architecture](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/code_search_with_zoekt/) will handle allocating all namespaces and projects.
+When a Zoekt node PVC is over 80% of usage and evicting or removing namespaces doesn't reduce the usage, you can quickly remove all namespaces from a Zoekt node by manually mark the node as lost. This is a safe operation because the lost node will reregister itself as a new node and the [Zoekt Architecture](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/code_search_with_zoekt/) will handle allocating all namespaces and projects.
 
 Warning: The new UUID must not exist in the table.
 
@@ -230,6 +228,6 @@ As for `gitlab-zoekt-indexer` and `zoekt-webserver`, they write logs to stdout.
 
 ### `kube_persistent_volume_claim_disk_space`
 
-[Zoekt architecture](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/code_search_with_zoekt/) has logic which detects when nodes disk usage is over the limit. Projects will be removed from each node until it the node disk usage under the limit. If the disk space is not coming down quick enough, remove namespaces using the [reallocation task](#reallocating-namespaces-from-one-zoekt-node-to-another), [remove namepaces manually](#removing-a-namespace-from-the-zoekt-node-manually), or [mark the node as lost a last resort](#marking-a-zoekt-node-as-lost).
+[Zoekt architecture](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/code_search_with_zoekt/) has logic which detects when nodes disk usage is over the limit. Projects will be removed from each node until it the node disk usage under the limit. If the disk space is not coming down quick enough, remove namespaces using the [eviction task](#evicting-namespaces-from-a-zoekt-node), [remove namepaces manually](#removing-a-namespace-from-the-zoekt-node-manually), or [mark the node as lost a last resort](#marking-a-zoekt-node-as-lost).
 
 WARNING: The PVC disk size must not be increased manually. Zoekt nodes are sized with a specific PVC size and it must remain consistant across all nodes.
