@@ -209,8 +209,7 @@ metricsCatalog.serviceDefinition({
 
       requestRate: rateMetric(
         counter='redis_commands_processed_total',
-        selector=sentryQuerySelector,
-        instanceFilter='redis_instance_info{role="slave"}'
+        selector=sentryQuerySelector + { role: { eq: 'slave' } },
       ),
 
       significantLabels: ['instance'],
