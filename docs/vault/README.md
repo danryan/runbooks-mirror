@@ -57,6 +57,7 @@
 * [../redis/redis-functional-partitioning.md](../redis/redis-functional-partitioning.md)
 * [Scaling Redis Cluster](../redis/scaling-redis-cluster.md)
 * [Container Registry CDN](../registry/cdn.md)
+* [Managing Sentry in Kubernetes](../sentry/sentry.md)
 * [Teleport Administration](../teleport/teleport_admin.md)
 * [Teleport Disaster Recovery](../teleport/teleport_disaster_recovery.md)
 * [Aptly](../uncategorized/aptly.md)
