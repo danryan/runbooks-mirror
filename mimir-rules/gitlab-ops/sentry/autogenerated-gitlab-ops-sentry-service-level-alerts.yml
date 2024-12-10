@@ -694,7 +694,7 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          rate(redis_commands_processed_total{environment="{{ $labels.environment }}",namespace="sentry",stage="{{ $labels.stage }}"}[5m]) and on (instance) redis_instance_info{role="master"}
+          rate(redis_commands_processed_total{environment="{{ $labels.environment }}",namespace="sentry",stage="{{ $labels.stage }}"}[5m])
         )
       runbook: docs/sentry/README.md
     labels:
@@ -732,7 +732,7 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          rate(redis_commands_processed_total{environment="{{ $labels.environment }}",namespace="sentry",stage="{{ $labels.stage }}"}[5m]) and on (instance) redis_instance_info{role="master"}
+          rate(redis_commands_processed_total{environment="{{ $labels.environment }}",namespace="sentry",stage="{{ $labels.stage }}"}[5m])
         )
       runbook: docs/sentry/README.md
     labels:
@@ -768,7 +768,7 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          rate(redis_commands_processed_total{environment="{{ $labels.environment }}",namespace="sentry",stage="{{ $labels.stage }}"}[5m]) and on (instance) redis_instance_info{role="slave"}
+          rate(redis_commands_processed_total{environment="{{ $labels.environment }}",namespace="sentry",stage="{{ $labels.stage }}"}[5m])
         )
       runbook: docs/sentry/README.md
     labels:
@@ -806,7 +806,7 @@ groups:
       grafana_variables: environment,stage
       promql_template_1: |
         sum by (env,environment,tier,stage) (
-          rate(redis_commands_processed_total{environment="{{ $labels.environment }}",namespace="sentry",stage="{{ $labels.stage }}"}[5m]) and on (instance) redis_instance_info{role="slave"}
+          rate(redis_commands_processed_total{environment="{{ $labels.environment }}",namespace="sentry",stage="{{ $labels.stage }}"}[5m])
         )
       runbook: docs/sentry/README.md
     labels:

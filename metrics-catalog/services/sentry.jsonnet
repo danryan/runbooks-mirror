@@ -191,7 +191,7 @@ metricsCatalog.serviceDefinition({
       requestRate: rateMetric(
         counter='redis_commands_processed_total',
         selector=sentryQuerySelector,
-        instanceFilter='redis_instance_info{role="master"}'
+        //filterExpr='and on (instance) redis_instance_info{role="master"}'
       ),
 
       significantLabels: ['instance'],
@@ -209,7 +209,8 @@ metricsCatalog.serviceDefinition({
 
       requestRate: rateMetric(
         counter='redis_commands_processed_total',
-        selector=sentryQuerySelector + { role: { eq: 'slave' } },
+        selector=sentryQuerySelector,
+        //filterExpr='and on (instance) redis_instance_info{role="slave"}'
       ),
 
       significantLabels: ['instance'],
