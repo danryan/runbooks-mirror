@@ -80,15 +80,17 @@ For the purposes of supporting Sentry (e.g. adding new projects, configuring exi
 1. Select `Google Authenticator` to verify, and enter the OTP from the `Okta ops-contact` entry in 1Password (no, you don't need to actually use Google Authenticator here).
 1. At this point Sentry will prompt for 2FA. Use the OTP (or a recovery code) from the `New Sentry Ops admin login` entry in 1Password.
 1. You should now be logged into Sentry as the `ops-contact+sentry@gitlab.com` user.
+
 #### Okta Verify setup
 
-If this is your first time setting up your SRE Admin Access, follow the below steps to add it to Okta Verify: 
+If this is your first time setting up your SRE Admin Access, follow the below steps to add it to Okta Verify:
 
 1. Open the `Okta Verify` app on your machine (on Mac this should appear as an icon in the Apple menu, located in the top-left corner of your screen).
 1. Select `Use another account`, then under New account enter `gitlab.okta.com` and click Next which should redirect to your browser.
 1. Log out of your own GitLab account, and enter the `Okta ops-contact` username and password from the `Production` vault in 1Password.
 1. Select `Google Authenticator` to verify, and enter the OTP from the `Okta ops-contact` entry in 1Password (no, you don't need to actually use Google Authenticator here).
 1. Now you should have the `ops-contact` set up on your machine!
+
 ### Projects and teams
 
 The `Member` role does not allow people to create new projects or teams in Sentry, so they have to be provisioned by us manually. This gives us the opportunity to gatekeep a little. Ensure that:
