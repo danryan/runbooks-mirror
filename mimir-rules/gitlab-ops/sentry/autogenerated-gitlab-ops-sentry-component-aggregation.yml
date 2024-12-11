@@ -236,7 +236,7 @@ groups:
       type: sentry
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:redis_commands_processed_total:rate_5m{env="ops",namespace="sentry"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_5m{env="ops",namespace="sentry"} offset 30s and on (instance) redis_instance_info{role="master"}
       )
   - record: gitlab_component_errors:ratio_5m
     labels:
@@ -274,7 +274,7 @@ groups:
       type: sentry
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:redis_commands_processed_total:rate_5m{env="ops",namespace="sentry"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_5m{env="ops",namespace="sentry"} offset 30s and on (instance) redis_instance_info{role="slave"}
       )
   - record: gitlab_component_errors:ratio_5m
     labels:
@@ -673,7 +673,7 @@ groups:
       type: sentry
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:redis_commands_processed_total:rate_30m{env="ops",namespace="sentry"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_30m{env="ops",namespace="sentry"} offset 30s and on (instance) redis_instance_info{role="master"}
       )
   - record: gitlab_component_errors:ratio_30m
     labels:
@@ -711,7 +711,7 @@ groups:
       type: sentry
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:redis_commands_processed_total:rate_30m{env="ops",namespace="sentry"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_30m{env="ops",namespace="sentry"} offset 30s and on (instance) redis_instance_info{role="slave"}
       )
   - record: gitlab_component_errors:ratio_30m
     labels:
@@ -1110,7 +1110,7 @@ groups:
       type: sentry
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:redis_commands_processed_total:rate_1h{env="ops",namespace="sentry"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_1h{env="ops",namespace="sentry"} offset 30s and on (instance) redis_instance_info{role="master"}
       )
   - record: gitlab_component_errors:ratio_1h
     labels:
@@ -1148,7 +1148,7 @@ groups:
       type: sentry
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:redis_commands_processed_total:rate_1h{env="ops",namespace="sentry"} offset 30s
+        sli_aggregations:redis_commands_processed_total:rate_1h{env="ops",namespace="sentry"} offset 30s and on (instance) redis_instance_info{role="slave"}
       )
   - record: gitlab_component_errors:ratio_1h
     labels:
