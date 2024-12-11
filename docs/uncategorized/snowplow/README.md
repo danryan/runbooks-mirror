@@ -16,6 +16,19 @@ All of the SnowPlow pipeline components live in AWS GPRD account: `855262394183`
 
 ![SnowPlow Diagram](../img/snowplow/snowplowdiagram.png "SnowPlow Diagram")
 
+## Action steps on Incident
+
+1. Create an incident in Slack, [handbook instructions](https://handbook.gitlab.com/handbook/engineering/infrastructure/incident-management/#report-an-incident-via-slack)
+    * The incident should be labelled **P3**, as this is internal-only.
+1. Read through the runbook, the 'What is important' section may be a good place to start
+
+## Past Incident list
+
+Incident list starting in December, 2024. This list is not guaranteed to be complete, but could be useful to reference for future incidents:
+
+1. 2024-12-01: [Investigate why snowplow good events backing up takes time](https://gitlab.com/gitlab-org/gitlab/-/issues/507248#note_2241426826)
+1. [2024-12-10: Snowplow enriched events are not getting processed](https://gitlab.com/gitlab-com/gl-infra/production/-/issues/18975#note_2251924192)
+
 ## Note: Interim transition period
 
 As of October, 2024-Q3, we are in an interim period of 6 months where we will be maintaining **two** production environments. In config-mgmt, these environments are called:
@@ -77,14 +90,14 @@ The raw events Kinesis stream has a data retention period of 48 hours. This can 
 
 ## Key Cloudwatch Dashboards
 
-Cloudwatch [aws-snowplow](https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#dashboards/dashboard/SnowPlow) and [aws-snowplow-prd](https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#dashboards/dashboard/aws_snowplow_prd) tracking each environment.
+Cloudwatch [aws-snowplow](https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#dashboards/dashboard/SnowPlow) and [aws-snowplow-prd](https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#dashboards/dashboard/aws_snowplow_prd) dashboards tracking each environment.
 
-In the past, the 2 most important dashboards have been:
+In the past, the two most important dashboards have been:
 
 1. `stream records age`: the most important because it measures how long events are sitting in Kinesis (which means they’re not getting enriched, in the past we have had problem with it backing up)
 1. `Auto-scaling group size`: if we see collectors scaling up, but not scaling back down, we may need to increase the number of collectors to make sure we’re always ready to ingest bigger event traffic
 
-## Refreshing EC2 instances within auto-scaling group
+## Updating enricher config
 
 The Snowplow collector and enricher instances are started with launch configuration templates.
 These launch configuration templates include the Snowplow configs- `collector-user-data.sh` and `enricher-user-data.sh`.
@@ -93,6 +106,26 @@ The Snowplow configs are used to configure how the Snowplow collector/enricher a
 
 1. Within the .sh file(s), update the Snowplow config values
 1. Create an MR to apply the changes, which should update the aws_launch_configuration resource, [example MR](https://ops.gitlab.net/gitlab-com/gl-infra/config-mgmt/-/merge_requests/9788)
+
+In the `aws-snowplow` environment *only*, you need to manually force an instance refresh in order for the instances to use the new config. To do the instance refresh, see the 'Refreshing EC2 instances within auto-scaling group' section.
+
+In the `aws-snwowplow-stg/prd` environments, this isn't necessary because the terraform configures a `rolling update`.
+
+Lastly, to check that your config has been updated, ssh into one of the instances (see ssh section) and run:
+
+```sh
+cat /snowplow/config/config.hocon
+```
+
+## EC2 instance refresh
+
+You may need to do a instance refresh manually, for example because:
+
+* instances have become unresponsive
+* you've updated the launch config in the `aws-snowplow` env
+
+Here are the instructions:
+
 1. The instances need to be terminated/recreated for them to use the updated config. To access the `instance_refresh` tab in the UI:
     * go to EC2 -> Auto Scaling groups -> click 'snowplow PRD enricher' or 'snowplow PRD collector' -> Instance refresh
 1. Once in the 'Instance refresh' tab, click 'Start instance refresh'
@@ -101,6 +134,24 @@ The Snowplow configs are used to configure how the Snowplow collector/enricher a
     * Set healthy percentage, Min=`95%`
     * the rest of the settings, you can leave as is
 1. Click 'Start instance refresh', and track its progress
+
+## A note on burstable machines
+
+Currently, the EC2 collector/enricher instances both use the `t` [machine types](https://aws.amazon.com/ec2/instance-types/).
+
+These machine types are [burstable](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html):
+
+> The T instance family provides a baseline CPU performance with the ability to burst above the baseline at any time for as long as required
+
+When the instances are bursting, they consume CPU credits.
+
+If the CPU usage is especially high, it may not be apparent at first, because the machines are bursting.
+But once all CPU credits have been consumed the machines can no longer burst, and this could lead to degradation of the system, as seen in the `2024-12-10` incident.
+
+As such, it's important to do the following:
+
+* be aware that we are using burstable instances
+* keep an eye on the CPU credits, which can be seen in the EC2 UI for a specific instance. This is an important point especially during big changes such as upgrades, as seen in the `2024-12-10` incident.
 
 ## How to SSH into EC2 instances
 
