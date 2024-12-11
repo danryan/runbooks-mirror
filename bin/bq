@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+trap ctl_c INT
+
+print_help() {
+  echo >&2 "\"bq\" helps you deal with archived logs using BigQuery for processing"
+  echo >&2 "USAGE:"
+  echo >&2 "    glsh bq [SUBCOMMAND] [env] [service]"
+  echo >&2
+  echo >&2 "SUBCOMMANDS:"
+  echo >&2 "    create-table: Create external table that sources our GCS archived logs"
+}
+
+create_table() {
+  dataset="$gcp_project:archived_logs"
+  table="$dataset.$service"
+
+  if bq show $table >/dev/null; then
+    echo "Table '$table' already exists."
+    exit 0
+  fi
+
+  schema=$(mktemp /tmp/glsh-bq.XXXXXX)
+
+  cleanup() {
+    rm $schema
+  }
+  trap cleanup EXIT
+
+  bq mkdef --source_format=NEWLINE_DELIMITED_JSON --hive_partitioning_mode=CUSTOM \
+    --ignore_unknown_values=true \
+    --hive_partitioning_source_uri_prefix=gs://gitlab-$env-logging-archive/gke/$service/{dt:DATE} \
+    gs://gitlab-$env-logging-archive/gke/$service/dt=*.json \
+    $(dirname $0)/../docs/logging/logging_bigquery_schemas/${service}_gke_schema.json |
+    sed '/autodetect/s/true/false/' \
+    > $schema
+
+  bq show $dataset >/dev/null || bq mk $dataset # Create dataset if needed
+  bq mk --external_table_definition=$schema $table
+}
+
+if [[ "$#" -ne 3 ]]; then
+  print_help
+  exit 1
+fi
+
+cmd=$1
+env=$2
+service=$3
+
+case $env in
+  gstg)
+    gcp_project="gitlab-staging-1"
+    ;;
+  gprd)
+    gcp_project="gitlab-production"
+    ;;
+  *)
+    print_help
+    exit 1
+    ;;
+esac
+
+case $cmd in
+  create-table)
+    create_table
+    ;;
+  *)
+    print_help
+    exit 1
+    ;;
+esac
