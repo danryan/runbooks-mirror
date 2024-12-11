@@ -147,31 +147,6 @@ metricsCatalog.serviceDefinition({
       significantLabels: [],
     },
 
-    kafka_topics: {
-      severity: 's3',
-      userImpacting: false,
-      serviceAggregation: false,
-      featureCategory: 'not_owned',
-      description: |||
-        Represents all messages the Sentry Kafka pods processed.
-        Errors represent all failed requests the Sentry Kafka pods failed to process.
-      |||,
-
-      local kafkaSelector = { type: 'sentry' },
-
-      requestRate: rateMetric(
-        counter='kafka_server_brokertopicmetrics_total_totalproducerequestspersec_count',
-        selector=kafkaSelector,
-      ),
-
-      errorRate: rateMetric(
-        counter='kafka_server_brokertopicmetrics_total_failedproducerequestspersec_count',
-        selector=kafkaSelector,
-      ),
-
-      significantLabels: [],
-    },
-
     rabbitmq_messages: {
       severity: 's3',
       userImpacting: false,
