@@ -7,7 +7,7 @@ groups:
   - record: sli_aggregations:gitlab_runner_acceptable_job_queuing_duration_exceeded_total:rate_5m
     expr: |
       sum by (component,env,environment,feature_category,fqdn,job,product_stage,region,shard,stage,stage_group,tier,type) (
-        rate(gitlab_runner_acceptable_job_queuing_duration_exceeded_total{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|qa-runners|saas-.*|shared-gitlab-org|windows-shared",type=~"ci-runners"}[5m] offset 30s)
+        rate(gitlab_runner_acceptable_job_queuing_duration_exceeded_total{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"qa-runners|saas-.*|shared-gitlab-org|windows-shared",type=~"ci-runners"}[5m] offset 30s)
       )
   - record: sli_aggregations:gitlab_runner_failed_jobs_total:rate_5m
     expr: |
@@ -99,7 +99,7 @@ groups:
   - record: sli_aggregations:gitlab_runner_acceptable_job_queuing_duration_exceeded_total:rate_30m
     expr: |
       sum by (component,env,environment,feature_category,fqdn,job,product_stage,region,shard,stage,stage_group,tier,type) (
-        rate(gitlab_runner_acceptable_job_queuing_duration_exceeded_total{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|qa-runners|saas-.*|shared-gitlab-org|windows-shared",type=~"ci-runners"}[30m] offset 30s)
+        rate(gitlab_runner_acceptable_job_queuing_duration_exceeded_total{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"qa-runners|saas-.*|shared-gitlab-org|windows-shared",type=~"ci-runners"}[30m] offset 30s)
       )
   - record: sli_aggregations:gitlab_runner_failed_jobs_total:rate_30m
     expr: |
@@ -191,7 +191,7 @@ groups:
   - record: sli_aggregations:gitlab_runner_acceptable_job_queuing_duration_exceeded_total:rate_1h
     expr: |
       sum by (component,env,environment,feature_category,fqdn,job,product_stage,region,shard,stage,stage_group,tier,type) (
-        rate(gitlab_runner_acceptable_job_queuing_duration_exceeded_total{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|qa-runners|saas-.*|shared-gitlab-org|windows-shared",type=~"ci-runners"}[1h] offset 30s)
+        rate(gitlab_runner_acceptable_job_queuing_duration_exceeded_total{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"qa-runners|saas-.*|shared-gitlab-org|windows-shared",type=~"ci-runners"}[1h] offset 30s)
       )
   - record: sli_aggregations:gitlab_runner_failed_jobs_total:rate_1h
     expr: |

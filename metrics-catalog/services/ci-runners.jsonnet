@@ -215,7 +215,7 @@ metricsCatalog.serviceDefinition({
         selector={
           job: { oneOf: ['runners-manager', 'scrapeConfig/monitoring/prometheus-agent-runner'] },
           type: 'ci-runners',
-          shard: { oneOf: ['shared-gitlab-org', 'private', 'saas-.*', 'windows-shared'] },
+          shard: { oneOf: ['shared-gitlab-org', 'saas-.*', 'windows-shared'] },
         },
       ),
 
@@ -224,7 +224,7 @@ metricsCatalog.serviceDefinition({
         selector={
           job: { oneOf: ['runners-manager', 'scrapeConfig/monitoring/prometheus-agent-runner'] },
           type: 'ci-runners',
-          shard: { oneOf: ['shared-gitlab-org', 'private', 'saas-.*', 'windows-shared'] },
+          shard: { oneOf: ['shared-gitlab-org', 'saas-.*', 'windows-shared'] },
         },
       ),
 
@@ -233,7 +233,7 @@ metricsCatalog.serviceDefinition({
         selector={
           job: { oneOf: ['runners-manager', 'scrapeConfig/monitoring/prometheus-agent-runner'] },
           type: 'ci-runners',
-          shard: { oneOf: ['shared-gitlab-org', 'private', 'saas-.*', 'windows-shared'] },
+          shard: { oneOf: ['shared-gitlab-org', 'saas-.*', 'windows-shared'] },
           failure_reason: 'runner_system_failure',
         },
       ),
@@ -244,6 +244,7 @@ metricsCatalog.serviceDefinition({
         toolingLinks.kibana(title='CI Runners', index='runners', slowRequestSeconds=60),
       ],
     },
+
     local ciRunnerJobs = self.ci_runner_jobs,
     qa_runner_jobs: ciRunnerJobs {
       userImpacting: false,

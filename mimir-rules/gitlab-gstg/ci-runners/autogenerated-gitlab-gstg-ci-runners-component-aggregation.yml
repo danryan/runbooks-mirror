@@ -12,13 +12,13 @@ groups:
       type: ci-runners
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:gitlab_runner_jobs_total:rate_5m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+        sli_aggregations:gitlab_runner_jobs_total:rate_5m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
       ) - (
         sum by (env,environment,stage) (
-          sli_aggregations:gitlab_runner_acceptable_job_queuing_duration_exceeded_total:rate_5m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+          sli_aggregations:gitlab_runner_acceptable_job_queuing_duration_exceeded_total:rate_5m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
         ) or
         0 * sum by (env,environment,stage) (
-          sli_aggregations:gitlab_runner_jobs_total:rate_5m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+          sli_aggregations:gitlab_runner_jobs_total:rate_5m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
         )
       )
   - record: gitlab_component_apdex:weight:score_5m
@@ -29,7 +29,7 @@ groups:
       type: ci-runners
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:gitlab_runner_jobs_total:rate_5m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+        sli_aggregations:gitlab_runner_jobs_total:rate_5m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
       )
   - record: gitlab_component_ops:rate_5m
     labels:
@@ -39,7 +39,7 @@ groups:
       type: ci-runners
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:gitlab_runner_jobs_total:rate_5m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+        sli_aggregations:gitlab_runner_jobs_total:rate_5m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
       )
   - record: gitlab_component_errors:rate_5m
     labels:
@@ -50,7 +50,7 @@ groups:
     expr: |
       (
         sum by (env,environment,stage) (
-          sli_aggregations:gitlab_runner_failed_jobs_total:rate_5m{env="gstg",failure_reason="runner_system_failure",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+          sli_aggregations:gitlab_runner_failed_jobs_total:rate_5m{env="gstg",failure_reason="runner_system_failure",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
         )
       )
       or
@@ -465,13 +465,13 @@ groups:
       type: ci-runners
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:gitlab_runner_jobs_total:rate_30m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+        sli_aggregations:gitlab_runner_jobs_total:rate_30m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
       ) - (
         sum by (env,environment,stage) (
-          sli_aggregations:gitlab_runner_acceptable_job_queuing_duration_exceeded_total:rate_30m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+          sli_aggregations:gitlab_runner_acceptable_job_queuing_duration_exceeded_total:rate_30m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
         ) or
         0 * sum by (env,environment,stage) (
-          sli_aggregations:gitlab_runner_jobs_total:rate_30m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+          sli_aggregations:gitlab_runner_jobs_total:rate_30m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
         )
       )
   - record: gitlab_component_apdex:weight:score_30m
@@ -482,7 +482,7 @@ groups:
       type: ci-runners
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:gitlab_runner_jobs_total:rate_30m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+        sli_aggregations:gitlab_runner_jobs_total:rate_30m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
       )
   - record: gitlab_component_ops:rate_30m
     labels:
@@ -492,7 +492,7 @@ groups:
       type: ci-runners
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:gitlab_runner_jobs_total:rate_30m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+        sli_aggregations:gitlab_runner_jobs_total:rate_30m{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
       )
   - record: gitlab_component_errors:rate_30m
     labels:
@@ -503,7 +503,7 @@ groups:
     expr: |
       (
         sum by (env,environment,stage) (
-          sli_aggregations:gitlab_runner_failed_jobs_total:rate_30m{env="gstg",failure_reason="runner_system_failure",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+          sli_aggregations:gitlab_runner_failed_jobs_total:rate_30m{env="gstg",failure_reason="runner_system_failure",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
         )
       )
       or
@@ -918,13 +918,13 @@ groups:
       type: ci-runners
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:gitlab_runner_jobs_total:rate_1h{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+        sli_aggregations:gitlab_runner_jobs_total:rate_1h{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
       ) - (
         sum by (env,environment,stage) (
-          sli_aggregations:gitlab_runner_acceptable_job_queuing_duration_exceeded_total:rate_1h{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+          sli_aggregations:gitlab_runner_acceptable_job_queuing_duration_exceeded_total:rate_1h{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
         ) or
         0 * sum by (env,environment,stage) (
-          sli_aggregations:gitlab_runner_jobs_total:rate_1h{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+          sli_aggregations:gitlab_runner_jobs_total:rate_1h{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
         )
       )
   - record: gitlab_component_apdex:weight:score_1h
@@ -935,7 +935,7 @@ groups:
       type: ci-runners
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:gitlab_runner_jobs_total:rate_1h{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+        sli_aggregations:gitlab_runner_jobs_total:rate_1h{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
       )
   - record: gitlab_component_ops:rate_1h
     labels:
@@ -945,7 +945,7 @@ groups:
       type: ci-runners
     expr: |
       sum by (env,environment,stage) (
-        sli_aggregations:gitlab_runner_jobs_total:rate_1h{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+        sli_aggregations:gitlab_runner_jobs_total:rate_1h{env="gstg",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
       )
   - record: gitlab_component_errors:rate_1h
     labels:
@@ -956,7 +956,7 @@ groups:
     expr: |
       (
         sum by (env,environment,stage) (
-          sli_aggregations:gitlab_runner_failed_jobs_total:rate_1h{env="gstg",failure_reason="runner_system_failure",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"private|saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
+          sli_aggregations:gitlab_runner_failed_jobs_total:rate_1h{env="gstg",failure_reason="runner_system_failure",job=~"runners-manager|scrapeConfig/monitoring/prometheus-agent-runner",shard=~"saas-.*|shared-gitlab-org|windows-shared",type="ci-runners"} offset 30s
         )
       )
       or
