@@ -38,4 +38,4 @@ Updates for each HAProxy fleet will be performed in groups, the size of the grou
 
 ## Additional Automation Tooling
 
-None exists currently.
+Pipelines exist in the [`patch-automation`](https://ops.gitlab.net/gitlab-com/gl-infra/ops-team/toolkit/patch-automation) project that can be initiated manually to patch this fleet.
