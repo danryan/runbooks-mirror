@@ -176,8 +176,8 @@ teams:
   - graphql_query
 
 - name: authorization
-  slack_alerts_channel: g_govern_authorization
-  slack_error_budget_channel: g_govern_authorization
+  slack_alerts_channel: g_sscs_authorization
+  slack_error_budget_channel: g_sscs_authorization
   send_error_budget_weekly_to_slack: true
   send_slo_alerts_to_team_slack_channel: false
   product_stage_group: authorization
