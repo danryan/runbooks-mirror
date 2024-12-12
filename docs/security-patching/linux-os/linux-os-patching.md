@@ -51,14 +51,14 @@ The major Linux fleets that support GitLab.com are:
 | ------- | ----- | -------- | :----------------: | :--------: | --------------- |
 | [GKE](systems/gke.md)     | reliability_foundations | external | low | partial | external |
 | [Runner Managers](systems/runner-managers.md) | scalability:practices | internal | low | no | 8 |
-| [HAProxy](systems/haproxy.md) | reliability_foundations | external | low | no | 8 |
-| [Gitaly](systems/gitaly.md) | gitaly | internal | high | no | as needed |
+| [HAProxy](systems/haproxy.md) | reliability_foundations | external | low | partial | 8 |
+| [Gitaly](systems/gitaly.md) | data-access::durability | internal | high | no | as needed |
 | [Patroni](systems/patroni.md) | reliability_database_reliability | internal | low | no | 8 |
 | [PGBouncer](systems/pgbouncer.md) | reliability_database_reliability | internal | low | no | 8 |
-| [Redis](systems/redis.md) | scalability_practices | internal | low | no | 8 |
+| [Redis](systems/redis.md) | data-access::durability | internal | low | no | 8 |
 | [Console](systems/console.md) | none | internal | low | no | 8 |
 | [Deploy](systems/deploy.md) | none | internal | medium | no | 12 |
-| [Bastions](systems/bastions.md) | none | external | low | no | 8 |
+| [Bastions](systems/bastions.md) | none | external | low | partial | 8 |
 
 ### Definitions
 
