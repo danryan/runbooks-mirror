@@ -32,13 +32,13 @@ local sidekiqAlerts(registry, extraSelector) =
       alert: 'sidekiq_throttled_jobs_enqueued_without_dequeuing',
       expr: |||
         (
-          sum by (environment, queue, feature_category, worker) (
+          sum by (env, queue, feature_category, worker) (
             %(enqueueRate)s{%(selector)s}
           ) > 0
         )
         unless
         (
-          sum by (environment, queue, feature_category, worker) (
+          sum by (env, queue, feature_category, worker) (
             %(executionRate)s{%(selector)s}
           ) > 0
         )
@@ -75,9 +75,9 @@ local sidekiqAlerts(registry, extraSelector) =
     {
       alert: 'SidekiqQueueNoLongerBeingProcessed',
       expr: |||
-        (sum by(environment, queue) (%(enqueueRate)s{%(selector)s})> 0.001)
+        (sum by(env, queue) (%(enqueueRate)s{%(selector)s})> 0.001)
         unless
-        (sum by(environment, queue) (%(executionRate)s{%(selector)s}) > 0)
+        (sum by(env, queue) (%(executionRate)s{%(selector)s}) > 0)
       ||| % {
         selector: selectors.serializeHash(extraSelector),
         enqueueRate: registry.recordingRuleNameFor('sidekiq_enqueued_jobs_total', '6h'),
@@ -108,9 +108,9 @@ local sidekiqAlerts(registry, extraSelector) =
     {
       alert: 'SidekiqWorkerNoLongerBeingProcessed',
       expr: |||
-        (sum by(environment, worker) (%(enqueueRate1h)s{%(selector)s})> 0.001)
+        (sum by(env, worker) (%(enqueueRate1h)s{%(selector)s})> 0.001)
         unless
-        (sum by(environment, worker) (%(executionRate1h)s{%(selector)s})  > 0)
+        (sum by(env, worker) (%(executionRate1h)s{%(selector)s})  > 0)
       ||| % {
         selector: selectors.serializeHash(extraSelector),
         enqueueRate1h: registry.recordingRuleNameFor('sidekiq_enqueued_jobs_total', '1h'),
@@ -141,7 +141,7 @@ local sidekiqAlerts(registry, extraSelector) =
     {
       alert: 'SidekiqJobsSkippedTooLong',
       expr: |||
-        sum by (environment, worker, action)  (
+        sum by (env, worker, action)  (
           rate(
             sidekiq_jobs_skipped_total{%(selector)s}[1h]
             )

@@ -30,13 +30,13 @@ groups:
       type: sidekiq
     expr: |
       (
-        sum by (environment, queue, feature_category, worker) (
+        sum by (env, queue, feature_category, worker) (
           sli_aggregations:sidekiq_enqueued_jobs_total:rate_1h{env="gstg",urgency="throttled"}
         ) > 0
       )
       unless
       (
-        sum by (environment, queue, feature_category, worker) (
+        sum by (env, queue, feature_category, worker) (
           sli_aggregations:gitlab_sli_sidekiq_execution_total:rate_1h{env="gstg",urgency="throttled"}
         ) > 0
       )
@@ -64,9 +64,9 @@ groups:
       tier: sv
       type: sidekiq
     expr: |
-      (sum by(environment, queue) (sli_aggregations:sidekiq_enqueued_jobs_total:rate_6h{env="gstg"})> 0.001)
+      (sum by(env, queue) (sli_aggregations:sidekiq_enqueued_jobs_total:rate_6h{env="gstg"})> 0.001)
       unless
-      (sum by(environment, queue) (sli_aggregations:gitlab_sli_sidekiq_execution_total:rate_6h{env="gstg"}) > 0)
+      (sum by(env, queue) (sli_aggregations:gitlab_sli_sidekiq_execution_total:rate_6h{env="gstg"}) > 0)
   - alert: SidekiqWorkerNoLongerBeingProcessed
     for: 20m
     annotations:
@@ -91,9 +91,9 @@ groups:
       tier: sv
       type: sidekiq
     expr: |
-      (sum by(environment, worker) (sli_aggregations:sidekiq_enqueued_jobs_total:rate_1h{env="gstg"})> 0.001)
+      (sum by(env, worker) (sli_aggregations:sidekiq_enqueued_jobs_total:rate_1h{env="gstg"})> 0.001)
       unless
-      (sum by(environment, worker) (sli_aggregations:gitlab_sli_sidekiq_execution_total:rate_1h{env="gstg"})  > 0)
+      (sum by(env, worker) (sli_aggregations:gitlab_sli_sidekiq_execution_total:rate_1h{env="gstg"})  > 0)
   - alert: SidekiqJobsSkippedTooLong
     for: 3h
     annotations:
@@ -114,7 +114,7 @@ groups:
       severity: s4
       team: data-access:durability
     expr: |
-      sum by (environment, worker, action)  (
+      sum by (env, worker, action)  (
         rate(
           sidekiq_jobs_skipped_total{env="gstg"}[1h]
           )
