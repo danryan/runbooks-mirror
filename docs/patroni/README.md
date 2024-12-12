@@ -22,6 +22,7 @@
 * [../ci-runners/ci-apdex-violating-slo.md](../ci-runners/ci-apdex-violating-slo.md)
 * [../ci-runners/service-ci-runners.md](../ci-runners/service-ci-runners.md)
 * [Interacting with Consul](../consul/interaction.md)
+* [GitLab.com Disaster Recovery Confidence Measurements](../disaster-recovery/confidence.md)
 * [Google Cloud Snapshots](../disaster-recovery/gcp-snapshots.md)
 * [Measuring Recovery Activities](../disaster-recovery/recovery-measurements.md)
 * [Zonal and Regional Recovery Guide](../disaster-recovery/recovery.md)
