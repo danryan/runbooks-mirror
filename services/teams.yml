@@ -408,7 +408,13 @@ teams:
   slack_alerts_channel: g_organizations
 
 - name: source_code
+  url: https://handbook.gitlab.com/handbook/engineering/development/dev/create/source-code-be/
   product_stage_group: source_code
+  slack_channel: g_create_source-code
+  send_error_budget_weekly_to_slack: true
+  slack_error_budget_channel: g_create_source-code
+  send_slo_alerts_to_team_slack_channel: true
+  slack_alerts_channel: g_create_source-code_alerts
   ignored_components:
   - graphql_query
 
