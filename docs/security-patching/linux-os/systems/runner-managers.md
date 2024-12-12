@@ -25,6 +25,11 @@ We will take advantage of the Runner Manager's blue/green deployment to apply pa
   - You can use this [Prometheus query](https://dashboards.gitlab.net/explore?schemaVersion=1&panes=%7B%22wm9%22:%7B%22datasource%22:%22mimir-gitlab-gprd%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22expr%22:%22sum%28gitlab_runner_jobs%29%20by%20%28deployment,%20shard%29%22,%22range%22:true,%22instant%22:true,%22datasource%22:%7B%22type%22:%22prometheus%22,%22uid%22:%22mimir-gitlab-gprd%22%7D,%22editorMode%22:%22code%22,%22legendFormat%22:%22__auto%22%7D%5D,%22range%22:%7B%22from%22:%22now-1h%22,%22to%22:%22now%22%7D%7D%7D&orgId=1) to help determine when the inactive color of a given shard is no longer processing jobs.
 - Patch and reboot these instances.
 
+### CI COS runner images
+
+The OS images deployed for ephemeral runner VMs is statically defined via Chef roles in chef-repo. [Example](https://gitlab.com/gitlab-com/gl-infra/chef-repo/-/blob/169ae54f6837a70751455b216fd18d9cafd3c774/roles/runners-manager-private.json#L90).
+Updating these Chef attributes will change the deployed image used by the ephemeral runners for a given shard.
+
 ## Additional Automation Tooling
 
 No targeted automation exists currently.
