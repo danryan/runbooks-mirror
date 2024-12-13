@@ -230,7 +230,6 @@ module Storage
     end
 
     # rubocop: disable Style/PercentLiteralDelimiters
-    # rubocop: disable Style/RegexpLiteral
     def to_unescaped_json(data)
       return data unless data.respond_to?(:to_json)
 

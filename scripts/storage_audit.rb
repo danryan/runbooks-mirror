@@ -299,7 +299,7 @@ module Storage
       log.info "Scanning git repositories"
       repositories_root_dir_path = options[:repositories_root_dir_path]
       root_dir_pattern = %r{^#{repositories_root_dir_path}/}
-      git_ext_pattern = %r{\.git$} # rubocop: disable Style/RegexpLiteral
+      git_ext_pattern = %r{\.git$}
       hashed_storage_root_path = File.join(options[:repositories_root_dir_path], options[:hashed_storage_dir_name])
       command = format(options[:inventory_find_command], path: hashed_storage_root_path)
       repositories = []

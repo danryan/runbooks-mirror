@@ -41,7 +41,10 @@ ARGV.each do |idx_filename|
         argc = Regexp.last_match(1).to_i
         argc.times do
           line = f.readline.strip
-          raise unless line.match(/^\$([0-9]+)$/)
+          raise line unless line.match(/^\$([0-9]+)$/)
+
+          # TODO: parse data types
+          # https://redis.io/docs/latest/develop/reference/protocol-spec/
 
           len = Regexp.last_match(1).to_i
           args << f.read(len)
@@ -72,6 +75,7 @@ ARGV.each do |idx_filename|
         first_key, last_key = command_key_mappings[cmd]
         keys = first_key.zero? && last_key.zero? ? [] : args[first_key..last_key]
         keys = args[1..1] if cmd == "publish"
+        keys = args if cmd == "subscribe" || cmd == "unsubscribe"
         keys = keys.map { |key| key.force_encoding("ISO-8859-1").encode("UTF-8") }
 
         if ENV['OUTPUT_FORMAT'] == 'json'

@@ -21,6 +21,11 @@ module RedisTrace
           .gsub(/^(application_rate_limiter:show_raw_controller:project):[0-9]+:(.+)/, '\1:$NUMBER:$PATTERN')
           .gsub(/^(cache:gitlab:rack::attack:allow2ban:ban):(.+)/, '\1:$PATTERN')
           .gsub(/^(cache:gitlab:rack::attack:[0-9]+:(allow2ban:count|throttle_[^:]+)):(.+)/, '\1:$PATTERN')
+      when 'pubsub'
+        key = key
+          .gsub(%r{^(graphql-subscription:|runner:build_queue:|workhorse:notifications:runner:build_queue:|action_cable/)(.+)}, '\1$PATTERN')
+          .gsub(%r{^graphql-event::(aiCompletionResponse:aiAction:chat|issuableLabelsUpdated|mergeRequestApprovalStateUpdated|mergeRequestReviewersUpdated|mergeRequestMergeStatusUpdated|workItemNoteCreated|issuableWeightUpdated|issuableEpicUpdated|issuableDatesUpdated|workItemNoteCreated|issuableAssigneesUpdated|aiCompletionResponse|workItemNoteUpdated|workItemUpdated|mergeRequestDiffGenerated|issuableDescriptionUpdated|workItemNoteDeleted|issueCrmContactsUpdated|issuableIterationUpdated|issuableMilestoneUpdated):(.+)}, '\1:$PATTERN')
+          .gsub(%r{^(noteable:notes:)(.+)}, '\1:$PATTERN')
       end
 
       # Generic replacements
