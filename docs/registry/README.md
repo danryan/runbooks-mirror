@@ -39,6 +39,7 @@
 * [../patroni/postgresql-backups-wale-walg.md](../patroni/postgresql-backups-wale-walg.md)
 * [Scaling Redis Cluster](../redis/scaling-redis-cluster.md)
 * [Database Connection Pool Saturation](app-db-conn-pool-saturation.md)
+* [Container Registry Batched Background Migrations](background-migrations.md)
 * [Container Registry CDN](cdn.md)
 * [Container Registry Database Index Bloat](db-index-bloat.md)
 * [Container Registry Database Load Balancing](db-load-balancing.md)

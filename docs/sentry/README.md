@@ -27,6 +27,7 @@
 * [../patroni/postgresql-backups-wale-walg.md](../patroni/postgresql-backups-wale-walg.md)
 * [Rotating Rails' PostgreSQL password](../patroni/rotating-rails-postgresql-password.md)
 * [Database Connection Pool Saturation](../registry/app-db-conn-pool-saturation.md)
+* [Container Registry Batched Background Migrations](../registry/background-migrations.md)
 * [High Number of Overdue Online GC Tasks](../registry/online-gc-high-overdue-tasks.md)
 * [High Number of Pending or Failed Outgoing Webhook Notifications](../registry/webhook-notifications.md)
 * [Sentry general tasks](sentry-general.md)
