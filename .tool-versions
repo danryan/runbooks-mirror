@@ -6,7 +6,7 @@ go-jsonnet   0.20.0 # datasource=github-releases depName=google/go-jsonnet
 golang       1.23.4 # datasource=golang-version depName=go
 jb           0.6.0 # datasource=github-releases depName=jsonnet-bundler/jsonnet-bundler
 jsonnet-tool 1.16.2 # datasource=gitlab-releases depName=gitlab-com/gl-infra/jsonnet-tool
-kubectl      1.31.3 # datasource=github-releases depName=kubernetes/kubernetes
+kubectl      1.32.0 # datasource=github-releases depName=kubernetes/kubernetes
 kubeconform  0.6.7 # datasource=github-releases depName=yannh/kubeconform
 nodejs       22.12.0 # datasource=node depName=nodejs/node
 pre-commit   4.0.1 # datasource=github-releases depName=pre-commit/pre-commit
