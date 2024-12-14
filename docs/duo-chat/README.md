@@ -22,8 +22,13 @@ This page explains how to investigate Duo Chat issues on production.
 - GitLab-Rails:
   - [GitLab Rails GraphQL log (Chat)](https://log.gprd.gitlab.net/app/r/s/qaxwx)
 - GitLab-Sidekiq:
+<<<<<<< HEAD
   - [GitLab Sidekiq worker log](https://log.gprd.gitlab.net/app/r/s/CaUYv)
   - [GitLab Sidekiq LLM log](https://log.gprd.gitlab.net/app/r/s/vZlVW)
+=======
+  - [GitLab Sidekiq worker log](https://log.gprd.gitlab.net/app/r/s/K54dN)
+  - [GitLab Sidekiq LLM log](https://log.gprd.gitlab.net/app/r/s/5pTeS)
+>>>>>>> b4550d171 (Update our internal runbooks to include a section about are new shard)
   - [LLM Completion worker](https://dashboards.gitlab.net/d/sidekiq-worker-detail/sidekiq3a-worker-detail?orgId=1&var-PROMETHEUS_DS=mimir-gitlab-gprd&var-environment=gprd&var-stage=main&var-worker=Llm::CompletionWorker)
   - [Duo Chat specific error codes](https://log.gprd.gitlab.net/app/r/s/eeO5a)
 - Redis:
@@ -72,6 +77,7 @@ Different deployments use different indexes. The following indexes are most help
 
 - AI Gateway logs are in the `pubsub-mlops-inf-gprd-*` index
 - GitLab Rails Sidekiq logs are in the `pubsub-sidekiq-inf-gprd*` index
+  - All LLM Sidekiq trafic is sent to a single Sidekiq shard, filtering on `json.shard.keyword: "ai-abstraction-layer"` will only return `ai-abstraction-layer` traffic.
   - When searching this index, filtering on `json.subcomponent : "llm"` ensures only LLM logs are returned
 - GitLab Rails logs are in the `pubsub-rails-inf-gprd-*` index
 
@@ -84,6 +90,21 @@ If you find requests for a user there but do not find any results for them using
 > ``json.meta.user : "username-that-received-error" and json.subcomponent : "llm"`
 
 That probably indicates a problem with Sidekiq where the job is not being kicked off. Check the `#incident-management` to see if there are any ongoing Sidekiq issues. Chat relies on Sidekiq and should be considered "down" if Sidekiq is backed up. See [Duo Chat does not respond or responds very slowly](#duo-chat-does-not-respond-or-responds-very-slowly) below.
+
+## AI Abstraction Layer Sidekiq Traffic
+
+All Duo Chat traffic goes through a `ai-abstraction-layer` Sidekiq provide a centralize unit of sidekiq requests away from the larger Gitlab.com queue. The objective was of this was to isolate our traffic from larger Sidekiq issues to make sure we are more aware/less impacted from on-going incidents.
+
+To find only Duo traffic, you can click on the the `pubsub-sidekiq-inf-*` Elastic Search.
+
+- Filter the logs by selecting `json.shard.keyword: "ai-abstraction-layer"` to limit logs coming from our respective Sidekiq containers.
+
+**Important Feature Category information**:
+Sidekiq feature category: `ai-abstraction-layer`
+GKE Deployment: `gkeDeployment: 'gitlab-sidekiq-ai-abstraction-layer-v2'`
+Queue Urgency: `throttled`
+
+See this [issue](https://gitlab.com/gitlab-com/gl-infra/production/-/issues/18630) for more information.
 
 ### Tracing requests across different services
 
