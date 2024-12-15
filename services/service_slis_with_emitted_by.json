@@ -1,0 +1,3260 @@
+{
+  "ai-assisted": {
+    "slis": {
+      "rails_request": {
+        "emitted_by": [
+          "ai-assisted"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_rails_request_total",
+            "raw": "gitlab_sli_rails_request_total{job=\"gitlab-rails\",type=\"ai-assisted\"}",
+            "selector": {
+              "job": "gitlab-rails",
+              "type": "ai-assisted"
+            }
+          }
+        ]
+      },
+      "workhorse": {
+        "emitted_by": [
+          "ai-assisted"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_workhorse_http_requests_total",
+            "raw": "gitlab_workhorse_http_requests_total{job=~\"gitlab-workhorse-api|gitlab-workhorse\",type=\"ai-assisted\"}",
+            "selector": {
+              "job": {
+                "re": "gitlab-workhorse-api|gitlab-workhorse"
+              },
+              "type": "ai-assisted"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "ai-gateway": {
+    "slis": {
+      "inference": {
+        "emitted_by": [
+          "ai-gateway"
+        ],
+        "requestRate": [
+          {
+            "metric": "code_suggestions_inference_requests_total",
+            "raw": "code_suggestions_inference_requests_total{type=\"ai-gateway\"}",
+            "selector": {
+              "type": "ai-gateway"
+            }
+          }
+        ]
+      },
+      "server": {
+        "emitted_by": [
+          "ai-gateway"
+        ],
+        "requestRate": [
+          {
+            "metric": "http_request_duration_seconds_count",
+            "raw": "http_request_duration_seconds_count{type=\"ai-gateway\"}",
+            "selector": {
+              "type": "ai-gateway"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "api": {
+    "slis": {
+      "global_search": {
+        "emitted_by": [
+          "api"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_global_search_apdex_total",
+            "raw": "gitlab_sli_global_search_apdex_total{job=\"gitlab-rails\",type=\"api\"}",
+            "selector": {
+              "job": "gitlab-rails",
+              "type": "api"
+            }
+          }
+        ]
+      },
+      "graphql_query": {
+        "emitted_by": [
+          "api"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_graphql_query_apdex_total",
+            "raw": "gitlab_sli_graphql_query_apdex_total{job=\"gitlab-rails\",type=\"api\"}",
+            "selector": {
+              "job": "gitlab-rails",
+              "type": "api"
+            }
+          }
+        ]
+      },
+      "nginx_ingress": {
+        "emitted_by": [
+          "api"
+        ],
+        "requestRate": [
+          {
+            "metric": "nginx_ingress_controller_requests:labeled",
+            "raw": "nginx_ingress_controller_requests:labeled{type=\"api\"}",
+            "selector": {
+              "type": "api"
+            }
+          }
+        ]
+      },
+      "rails_request": {
+        "emitted_by": [
+          "api"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_rails_request_total",
+            "raw": "gitlab_sli_rails_request_total{job=\"gitlab-rails\",type=\"api\"}",
+            "selector": {
+              "job": "gitlab-rails",
+              "type": "api"
+            }
+          }
+        ]
+      },
+      "workhorse": {
+        "emitted_by": [
+          "api"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_workhorse_http_requests_total",
+            "raw": "gitlab_workhorse_http_requests_total{job=~\"gitlab-workhorse-api|gitlab-workhorse\",type=\"api\"}",
+            "selector": {
+              "job": {
+                "re": "gitlab-workhorse-api|gitlab-workhorse"
+              },
+              "type": "api"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "atlantis": {
+    "slis": {
+      "atlantis_google_lb": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count",
+            "raw": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{project_id=\"gitlab-ops\",url_map_name=\"k8s2-um-4zodnh0s-atlantis-atlantis-ops-003jd693\"}",
+            "selector": {
+              "project_id": "gitlab-ops",
+              "url_map_name": "k8s2-um-4zodnh0s-atlantis-atlantis-ops-003jd693"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "camoproxy": {
+    "slis": {
+      "loadbalancer": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count",
+            "raw": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{project_id=\"gitlab-production\",url_map_name=\"k8s2-um-8kvupfyn-camoproxy-camoproxy-6ygs428t\"}",
+            "selector": {
+              "project_id": "gitlab-production",
+              "url_map_name": "k8s2-um-8kvupfyn-camoproxy-camoproxy-6ygs428t"
+            }
+          }
+        ]
+      },
+      "server": {
+        "emitted_by": [
+          "camoproxy"
+        ],
+        "requestRate": [
+          {
+            "metric": "camo_response_duration_seconds_bucket",
+            "raw": "camo_response_duration_seconds_bucket{le=\"+Inf\"}",
+            "selector": {
+              "le": "+Inf"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "ci-runners": {
+    "slis": {
+      "polling": {
+        "emitted_by": [
+          "api",
+          "ops-gitlab-net",
+          "web"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_workhorse_http_requests_total",
+            "raw": "gitlab_workhorse_http_requests_total{route=\"^/api/v4/jobs/request\\\\z\"}",
+            "selector": {
+              "route": "^/api/v4/jobs/request\\\\z"
+            }
+          }
+        ]
+      },
+      "queuing_queries_duration": {
+        "emitted_by": [
+          "api"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_ci_queue_retrieval_duration_seconds_count",
+            "raw": "gitlab_ci_queue_retrieval_duration_seconds_count",
+            "selector": {
+            }
+          }
+        ]
+      },
+      "saas_linux_runner_image_pull_failures": {
+        "emitted_by": [
+          "ci-runners"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_runner_jobs_total",
+            "raw": "gitlab_runner_jobs_total{job=\"runners-manager\",shard=~\"shared-gitlab-org|private|saas-linux-.*\"}",
+            "selector": {
+              "job": "runners-manager",
+              "shard": {
+                "re": "shared-gitlab-org|private|saas-linux-.*"
+              }
+            }
+          }
+        ]
+      },
+      "saas_runner_queues": {
+        "emitted_by": [
+          "ci-runners"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_runner_jobs_total",
+            "raw": "gitlab_runner_jobs_total{job=\"runners-manager\",shard=~\"shared-gitlab-org|private|saas-.*|windows-shared\"}",
+            "selector": {
+              "job": "runners-manager",
+              "shard": {
+                "re": "shared-gitlab-org|private|saas-.*|windows-shared"
+              }
+            }
+          }
+        ]
+      },
+      "trace_archiving_ci_jobs": {
+        "emitted_by": [
+          "ops-gitlab-net",
+          "sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_sidekiq_execution_total",
+            "raw": "gitlab_sli_sidekiq_execution_total{worker=\"Ci::ArchiveTraceWorker\"}",
+            "selector": {
+              "worker": "Ci::ArchiveTraceWorker"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "consul": {
+    "slis": {
+      "consul": {
+        "emitted_by": [
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "consul_client_rpc",
+            "raw": "consul_client_rpc{job=\"consul-gl-consul-ui\"}",
+            "selector": {
+              "job": "consul-gl-consul-ui"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "customersdot": {
+    "slis": {
+      "customers_dot_requests": {
+        "emitted_by": [
+          "customersdot"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_customers_dot_requests_total",
+            "raw": "gitlab_sli_customers_dot_requests_total",
+            "selector": {
+            }
+          }
+        ]
+      },
+      "customers_dot_sidekiq_jobs": {
+        "emitted_by": [
+          "customersdot"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_customers_dot_sidekiq_jobs_total",
+            "raw": "gitlab_sli_customers_dot_sidekiq_jobs_total{type=\"customersdot\"}",
+            "selector": {
+              "type": "customersdot"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "errortracking": {
+    "slis": {
+      "loadbalancer": {
+        "emitted_by": [
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "traefik_service_requests_total",
+            "raw": "traefik_service_requests_total{job=\"default/traefik\",service=~\".*errortracking-api.*\",team=\"observability\"}",
+            "selector": {
+              "job": "default/traefik",
+              "service": {
+                "re": ".*errortracking-api.*"
+              },
+              "team": "observability"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "frontend": {
+    "slis": {
+      "cnyHttpsServices": {
+        "emitted_by": [
+          "frontend"
+        ],
+        "requestRate": [
+          {
+            "metric": "haproxy_backend_http_requests_total",
+            "raw": "haproxy_backend_http_requests_total{backend=~\"canary_.*\",type=\"frontend\"}",
+            "selector": {
+              "backend": {
+                "re": "canary_.*"
+              },
+              "type": "frontend"
+            }
+          }
+        ]
+      },
+      "mainHttpsServices": {
+        "emitted_by": [
+          "frontend"
+        ],
+        "requestRate": [
+          {
+            "metric": "haproxy_backend_http_requests_total",
+            "raw": "haproxy_backend_http_requests_total{backend!~\"api_rate_limit|canary_.*|ssh\",type=\"frontend\"}",
+            "selector": {
+              "backend": {
+                "noneOf": [
+                  "ssh",
+                  "api_rate_limit",
+                  "canary_.*"
+                ]
+              },
+              "type": "frontend"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "git": {
+    "slis": {
+      "gitlab_shell": {
+        "emitted_by": [
+          "ci",
+          "frontend"
+        ],
+        "requestRate": [
+          {
+            "metric": "haproxy_backend_sessions_total",
+            "raw": "haproxy_backend_sessions_total{backend=~\"altssh|ssh\"}",
+            "selector": {
+              "backend": {
+                "oneOf": [
+                  "ssh",
+                  "altssh"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "gitlab_sshd": {
+        "emitted_by": [
+          "git"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli:shell_sshd_sessions:total",
+            "raw": "gitlab_sli:shell_sshd_sessions:total{type=\"git\"}",
+            "selector": {
+              "type": "git"
+            }
+          }
+        ]
+      },
+      "rails_request": {
+        "emitted_by": [
+          "git"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_rails_request_total",
+            "raw": "gitlab_sli_rails_request_total{job=\"gitlab-rails\",type=\"git\"}",
+            "selector": {
+              "job": "gitlab-rails",
+              "type": "git"
+            }
+          }
+        ]
+      },
+      "workhorse": {
+        "emitted_by": [
+          "git"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_workhorse_http_requests_total",
+            "raw": "gitlab_workhorse_http_requests_total{job=~\"gitlab-workhorse|gitlab-workhorse-git\",route!=\"^/-/health$\",route!=\"^/-/(readiness|liveness)$\",route!=\"^/api/\",route!=\"\\\\A/api/v4/jobs/request\\\\z\",route!=\"^/api/v4/jobs/request\\\\z\",type=\"git\"}",
+            "selector": {
+              "job": {
+                "re": "gitlab-workhorse|gitlab-workhorse-git"
+              },
+              "route": [
+                {
+                  "ne": "^/-/health$"
+                },
+                {
+                  "ne": "^/-/(readiness|liveness)$"
+                },
+                {
+                  "ne": "^/api/"
+                },
+                {
+                  "ne": "\\\\A/api/v4/jobs/request\\\\z"
+                },
+                {
+                  "ne": "^/api/v4/jobs/request\\\\z"
+                }
+              ],
+              "type": "git"
+            }
+          }
+        ]
+      },
+      "workhorse_auth_api": {
+        "emitted_by": [
+          "internal-api"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_workhorse_http_requests_total",
+            "raw": "gitlab_workhorse_http_requests_total{job=~\"gitlab-workhorse|gitlab-workhorse-git\",route=\"^/api/\",type=\"internal-api\"}",
+            "selector": {
+              "job": {
+                "re": "gitlab-workhorse|gitlab-workhorse-git"
+              },
+              "route": "^/api/",
+              "type": "internal-api"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "gitaly": {
+    "slis": {
+      "goserver": {
+        "emitted_by": [
+          "gitaly"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitaly_service_client_requests_total",
+            "raw": "gitaly_service_client_requests_total{job=\"gitaly\",type=\"gitaly\"}",
+            "selector": {
+              "job": "gitaly",
+              "type": "gitaly"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "google-cloud-storage": {
+    "slis": {
+      "artifacts_cdn": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count",
+            "raw": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{project_id=\"gitlab-production\",url_map_name=\"gprd-artifacts-cdn\"}",
+            "selector": {
+              "project_id": "gitlab-production",
+              "url_map_name": "gprd-artifacts-cdn"
+            }
+          }
+        ]
+      },
+      "pages_range_requests": {
+        "emitted_by": [
+          "web-pages"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_pages_httprange_trace_duration_bucket",
+            "raw": "gitlab_pages_httprange_trace_duration_bucket{le=\"+Inf\",request_stage=\"httptrace.ClientTrace.GotFirstResponseByte\"}",
+            "selector": {
+              "le": "+Inf",
+              "request_stage": "httptrace.ClientTrace.GotFirstResponseByte"
+            }
+          }
+        ]
+      },
+      "pages_total_requests": {
+        "emitted_by": [
+          "web-pages"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_pages_httprange_requests_total",
+            "raw": "gitlab_pages_httprange_requests_total",
+            "selector": {
+            }
+          }
+        ]
+      },
+      "registry_storage": {
+        "emitted_by": [
+          "ops-gitlab-net",
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_storage_action_seconds_count",
+            "raw": "registry_storage_action_seconds_count",
+            "selector": {
+            }
+          }
+        ]
+      }
+    }
+  },
+  "internal-api": {
+    "slis": {
+      "rails_request": {
+        "emitted_by": [
+          "internal-api"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_rails_request_total",
+            "raw": "gitlab_sli_rails_request_total{job=\"gitlab-rails\",type=\"internal-api\"}",
+            "selector": {
+              "job": "gitlab-rails",
+              "type": "internal-api"
+            }
+          }
+        ]
+      },
+      "workhorse": {
+        "emitted_by": [
+          "internal-api"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_workhorse_http_requests_total",
+            "raw": "gitlab_workhorse_http_requests_total{job=~\"gitlab-workhorse-api|gitlab-workhorse\",type=\"internal-api\"}",
+            "selector": {
+              "job": {
+                "re": "gitlab-workhorse-api|gitlab-workhorse"
+              },
+              "type": "internal-api"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "jaeger": {
+    "slis": {
+      "jaeger_agent": {
+        "emitted_by": [
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "jaeger_agent_reporter_spans_submitted_total",
+            "raw": "jaeger_agent_reporter_spans_submitted_total",
+            "selector": {
+            }
+          }
+        ]
+      },
+      "jaeger_query": {
+        "emitted_by": [
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "jaeger_query_requests_total",
+            "raw": "jaeger_query_requests_total",
+            "selector": {
+            }
+          }
+        ]
+      }
+    }
+  },
+  "kas": {
+    "slis": {
+      "grpc_requests": {
+        "emitted_by": [
+          "kas"
+        ],
+        "requestRate": [
+          {
+            "metric": "grpc_server_handled_total",
+            "raw": "grpc_server_handled_total{type=\"kas\"}",
+            "selector": {
+              "type": "kas"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "kube": {
+    "slis": {
+      "apiserver": {
+        "emitted_by": [
+          "code_suggestions",
+          "suggested_reviewers",
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "apiserver_request_total",
+            "raw": "apiserver_request_total{job=\"apiserver\",scope!=\"\"}",
+            "selector": {
+              "job": "apiserver",
+              "scope": {
+                "ne": ""
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "logging": {
+    "slis": {
+      "elasticsearch_indexing_cluster": {
+        "emitted_by": [
+          "logging"
+        ],
+        "requestRate": [
+          {
+            "metric": "elasticsearch_indices_indexing_index_total",
+            "raw": "elasticsearch_indices_indexing_index_total{type=\"logging\"}",
+            "selector": {
+              "type": "logging"
+            }
+          }
+        ]
+      },
+      "elasticsearch_indexing_index": {
+        "emitted_by": [
+          "logging"
+        ],
+        "requestRate": [
+          {
+            "metric": "elasticsearch_index_stats_indexing_index_total",
+            "raw": "elasticsearch_index_stats_indexing_index_total{type=\"logging\"}",
+            "selector": {
+              "type": "logging"
+            }
+          }
+        ]
+      },
+      "elasticsearch_searching_cluster": {
+        "emitted_by": [
+          "logging"
+        ],
+        "requestRate": [
+          {
+            "metric": "elasticsearch_indices_search_query_total",
+            "raw": "elasticsearch_indices_search_query_total{type=\"logging\"}",
+            "selector": {
+              "type": "logging"
+            }
+          }
+        ]
+      },
+      "elasticsearch_searching_index": {
+        "emitted_by": [
+          "logging"
+        ],
+        "requestRate": [
+          {
+            "metric": "elasticsearch_index_stats_search_query_total",
+            "raw": "elasticsearch_index_stats_search_query_total{type=\"logging\"}",
+            "selector": {
+              "type": "logging"
+            }
+          }
+        ]
+      },
+      "fluentd_log_output": {
+        "emitted_by": [
+          "cloud_pubsub",
+          "detect_exceptions",
+          "gcloud_pubsub",
+          "gcs",
+          "google_cloud",
+          "null",
+          "prometheus",
+          "relabel",
+          "stdout"
+        ],
+        "requestRate": [
+          {
+            "metric": "fluentd_output_status_write_count",
+            "raw": "fluentd_output_status_write_count",
+            "selector": {
+            }
+          }
+        ]
+      },
+      "pubsub_subscriptions": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_pubsub_subscription_pubsub_googleapis_com_subscription_byte_cost",
+            "raw": "stackdriver_pubsub_subscription_pubsub_googleapis_com_subscription_byte_cost{type=\"monitoring\"}",
+            "selector": {
+              "type": "monitoring"
+            }
+          }
+        ]
+      },
+      "pubsub_topics": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_pubsub_topic_pubsub_googleapis_com_topic_byte_cost",
+            "raw": "stackdriver_pubsub_topic_pubsub_googleapis_com_topic_byte_cost{type=\"monitoring\"}",
+            "selector": {
+              "type": "monitoring"
+            }
+          }
+        ]
+      },
+      "pubsubbeat": {
+        "emitted_by": [
+          "acked",
+          "active",
+          "batches",
+          "dropped",
+          "duplicates",
+          "failed"
+        ],
+        "requestRate": [
+          {
+            "metric": "pubsubbeat_libbeat_output_events",
+            "raw": "pubsubbeat_libbeat_output_events",
+            "selector": {
+            }
+          }
+        ]
+      },
+      "stackdriver": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_gce_instance_logging_googleapis_com_log_entry_count",
+            "raw": "stackdriver_gce_instance_logging_googleapis_com_log_entry_count",
+            "selector": {
+            }
+          }
+        ]
+      }
+    }
+  },
+  "mailroom": {
+    "slis": {
+      "email_receiver": {
+        "emitted_by": [
+          "ops-gitlab-net",
+          "sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_sidekiq_execution_total",
+            "raw": "gitlab_sli_sidekiq_execution_total{worker=~\"EmailReceiverWorker|ServiceDeskEmailReceiverWorker\"}",
+            "selector": {
+              "worker": {
+                "oneOf": [
+                  "EmailReceiverWorker",
+                  "ServiceDeskEmailReceiverWorker"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "emailsProcessed": {
+        "emitted_by": [
+          "ops-gitlab-net",
+          "sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_sidekiq_execution_total",
+            "raw": "gitlab_sli_sidekiq_execution_total{worker=~\"EmailReceiverWorker|ServiceDeskEmailReceiverWorker\"}",
+            "selector": {
+              "worker": {
+                "oneOf": [
+                  "EmailReceiverWorker",
+                  "ServiceDeskEmailReceiverWorker"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "monitoring": {
+    "slis": {
+      "grafana": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "grafana_http_request_duration_seconds_bucket",
+            "raw": "grafana_http_request_duration_seconds_bucket{job=\"grafana\",le=\"+Inf\",shard=\"default\",type=\"monitoring\"}",
+            "selector": {
+              "job": "grafana",
+              "le": "+Inf",
+              "shard": "default",
+              "type": "monitoring"
+            }
+          }
+        ]
+      },
+      "grafana_datasources": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "grafana_datasource_request_total",
+            "raw": "grafana_datasource_request_total{job=\"grafana\",shard=\"default\",type=\"monitoring\"}",
+            "selector": {
+              "job": "grafana",
+              "shard": "default",
+              "type": "monitoring"
+            }
+          }
+        ]
+      },
+      "grafana_google_lb": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count",
+            "raw": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{project_id=\"gitlab-ops\",url_map_name=\"k8s2-um-4zodnh0s-grafana-grafana-cfagrqyu\"}",
+            "selector": {
+              "project_id": "gitlab-ops",
+              "url_map_name": "k8s2-um-4zodnh0s-grafana-grafana-cfagrqyu"
+            }
+          }
+        ]
+      },
+      "grafana_image_renderer": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "grafana_image_renderer_service_http_request_duration_seconds_bucket",
+            "raw": "grafana_image_renderer_service_http_request_duration_seconds_bucket{job=\"grafana-image-renderer\",le=\"+Inf\",shard=\"default\",type=\"monitoring\"}",
+            "selector": {
+              "job": "grafana-image-renderer",
+              "le": "+Inf",
+              "shard": "default",
+              "type": "monitoring"
+            }
+          }
+        ]
+      },
+      "prometheus": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "prometheus_http_requests_total",
+            "raw": "prometheus_http_requests_total{job!=\"prometheus-metamon\",job=~\"prometheus.*\",type=\"monitoring\"}",
+            "selector": {
+              "job": {
+                "ne": "prometheus-metamon",
+                "re": "prometheus.*"
+              },
+              "type": "monitoring"
+            }
+          }
+        ]
+      },
+      "prometheus_alert_sender": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "prometheus_notifications_sent_total",
+            "raw": "prometheus_notifications_sent_total{job=\"prometheus\",type=\"monitoring\"}",
+            "selector": {
+              "job": "prometheus",
+              "type": "monitoring"
+            }
+          }
+        ]
+      },
+      "rule_evaluation": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "prometheus_rule_evaluations_total",
+            "raw": "prometheus_rule_evaluations_total{job!~\"^thanos.*\",type=\"monitoring\"}",
+            "selector": {
+              "job": {
+                "nre": "^thanos.*"
+              },
+              "type": "monitoring"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "nginx": {
+    "slis": {
+      "nginx_ingress": {
+        "emitted_by": [
+          "api",
+          "web"
+        ],
+        "requestRate": [
+          {
+            "metric": "nginx_ingress_controller_requests:labeled",
+            "raw": "nginx_ingress_controller_requests:labeled{app=\"nginx-ingress\"}",
+            "selector": {
+              "app": "nginx-ingress"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "ops-gitlab-net": {
+    "slis": {
+      "gitlab_sshd": {
+        "emitted_by": [
+          "ops-gitlab-net"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli:shell_sshd_sessions:total",
+            "raw": "gitlab_sli:shell_sshd_sessions:total{job=\"gitlab-shell\",type=\"ops-gitlab-net\"}",
+            "selector": {
+              "job": "gitlab-shell",
+              "type": "ops-gitlab-net"
+            }
+          }
+        ]
+      },
+      "goserver": {
+        "emitted_by": [
+          "ops-gitlab-net"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitaly_service_client_requests_total",
+            "raw": "gitaly_service_client_requests_total{job=\"gitaly\",type=\"ops-gitlab-net\"}",
+            "selector": {
+              "job": "gitaly",
+              "type": "ops-gitlab-net"
+            }
+          }
+        ]
+      },
+      "puma": {
+        "emitted_by": [
+          "ops-gitlab-net"
+        ],
+        "requestRate": [
+          {
+            "metric": "http_requests_total",
+            "raw": "http_requests_total{job=\"gitlab-rails\",type=\"ops-gitlab-net\"}",
+            "selector": {
+              "job": "gitlab-rails",
+              "type": "ops-gitlab-net"
+            }
+          }
+        ]
+      },
+      "rails_sql": {
+        "emitted_by": [
+          "ops-gitlab-net"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sql_primary_duration_seconds_bucket",
+            "raw": "gitlab_sql_primary_duration_seconds_bucket{job!=\"sidekiq\",le=\"+Inf\",type=\"ops-gitlab-net\"}",
+            "selector": {
+              "job": {
+                "ne": "sidekiq"
+              },
+              "le": "+Inf",
+              "type": "ops-gitlab-net"
+            }
+          }
+        ]
+      },
+      "registry_server": {
+        "emitted_by": [
+          "ops-gitlab-net"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_http_requests_total",
+            "raw": "registry_http_requests_total{job=\"gitlab-registry\",type=\"ops-gitlab-net\"}",
+            "selector": {
+              "job": "gitlab-registry",
+              "type": "ops-gitlab-net"
+            }
+          }
+        ]
+      },
+      "sidekiq_execution": {
+        "emitted_by": [
+          "ops-gitlab-net"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_sidekiq_execution_total",
+            "raw": "gitlab_sli_sidekiq_execution_total{type=\"ops-gitlab-net\"}",
+            "selector": {
+              "type": "ops-gitlab-net"
+            }
+          }
+        ]
+      },
+      "sidekiq_queueing": {
+        "emitted_by": [
+          "ops-gitlab-net"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_sidekiq_queueing_apdex_total",
+            "raw": "gitlab_sli_sidekiq_queueing_apdex_total{type=\"ops-gitlab-net\"}",
+            "selector": {
+              "type": "ops-gitlab-net"
+            }
+          }
+        ]
+      },
+      "workhorse": {
+        "emitted_by": [
+          "ops-gitlab-net"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_workhorse_http_requests_total",
+            "raw": "gitlab_workhorse_http_requests_total{job=\"gitlab-workhorse\",type=\"ops-gitlab-net\"}",
+            "selector": {
+              "job": "gitlab-workhorse",
+              "type": "ops-gitlab-net"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "packagecloud": {
+    "slis": {
+      "loadbalancer": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count",
+            "raw": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{project_id=~\"gitlab-(ops|pre)\",url_map_name=~\"k8s2-.+-packagecloud-packagecloud-.+\"}",
+            "selector": {
+              "project_id": {
+                "re": "gitlab-(ops|pre)"
+              },
+              "url_map_name": {
+                "re": "k8s2-.+-packagecloud-packagecloud-.+"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "patroni": {
+    "slis": {
+      "pgbouncer": {
+        "emitted_by": [
+          "patroni"
+        ],
+        "requestRate": [
+          {
+            "metric": "pgbouncer_stats_sql_transactions_pooled_total",
+            "raw": "pgbouncer_stats_sql_transactions_pooled_total{tier=\"db\",type=\"patroni\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni"
+            }
+          },
+          {
+            "metric": "pgbouncer_stats_queries_pooled_total",
+            "raw": "pgbouncer_stats_queries_pooled_total{tier=\"db\",type=\"patroni\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni"
+            }
+          }
+        ]
+      },
+      "rails_primary_sql": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sql_primary_duration_seconds_bucket",
+            "raw": "gitlab_sql_primary_duration_seconds_bucket{db_config_name=\"main\",le=\"+Inf\",type!=\"sidekiq\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "db_config_name": "main",
+              "le": "+Inf",
+              "type": [
+                {
+                  "ne": "sidekiq"
+                },
+                {
+                  "ne": "ops-gitlab-net"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "rails_replica_sql": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sql_replica_duration_seconds_bucket",
+            "raw": "gitlab_sql_replica_duration_seconds_bucket{db_config_name=\"main_replica\",le=\"+Inf\",type!=\"sidekiq\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "db_config_name": "main_replica",
+              "le": "+Inf",
+              "type": [
+                {
+                  "ne": "sidekiq"
+                },
+                {
+                  "ne": "ops-gitlab-net"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "transactions_primary": {
+        "emitted_by": [
+          "patroni"
+        ],
+        "requestRate": [
+          {
+            "metric": "pg_stat_database_xact_commit",
+            "raw": "pg_stat_database_xact_commit{tier=\"db\",type=\"patroni\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni"
+            }
+          },
+          {
+            "metric": "pg_stat_database_xact_rollback",
+            "raw": "pg_stat_database_xact_rollback{tier=\"db\",type=\"patroni\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni"
+            }
+          }
+        ]
+      },
+      "transactions_replica": {
+        "emitted_by": [
+          "patroni"
+        ],
+        "requestRate": [
+          {
+            "metric": "pg_stat_database_xact_commit",
+            "raw": "pg_stat_database_xact_commit{tier=\"db\",type=\"patroni\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni"
+            }
+          },
+          {
+            "metric": "pg_stat_database_xact_rollback",
+            "raw": "pg_stat_database_xact_rollback{tier=\"db\",type=\"patroni\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "patroni-ci": {
+    "slis": {
+      "pgbouncer": {
+        "emitted_by": [
+          "patroni-ci"
+        ],
+        "requestRate": [
+          {
+            "metric": "pgbouncer_stats_sql_transactions_pooled_total",
+            "raw": "pgbouncer_stats_sql_transactions_pooled_total{tier=\"db\",type=\"patroni-ci\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-ci"
+            }
+          },
+          {
+            "metric": "pgbouncer_stats_queries_pooled_total",
+            "raw": "pgbouncer_stats_queries_pooled_total{tier=\"db\",type=\"patroni-ci\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-ci"
+            }
+          }
+        ]
+      },
+      "rails_primary_sql": {
+        "emitted_by": [
+          "api",
+          "git",
+          "internal-api",
+          "web"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sql_primary_duration_seconds_bucket",
+            "raw": "gitlab_sql_primary_duration_seconds_bucket{db_config_name=\"ci\",le=\"+Inf\",type!=\"sidekiq\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "db_config_name": "ci",
+              "le": "+Inf",
+              "type": [
+                {
+                  "ne": "sidekiq"
+                },
+                {
+                  "ne": "ops-gitlab-net"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "rails_replica_sql": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sql_replica_duration_seconds_bucket",
+            "raw": "gitlab_sql_replica_duration_seconds_bucket{db_config_name=\"ci_replica\",le=\"+Inf\",type!=\"sidekiq\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "db_config_name": "ci_replica",
+              "le": "+Inf",
+              "type": [
+                {
+                  "ne": "sidekiq"
+                },
+                {
+                  "ne": "ops-gitlab-net"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "transactions_primary": {
+        "emitted_by": [
+          "patroni-ci"
+        ],
+        "requestRate": [
+          {
+            "metric": "pg_stat_database_xact_commit",
+            "raw": "pg_stat_database_xact_commit{tier=\"db\",type=\"patroni-ci\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-ci"
+            }
+          },
+          {
+            "metric": "pg_stat_database_xact_rollback",
+            "raw": "pg_stat_database_xact_rollback{tier=\"db\",type=\"patroni-ci\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-ci"
+            }
+          }
+        ]
+      },
+      "transactions_replica": {
+        "emitted_by": [
+          "patroni-ci"
+        ],
+        "requestRate": [
+          {
+            "metric": "pg_stat_database_xact_commit",
+            "raw": "pg_stat_database_xact_commit{tier=\"db\",type=\"patroni-ci\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-ci"
+            }
+          },
+          {
+            "metric": "pg_stat_database_xact_rollback",
+            "raw": "pg_stat_database_xact_rollback{tier=\"db\",type=\"patroni-ci\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-ci"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "patroni-embedding": {
+    "slis": {
+      "pgbouncer": {
+        "emitted_by": [
+          "patroni-embedding"
+        ],
+        "requestRate": [
+          {
+            "metric": "pgbouncer_stats_sql_transactions_pooled_total",
+            "raw": "pgbouncer_stats_sql_transactions_pooled_total{tier=\"db\",type=\"patroni-embedding\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-embedding"
+            }
+          },
+          {
+            "metric": "pgbouncer_stats_queries_pooled_total",
+            "raw": "pgbouncer_stats_queries_pooled_total{tier=\"db\",type=\"patroni-embedding\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-embedding"
+            }
+          }
+        ]
+      },
+      "transactions_primary": {
+        "emitted_by": [
+          "patroni-embedding"
+        ],
+        "requestRate": [
+          {
+            "metric": "pg_stat_database_xact_commit",
+            "raw": "pg_stat_database_xact_commit{tier=\"db\",type=\"patroni-embedding\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-embedding"
+            }
+          },
+          {
+            "metric": "pg_stat_database_xact_rollback",
+            "raw": "pg_stat_database_xact_rollback{tier=\"db\",type=\"patroni-embedding\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-embedding"
+            }
+          }
+        ]
+      },
+      "transactions_replica": {
+        "emitted_by": [
+          "patroni-embedding"
+        ],
+        "requestRate": [
+          {
+            "metric": "pg_stat_database_xact_commit",
+            "raw": "pg_stat_database_xact_commit{tier=\"db\",type=\"patroni-embedding\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-embedding"
+            }
+          },
+          {
+            "metric": "pg_stat_database_xact_rollback",
+            "raw": "pg_stat_database_xact_rollback{tier=\"db\",type=\"patroni-embedding\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-embedding"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "patroni-registry": {
+    "slis": {
+      "pgbouncer": {
+        "emitted_by": [
+          "patroni-registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "pgbouncer_stats_sql_transactions_pooled_total",
+            "raw": "pgbouncer_stats_sql_transactions_pooled_total{tier=\"db\",type=\"patroni-registry\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-registry"
+            }
+          },
+          {
+            "metric": "pgbouncer_stats_queries_pooled_total",
+            "raw": "pgbouncer_stats_queries_pooled_total{tier=\"db\",type=\"patroni-registry\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-registry"
+            }
+          }
+        ]
+      },
+      "transactions_primary": {
+        "emitted_by": [
+          "patroni-registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "pg_stat_database_xact_commit",
+            "raw": "pg_stat_database_xact_commit{tier=\"db\",type=\"patroni-registry\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-registry"
+            }
+          },
+          {
+            "metric": "pg_stat_database_xact_rollback",
+            "raw": "pg_stat_database_xact_rollback{tier=\"db\",type=\"patroni-registry\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-registry"
+            }
+          }
+        ]
+      },
+      "transactions_replica": {
+        "emitted_by": [
+          "patroni-registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "pg_stat_database_xact_commit",
+            "raw": "pg_stat_database_xact_commit{tier=\"db\",type=\"patroni-registry\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-registry"
+            }
+          },
+          {
+            "metric": "pg_stat_database_xact_rollback",
+            "raw": "pg_stat_database_xact_rollback{tier=\"db\",type=\"patroni-registry\"}",
+            "selector": {
+              "tier": "db",
+              "type": "patroni-registry"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "pgbouncer": {
+    "slis": {
+      "service": {
+        "emitted_by": [
+          "pgbouncer"
+        ],
+        "requestRate": [
+          {
+            "metric": "pgbouncer_stats_sql_transactions_pooled_total",
+            "raw": "pgbouncer_stats_sql_transactions_pooled_total{tier=\"db\",type=\"pgbouncer\"}",
+            "selector": {
+              "tier": "db",
+              "type": "pgbouncer"
+            }
+          },
+          {
+            "metric": "pgbouncer_stats_queries_pooled_total",
+            "raw": "pgbouncer_stats_queries_pooled_total{tier=\"db\",type=\"pgbouncer\"}",
+            "selector": {
+              "tier": "db",
+              "type": "pgbouncer"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "pgbouncer-ci": {
+    "slis": {
+      "service": {
+        "emitted_by": [
+          "pgbouncer-ci"
+        ],
+        "requestRate": [
+          {
+            "metric": "pgbouncer_stats_sql_transactions_pooled_total",
+            "raw": "pgbouncer_stats_sql_transactions_pooled_total{tier=\"db\",type=\"pgbouncer-ci\"}",
+            "selector": {
+              "tier": "db",
+              "type": "pgbouncer-ci"
+            }
+          },
+          {
+            "metric": "pgbouncer_stats_queries_pooled_total",
+            "raw": "pgbouncer_stats_queries_pooled_total{tier=\"db\",type=\"pgbouncer-ci\"}",
+            "selector": {
+              "tier": "db",
+              "type": "pgbouncer-ci"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "pgbouncer-embedding": {
+    "slis": {
+      "service": {
+        "emitted_by": [
+          "pgbouncer-embedding"
+        ],
+        "requestRate": [
+          {
+            "metric": "pgbouncer_stats_sql_transactions_pooled_total",
+            "raw": "pgbouncer_stats_sql_transactions_pooled_total{tier=\"db\",type=\"pgbouncer-embedding\"}",
+            "selector": {
+              "tier": "db",
+              "type": "pgbouncer-embedding"
+            }
+          },
+          {
+            "metric": "pgbouncer_stats_queries_pooled_total",
+            "raw": "pgbouncer_stats_queries_pooled_total{tier=\"db\",type=\"pgbouncer-embedding\"}",
+            "selector": {
+              "tier": "db",
+              "type": "pgbouncer-embedding"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "pgbouncer-registry": {
+    "slis": {
+      "service": {
+        "emitted_by": [
+          "pgbouncer-registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "pgbouncer_stats_sql_transactions_pooled_total",
+            "raw": "pgbouncer_stats_sql_transactions_pooled_total{tier=\"db\",type=\"pgbouncer-registry\"}",
+            "selector": {
+              "tier": "db",
+              "type": "pgbouncer-registry"
+            }
+          },
+          {
+            "metric": "pgbouncer_stats_queries_pooled_total",
+            "raw": "pgbouncer_stats_queries_pooled_total{tier=\"db\",type=\"pgbouncer-registry\"}",
+            "selector": {
+              "tier": "db",
+              "type": "pgbouncer-registry"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "plantuml": {
+    "slis": {
+      "loadbalancer": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count",
+            "raw": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{project_id=\"gitlab-production\",url_map_name=\"k8s-um-plantuml-plantuml--58df01f69d082883\"}",
+            "selector": {
+              "project_id": "gitlab-production",
+              "url_map_name": "k8s-um-plantuml-plantuml--58df01f69d082883"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "postgres-archive": {
+    "slis": {
+      "transactions": {
+        "emitted_by": [
+          "postgres-archive"
+        ],
+        "requestRate": [
+          {
+            "metric": "pg_stat_database_xact_commit",
+            "raw": "pg_stat_database_xact_commit{tier=\"db\",type=\"postgres-archive\"}",
+            "selector": {
+              "tier": "db",
+              "type": "postgres-archive"
+            }
+          },
+          {
+            "metric": "pg_stat_database_xact_rollback",
+            "raw": "pg_stat_database_xact_rollback{tier=\"db\",type=\"postgres-archive\"}",
+            "selector": {
+              "tier": "db",
+              "type": "postgres-archive"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "praefect": {
+    "slis": {
+      "proxy": {
+        "emitted_by": [
+          "praefect"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitaly_service_client_requests_total",
+            "raw": "gitaly_service_client_requests_total{job=\"praefect\"}",
+            "selector": {
+              "job": "praefect"
+            }
+          }
+        ]
+      },
+      "replicator_queue": {
+        "emitted_by": [
+          "create",
+          "delete",
+          "delete_replica",
+          "praefect",
+          "update"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitaly_praefect_replication_delay_bucket",
+            "raw": "gitaly_praefect_replication_delay_bucket{job=\"praefect\",le=\"+Inf\"}",
+            "selector": {
+              "job": "praefect",
+              "le": "+Inf"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "pvs": {
+    "slis": {
+      "http": {
+        "emitted_by": [
+          "sv"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_cloud_run_revision_run_googleapis_com_request_count",
+            "raw": "stackdriver_cloud_run_revision_run_googleapis_com_request_count{configuration_name=\"pipeline-validation-service\",project_id=\"glsec-trust-safety-live\"}",
+            "selector": {
+              "configuration_name": "pipeline-validation-service",
+              "project_id": "glsec-trust-safety-live"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis\"}",
+            "selector": {
+              "type": "redis"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "api",
+          "sidekiq",
+          "web"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"buffered_counter\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "buffered_counter",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis\"}",
+            "selector": {
+              "type": "redis"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-cluster-cache": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-cluster-cache"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-cache\"}",
+            "selector": {
+              "type": "redis-cluster-cache"
+            }
+          }
+        ]
+      },
+      "rails_cache": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_cache_operation_duration_seconds_count",
+            "raw": "gitlab_cache_operation_duration_seconds_count{store=\"RedisCacheStore\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "store": "RedisCacheStore",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "sidekiq",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"cache\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "cache",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-cluster-cache"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-cache\"}",
+            "selector": {
+              "type": "redis-cluster-cache"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-cluster-chat-cache": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-cluster-chat-cache"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-chat-cache\"}",
+            "selector": {
+              "type": "redis-cluster-chat-cache"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "sidekiq",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"chat\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "chat",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-cluster-chat-cache"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-chat-cache\"}",
+            "selector": {
+              "type": "redis-cluster-chat-cache"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-cluster-feature-flag": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-cluster-feature-flag"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-feature-flag\"}",
+            "selector": {
+              "type": "redis-cluster-feature-flag"
+            }
+          }
+        ]
+      },
+      "rails_cache": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_cache_operation_duration_seconds_count",
+            "raw": "gitlab_cache_operation_duration_seconds_count{store=\"FeatureFlagStore\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "store": "FeatureFlagStore",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "sidekiq",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"feature_flag\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "feature_flag",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-cluster-feature-flag"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-feature-flag\"}",
+            "selector": {
+              "type": "redis-cluster-feature-flag"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-cluster-queues-meta": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-cluster-queues-meta"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-queues-meta\"}",
+            "selector": {
+              "type": "redis-cluster-queues-meta"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "sidekiq",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"queues_metadata\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "queues_metadata",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-cluster-queues-meta"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-queues-meta\"}",
+            "selector": {
+              "type": "redis-cluster-queues-meta"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-cluster-ratelimiting": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-cluster-ratelimiting"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-ratelimiting\"}",
+            "selector": {
+              "type": "redis-cluster-ratelimiting"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "sidekiq",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"rate_limiting\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "rate_limiting",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-cluster-ratelimiting"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-ratelimiting\"}",
+            "selector": {
+              "type": "redis-cluster-ratelimiting"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-cluster-shared-state": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-cluster-shared-state"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-shared-state\"}",
+            "selector": {
+              "type": "redis-cluster-shared-state"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "sidekiq",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"shared_state\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "shared_state",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-cluster-shared-state"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-cluster-shared-state\"}",
+            "selector": {
+              "type": "redis-cluster-shared-state"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-db-load-balancing": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-db-load-balancing"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-db-load-balancing\"}",
+            "selector": {
+              "type": "redis-db-load-balancing"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "sidekiq",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"db_load_balancing\"}",
+            "selector": {
+              "storage": "db_load_balancing"
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-db-load-balancing"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-db-load-balancing\"}",
+            "selector": {
+              "type": "redis-db-load-balancing"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-pubsub": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-pubsub"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-pubsub\"}",
+            "selector": {
+              "type": "redis-pubsub"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "api",
+          "sidekiq",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=~\"action_cable|workhorse\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": {
+                "oneOf": [
+                  "workhorse",
+                  "action_cable"
+                ]
+              },
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-pubsub"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-pubsub\"}",
+            "selector": {
+              "type": "redis-pubsub"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-registry-cache": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-registry-cache"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-registry-cache\"}",
+            "selector": {
+              "type": "redis-registry-cache"
+            }
+          }
+        ]
+      },
+      "registry_redis_client": {
+        "emitted_by": [
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_redis_single_commands_count",
+            "raw": "registry_redis_single_commands_count{type=\"registry\"}",
+            "selector": {
+              "type": "registry"
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-registry-cache"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-registry-cache\"}",
+            "selector": {
+              "type": "redis-registry-cache"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-repository-cache": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-repository-cache"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-repository-cache\"}",
+            "selector": {
+              "type": "redis-repository-cache"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "api",
+          "git",
+          "internal-api",
+          "sidekiq",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"repository_cache\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "repository_cache",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-repository-cache"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-repository-cache\"}",
+            "selector": {
+              "type": "redis-repository-cache"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-sessions": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-sessions"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-sessions\"}",
+            "selector": {
+              "type": "redis-sessions"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "ai-assisted",
+          "api",
+          "git",
+          "internal-api",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"sessions\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "sessions",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-sessions"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-sessions\"}",
+            "selector": {
+              "type": "redis-sessions"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-sidekiq": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-sidekiq\"}",
+            "selector": {
+              "type": "redis-sidekiq"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "api",
+          "git",
+          "internal-api",
+          "sidekiq",
+          "web",
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"queues\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "queues",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-sidekiq\"}",
+            "selector": {
+              "type": "redis-sidekiq"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "redis-tracechunks": {
+    "slis": {
+      "primary_server": {
+        "emitted_by": [
+          "redis-tracechunks"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-tracechunks\"}",
+            "selector": {
+              "type": "redis-tracechunks"
+            }
+          }
+        ]
+      },
+      "rails_redis_client": {
+        "emitted_by": [
+          "api",
+          "sidekiq",
+          "web"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_redis_client_requests_total",
+            "raw": "gitlab_redis_client_requests_total{storage=\"trace_chunks\",type!=\"ops-gitlab-net\"}",
+            "selector": {
+              "storage": "trace_chunks",
+              "type": {
+                "ne": "ops-gitlab-net"
+              }
+            }
+          }
+        ]
+      },
+      "secondary_servers": {
+        "emitted_by": [
+          "redis-tracechunks"
+        ],
+        "requestRate": [
+          {
+            "metric": "redis_commands_processed_total",
+            "raw": "redis_commands_processed_total{type=\"redis-tracechunks\"}",
+            "selector": {
+              "type": "redis-tracechunks"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "registry": {
+    "slis": {
+      "database": {
+        "emitted_by": [
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_database_queries_total",
+            "raw": "registry_database_queries_total{type=\"registry\"}",
+            "selector": {
+              "type": "registry"
+            }
+          }
+        ]
+      },
+      "garbagecollector": {
+        "emitted_by": [
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_gc_runs_total",
+            "raw": "registry_gc_runs_total{type=\"registry\"}",
+            "selector": {
+              "type": "registry"
+            }
+          }
+        ]
+      },
+      "redis": {
+        "emitted_by": [
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_redis_single_commands_count",
+            "raw": "registry_redis_single_commands_count{type=\"registry\"}",
+            "selector": {
+              "type": "registry"
+            }
+          }
+        ]
+      },
+      "registry_cdn": {
+        "emitted_by": [
+          "monitoring"
+        ],
+        "requestRate": [
+          {
+            "metric": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count",
+            "raw": "stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{project_id=\"gitlab-production\",url_map_name=\"gprd-registry-cdn\"}",
+            "selector": {
+              "project_id": "gitlab-production",
+              "url_map_name": "gprd-registry-cdn"
+            }
+          }
+        ]
+      },
+      "registry_server": {
+        "emitted_by": [
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_http_requests_total",
+            "raw": "registry_http_requests_total{type=\"registry\"}",
+            "selector": {
+              "type": "registry"
+            }
+          }
+        ]
+      },
+      "server_route_blob_upload_uuid_deletes": {
+        "emitted_by": [
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_http_request_duration_seconds_count",
+            "raw": "registry_http_request_duration_seconds_count{method=~\"delete\",route=\"/v2/{name}/blobs/uploads/{uuid}\",type=\"registry\"}",
+            "selector": {
+              "method": {
+                "re": "delete"
+              },
+              "route": {
+                "eq": "/v2/{name}/blobs/uploads/{uuid}"
+              },
+              "type": "registry"
+            }
+          }
+        ]
+      },
+      "server_route_blob_upload_uuid_reads": {
+        "emitted_by": [
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_http_request_duration_seconds_count",
+            "raw": "registry_http_request_duration_seconds_count{method=~\"get|head\",route=\"/v2/{name}/blobs/uploads/{uuid}\",type=\"registry\"}",
+            "selector": {
+              "method": {
+                "re": "get|head"
+              },
+              "route": {
+                "eq": "/v2/{name}/blobs/uploads/{uuid}"
+              },
+              "type": "registry"
+            }
+          }
+        ]
+      },
+      "server_route_blob_upload_uuid_writes": {
+        "emitted_by": [
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_http_request_duration_seconds_count",
+            "raw": "registry_http_request_duration_seconds_count{method=~\"put|patch|post\",route=\"/v2/{name}/blobs/uploads/{uuid}\",type=\"registry\"}",
+            "selector": {
+              "method": {
+                "re": "put|patch|post"
+              },
+              "route": {
+                "eq": "/v2/{name}/blobs/uploads/{uuid}"
+              },
+              "type": "registry"
+            }
+          }
+        ]
+      },
+      "server_route_manifest_reads": {
+        "emitted_by": [
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_http_request_duration_seconds_count",
+            "raw": "registry_http_request_duration_seconds_count{method=~\"get|head\",route=\"/v2/{name}/manifests/{reference}\",type=\"registry\"}",
+            "selector": {
+              "method": {
+                "re": "get|head"
+              },
+              "route": {
+                "eq": "/v2/{name}/manifests/{reference}"
+              },
+              "type": "registry"
+            }
+          }
+        ]
+      },
+      "server_route_manifest_writes": {
+        "emitted_by": [
+          "registry"
+        ],
+        "requestRate": [
+          {
+            "metric": "registry_http_request_duration_seconds_count",
+            "raw": "registry_http_request_duration_seconds_count{method=~\"put|delete|post|patch\",route=\"/v2/{name}/manifests/{reference}\",type=\"registry\"}",
+            "selector": {
+              "method": {
+                "re": "put|delete|post|patch"
+              },
+              "route": {
+                "eq": "/v2/{name}/manifests/{reference}"
+              },
+              "type": "registry"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "search": {
+    "slis": {
+      "elasticsearch_indexing": {
+        "emitted_by": [
+          "search"
+        ],
+        "requestRate": [
+          {
+            "metric": "elasticsearch_indices_indexing_index_total",
+            "raw": "elasticsearch_indices_indexing_index_total{type=\"search\"}",
+            "selector": {
+              "type": "search"
+            }
+          }
+        ]
+      },
+      "elasticsearch_searching": {
+        "emitted_by": [
+          "search"
+        ],
+        "requestRate": [
+          {
+            "metric": "elasticsearch_indices_search_query_total",
+            "raw": "elasticsearch_indices_search_query_total{type=\"search\"}",
+            "selector": {
+              "type": "search"
+            }
+          }
+        ]
+      },
+      "global_search_indexing": {
+        "emitted_by": [
+          "ops-gitlab-net",
+          "sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_global_search_indexing_apdex_total",
+            "raw": "gitlab_sli_global_search_indexing_apdex_total",
+            "selector": {
+            }
+          }
+        ]
+      }
+    }
+  },
+  "sidekiq": {
+    "slis": {
+      "llm_completion": {
+        "emitted_by": [
+          "ops-gitlab-net",
+          "sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_llm_completion_total",
+            "raw": "gitlab_sli_llm_completion_total",
+            "selector": {
+            }
+          }
+        ]
+      },
+      "sidekiq_execution": {
+        "emitted_by": [
+          "sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_sidekiq_execution_total",
+            "raw": "gitlab_sli_sidekiq_execution_total{external_dependencies!=\"yes\",type=\"sidekiq\",worker!=\"ProjectExportWorker\"}",
+            "selector": {
+              "external_dependencies": {
+                "ne": "yes"
+              },
+              "type": "sidekiq",
+              "worker": {
+                "ne": [
+                  "ProjectExportWorker"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "sidekiq_execution_with_external_dependency": {
+        "emitted_by": [
+          "sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_sidekiq_execution_total",
+            "raw": "gitlab_sli_sidekiq_execution_total{external_dependencies=\"yes\",type=\"sidekiq\",worker!=\"ProjectExportWorker\"}",
+            "selector": {
+              "external_dependencies": {
+                "eq": "yes"
+              },
+              "type": "sidekiq",
+              "worker": {
+                "ne": [
+                  "ProjectExportWorker"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "sidekiq_queueing": {
+        "emitted_by": [
+          "sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_sidekiq_queueing_apdex_total",
+            "raw": "gitlab_sli_sidekiq_queueing_apdex_total{external_dependencies!=\"yes\",type=\"sidekiq\",worker!=\"ProjectExportWorker\"}",
+            "selector": {
+              "external_dependencies": {
+                "ne": "yes"
+              },
+              "type": "sidekiq",
+              "worker": {
+                "ne": [
+                  "ProjectExportWorker"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "sidekiq_queueing_with_external_dependency": {
+        "emitted_by": [
+          "sidekiq"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_sidekiq_queueing_apdex_total",
+            "raw": "gitlab_sli_sidekiq_queueing_apdex_total{external_dependencies=\"yes\",type=\"sidekiq\",worker!=\"ProjectExportWorker\"}",
+            "selector": {
+              "external_dependencies": {
+                "eq": "yes"
+              },
+              "type": "sidekiq",
+              "worker": {
+                "ne": [
+                  "ProjectExportWorker"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "thanos": {
+    "slis": {
+      "rule_evaluation": {
+        "emitted_by": [
+          "thanos"
+        ],
+        "requestRate": [
+          {
+            "metric": "prometheus_rule_evaluations_total",
+            "raw": "prometheus_rule_evaluations_total{job=\"thanos-ruler\",namespace=\"thanos\",type=\"thanos\"}",
+            "selector": {
+              "job": "thanos-ruler",
+              "namespace": "thanos",
+              "type": "thanos"
+            }
+          }
+        ]
+      },
+      "thanos_compactor": {
+        "emitted_by": [
+          "thanos"
+        ],
+        "requestRate": [
+          {
+            "metric": "thanos_compact_group_compactions_total",
+            "raw": "thanos_compact_group_compactions_total{job=~\"thanos-(.+)-compactor\",namespace=\"thanos\",type=\"thanos\"}",
+            "selector": {
+              "job": {
+                "re": "thanos-(.+)-compactor"
+              },
+              "namespace": "thanos",
+              "type": "thanos"
+            }
+          }
+        ]
+      },
+      "thanos_query": {
+        "emitted_by": [
+          "thanos"
+        ],
+        "requestRate": [
+          {
+            "metric": "http_requests_total",
+            "raw": "http_requests_total{job=\"thanos-query\",namespace=\"thanos\",type=\"thanos\"}",
+            "selector": {
+              "job": "thanos-query",
+              "namespace": "thanos",
+              "type": "thanos"
+            }
+          }
+        ]
+      },
+      "thanos_query_frontend": {
+        "emitted_by": [
+          "thanos"
+        ],
+        "requestRate": [
+          {
+            "metric": "http_requests_total",
+            "raw": "http_requests_total{job=\"thanos-query-frontend\",namespace=\"thanos\",type=\"thanos\"}",
+            "selector": {
+              "job": "thanos-query-frontend",
+              "namespace": "thanos",
+              "type": "thanos"
+            }
+          }
+        ]
+      },
+      "thanos_rule_alert_sender": {
+        "emitted_by": [
+          "thanos"
+        ],
+        "requestRate": [
+          {
+            "metric": "thanos_alert_sender_alerts_sent_total",
+            "raw": "thanos_alert_sender_alerts_sent_total{job=\"thanos-ruler\",namespace=\"thanos\",type=\"thanos\"}",
+            "selector": {
+              "job": "thanos-ruler",
+              "namespace": "thanos",
+              "type": "thanos"
+            }
+          }
+        ]
+      },
+      "thanos_store": {
+        "emitted_by": [
+          "thanos"
+        ],
+        "requestRate": [
+          {
+            "metric": "grpc_server_handled_total",
+            "raw": "grpc_server_handled_total{grpc_type=\"unary\",job=~\"thanos-(.+)-storegateway-(.+)\",namespace=\"thanos\",type=\"thanos\"}",
+            "selector": {
+              "grpc_type": "unary",
+              "job": {
+                "re": "thanos-(.+)-storegateway-(.+)"
+              },
+              "namespace": "thanos",
+              "type": "thanos"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "tracing": {
+    "slis": {
+      "ingress": {
+        "emitted_by": [
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "traefik_service_requests_total",
+            "raw": "traefik_service_requests_total{job=\"default/traefik\",service=~\"tenant.*otel-collector-traces.*\",team=\"observability\"}",
+            "selector": {
+              "job": "default/traefik",
+              "service": {
+                "re": "tenant.*otel-collector-traces.*"
+              },
+              "team": "observability"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "vault": {
+    "slis": {
+      "istio_internal_ingress": {
+        "emitted_by": [
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "istio_requests_total",
+            "raw": "istio_requests_total{destination_workload=\"vault\",source_workload=\"istio-internal-gateway\"}",
+            "selector": {
+              "destination_workload": "vault",
+              "source_workload": "istio-internal-gateway"
+            }
+          }
+        ]
+      },
+      "istio_public_ingress": {
+        "emitted_by": [
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "istio_requests_total",
+            "raw": "istio_requests_total{destination_workload=\"vault\",source_workload=\"istio-gateway\"}",
+            "selector": {
+              "destination_workload": "vault",
+              "source_workload": "istio-gateway"
+            }
+          }
+        ]
+      },
+      "vault": {
+        "emitted_by": [
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "vault_core_handle_request_count",
+            "raw": "vault_core_handle_request_count{job=\"vault-active\"}",
+            "selector": {
+              "job": "vault-active"
+            }
+          }
+        ]
+      },
+      "vault_audit_log_request": {
+        "emitted_by": [
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "vault_audit_log_request_count",
+            "raw": "vault_audit_log_request_count{job=\"vault-active\"}",
+            "selector": {
+              "job": "vault-active"
+            }
+          }
+        ]
+      },
+      "vault_audit_log_response": {
+        "emitted_by": [
+          null
+        ],
+        "requestRate": [
+          {
+            "metric": "vault_audit_log_response_count",
+            "raw": "vault_audit_log_response_count{job=\"vault-active\"}",
+            "selector": {
+              "job": "vault-active"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "web": {
+    "slis": {
+      "global_search": {
+        "emitted_by": [
+          "web"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_global_search_apdex_total",
+            "raw": "gitlab_sli_global_search_apdex_total{job=\"gitlab-rails\",type=\"web\"}",
+            "selector": {
+              "job": "gitlab-rails",
+              "type": "web"
+            }
+          }
+        ]
+      },
+      "imagescaler": {
+        "emitted_by": [
+          "web"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_workhorse_image_resize_requests_total",
+            "raw": "gitlab_workhorse_image_resize_requests_total{job=~\"gitlab-workhorse|gitlab-workhorse-web\",type=\"web\"}",
+            "selector": {
+              "job": {
+                "re": "gitlab-workhorse|gitlab-workhorse-web"
+              },
+              "type": "web"
+            }
+          }
+        ]
+      },
+      "rails_request": {
+        "emitted_by": [
+          "web"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_rails_request_total",
+            "raw": "gitlab_sli_rails_request_total{job=\"gitlab-rails\",type=\"web\"}",
+            "selector": {
+              "job": "gitlab-rails",
+              "type": "web"
+            }
+          }
+        ]
+      },
+      "workhorse": {
+        "emitted_by": [
+          "web"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_workhorse_http_requests_total",
+            "raw": "gitlab_workhorse_http_requests_total{job=~\"gitlab-workhorse|gitlab-workhorse-web\",type=\"web\"}",
+            "selector": {
+              "job": {
+                "re": "gitlab-workhorse|gitlab-workhorse-web"
+              },
+              "type": "web"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "web-pages": {
+    "slis": {
+      "web_pages_server": {
+        "emitted_by": [
+          "web-pages"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_pages_http_time_to_write_header_seconds_count",
+            "raw": "gitlab_pages_http_time_to_write_header_seconds_count{type=\"web-pages\"}",
+            "selector": {
+              "type": "web-pages"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "websockets": {
+    "slis": {
+      "rails_request": {
+        "emitted_by": [
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_sli_rails_request_total",
+            "raw": "gitlab_sli_rails_request_total{job=\"gitlab-rails\",type=\"websockets\"}",
+            "selector": {
+              "job": "gitlab-rails",
+              "type": "websockets"
+            }
+          }
+        ]
+      },
+      "workhorse": {
+        "emitted_by": [
+          "websockets"
+        ],
+        "requestRate": [
+          {
+            "metric": "gitlab_workhorse_http_requests_total",
+            "raw": "gitlab_workhorse_http_requests_total{job=\"gitlab-workhorse\",route!=\"^/-/health$\",route!=\"^/-/(readiness|liveness)$\",route!=\"^/api/\",type=\"websockets\"}",
+            "selector": {
+              "job": "gitlab-workhorse",
+              "route": [
+                {
+                  "ne": "^/-/health$"
+                },
+                {
+                  "ne": "^/-/(readiness|liveness)$"
+                },
+                {
+                  "ne": "^/api/"
+                }
+              ],
+              "type": "websockets"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "woodhouse": {
+    "slis": {
+      "async_jobs": {
+        "emitted_by": [
+          "woodhouse"
+        ],
+        "requestRate": [
+          {
+            "metric": "woodhouse_async_jobs_total",
+            "raw": "woodhouse_async_jobs_total{job=\"woodhouse\"}",
+            "selector": {
+              "job": "woodhouse"
+            }
+          }
+        ]
+      },
+      "http": {
+        "emitted_by": [
+          "woodhouse"
+        ],
+        "requestRate": [
+          {
+            "metric": "woodhouse_http_requests_total",
+            "raw": "woodhouse_http_requests_total{job=\"woodhouse\",route!=\"/ready\"}",
+            "selector": {
+              "job": "woodhouse",
+              "route": {
+                "ne": "/ready"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
