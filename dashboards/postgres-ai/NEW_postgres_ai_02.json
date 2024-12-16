@@ -97,7 +97,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -113,6 +113,7 @@
           "refId": "A"
         }
       ],
+      "title": "",
       "transparent": true,
       "type": "state-timeline"
     },
@@ -657,7 +658,7 @@
             "h": 14,
             "w": 24,
             "x": 0,
-            "y": 25
+            "y": 3
           },
           "id": 24,
           "options": {
@@ -679,7 +680,7 @@
               }
             ]
           },
-          "pluginVersion": "11.1.0",
+          "pluginVersion": "11.3.1",
           "targets": [
             {
               "datasource": {
@@ -1582,7 +1583,7 @@
             "h": 14,
             "w": 24,
             "x": 0,
-            "y": 39
+            "y": 170
           },
           "id": 26,
           "options": {
@@ -1599,7 +1600,7 @@
             "showHeader": true,
             "sortBy": []
           },
-          "pluginVersion": "11.1.0",
+          "pluginVersion": "11.3.1",
           "targets": [
             {
               "datasource": {
@@ -1848,6 +1849,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -1916,6 +1918,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -1950,6 +1953,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2018,6 +2022,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -2052,6 +2057,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2120,6 +2126,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -2154,6 +2161,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2184,7 +2192,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2221,6 +2230,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -2255,6 +2265,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2285,7 +2296,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2322,6 +2334,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -2356,6 +2369,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2423,6 +2437,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -2457,6 +2472,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2524,6 +2540,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -2558,6 +2575,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2625,6 +2643,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -2659,6 +2678,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2726,6 +2746,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -2760,6 +2781,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2827,6 +2849,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -2861,6 +2884,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2928,6 +2952,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -2962,6 +2987,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -3029,6 +3055,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -3063,6 +3090,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -3130,6 +3158,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -3164,6 +3193,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -3231,6 +3261,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -3265,6 +3296,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -3332,6 +3364,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -3366,6 +3399,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -3433,6 +3467,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -3467,6 +3502,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -3534,6 +3570,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -3568,6 +3605,844 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "binBps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 76
+      },
+      "id": 38,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir-gitlab-gprd"
+          },
+          "editorMode": "code",
+          "expr": "topk($topn,irate(pg_stat_statements_wal_bytes{fqdn=\"$fqdn\"}[$__rate_interval]))",
+          "instant": false,
+          "legendFormat": "{{queryid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Top $topn statements by WAL bytes (pg_stat_statements)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "binBps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 76
+      },
+      "id": 39,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir-gitlab-gprd"
+          },
+          "editorMode": "code",
+          "expr": "topk($topn,irate(pg_stat_statements_wal_bytes{fqdn=\"$fqdn\"}[$__rate_interval])/(irate(pg_stat_statements_calls{fqdn=\"$fqdn\"}[$__rate_interval])))",
+          "instant": false,
+          "legendFormat": "{{queryid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Top $topn statements by WAL bytes per call (pg_stat_statements)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 84
+      },
+      "id": 42,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir-gitlab-gprd"
+          },
+          "editorMode": "code",
+          "expr": "topk($topn,irate(pg_stat_statements_wal_fpi{fqdn=\"$fqdn\"}[$__rate_interval]))",
+          "instant": false,
+          "legendFormat": "{{queryid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Top $topn statements by WAL fpi (pg_stat_statements)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 84
+      },
+      "id": 43,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir-gitlab-gprd"
+          },
+          "editorMode": "code",
+          "expr": "topk($topn,irate(pg_stat_statements_wal_fpi{fqdn=\"$fqdn\"}[$__rate_interval])/(irate(pg_stat_statements_calls{fqdn=\"$fqdn\"}[$__rate_interval])))",
+          "instant": false,
+          "legendFormat": "{{queryid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Top $topn statements by WAL fpi per call (pg_stat_statements)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "binBps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 92
+      },
+      "id": 44,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir-gitlab-gprd"
+          },
+          "editorMode": "code",
+          "expr": "topk($topn,irate(pg_stat_statements_temp_bytes_read{fqdn=\"$fqdn\"}[$__rate_interval]))",
+          "instant": false,
+          "legendFormat": "{{queryid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Top $topn statements by temp_bytes_read (pg_stat_statements)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "binBps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 92
+      },
+      "id": 45,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir-gitlab-gprd"
+          },
+          "editorMode": "code",
+          "expr": "topk($topn,irate(pg_stat_statements_temp_bytes_read{fqdn=\"$fqdn\"}[$__rate_interval])/(irate(pg_stat_statements_calls{fqdn=\"$fqdn\"}[$__rate_interval])))",
+          "instant": false,
+          "legendFormat": "{{queryid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Top $topn statements by temp_bytes_read per call (pg_stat_statements)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "binBps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 100
+      },
+      "id": 46,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir-gitlab-gprd"
+          },
+          "editorMode": "code",
+          "expr": "topk($topn,irate(pg_stat_statements_temp_bytes_written{fqdn=\"$fqdn\"}[$__rate_interval]))",
+          "instant": false,
+          "legendFormat": "{{queryid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Top $topn statements by temp_bytes_written (pg_stat_statements)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "binBps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 100
+      },
+      "id": 47,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir-gitlab-gprd"
+          },
+          "editorMode": "code",
+          "expr": "topk($topn,irate(pg_stat_statements_temp_bytes_written{fqdn=\"$fqdn\"}[$__rate_interval])/(irate(pg_stat_statements_calls{fqdn=\"$fqdn\"}[$__rate_interval])))",
+          "instant": false,
+          "legendFormat": "{{queryid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Top $topn statements by temp_bytes_written per call (pg_stat_statements)",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 108
+      },
+      "id": 68,
+      "panels": [],
+      "title": "pg_stat_kcache by queryid graphs ",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -3614,7 +4489,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 76
+        "y": 109
       },
       "id": 50,
       "options": {
@@ -3635,6 +4510,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -3669,6 +4545,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -3715,7 +4592,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 76
+        "y": 109
       },
       "id": 51,
       "options": {
@@ -3736,6 +4613,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -3770,6 +4648,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -3816,7 +4695,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 84
+        "y": 117
       },
       "id": 48,
       "options": {
@@ -3837,6 +4716,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -3871,6 +4751,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -3917,7 +4798,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 84
+        "y": 117
       },
       "id": 63,
       "options": {
@@ -3938,6 +4819,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -3972,6 +4854,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -4018,7 +4901,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 92
+        "y": 125
       },
       "id": 49,
       "options": {
@@ -4039,6 +4922,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -4073,6 +4957,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -4119,7 +5004,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 92
+        "y": 125
       },
       "id": 64,
       "options": {
@@ -4140,6 +5025,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -4174,6 +5060,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -4220,7 +5107,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 100
+        "y": 133
       },
       "id": 52,
       "options": {
@@ -4241,6 +5128,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -4276,6 +5164,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -4322,7 +5211,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 100
+        "y": 133
       },
       "id": 53,
       "options": {
@@ -4343,6 +5232,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -4378,6 +5268,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -4424,7 +5315,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 108
+        "y": 141
       },
       "id": 65,
       "options": {
@@ -4445,6 +5336,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -4480,6 +5372,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -4526,7 +5419,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 108
+        "y": 141
       },
       "id": 66,
       "options": {
@@ -4547,6 +5440,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -4566,812 +5460,17 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "$prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 50,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "binBps"
-        },
-        "overrides": []
-      },
+      "collapsed": false,
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 1,
+        "w": 24,
         "x": 0,
-        "y": 116
+        "y": 149
       },
-      "id": 38,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max",
-            "min",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "mimir-gitlab-gprd"
-          },
-          "editorMode": "code",
-          "expr": "topk($topn,irate(pg_stat_statements_wal_bytes{fqdn=\"$fqdn\"}[$__rate_interval]))",
-          "instant": false,
-          "legendFormat": "{{queryid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Top $topn statements by WAL bytes (pg_stat_statements)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "$prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 50,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "binBps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 116
-      },
-      "id": 39,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max",
-            "min",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "mimir-gitlab-gprd"
-          },
-          "editorMode": "code",
-          "expr": "topk($topn,irate(pg_stat_statements_wal_bytes{fqdn=\"$fqdn\"}[$__rate_interval])/(irate(pg_stat_statements_calls{fqdn=\"$fqdn\"}[$__rate_interval])))",
-          "instant": false,
-          "legendFormat": "{{queryid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Top $topn statements by WAL bytes per call (pg_stat_statements)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "$prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 50,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 124
-      },
-      "id": 42,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max",
-            "min",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "mimir-gitlab-gprd"
-          },
-          "editorMode": "code",
-          "expr": "topk($topn,irate(pg_stat_statements_wal_fpi{fqdn=\"$fqdn\"}[$__rate_interval]))",
-          "instant": false,
-          "legendFormat": "{{queryid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Top $topn statements by WAL fpi (pg_stat_statements)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "$prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 50,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 124
-      },
-      "id": 43,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max",
-            "min",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "mimir-gitlab-gprd"
-          },
-          "editorMode": "code",
-          "expr": "topk($topn,irate(pg_stat_statements_wal_fpi{fqdn=\"$fqdn\"}[$__rate_interval])/(irate(pg_stat_statements_calls{fqdn=\"$fqdn\"}[$__rate_interval])))",
-          "instant": false,
-          "legendFormat": "{{queryid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Top $topn statements by WAL fpi per call (pg_stat_statements)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "$prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 50,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "binBps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 132
-      },
-      "id": 44,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max",
-            "min",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "mimir-gitlab-gprd"
-          },
-          "editorMode": "code",
-          "expr": "topk($topn,irate(pg_stat_statements_temp_bytes_read{fqdn=\"$fqdn\"}[$__rate_interval]))",
-          "instant": false,
-          "legendFormat": "{{queryid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Top $topn statements by temp_bytes_read (pg_stat_statements)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "$prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 50,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "binBps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 132
-      },
-      "id": 45,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max",
-            "min",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "mimir-gitlab-gprd"
-          },
-          "editorMode": "code",
-          "expr": "topk($topn,irate(pg_stat_statements_temp_bytes_read{fqdn=\"$fqdn\"}[$__rate_interval])/(irate(pg_stat_statements_calls{fqdn=\"$fqdn\"}[$__rate_interval])))",
-          "instant": false,
-          "legendFormat": "{{queryid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Top $topn statements by temp_bytes_read per call (pg_stat_statements)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "$prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 50,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "binBps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 140
-      },
-      "id": 46,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max",
-            "min",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "mimir-gitlab-gprd"
-          },
-          "editorMode": "code",
-          "expr": "topk($topn,irate(pg_stat_statements_temp_bytes_written{fqdn=\"$fqdn\"}[$__rate_interval]))",
-          "instant": false,
-          "legendFormat": "{{queryid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Top $topn statements by temp_bytes_written (pg_stat_statements)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "$prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 50,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "binBps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 140
-      },
-      "id": 47,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max",
-            "min",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "mimir-gitlab-gprd"
-          },
-          "editorMode": "code",
-          "expr": "topk($topn,irate(pg_stat_statements_temp_bytes_written{fqdn=\"$fqdn\"}[$__rate_interval])/(irate(pg_stat_statements_calls{fqdn=\"$fqdn\"}[$__rate_interval])))",
-          "instant": false,
-          "legendFormat": "{{queryid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Top $topn statements by temp_bytes_written per call (pg_stat_statements)",
-      "type": "timeseries"
+      "id": 67,
+      "panels": [],
+      "title": "Wait events (pg_wait_sampling)",
+      "type": "row"
     },
     {
       "datasource": {
@@ -5391,6 +5490,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 100,
             "gradientMode": "none",
@@ -5550,323 +5650,657 @@
               "options": {
                 "mode": "exclude",
                 "names": [
-                  "IPC - BufferIO - -1087689967750282415",
-                  "IO - DataFileRead - -1087689967750282415",
-                  "Lock - relation - -1136109749892603661",
-                  "IO - DataFileRead - -1138303640281222898",
-                  "IO - DataFileRead - -1226065276169852855",
-                  "Client - ClientWrite - -1252767960675057129",
-                  "IPC - MessageQueueReceive - -1610606686705605676",
-                  "IO - DataFileRead - -162822841385046701",
-                  "Lock - transactionid - -1734879487818525313",
-                  "IO - DataFileRead - -1861834165706902441",
-                  "Lock - transactionid - -1897371298315958634",
-                  "Lock - transactionid - -1972516432607909102",
-                  "Lock - transactionid - -1990218705812597736",
-                  "IO - DataFileRead - -2006602646059697903",
-                  "IO - DataFileRead - -2015535020023598416",
-                  "IO - DataFileRead - -2117324205928057924",
-                  "Lock - transactionid - -2217195823176786937",
-                  "IO - DataFileRead - -2283000719016190133",
-                  "IO - DataFileRead - -2359471333595570649",
-                  "LWLock - BufferContent - -2369197830215497318",
-                  "IPC - BufferIO - -2369197830215497318",
-                  "IO - DataFileRead - -2544473813956681896",
-                  "IO - DataFileRead - -2676474752421830498",
-                  "IPC - MessageQueueInternal - -2711948555809411874",
-                  "IO - DataFileRead - -279805142881774503",
-                  "IO - DataFileRead - -2849680102775668525",
-                  "IO - DataFileRead - -2856835036974064820",
-                  "IO - DataFileRead - -2896970709654789353",
-                  "IO - DataFileRead - -2900709814440749986",
-                  "Lock - transactionid - -2924032636331278939",
-                  "IO - DataFileRead - -3070627211002089106",
-                  "IO - DataFileRead - -3079096085867404049",
-                  "Client - ClientWrite - -3085033409193783644",
-                  "IO - DataFileRead - -3348254045359383379",
-                  "IO - DataFileRead - -3350110301809335537",
-                  "IO - DataFileRead - -3378014994640290625",
-                  "Lock - transactionid - -3405096249801735499",
-                  "IO - DataFileRead - -3467153636922278024",
-                  "IO - DataFileRead - -3527590728208558957",
-                  "IO - DataFileRead - -3553212750495267067",
-                  "IO - DataFileRead - -3554042567243478225",
-                  "IO - DataFileRead - -3601125330390789361",
-                  "IO - DataFileRead - -3687806038039876259",
-                  "IO - DataFileRead - -3931703332636790892",
-                  "IPC - BufferIO - -3976587112326576405",
-                  "IO - DataFileRead - -3976587112326576405",
-                  "IO - DataFileRead - -4011001982397653",
-                  "IO - DataFileRead - -4195226250348013399",
-                  "IO - DataFileRead - -421219136589302662",
-                  "Lock - transactionid - -4311584699253943235",
-                  "Lock - transactionid - -4367348491730084849",
-                  "IO - DataFileRead - -4398557490716154772",
-                  "Lock - transactionid - -4440230097537437596",
-                  "IO - DataFileRead - -4457909316057424890",
-                  "Lock - transactionid - -4577789264866063811",
-                  "IO - DataFileRead - -4580313605399162784",
-                  "IO - DataFileRead - -4820875858766994355",
-                  "IO - DataFileRead - -4831791074222586288",
-                  "IO - DataFileRead - -4918154973672070066",
-                  "IO - DataFileRead - -4924107266554572244",
-                  "IO - DataFileRead - -4939883191416390003",
-                  "IO - DataFileRead - -4945906343847461814",
-                  "IO - DataFileRead - -4949667937911401553",
-                  "IO - DataFileRead - -5110506746620967168",
-                  "IO - DataFileRead - -5185053252367348262",
-                  "IO - DataFileRead - -5243781502134455401",
-                  "IO - DataFileRead - -5267971089886105685",
-                  "Lock - transactionid - -5311581954429520172",
-                  "Lock - transactionid - -5321682730652699070",
-                  "IO - DataFileRead - -5375378879878357060",
-                  "IO - DataFileRead - -5377630771058552746",
-                  "IO - DataFileRead - -5572249192656482865",
-                  "IO - DataFileRead - -5590741580327686592",
-                  "IO - DataFileRead - -5676965466664335117",
-                  "IO - DataFileRead - -5748277969078423918",
-                  "IO - DataFileRead - -5801102007292030351",
-                  "IO - DataFileRead - -585750580874702351",
-                  "IO - DataFileRead - -5892037839825567785",
-                  "Lock - transactionid - -5892037839825567785",
-                  "IO - DataFileRead - -5893162562452496740",
-                  "Lock - transactionid - -5997859819390903578",
-                  "IO - DataFileRead - -6008842346924814282",
-                  "IO - DataFileRead - -6063466089906581055",
-                  "Lock - transactionid - -6109408296483546118",
-                  "IO - DataFileRead - -6206281138435055099",
-                  "IO - DataFileRead - -6241479099133722420",
-                  "IPC - BufferIO - -6322581373939589945",
-                  "IO - DataFileRead - -6322581373939589945",
-                  "IO - DataFileRead - -6334751926417861628",
-                  "IO - DataFileRead - -6419775949551619857",
-                  "IO - DataFileRead - -6429757476128144149",
-                  "IO - DataFileRead - -6634099241499979440",
-                  "IO - DataFileRead - -6642072911660110257",
-                  "IO - DataFileRead - -6667118779827607326",
-                  "IO - DataFileRead - -6743092565187169718",
-                  "IO - DataFileRead - -6833928973757554065",
-                  "IO - DataFileRead - -6849472883727323170",
-                  "IPC - BufferIO - -6872972813767277762",
-                  "IO - DataFileRead - -6872972813767277762",
-                  "LWLock - LockManager - -6929010813573897789",
-                  "IO - DataFileRead - -7109150324656392174",
-                  "IO - DataFileRead - -7286963336213606031",
-                  "IO - DataFileRead - -7340053278553913087",
-                  "IO - DataFileRead - -7596337528365318371",
-                  "IO - DataFileRead - -7646287770157256499",
-                  "IO - DataFileRead - -7663474617594276119",
-                  "IO - DataFileRead - -7764613543700909525",
-                  "IO - DataFileRead - -7773300219530591778",
-                  "IO - DataFileRead - -7797094634547379653",
-                  "IO - DataFileRead - -7804550170088190739",
-                  "Lock - transactionid - -7833471335419859160",
-                  "Lock - tuple - -7833471335419859160",
-                  "IO - DataFileRead - -7858446223805211513",
-                  "IO - DataFileRead - -7875668360574302871",
-                  "IO - DataFileRead - -7892516375822353708",
-                  "Lock - transactionid - -7902123297705785691",
-                  "IO - DataFileRead - -794496839878389330",
-                  "IO - DataFileRead - -8055113155939948651",
-                  "IO - DataFileRead - -8096390576518961178",
-                  "IO - DataFileRead - -8103586340476736825",
-                  "IO - DataFileRead - -813812418598544242",
-                  "Client - ClientWrite - -8216936916101798272",
-                  "IO - DataFileRead - -8249125254759182182",
-                  "IO - DataFileRead - -8287567316053445351",
-                  "IO - DataFileRead - -8307608860884572718",
-                  "IO - DataFileRead - -8338700545318450002",
-                  "Lock - transactionid - -8353454685191459981",
-                  "IO - DataFileRead - -8496472408947488083",
-                  "IO - DataFileRead - -8562153289631622719",
-                  "IO - DataFileRead - -866300978471998830",
-                  "IO - DataFileRead - -8791425901786945281",
-                  "IO - DataFileRead - -8791845381335460246",
-                  "IO - DataFileRead - -8866953828782958588",
-                  "IO - DataFileRead - -8871157732967525739",
-                  "IO - DataFileRead - -8960939928864815150",
-                  "IO - DataFileRead - -8973834515964550799",
-                  "IO - DataFileRead - -97177680636735257",
-                  "Activity - ArchiverMain - 0",
-                  "Activity - AutoVacuumMain - 0",
-                  "Activity - BgWriterMain - 0",
+                  "Lock - transactionid - -1011585550692532818",
+                  "Lock - tuple - -1011585550692532818",
+                  "IO - DataFileRead - -1060216543488489759",
+                  "IO - DataFileRead - -1070827383229289527",
+                  "IO - DataFileRead - -1117028693915766857",
+                  "IO - DataFileRead - -111864266549318992",
+                  "IO - DataFileRead - -1135551131203411779",
+                  "IO - DataFileRead - -1153010343261231545",
+                  "IO - DataFileRead - -1177172471162273276",
+                  "IO - DataFileRead - -1201769875400547402",
+                  "IO - DataFileRead - -1204519332278629456",
+                  "IO - DataFileRead - -1204935248092106463",
+                  "IO - DataFileRead - -1213050118682019047",
+                  "IO - DataFileRead - -1350310354312095008",
+                  "IO - DataFileRead - -1357229947945554258",
+                  "IO - DataFileRead - -1368176358981457792",
+                  "IO - DataFileRead - -1374848057102047520",
+                  "IPC - ExecuteGather - -1374848057102047520",
+                  "IO - DataFileRead - -138716999566479446",
+                  "IO - DataFileRead - -138886905823483779",
+                  "IO - DataFileRead - -1437420225028583435",
+                  "IO - DataFileRead - -1443789514249475822",
+                  "IO - DataFileRead - -1498750314803556468",
+                  "IO - DataFileRead - -1529921444028975493",
+                  "IO - DataFileRead - -1555896044301407064",
+                  "IO - DataFileRead - -1582746110999559428",
+                  "Lock - transactionid - -1615655583627381919",
+                  "IO - DataFileRead - -1629778254360952997",
+                  "IO - DataFileRead - -169406290830437520",
+                  "IO - DataFileRead - -1709280955220844244",
+                  "IO - DataFileRead - -1733189418240834612",
+                  "IO - DataFileRead - -1774416167735243303",
+                  "IO - DataFileRead - -1777736041355397546",
+                  "IO - DataFileRead - -1788901020263062781",
+                  "IO - DataFileRead - -1814177494875666775",
+                  "IO - DataFileRead - -1828822771809568098",
+                  "IO - DataFileRead - -1840074601895978377",
+                  "IO - DataFileRead - -1873629118783492024",
+                  "IO - DataFileRead - -1879838740573425652",
+                  "IO - DataFileRead - -1943055760879242345",
+                  "Lock - transactionid - -197219720699130490",
+                  "IO - DataFileRead - -1985877516123561557",
+                  "IO - DataFileRead - -2031620799461630773",
+                  "IO - DataFileRead - -2046258619376428463",
+                  "IO - DataFileRead - -2063853760248831906",
+                  "IPC - BufferIO - -2090912007295461263",
+                  "IO - DataFileRead - -2090912007295461263",
+                  "IO - DataFileRead - -2135739277692993425",
+                  "IO - DataFileRead - -2232169545872092691",
+                  "IO - DataFileRead - -2240861472752151784",
+                  "IO - DataFileRead - -2252034112372260933",
+                  "IO - DataFileRead - -2284811150755613674",
+                  "IO - DataFileRead - -2356490233970538045",
+                  "IO - DataFileRead - -2363313777281510996",
+                  "IO - DataFileRead - -2408017343004239840",
+                  "IO - DataFileRead - -2427376282320216748",
+                  "IO - DataFileRead - -2461231434712345781",
+                  "IO - DataFileRead - -2491499575166643421",
+                  "IO - DataFileRead - -2516799652135949532",
+                  "IO - DataFileRead - -2617034969176669170",
+                  "Lock - transactionid - -2617034969176669170",
+                  "Lock - tuple - -2617034969176669170",
+                  "IO - DataFileRead - -2659942980373200128",
+                  "Lock - transactionid - -2659942980373200128",
+                  "IO - DataFileRead - -2661830404001543211",
+                  "IO - DataFileRead - -2691417241099128525",
+                  "IO - DataFileRead - -2717086526456264249",
+                  "IO - DataFileRead - -2735151297471532267",
+                  "IO - DataFileRead - -2748710692381196007",
+                  "IO - DataFileRead - -2772268567453518177",
+                  "IO - DataFileRead - -277581161592101177",
+                  "IPC - BufferIO - -2798743439604274585",
+                  "IO - DataFileRead - -2798743439604274585",
+                  "IO - DataFileRead - -2830760866979565134",
+                  "IPC - MessageQueueReceive - -2851721916520100241",
+                  "IO - DataFileRead - -290191525708011333",
+                  "IPC - BufferIO - -2956029357744161145",
+                  "IO - DataFileRead - -2956029357744161145",
+                  "IO - DataFileRead - -2967145653013944575",
+                  "IO - DataFileRead - -2991522958470651446",
+                  "IO - DataFileRead - -3006359437934566964",
+                  "IO - DataFileRead - -3177615639599885767",
+                  "IO - DataFileRead - -3179773526800452046",
+                  "IO - DataFileRead - -3197114482643014059",
+                  "IO - DataFileRead - -3202873427825937498",
+                  "IO - DataFileRead - -3227696026546404120",
+                  "IO - DataFileRead - -3235279626113282015",
+                  "IO - DataFileRead - -3255918114670763287",
+                  "IO - DataFilePrefetch - -3275708246258970866",
+                  "IO - DataFileRead - -3275708246258970866",
+                  "IO - DataFileRead - -3285556588144487832",
+                  "IO - DataFileRead - -3460927851429760581",
+                  "IO - DataFileRead - -352467497579939382",
+                  "IO - DataFileRead - -3550317447618760272",
+                  "IO - DataFileRead - -3551418522014178211",
+                  "IO - DataFileRead - -3554744797936753229",
+                  "IO - DataFileRead - -3605458442311112774",
+                  "IO - DataFileRead - -3611301104706832977",
+                  "Lock - transactionid - -3613594056371245228",
+                  "IO - DataFileRead - -3617662952219186880",
+                  "Lock - transactionid - -3620694487352966997",
+                  "IO - DataFileRead - -363569119515020360",
+                  "IO - DataFileRead - -3674652217021323322",
+                  "IO - DataFileRead - -3674705217840901588",
+                  "IO - DataFileRead - -3684382653742185406",
+                  "IO - DataFileRead - -3691566566151060752",
+                  "IO - DataFileRead - -3784222296278653785",
+                  "IO - DataFileRead - -3799206960700968761",
+                  "IO - DataFileRead - -3803576746687269913",
+                  "IO - DataFileRead - -3808158922183869206",
+                  "IO - DataFileRead - -3837852351643424677",
+                  "Lock - transactionid - -3837852351643424677",
+                  "IO - DataFileRead - -3843262192256476122",
+                  "IO - DataFileRead - -3878033451488692930",
+                  "IO - DataFileRead - -3880379018738963448",
+                  "IO - DataFileRead - -3880543933526276543",
+                  "IO - DataFileRead - -3895479577584159670",
+                  "Lock - virtualxid - -4080621040947160341",
+                  "IO - DataFileRead - -4095208724919014933",
+                  "Lock - transactionid - -4097310308555777668",
+                  "IO - DataFileRead - -4117280992121719294",
+                  "IO - DataFileRead - -4125334828716086968",
+                  "IO - DataFileRead - -4147258312725262589",
+                  "IO - DataFileRead - -4155650354058674372",
+                  "IPC - BufferIO - -4185602894551520498",
+                  "IO - DataFileRead - -4185602894551520498",
+                  "IO - DataFileRead - -4220622633085154913",
+                  "IPC - BufferIO - -4221736684968408330",
+                  "IO - DataFileRead - -4221736684968408330",
+                  "IO - DataFileRead - -4321063636072472747",
+                  "IPC - BufferIO - -4321551496560148781",
+                  "IO - DataFileRead - -4321551496560148781",
+                  "IO - DataFileRead - -4361348017815183016",
+                  "IPC - BufferIO - -4362685108016486325",
+                  "IO - DataFileRead - -4362685108016486325",
+                  "IO - DataFileRead - -4365433427293214945",
+                  "IO - DataFileRead - -4409581257823500321",
+                  "IO - DataFileRead - -4414931234273567852",
+                  "IO - DataFileRead - -4421144270792098661",
+                  "Lock - transactionid - -4442868811992863875",
+                  "IO - DataFileRead - -4459307009806770140",
+                  "IO - DataFileRead - -4519975703419547164",
+                  "IO - DataFileRead - -4525331268738693389",
+                  "IO - DataFileRead - -4575535707873458984",
+                  "IO - DataFileRead - -4596680298045448742",
+                  "IO - DataFileRead - -4616522791544120990",
+                  "IO - DataFileRead - -4651341246782494192",
+                  "IO - DataFileRead - -4665021048989599098",
+                  "IO - DataFileRead - -4679418802372932648",
+                  "IO - DataFileRead - -4685542030747162202",
+                  "IO - DataFileRead - -4776188561657178968",
+                  "IO - DataFileRead - -482985098843799625",
+                  "IO - DataFileRead - -4846684294706408660",
+                  "IO - DataFileRead - -4911994927805989998",
+                  "Lock - tuple - -4931191034154424541",
+                  "IO - DataFileRead - -4931785072958480549",
+                  "IO - DataFileRead - -4949915601311308280",
+                  "IO - DataFileRead - -4959994140020842477",
+                  "IO - DataFileRead - -5005032981572226053",
+                  "Lock - transactionid - -5018873451773817277",
+                  "Lock - transactionid - -5036822729895918350",
+                  "IO - DataFileRead - -5037447347033637853",
+                  "IO - DataFileRead - -5054973728722612889",
+                  "Lock - transactionid - -5083993014930929369",
+                  "Lock - tuple - -5083993014930929369",
+                  "IO - DataFileRead - -5122464741133348495",
+                  "IO - DataFileRead - -5135309132548996672",
+                  "IO - DataFileRead - -514190423300171973",
+                  "IO - DataFileRead - -514954766521698675",
+                  "IO - DataFileRead - -5153851900129948533",
+                  "IO - DataFileRead - -5154245673962239507",
+                  "IO - DataFileRead - -5159112790872853331",
+                  "IO - DataFileRead - -5162544031304426709",
+                  "IO - DataFileRead - -517416424251722351",
+                  "IO - DataFileRead - -5191537272100966870",
+                  "IO - DataFileRead - -5193666708305038203",
+                  "IO - DataFileRead - -5218828275327612435",
+                  "IO - DataFileRead - -5222461985573294587",
+                  "Lock - transactionid - -5250341034634156826",
+                  "IO - DataFileRead - -5301838463164016090",
+                  "IO - DataFileRead - -5363534645147462877",
+                  "IO - DataFileRead - -5409618633750386416",
+                  "IO - DataFileRead - -5436416598515082164",
+                  "IO - DataFileRead - -5477245137158517864",
+                  "IO - DataFileRead - -5570290678163674222",
+                  "IO - DataFileRead - -5574407575518449016",
+                  "IO - DataFileRead - -5611882948305691025",
+                  "IO - DataFileRead - -5640359370840296003",
+                  "IO - DataFileRead - -5642322312738785096",
+                  "IO - DataFileRead - -5661131185640250163",
+                  "IO - DataFileRead - -5694957567987058810",
+                  "IPC - BufferIO - -5709299693029087904",
+                  "IO - DataFileRead - -5729518720428991350",
+                  "Lock - transactionid - -5729527340005282876",
+                  "IO - DataFileRead - -5778365145049217955",
+                  "IO - DataFileRead - -5795163561055743681",
+                  "IO - DataFileRead - -5827303639914137604",
+                  "IO - DataFileRead - -5883458495804263552",
+                  "IO - DataFileRead - -5885028695818910841",
+                  "IO - DataFileRead - -5950251878634077924",
+                  "IO - DataFileRead - -5960167211531650536",
+                  "IO - DataFileRead - -607538075804901143",
+                  "IO - DataFileRead - -608152152238478223",
+                  "IO - DataFileRead - -6119359293732112221",
+                  "IO - DataFileRead - -612055475206152736",
+                  "IO - DataFileRead - -6173732814552822125",
+                  "Lock - transactionid - -6173732814552822125",
+                  "IPC - BufferIO - -6216852356692931620",
+                  "IO - DataFileRead - -6228517955228532915",
+                  "IO - DataFileRead - -6237732031816220869",
+                  "IO - DataFileRead - -6264097332688731988",
+                  "IO - DataFileRead - -6270160309128701648",
+                  "IPC - BufferIO - -628310485538972726",
+                  "IO - DataFileRead - -6341335028468022981",
+                  "IPC - ExecuteGather - -6341335028468022981",
+                  "IO - DataFileRead - -6348795800878386808",
+                  "Lock - transactionid - -6352754956717552788",
+                  "Lock - tuple - -6352754956717552788",
+                  "IPC - ExecuteGather - -6361540001508720680",
+                  "Lock - transactionid - -6372667401558570128",
+                  "IO - DataFileRead - -6384930074575472909",
+                  "IO - DataFileRead - -6453216501927597183",
+                  "IO - DataFileRead - -6468196524848663293",
+                  "IO - DataFileRead - -648456088492809963",
+                  "IO - DataFileRead - -6517744531857600807",
+                  "IO - DataFileRead - -6616296982687275849",
+                  "IO - DataFileRead - -6618964156777042204",
+                  "IO - DataFileRead - -6630444677088839897",
+                  "IO - DataFileRead - -6646273587832704803",
+                  "IO - DataFileRead - -6647754811621635656",
+                  "IO - DataFileRead - -6649867525793208973",
+                  "IO - DataFileRead - -6712691473137670891",
+                  "IO - DataFileRead - -6740409050291721212",
+                  "IO - DataFileRead - -6745425354863488699",
+                  "IO - DataFileRead - -6747195715625361218",
+                  "IO - DataFileRead - -6841505759503361256",
+                  "IO - DataFileRead - -68490644636731267",
+                  "IO - DataFileRead - -6928621839160257146",
+                  "IO - DataFileRead - -7020062790490470755",
+                  "IO - DataFileRead - -7043587451827765893",
+                  "IO - DataFileRead - -7070655592051536613",
+                  "IO - DataFileRead - -7084568772443870827",
+                  "IO - DataFileRead - -7094122964558151377",
+                  "IPC - BufferIO - -7095318018014989202",
+                  "IO - DataFileRead - -7102989114959256859",
+                  "IO - DataFileRead - -7175940680201801910",
+                  "IPC - MessageQueueReceive - -7175940680201801910",
+                  "IPC - BufferIO - -7196262092124511726",
+                  "IO - DataFileRead - -7262853081269996556",
+                  "Lock - transactionid - -7262853081269996556",
+                  "Lock - tuple - -7262853081269996556",
+                  "IO - DataFileRead - -7273066465151079650",
+                  "IO - DataFileRead - -7290351029310585634",
+                  "IO - DataFileRead - -7326655402576080945",
+                  "IO - DataFileRead - -7418597650627532867",
+                  "IO - DataFileRead - -7444225232475064051",
+                  "Lock - transactionid - -7444225232475064051",
+                  "IO - DataFileRead - -7455831748460459073",
+                  "IO - DataFileRead - -7489022440625725037",
+                  "IO - DataFileRead - -7494110866656688273",
+                  "IO - DataFileRead - -7508278958601129009",
+                  "Lock - transactionid - -7594113227604305002",
+                  "IO - DataFileRead - -7614177615082686398",
+                  "IO - DataFileRead - -7657812466070172524",
+                  "IO - DataFileRead - -7705264490144224253",
+                  "IO - DataFileRead - -7709312917131557771",
+                  "IO - DataFileRead - -7729632548608500000",
+                  "IO - DataFileRead - -7753017186582488530",
+                  "IO - DataFileRead - -7762033133763718485",
+                  "IO - DataFileRead - -7779755353839349907",
+                  "IO - DataFileRead - -7799793476876335254",
+                  "IO - DataFileRead - -7808859438879450631",
+                  "IO - DataFileRead - -7843069837672199996",
+                  "IO - DataFileRead - -7918161760475458866",
+                  "IO - DataFileRead - -793047717452638279",
+                  "IO - DataFileRead - -7943648315964725327",
+                  "IPC - BufferIO - -7964144560436750490",
+                  "IO - DataFileRead - -7996139539527438046",
+                  "IO - DataFileRead - -8041304837400363937",
+                  "IO - DataFileRead - -8089187228865735764",
+                  "Lock - transactionid - -8099539223746206592",
+                  "IO - DataFileRead - -8126517407515299488",
+                  "IO - DataFileRead - -8141734050709017941",
+                  "IO - DataFileRead - -8147770310939024696",
+                  "IO - DataFileRead - -8150591572287178384",
+                  "IO - DataFileRead - -8181567145477950414",
+                  "IO - DataFileRead - -8284244311631455837",
+                  "IPC - BufferIO - -8312772502211894058",
+                  "IO - DataFileRead - -8312772502211894058",
+                  "IO - DataFileRead - -8317523363272760548",
+                  "IO - DataFileRead - -8321234014130403459",
+                  "IO - DataFileRead - -8346593480344034903",
+                  "IO - DataFileRead - -8361085521606663238",
+                  "IO - DataFileRead - -8406820188410083931",
+                  "IO - DataFileRead - -8417310587246146382",
+                  "IO - DataFileRead - -84176706456216756",
+                  "Lock - transactionid - -84176706456216756",
+                  "IO - DataFileRead - -8418835859423112197",
+                  "IO - DataFileRead - -8452186194000585840",
+                  "IO - DataFileRead - -8481897514817890655",
+                  "IO - DataFileRead - -850209600781744307",
+                  "IPC - BufferIO - -8509853422671593506",
+                  "IO - DataFileRead - -8509853422671593506",
+                  "IO - DataFileRead - -8521533722053949629",
+                  "IO - DataFileRead - -8534027867214773571",
+                  "IO - DataFileRead - -8554108176991321991",
+                  "IO - DataFileRead - -8614750248561955965",
+                  "IO - DataFileRead - -8662548217470211101",
+                  "IO - DataFileRead - -8668433152701249184",
+                  "IO - DataFileRead - -8683175510167539067",
+                  "IO - DataFileRead - -8700238550953665803",
+                  "IO - DataFileRead - -8730992952988610818",
+                  "Lock - transactionid - -8730992952988610818",
+                  "IO - DataFileRead - -8737169250462037572",
+                  "IO - DataFileRead - -8744006169722563006",
+                  "IO - DataFileRead - -8777618464521907163",
+                  "IO - DataFileRead - -8786282910339065841",
+                  "IO - DataFileRead - -8816216702654579158",
+                  "Lock - transactionid - -8816216702654579158",
+                  "IO - DataFileRead - -8817080796339186150",
+                  "IO - DataFileRead - -8941414920306308515",
+                  "IO - DataFileRead - -8948762367308020513",
+                  "IO - DataFileRead - -8955834476227901632",
+                  "IO - DataFileRead - -8994865123311024915",
+                  "IO - DataFileRead - -8999689725775636440",
+                  "IO - DataFileRead - -9000329280962623860",
+                  "IO - DataFileRead - -9026719627294199026",
+                  "IO - DataFileRead - -9042672890356104607",
+                  "IO - DataFileRead - -9098463174971669047",
+                  "IO - DataFileRead - -9150974490974858674",
+                  "IO - DataFileRead - -9157613260576312762",
+                  "IO - DataFileRead - -95093291574127335",
+                  "IO - DataFileRead - -961628647959968110",
+                  "IO - DataFileRead - -984803067843795670",
+                  "IPC - ArchiveCommand - 0",
                   "IPC - BtreePage - 0",
-                  "LWLock - BufferContent - 0",
+                  "IPC - BufferIO - 0",
                   "Timeout - CheckpointWriteDelay - 0",
-                  "Activity - CheckpointerMain - 0",
                   "IO - DataFileFlush - 0",
                   "IO - DataFilePrefetch - 0",
                   "IO - DataFileRead - 0",
-                  "Activity - LogicalLauncherMain - 0",
-                  "Timeout - VacuumDelay - 0",
+                  "IPC - MessageQueueSend - 0",
+                  "IPC - ParallelBitmapScan - 0",
                   "IO - WALRead - 0",
                   "IO - WALSync - 0",
                   "LWLock - WALWrite - 0",
-                  "Activity - WalSenderMain - 0",
-                  "Activity - WalWriterMain - 0",
                   "LWLock - pg_stat_statements - 0",
-                  "IO - DataFileRead - 1091498789909239197",
-                  "Lock - transactionid - 1107018842487879534",
-                  "IO - DataFileRead - 1224563834195637886",
-                  "Lock - transactionid - 1378680101217239357",
-                  "Lock - transactionid - 140344274858850260",
-                  "IO - DataFileRead - 1499748554630809941",
-                  "Lock - transactionid - 1538785400403407410",
-                  "IO - DataFileRead - 1602545121297509811",
-                  "Lock - transactionid - 1618351206935523754",
-                  "Lock - tuple - 1618351206935523754",
-                  "IO - DataFileRead - 1629236908532154991",
-                  "IO - DataFileRead - 1634501320040745309",
-                  "IO - DataFileRead - 1682275494105438507",
-                  "IO - DataFileRead - 1772593165471584764",
-                  "IO - DataFileRead - 1805579937800108244",
-                  "IO - DataFileRead - 1808830204297567334",
-                  "IO - DataFileRead - 1895999039367736786",
-                  "IO - DataFileRead - 1986157606631670218",
-                  "IPC - BufferIO - 2080767504791524868",
-                  "IO - DataFileRead - 2080767504791524868",
-                  "IO - DataFileRead - 2118873767410116402",
-                  "IO - DataFileRead - 2142097891745696649",
-                  "IO - DataFileRead - 2155464359385400998",
-                  "IO - DataFileRead - 216742419914545769",
-                  "IO - DataFileRead - 2254673781118557611",
-                  "IO - DataFileRead - 2315090140184762459",
-                  "IO - DataFileRead - 2316065964209266814",
-                  "IO - DataFileRead - 2346136994810673703",
-                  "IO - DataFileRead - 2425434422424692582",
-                  "IO - DataFileRead - 2425749640327625459",
-                  "IO - DataFileRead - 2481085313076958561",
-                  "IO - DataFileRead - 2571765959479989637",
-                  "Lock - transactionid - 2571765959479989637",
-                  "IO - DataFileRead - 2599016490221340791",
-                  "IO - DataFileRead - 2603548962454315131",
-                  "IO - DataFileRead - 2666041880872344929",
-                  "IO - DataFileRead - 2669849362295832556",
-                  "IO - DataFileRead - 2721516573949256807",
-                  "IO - DataFileRead - 2869985922897615736",
-                  "IPC - BufferIO - 2982493654747642325",
-                  "IO - DataFileRead - 2982493654747642325",
-                  "IO - DataFileRead - 3004116055807749262",
-                  "Lock - transactionid - 3004991215575469572",
-                  "IO - DataFileRead - 3012010097012333986",
-                  "IO - DataFileRead - 3046872724667410819",
-                  "IO - DataFileRead - 312291454419994947",
-                  "IO - DataFileRead - 3181099563454840637",
-                  "IO - DataFileRead - 3200333970121801020",
-                  "IO - DataFileRead - 3235088128066566967",
-                  "Lock - transactionid - 3235088128066566967",
-                  "IO - DataFileRead - 3251203626810944784",
-                  "IO - DataFileRead - 3275017521365988104",
-                  "IO - DataFileRead - 3290369340296629746",
-                  "Client - ClientWrite - 3367515769623568289",
-                  "IO - DataFileRead - 3367515769623568289",
-                  "IO - DataFileRead - 3395985824409612795",
-                  "IO - DataFileRead - 3427344597705570239",
-                  "IO - DataFileRead - 3532148996892135481",
-                  "Lock - transactionid - 3540668653152068002",
-                  "Lock - tuple - 3540668653152068002",
-                  "IO - DataFileRead - 3610437765937769707",
-                  "IO - DataFileRead - 3692500305387695132",
-                  "IO - DataFileRead - 37108514914376772",
-                  "IO - DataFileRead - 3950285620121961621",
-                  "Lock - transactionid - 3958318385225516228",
-                  "IO - DataFileRead - 4102333236359801800",
-                  "IO - DataFileRead - 4115967628276921724",
-                  "Lock - transactionid - 4179457766043817161",
-                  "IO - DataFileRead - 4237039585457745037",
-                  "IO - DataFileRead - 4237462797845146243",
-                  "IO - DataFileRead - 4387022101530716012",
-                  "IO - DataFileRead - 4403679838124045558",
-                  "IO - DataFileRead - 4422693178103187996",
-                  "IO - DataFileRead - 4453646596192051268",
-                  "IO - DataFileRead - 4536094653627497902",
-                  "IPC - BufferIO - 4593346484954797655",
-                  "IO - DataFileRead - 4660061219390502529",
-                  "IO - DataFileRead - 4708312544935746735",
-                  "IPC - BufferIO - 4747094982557978043",
-                  "IO - DataFileRead - 4747094982557978043",
-                  "IO - DataFileRead - 4786492179777384809",
-                  "IO - DataFileRead - 5026461043123159477",
-                  "IO - DataFileRead - 5181623836503334904",
-                  "IO - DataFileRead - 5183332797937779050",
-                  "IO - DataFileRead - 5249646370322631754",
-                  "IO - DataFileRead - 5319290034490152835",
-                  "IO - DataFileRead - 539108340243882721",
-                  "IPC - ExecuteGather - 5413150457649661358",
-                  "IO - DataFileRead - 5470399498188349683",
-                  "Client - ClientWrite - 5505883489191732217",
-                  "IO - DataFileRead - 5579630088325422408",
-                  "IO - DataFileRead - 5584828587542714935",
-                  "IO - DataFileRead - 5698087215874613741",
-                  "Lock - transactionid - 5743757258689831534",
-                  "IO - DataFileRead - 5744057362591819755",
-                  "IO - DataFileRead - 57998128011135459",
-                  "IO - DataFileRead - 5837650120852875373",
-                  "IO - DataFileRead - 5842064346156377209",
-                  "IO - DataFileRead - 5864055059248225653",
-                  "IO - DataFileRead - 5921036425062942066",
-                  "IO - DataFileRead - 5945637213800958825",
-                  "IO - DataFileRead - 5955387217300028885",
-                  "Lock - tuple - 601768214361896781",
-                  "IO - DataFileRead - 6036923622544028841",
-                  "IO - DataFileRead - 6037921686998845654",
-                  "IO - DataFileRead - 6065421010389656583",
-                  "IO - DataFileRead - 6111763076561771451",
-                  "Lock - transactionid - 6170624298406789134",
-                  "IO - DataFileRead - 6190699898474151045",
-                  "IPC - BufferIO - 6240380255591716131",
-                  "IO - DataFileRead - 6240380255591716131",
-                  "IO - DataFileRead - 6355269391670015630",
-                  "IO - DataFileRead - 6487275100978752998",
-                  "IO - DataFileRead - 6521252762769133365",
-                  "IO - DataFileRead - 6531132913757392189",
-                  "IPC - BufferIO - 6811717335442151068",
-                  "IO - DataFileRead - 6811717335442151068",
-                  "IO - DataFileRead - 6817114597531763336",
-                  "IO - DataFileRead - 6821016716835449689",
-                  "IO - DataFileRead - 6838076312046346243",
-                  "IO - DataFileRead - 7080853501049979121",
-                  "IO - DataFileRead - 7080890224612078022",
-                  "IO - DataFileRead - 7141704161874132334",
-                  "IO - DataFileRead - 7215371923758119926",
-                  "Lock - transactionid - 7290650390563125669",
-                  "IO - DataFileRead - 7369734924309603702",
-                  "IO - DataFileRead - 7384733118703912479",
-                  "IO - DataFileRead - 7423945369817047539",
-                  "Lock - transactionid - 7630107805922185933",
-                  "IO - DataFileRead - 7751119684530799500",
-                  "IO - DataFileRead - 7775937437305881931",
-                  "IO - DataFileRead - 7847357412594093139",
-                  "IO - DataFileRead - 7916746384826831785",
-                  "IO - DataFileRead - 7965215511645601998",
-                  "Lock - transactionid - 8059988700534699713",
-                  "Lock - tuple - 8059988700534699713",
-                  "IO - DataFileRead - 8068470718620744681",
-                  "IO - DataFileRead - 8116910073771869910",
-                  "IPC - BufferIO - 8136182383586882258",
-                  "IO - DataFileRead - 8136182383586882258",
-                  "Lock - transactionid - 8152475967068425302",
-                  "IO - DataFileRead - 8158195576869988419",
-                  "IO - DataFileRead - 8193195188522575983",
-                  "LWLock - BufferContent - 8243492342540025298",
-                  "IPC - BufferIO - 8258263450998227255",
-                  "IO - DataFileRead - 8258263450998227255",
-                  "Lock - transactionid - 8291732926168023170",
-                  "IO - DataFileRead - 8319697184646397802",
-                  "IO - DataFileRead - 845994605861820257",
-                  "IO - DataFileRead - 8568291698605232729",
-                  "IO - DataFileRead - 8618863666866549104",
-                  "IO - DataFileRead - 8751800842467580255",
-                  "IO - DataFileRead - 8776859677448067161",
-                  "IO - DataFileRead - 8843929456743044830",
-                  "IO - DataFileRead - 8858896710419159467",
-                  "IO - DataFileRead - 8886626256395937096",
-                  "IPC - BufferIO - 9038634370594311158",
-                  "IO - DataFileRead - 9038634370594311158",
-                  "Lock - transactionid - 9201401848611341627",
-                  "Lock - tuple - 9201401848611341627",
-                  "Lock - transactionid - 989867558615717966",
-                  "CPU count"
+                  "Lock - transactionid - 0",
+                  "IO - DataFileRead - 1024305533798772418",
+                  "IO - DataFileRead - 1077646582411258901",
+                  "IPC - BufferIO - 1145771530445383052",
+                  "IO - DataFileRead - 1145771530445383052",
+                  "IO - DataFileRead - 1187924954969693114",
+                  "Lock - transactionid - 1190058972475857762",
+                  "IO - DataFileRead - 1233852010743682551",
+                  "IO - DataFileRead - 1258415361729804825",
+                  "IO - DataFileRead - 126165862596921015",
+                  "IO - DataFileRead - 126777858617157891",
+                  "IO - DataFileRead - 1272705371798590693",
+                  "IO - DataFileRead - 134647268366174382",
+                  "IO - DataFileRead - 1354125873230837899",
+                  "IO - DataFileRead - 1365128726630292080",
+                  "Lock - virtualxid - 1365817291715433485",
+                  "IO - DataFileRead - 1375735857456315380",
+                  "IO - DataFileRead - 1420968689208882564",
+                  "IO - DataFileRead - 1422284499628860032",
+                  "IO - DataFileRead - 1431584039242562227",
+                  "IO - DataFileRead - 1448074186095491864",
+                  "IO - DataFileRead - 1474101127330349420",
+                  "IO - DataFileRead - 1479421146601630126",
+                  "IO - DataFileRead - 1481944745288691957",
+                  "IO - DataFileRead - 1510125033982208736",
+                  "IO - DataFileRead - 154737044327234279",
+                  "IO - DataFileRead - 1603517140876044042",
+                  "IO - DataFileRead - 1610467190580324065",
+                  "IPC - BufferIO - 1642203234538439039",
+                  "IO - DataFileRead - 1642203234538439039",
+                  "IO - DataFileRead - 1648063326127272648",
+                  "IO - DataFileRead - 1689665701328715013",
+                  "IO - DataFileRead - 1695613359266254252",
+                  "IPC - BufferIO - 1714006367823723467",
+                  "IO - DataFileRead - 1843053015289267485",
+                  "IO - DataFileRead - 1871453354384449379",
+                  "IO - DataFileRead - 1882337693898023845",
+                  "IO - DataFileRead - 1974819926880600159",
+                  "IO - DataFileRead - 2024680366544830269",
+                  "IO - DataFileRead - 2025260765813646765",
+                  "IO - DataFileRead - 2031849934974554558",
+                  "IO - DataFileRead - 2034200872681304586",
+                  "IO - DataFileRead - 2038815126467016334",
+                  "IO - DataFileRead - 2049507117146905614",
+                  "IO - DataFileRead - 2057606907416821776",
+                  "IO - DataFileRead - 2062391581970080571",
+                  "Lock - transactionid - 207881746416580113",
+                  "IO - DataFileRead - 2081324396482189154",
+                  "IO - DataFileRead - 2110981300533259582",
+                  "IPC - BufferIO - 2132458157453342773",
+                  "IO - DataFileRead - 2147311056911370889",
+                  "IO - DataFileRead - 2182316461826744769",
+                  "IO - DataFileRead - 2191227085427603064",
+                  "IO - DataFileRead - 2211641036015943400",
+                  "IO - DataFileRead - 2245067363616360808",
+                  "IPC - BufferIO - 2281163373980279180",
+                  "IO - DataFileRead - 2281163373980279180",
+                  "Lock - transactionid - 2281163373980279180",
+                  "Lock - tuple - 2281163373980279180",
+                  "IO - DataFileRead - 2388158095978846901",
+                  "IO - DataFileRead - 2443298502693364793",
+                  "IPC - BufferIO - 2460358818203424745",
+                  "IO - DataFileRead - 2497497397926055431",
+                  "IO - DataFileRead - 2501819492502137169",
+                  "IO - DataFileRead - 2555154102643726386",
+                  "IO - DataFileRead - 2569697356808524845",
+                  "IO - DataFileRead - 2638415670578953980",
+                  "IO - DataFileRead - 265817119306480145",
+                  "IO - DataFileRead - 2709462751869688649",
+                  "IO - DataFileRead - 2736013645608312838",
+                  "IO - DataFileRead - 2788992555323777210",
+                  "IO - DataFileRead - 284637863258856240",
+                  "IO - DataFileRead - 2854345565781434662",
+                  "IO - DataFileRead - 2870731651983789589",
+                  "IO - DataFileRead - 2874210462512268142",
+                  "Lock - transactionid - 2894690282014939612",
+                  "IO - DataFileRead - 2921498196192477544",
+                  "IO - DataFileRead - 2990118874732547754",
+                  "IO - DataFileRead - 3016245385863489358",
+                  "IO - DataFileRead - 3020256961282320542",
+                  "IO - DataFileRead - 3160952660490654741",
+                  "IO - DataFileRead - 3192794161358316899",
+                  "IO - DataFileRead - 3224333599896362724",
+                  "IO - DataFileRead - 3229266956087466919",
+                  "IO - DataFileRead - 3274789786009042699",
+                  "IO - DataFileRead - 327736035594847261",
+                  "Lock - transactionid - 3296864053310840055",
+                  "IO - DataFileRead - 3320273776130824262",
+                  "Lock - transactionid - 3336490862098507730",
+                  "Lock - tuple - 3336490862098507730",
+                  "IO - DataFileRead - 3338002193368287988",
+                  "IO - DataFileRead - 335024174633769087",
+                  "Lock - tuple - 3370695474585537769",
+                  "IO - DataFileRead - 3377497056393601619",
+                  "IO - DataFileRead - 3388222445250439374",
+                  "IPC - BufferIO - 3400647866947939164",
+                  "IO - DataFileRead - 340694848788613445",
+                  "IO - DataFileRead - 3434139856092220886",
+                  "IO - DataFileRead - 3447117937782417417",
+                  "IO - DataFileRead - 3467769672871591075",
+                  "IO - DataFileRead - 3471571052050942592",
+                  "IO - DataFileRead - 3506738491136093903",
+                  "IO - DataFileRead - 3507211286892479787",
+                  "IO - DataFileRead - 3618130730370979863",
+                  "Lock - transactionid - 3618130730370979863",
+                  "IO - DataFileRead - 364363930341506887",
+                  "LWLock - BufferContent - 3653064791572079017",
+                  "IO - DataFileRead - 3659911885806629528",
+                  "IO - DataFileRead - 3709266413834303322",
+                  "IO - DataFileRead - 3719465232947607749",
+                  "IO - DataFileRead - 3831263177598542722",
+                  "IO - DataFileRead - 3834720553738578189",
+                  "IO - DataFileRead - 3840644679601899227",
+                  "IO - DataFileRead - 3851713750997595594",
+                  "IO - DataFileRead - 3878359724997088793",
+                  "IO - DataFileRead - 3881695386556003475",
+                  "IO - DataFileRead - 3884480390642604958",
+                  "IO - DataFileRead - 3895089185072589710",
+                  "IO - DataFileRead - 3895656562002395788",
+                  "IO - DataFileRead - 39207055464015452",
+                  "IO - DataFileRead - 3972465862169008231",
+                  "Lock - tuple - 4058097758525384977",
+                  "IO - DataFileRead - 4178798929976755175",
+                  "IO - DataFileRead - 420539289167638288",
+                  "Lock - relation - 420539289167638288",
+                  "IO - DataFileRead - 4208708223860577278",
+                  "IO - DataFileRead - 4238200714546653139",
+                  "IO - DataFilePrefetch - 4239674102551346822",
+                  "IO - DataFileRead - 4239674102551346822",
+                  "IO - DataFileRead - 4251983137174927859",
+                  "IO - DataFileRead - 4303739347921694643",
+                  "IO - DataFileRead - 4343756643814478421",
+                  "IO - DataFileRead - 4359422003043128241",
+                  "IO - DataFileRead - 4373631013390888286",
+                  "IO - DataFileRead - 437670704933827934",
+                  "IO - DataFileRead - 4400072632935398302",
+                  "IO - DataFileRead - 4420917233168772088",
+                  "IO - DataFileRead - 4444203938812291693",
+                  "IO - DataFileRead - 4451115297527758801",
+                  "IO - DataFileRead - 4541870017084991430",
+                  "IO - DataFileRead - 4586001563004488696",
+                  "IO - DataFileRead - 4614345560899109491",
+                  "IO - DataFileRead - 4621305101655206664",
+                  "IPC - BufferIO - 4623095167594731806",
+                  "IO - DataFileRead - 4623095167594731806",
+                  "IO - DataFileRead - 4648319273203244411",
+                  "IO - DataFileRead - 4688347730963098925",
+                  "IPC - BufferIO - 4733474333495487169",
+                  "IO - DataFileRead - 4733474333495487169",
+                  "IO - DataFileRead - 477859746707098960",
+                  "IO - DataFileRead - 4801229243452922457",
+                  "IO - DataFileRead - 4802242435125767569",
+                  "IO - DataFileRead - 4832320455748658270",
+                  "IO - DataFileRead - 485319878156155934",
+                  "IO - DataFileRead - 4866253023547196417",
+                  "Lock - transactionid - 4866253023547196417",
+                  "IO - DataFileRead - 4893349245497126112",
+                  "IO - DataFileRead - 4974198084264672899",
+                  "IPC - BufferIO - 4977268886885577558",
+                  "IO - DataFileRead - 4977268886885577558",
+                  "IO - DataFileRead - 5037294480724162214",
+                  "IPC - BufferIO - 5053607978143168495",
+                  "IO - DataFileRead - 5053607978143168495",
+                  "IO - DataFileRead - 5155022932036490076",
+                  "IO - DataFileRead - 5155916984694814925",
+                  "Lock - virtualxid - 5169388608362264759",
+                  "IO - DataFileRead - 5195209983591324246",
+                  "IO - DataFileRead - 5211527312687055896",
+                  "IO - DataFileRead - 5222097999010155365",
+                  "Lock - transactionid - 5234612992453085708",
+                  "IO - DataFileRead - 5250963048134229339",
+                  "IO - DataFileRead - 5297925731211322478",
+                  "IO - DataFileRead - 5307242430462997107",
+                  "IO - DataFileRead - 5310004464276451160",
+                  "IO - DataFileRead - 5334569773919365898",
+                  "IO - DataFileRead - 5353216201017574151",
+                  "IPC - BufferIO - 5416833896114782984",
+                  "IO - DataFileRead - 5416833896114782984",
+                  "IO - DataFileRead - 5441450490661135987",
+                  "IPC - BufferIO - 5450169904520215101",
+                  "IO - DataFileRead - 5450169904520215101",
+                  "IO - DataFileRead - 5453994596910801591",
+                  "IO - DataFileRead - 5470984207225104263",
+                  "IO - DataFileRead - 5560629836937794329",
+                  "IO - DataFileRead - 5574961283781082972",
+                  "IO - DataFileRead - 5584381942007255088",
+                  "IO - DataFileRead - 5647278372085756345",
+                  "IPC - BufferIO - 5654749736586664925",
+                  "IO - DataFileRead - 5654749736586664925",
+                  "IO - DataFileRead - 5712704943135382602",
+                  "IO - DataFileRead - 5837586982621971145",
+                  "IO - DataFileRead - 5864013588890917861",
+                  "IPC - BufferIO - 5875103074145878351",
+                  "IO - DataFileRead - 5928087899962811235",
+                  "IO - DataFileRead - 5950200584972822981",
+                  "IO - DataFileRead - 5967406450468841202",
+                  "IO - DataFileRead - 6019753154944815500",
+                  "IO - DataFileRead - 6023534961231478019",
+                  "IO - DataFileRead - 6027132441241648412",
+                  "IO - DataFileRead - 609770594603079284",
+                  "IO - DataFileRead - 6131874455822198813",
+                  "IO - DataFileRead - 6181399900784591857",
+                  "IO - DataFileRead - 6187530596608147890",
+                  "IO - DataFileRead - 6274607239641251849",
+                  "IO - DataFileRead - 6328325911972831285",
+                  "IO - DataFileRead - 6329856499469109511",
+                  "IO - DataFileRead - 6422194309986328684",
+                  "IO - DataFileRead - 6428297379988411272",
+                  "IO - DataFileRead - 6457251322624575484",
+                  "IO - DataFileRead - 6459833553457376248",
+                  "IO - DataFileRead - 6471970817946010864",
+                  "IO - DataFileRead - 6487889204916800143",
+                  "Lock - transactionid - 6507005328030324819",
+                  "IO - DataFileRead - 6526928375548025632",
+                  "IO - DataFileRead - 6537571848656172566",
+                  "IO - DataFileRead - 6592130953265963563",
+                  "IO - DataFileRead - 6636378739665693114",
+                  "IO - DataFileRead - 6637535579778561816",
+                  "IO - DataFileRead - 66393825540955489",
+                  "IO - DataFileRead - 6658491499985176907",
+                  "IPC - BufferIO - 668010043215762332",
+                  "Client - ClientWrite - 668010043215762332",
+                  "IO - DataFileRead - 668010043215762332",
+                  "IO - DataFileRead - 6689666511257161191",
+                  "IO - DataFileRead - 6712492894156996433",
+                  "IO - DataFileRead - 6733622035563848464",
+                  "IO - DataFileRead - 6800342830555716685",
+                  "IO - DataFileRead - 6819031378960068650",
+                  "IO - DataFileRead - 6836418758643549766",
+                  "IPC - BufferIO - 6846715329740258099",
+                  "IO - DataFileRead - 694024912851407954",
+                  "IO - DataFileRead - 6941785749752968617",
+                  "IPC - MessageQueueReceive - 6941785749752968617",
+                  "IO - DataFileRead - 694439270504610866",
+                  "IO - DataFileRead - 7038081221332710837",
+                  "IO - DataFileRead - 7139103014765116122",
+                  "IO - DataFileRead - 7199551264274381440",
+                  "IO - DataFileRead - 7202254092804380627",
+                  "IO - DataFileRead - 7214132904022016887",
+                  "IO - DataFileRead - 7421013536812517304",
+                  "IO - DataFileRead - 7499948576507689201",
+                  "IO - DataFileRead - 7507798567354699747",
+                  "IO - DataFileRead - 7530427833104848776",
+                  "IO - DataFileRead - 7536412881236594841",
+                  "Lock - transactionid - 762407718072673124",
+                  "IO - DataFileRead - 7665376322718347592",
+                  "IO - DataFileRead - 7696253069353873242",
+                  "LWLock - LockManager - 7696253069353873242",
+                  "Lock - transactionid - 7696253069353873242",
+                  "Lock - tuple - 7696253069353873242",
+                  "IO - DataFileRead - 7758335662062492904",
+                  "IO - DataFileRead - 7771527589158542961",
+                  "IO - DataFileRead - 7774927676637746084",
+                  "IO - DataFileRead - 7783945200654647397",
+                  "IO - DataFileRead - 7829940593160179645",
+                  "IO - DataFileRead - 7834391145260763226",
+                  "IO - DataFileRead - 7917703341505711758",
+                  "IO - DataFileRead - 79440812434250447",
+                  "IO - DataFileRead - 7977409598106887314",
+                  "IO - DataFileRead - 8075843751179146296",
+                  "Lock - transactionid - 8075843751179146296",
+                  "IO - DataFileRead - 8076630425791666599",
+                  "IO - DataFileRead - 814841782294962065",
+                  "IO - DataFileRead - 8161676039510061490",
+                  "IO - DataFileRead - 8176827063024792352",
+                  "IO - DataFileRead - 818008966795230775",
+                  "IO - DataFileRead - 8180126152177566883",
+                  "Lock - transactionid - 8200203429264036485",
+                  "IO - DataFileRead - 8238901586573277769",
+                  "IO - DataFileRead - 8247027993737711329",
+                  "IO - DataFileRead - 8354317345884134554",
+                  "IO - DataFileRead - 848857781407162600",
+                  "IO - DataFileRead - 8529263101472634713",
+                  "IO - DataFileRead - 8531128003395501994",
+                  "IO - DataFileRead - 8541039260035620175",
+                  "Lock - transactionid - 8541039260035620175",
+                  "IO - DataFileRead - 8550005706800985978",
+                  "IO - DataFileRead - 8631633874048257447",
+                  "IO - DataFileRead - 8656406842293803883",
+                  "IO - DataFileRead - 8683129719172851750",
+                  "IO - DataFileRead - 8685906147630104467",
+                  "IO - DataFileRead - 8697759826201705079",
+                  "IO - DataFileRead - 8698665201382675854",
+                  "IO - DataFileRead - 8713106722224306919",
+                  "IO - DataFileRead - 8724231492575311817",
+                  "IO - DataFileRead - 8744854460816639496",
+                  "IO - DataFileRead - 8770815794985846326",
+                  "IO - DataFileRead - 8826157350555696878",
+                  "IO - DataFileRead - 8844929826884690232",
+                  "IO - DataFileRead - 8858493399453025922",
+                  "IO - DataFileRead - 8862658711666484809",
+                  "IO - DataFileRead - 886311390447177861",
+                  "IO - DataFileRead - 8899591604236856258",
+                  "Lock - transactionid - 8904212433116238784",
+                  "IO - DataFileRead - 8905225211131094168",
+                  "IO - DataFileRead - 8988709472657580206",
+                  "IO - DataFileRead - 9103684778727877828",
+                  "IO - DataFileRead - 9110975194962568250",
+                  "IO - DataFileRead - 9124018585888638914",
+                  "IO - DataFileRead - 9140180147397878352",
+                  "IO - DataFileRead - 9215507751133205710",
+                  "IO - DataFileRead - 940401579167140007",
+                  "IO - DataFileRead - 970602773115097592",
+                  "IO - DataFileRead - 976948030063096719"
                 ],
                 "prefix": "All except:",
                 "readOnly": true
@@ -5889,7 +6323,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 148
+        "y": 150
       },
       "id": 41,
       "options": {
@@ -5910,6 +6344,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -5917,7 +6352,7 @@
             "uid": "mimir-gitlab-gprd"
           },
           "editorMode": "code",
-          "expr": "topk($topn, sum by (wait_type, wait_event, queryid) (pg_wait_sampling_count{fqdn=\"$fqdn\", wait_type!~\"\"})/1500)",
+          "expr": "topk($topn, sum by (wait_type, wait_event, queryid) (pg_wait_sampling_count{fqdn=\"$fqdn\", wait_type!~\"\", wait_type!~\"Activity\"})/1500)",
           "hide": false,
           "instant": false,
           "legendFormat": "{{wait_type}} - {{wait_event}} - {{queryid}}",
@@ -5955,35 +6390,31 @@
       "type": "timeseries"
     }
   ],
-  "schemaVersion": 39,
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 40,
   "tags": [
-    "managed",
-    "postgres-ai"
+    "unmanaged",
+    "protected"
   ],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "Mimir - Gitlab Gprd",
           "value": "mimir-gitlab-gprd"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Datasource",
-        "multi": false,
         "name": "prometheus",
         "options": [],
         "query": "prometheus",
-        "queryValue": "",
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "current": {
-          "selected": false,
           "text": "gprd",
           "value": "gprd"
         },
@@ -5992,10 +6423,8 @@
           "uid": "${prometheus}"
         },
         "definition": "label_values(node_exporter_build_info,env)",
-        "hide": 0,
         "includeAll": false,
         "label": "Environment",
-        "multi": false,
         "name": "environment",
         "options": [],
         "query": {
@@ -6005,13 +6434,10 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "patroni",
           "value": "patroni"
         },
@@ -6021,9 +6447,7 @@
         },
         "definition": "label_values(node_exporter_build_info,type)",
         "description": "\tlabel_values(up{environment=\"$environment\",tier=\"db\",type!=\"redis\"},type)",
-        "hide": 0,
         "includeAll": false,
-        "multi": false,
         "name": "type",
         "options": [],
         "query": {
@@ -6033,15 +6457,12 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
-          "text": "patroni-main-v14-101-db-gprd.c.gitlab-production.internal",
-          "value": "patroni-main-v14-101-db-gprd.c.gitlab-production.internal"
+          "text": "patroni-main-v16-101-db-gprd.c.gitlab-production.internal",
+          "value": "patroni-main-v16-101-db-gprd.c.gitlab-production.internal"
         },
         "datasource": {
           "type": "prometheus",
@@ -6049,9 +6470,7 @@
         },
         "definition": "label_values(node_exporter_build_info{tier=\"db\", type=\"$type\", environment=\"$environment\"},fqdn)",
         "description": "\tlabel_values(up{environment=\"$environment\",tier=\"db\",type=\"$type\"},fqdn)",
-        "hide": 0,
         "includeAll": false,
-        "multi": false,
         "name": "fqdn",
         "options": [],
         "query": {
@@ -6061,21 +6480,16 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "10",
           "value": "10"
         },
         "description": "Number of top values to be shown ",
-        "hide": 0,
         "includeAll": false,
         "label": "TopN",
-        "multi": false,
         "name": "topn",
         "options": [
           {
@@ -6135,31 +6549,38 @@
           }
         ],
         "query": "1,10,20,30,40,50,100,200,300,400,500",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       },
       {
+        "baseFilters": [],
         "datasource": {
           "type": "prometheus",
           "uid": "e58c2f51-20f8-4f4b-ad48-2968782ca7d6"
         },
         "filters": [],
-        "hide": 0,
         "name": "Filters",
-        "skipUrlSync": false,
         "type": "adhoc"
       }
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-12h",
     "to": "now"
   },
-  "timepicker": {},
+  "timepicker": {
+    "refresh_intervals": [
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
   "timezone": "utc",
-  "title": "Postgres aggregated query performance analysis",
+  "title": "[NEW][postgres.ai][02] Postgres aggregated query performance analysis",
   "uid": "edxi03vbar9q8a",
-  "version": 149,
+  "version": 157,
   "weekStart": ""
 }
+
