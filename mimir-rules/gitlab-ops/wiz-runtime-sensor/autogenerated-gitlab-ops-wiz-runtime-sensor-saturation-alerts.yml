@@ -815,58 +815,6 @@ groups:
     expr: |
       gitlab_component_saturation:ratio{component="open_fds",env="ops",type="wiz-runtime-sensor"} > on(component) group_left
       slo:max:hard:gitlab_component_saturation:ratio{component="open_fds"}
-  - alert: component_saturation_slo_out_of_bounds:shard_cpu
-    for: 5m
-    annotations:
-      title: The Average CPU Utilization per Shard resource of the {{ $labels.type
-        }} service ({{ $labels.stage }} stage) has a saturation exceeding SLO and
-        is close to its capacity limit.
-      description: |
-        This means that this resource is running close to capacity and is at risk of exceeding its current capacity limit.
-
-        Details of the Average CPU Utilization per Shard resource:
-
-        This resource measures average CPU utilization across an all cores in a shard of a service fleet. If it is becoming saturated, it may indicate that the shard needs horizontal or vertical scaling.
-      grafana_dashboard_id: alerts-sat_shard_cpu
-      grafana_dashboard_link: https://dashboards.gitlab.net/d/alerts-sat_shard_cpu?from=now-6h/m&to=now-1m/m&var-environment={{
-        $labels.environment }}&var-type={{ $labels.type }}&var-stage={{ $labels.stage
-        }}
-      grafana_datasource_id: mimir-gitlab-ops
-      grafana_min_zoom_hours: "6"
-      grafana_panel_id: "1472933476"
-      grafana_variables: environment,type,stage
-      promql_query: |
-        max by(environment,shard,stage,tier,type) (
-          clamp_min(
-            clamp_max(
-              1 - avg by (environment,shard,stage,tier,type) (
-                rate(node_cpu_seconds_total{mode="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
-              )
-              ,
-              1)
-          ,
-          0)
-        )
-      promql_template_1: |
-        max by(environment,shard,stage,tier,type) (
-          clamp_min(
-            clamp_max(
-              1 - avg by (environment,shard,stage,tier,type) (
-                rate(node_cpu_seconds_total{mode="idle", environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="{{ $labels.type }}"}[5m])
-              )
-              ,
-              1)
-          ,
-          0)
-        )
-      runbook: docs/{{ $labels.type }}/README.md
-    labels:
-      alert_type: cause
-      rules_domain: general
-      severity: s3
-    expr: |
-      gitlab_component_saturation:ratio{component="shard_cpu",env="ops",type="wiz-runtime-sensor"} > on(component) group_left
-      slo:max:hard:gitlab_component_saturation:ratio{component="shard_cpu"}
   - alert: component_saturation_slo_out_of_bounds:single_node_cpu
     for: 10m
     annotations:

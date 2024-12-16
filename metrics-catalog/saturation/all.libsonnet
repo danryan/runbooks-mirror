@@ -68,7 +68,6 @@
   import 'saturation-monitoring/ruby_thread_contention.libsonnet',
   import 'saturation-monitoring/runway_utilization.libsonnet',
   import 'saturation-monitoring/saas_runners.libsonnet',
-  import 'saturation-monitoring/shard_cpu.libsonnet',
   import 'saturation-monitoring/sidekiq_shard_workers.libsonnet',
   import 'saturation-monitoring/single_node_cpu.libsonnet',
   import 'saturation-monitoring/workhorse_image_scaling.libsonnet',

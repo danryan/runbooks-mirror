@@ -486,7 +486,7 @@
         "changepoints_count": 25,
         "forecast_days": 90,
         "historical_days": 365,
-        "strategy": "quantile95_1h"
+        "strategy": "exclude"
       },
       "description": "Average CPU utilization per Node.\n\nIf average CPU is saturated, it may indicate that a fleet is in need to horizontal or vertical scaling. It may also indicate\nimbalances in load in a fleet.\n",
       "horizontallyScalable": true,
