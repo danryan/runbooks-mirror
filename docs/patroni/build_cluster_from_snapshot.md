@@ -1,4 +1,4 @@
-# Steps to create (or recreate) a Standby CLuster using a Snapshot from a Production cluster as Master cluster (instead of pg_basebackup)
+# Steps to create (or recreate) a Standby Cluster using a Snapshot from a Production cluster as Master cluster (instead of pg_basebackup)
 
 **Table of Contents**
 
