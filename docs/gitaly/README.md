@@ -21,6 +21,7 @@
 * [ApdexSLOViolation](../alerts/ApdexSLOViolation.md)
 * [TrafficAbsent and TrafficCessation](../alerts/TrafficAbsent.md)
 * [Cloudflare: Managing Traffic](../cloudflare/managing-traffic.md)
+* [Disaster Recovery Gameday Schedule](../disaster-recovery/gameday-schedule.md)
 * [Google Cloud Snapshots](../disaster-recovery/gcp-snapshots.md)
 * [Measuring Recovery Activities](../disaster-recovery/recovery-measurements.md)
 * [Zonal and Regional Recovery Guide](../disaster-recovery/recovery.md)

@@ -18,6 +18,7 @@
 ## Troubleshooting Pointers
 
 * [Interacting with Consul](../consul/interaction.md)
+* [Disaster Recovery Gameday Schedule](../disaster-recovery/gameday-schedule.md)
 * [Measuring Recovery Activities](../disaster-recovery/recovery-measurements.md)
 * [Zonal and Regional Recovery Guide](../disaster-recovery/recovery.md)
 * [../frontend/gitlab-com-is-down.md](../frontend/gitlab-com-is-down.md)

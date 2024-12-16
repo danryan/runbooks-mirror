@@ -16,6 +16,7 @@
 
 ## Troubleshooting Pointers
 
+* [Disaster Recovery Gameday Schedule](../disaster-recovery/gameday-schedule.md)
 * [../duo/code_suggestion_failover.md](../duo/code_suggestion_failover.md)
 * [Privileged Access Management](privileged_access_management.md)
 * [Breakglass](../topology-rest/breakglass.md)
