@@ -18,18 +18,18 @@
           "subdir": "gen/grafonnet-latest"
         }
       },
-      "version": "1c56af39815c4903e47c27194444456f005f65df",
-      "sum": "GxEO83uxgsDclLp/fmlUJZDbSGpeUZY6Ap3G2cgdL1g="
+      "version": "f0fb5ab287e3d8ca8b924519aaa869f7a5f111c9",
+      "sum": "V9vAj21qJOc2DlMPDgB1eEjSQU4A+sAA4AXuJ6bd4xc="
     },
     {
       "source": {
         "git": {
           "remote": "https://github.com/grafana/grafonnet.git",
-          "subdir": "gen/grafonnet-v10.4.0"
+          "subdir": "gen/grafonnet-v11.4.0"
         }
       },
-      "version": "1c56af39815c4903e47c27194444456f005f65df",
-      "sum": "DKj+Sn+rlI48g/aoJpzkfPge46ya0jLk5kcZoiZ2X/I="
+      "version": "f0fb5ab287e3d8ca8b924519aaa869f7a5f111c9",
+      "sum": "aVAX09paQYNOoCSKVpuk1exVIyBoMt/C50QJI+Q/3nA="
     },
     {
       "source": {
@@ -38,8 +38,8 @@
           "subdir": "grafana-builder"
         }
       },
-      "version": "789ee1bc5c3662f9b51b6023aa77a3cffa24c18e",
-      "sum": "B49EzIY2WZsFxNMJcgRxE/gcZ9ltnS8pkOOV6Q5qioc="
+      "version": "ce059edb184d93e4c06de42b91f5a3cf8b2731c5",
+      "sum": "yxqWcq/N3E/a/XreeU6EuE6X7kYPnG0AspAQFKOjASo="
     },
     {
       "source": {
@@ -48,8 +48,8 @@
           "subdir": "memcached-mixin"
         }
       },
-      "version": "789ee1bc5c3662f9b51b6023aa77a3cffa24c18e",
-      "sum": "W8gJBgw1ezjxLGRFSCMDGPKLWPGez4zaDdYbbuGFk3Q="
+      "version": "ce059edb184d93e4c06de42b91f5a3cf8b2731c5",
+      "sum": "nIrKMv0zteO5Y5QpvTDH4X0FytsYLcVRX2uj09w22W8="
     },
     {
       "source": {
@@ -68,8 +68,8 @@
           "subdir": ""
         }
       },
-      "version": "80bdea46b69cfbd5a6b57789ad856d3cb525e956",
-      "sum": "eUSd6nmI07Zl4pYuDnhasQ7Ua37HfHcBVItfvroVUGU="
+      "version": "1199b50e9d2ff53d4bb5fb2304ad1fb69d38e609",
+      "sum": "LfbgcJbilu4uBdKYZSvmkoOTPwEAzg10L3/VqKAIWtA="
     },
     {
       "source": {
@@ -78,8 +78,8 @@
           "subdir": ""
         }
       },
-      "version": "bf3acbdd48da8d246f35d198bfe79dd7ec59824d",
-      "sum": "bT3Zz4l1K/MrN6K0C/iZSjCIsbmK5Qcc0JexalwSU9g="
+      "version": "bad0615569e5ed5cdbab2ea4039c6c871c2c8589",
+      "sum": "T6Kn++ru+ZWy4ZOROPeLTQzCGNZh5lDdHoeleeXBEVA="
     },
     {
       "source": {
@@ -88,8 +88,8 @@
           "subdir": "mixin"
         }
       },
-      "version": "3da5c1c2f80696ec07c384aaae830f0cc3e217c4",
-      "sum": "HhSSbGGCNHCMy1ee5jElYDm0yS9Vesa7QB2/SHKdjsY="
+      "version": "683cf171e9a8245c3639fb3d96827f9fae306180",
+      "sum": "ieCD4eMgGbOlrI8GmckGPHBGQDcLasE1rULYq56W/bs="
     },
     {
       "source": {
