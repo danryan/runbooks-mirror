@@ -25,6 +25,14 @@ See [Linux Patching Overview](../linux-os-patching.md#linux-patching-overview) f
 - Update apt packages and reboot the nodes.
 - Remove deployment blocks by closing the change issue.
 
+### Ideal Commands
+
+* `sudo apt-mark hold gitlab-ee`
+* `sudo apt update`
+* `sudo apt upgrade --yes`
+* `sudo apt-mark unhold gitlab-ee`
+* `sudo reboot`
+
 ## Additional Automation Tooling
 
 None currently exists
