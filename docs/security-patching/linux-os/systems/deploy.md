@@ -27,11 +27,11 @@ See [Linux Patching Overview](../linux-os-patching.md#linux-patching-overview) f
 
 ### Ideal Commands
 
-* `sudo apt-mark hold gitlab-ee`
-* `sudo apt update`
-* `sudo apt upgrade --yes`
-* `sudo apt-mark unhold gitlab-ee`
-* `sudo reboot`
+- `sudo apt-mark hold gitlab-ee`
+- `sudo apt update`
+- `sudo apt upgrade --yes`
+- `sudo apt-mark unhold gitlab-ee`
+- `sudo reboot`
 
 ## Additional Automation Tooling
 
