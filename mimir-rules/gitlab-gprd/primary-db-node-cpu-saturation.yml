@@ -1,20 +1,45 @@
 groups:
-- name: Primary Database CPU Saturation
+- name: Primary Database CPU Saturation - main
   rules:
-  - alert: PrimaryDatabaseCPUSaturation
+  - alert: PrimaryDatabaseCPUSaturationMain
     expr: |
         (
-        (avg_over_time(node_pressure_cpu_waiting_seconds_total{env="gprd", type=~"patroni"}[1m]) and on (fqdn) pg_replication_is_replica == 0)
-        -
-        (avg_over_time(node_pressure_cpu_waiting_seconds_total{env="gprd", type="patroni"}[1d]) and on (fqdn) pg_replication_is_replica == 0)
-        ) /
-        (stddev_over_time(node_pressure_cpu_waiting_seconds_total{env="gprd", type="patroni"}[1d]) and on (fqdn) pg_replication_is_replica == 0) > 3
+          (
+              (max_over_time(rate(node_pressure_cpu_waiting_seconds_total{env="gprd", type="patroni"}[5m])[60m:]) >= 0.01)
+              -
+              avg_over_time(rate(node_pressure_cpu_waiting_seconds_total{env="gprd", type="patroni"}[5m])[1d:])
+          ) /
+          stddev_over_time(rate(node_pressure_cpu_waiting_seconds_total{env="gprd", type="patroni"}[5m])[1d:])
+          and on (fqdn) (pg_replication_is_replica == 0)
+        ) > 3
     for: 1s
     labels:
-      team: database_operations
+      team: database_frameworks
       severity: s3
       alert_type: cause
     annotations:
-      title: "Primary Database Node CPU Saturation"
+      title: "Primary Database Node CPU Saturation - main"
       description: |
-          The CPU utilization on the primary database is over three standard deviations above average.
+          The CPU pressure on the `main` primary database node is over three standard deviations above average.
+- name: Primary Database CPU Saturation - ci
+  rules:
+  - alert: PrimaryDatabaseCPUSaturationCi
+    expr: |
+        (
+          (
+              (max_over_time(rate(node_pressure_cpu_waiting_seconds_total{env="gprd", type="patroni-ci"}[5m])[60m:]) >= 0.01)
+              -
+              avg_over_time(rate(node_pressure_cpu_waiting_seconds_total{env="gprd", type="patroni-ci"}[5m])[1d:])
+          ) /
+          stddev_over_time(rate(node_pressure_cpu_waiting_seconds_total{env="gprd", type="patroni-ci"}[5m])[1d:])
+          and on (fqdn) (pg_replication_is_replica == 0)
+        ) > 3
+    for: 1s
+    labels:
+      team: database_frameworks
+      severity: s3
+      alert_type: cause
+    annotations:
+      title: "Primary Database Node CPU Saturation - ci"
+      description: |
+          The CPU pressure on the `ci` primary database node is over three standard deviations above average.
