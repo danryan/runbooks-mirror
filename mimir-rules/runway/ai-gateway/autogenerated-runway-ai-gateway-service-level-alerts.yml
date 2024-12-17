@@ -164,12 +164,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_apdex:confidence:ratio_1h{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_1h{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 14.4 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_apdex:confidence:ratio_5m{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_5m{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 14.4 * 0.020000)
         )
       )
@@ -223,12 +223,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_apdex:confidence:ratio_6h{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_6h{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 6 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_apdex:confidence:ratio_30m{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_30m{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 6 * 0.020000)
         )
       )
@@ -387,12 +387,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_1h{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_1h{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
           > (14.4 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_5m{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_5m{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
           > (14.4 * 0.020000)
         )
       )
@@ -443,12 +443,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_6h{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_6h{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
           > (6 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_30m{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_30m{component="inference_anthropic",confidence="98%",monitor="global",type="ai-gateway"}
           > (6 * 0.020000)
         )
       )
@@ -613,12 +613,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_apdex:confidence:ratio_1h{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_1h{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 14.4 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_apdex:confidence:ratio_5m{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_5m{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 14.4 * 0.020000)
         )
       )
@@ -671,12 +671,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_apdex:confidence:ratio_6h{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_6h{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 6 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_apdex:confidence:ratio_30m{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_30m{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 6 * 0.020000)
         )
       )
@@ -832,12 +832,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_1h{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_1h{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
           > (14.4 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_5m{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_5m{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
           > (14.4 * 0.020000)
         )
       )
@@ -887,12 +887,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_6h{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_6h{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
           > (6 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_30m{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_30m{component="inference_other",confidence="98%",monitor="global",type="ai-gateway"}
           > (6 * 0.020000)
         )
       )
@@ -1060,12 +1060,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_apdex:confidence:ratio_1h{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_1h{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 14.4 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_apdex:confidence:ratio_5m{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_5m{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 14.4 * 0.020000)
         )
       )
@@ -1119,12 +1119,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_apdex:confidence:ratio_6h{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_6h{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 6 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_apdex:confidence:ratio_30m{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_apdex:confidence:ratio_30m{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
           < (1 - 6 * 0.020000)
         )
       )
@@ -1283,12 +1283,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_1h{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_1h{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
           > (14.4 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_5m{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_5m{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
           > (14.4 * 0.020000)
         )
       )
@@ -1339,12 +1339,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_6h{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_6h{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
           > (6 * 0.020000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_30m{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
+          gitlab_regional_sli_errors:confidence:ratio_30m{component="inference_vertex",confidence="98%",monitor="global",type="ai-gateway"}
           > (6 * 0.020000)
         )
       )

@@ -834,12 +834,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_1h{component="group_management",confidence="98%",env="pre",monitor="global",type="web"}
+          gitlab_regional_sli_errors:confidence:ratio_1h{component="group_management",confidence="98%",env="pre",monitor="global",type="web"}
           > (14.4 * 0.001000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_5m{component="group_management",confidence="98%",env="pre",monitor="global",type="web"}
+          gitlab_regional_sli_errors:confidence:ratio_5m{component="group_management",confidence="98%",env="pre",monitor="global",type="web"}
           > (14.4 * 0.001000)
         )
       )
@@ -887,12 +887,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_6h{component="group_management",confidence="98%",env="pre",monitor="global",type="web"}
+          gitlab_regional_sli_errors:confidence:ratio_6h{component="group_management",confidence="98%",env="pre",monitor="global",type="web"}
           > (6 * 0.001000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_30m{component="group_management",confidence="98%",env="pre",monitor="global",type="web"}
+          gitlab_regional_sli_errors:confidence:ratio_30m{component="group_management",confidence="98%",env="pre",monitor="global",type="web"}
           > (6 * 0.001000)
         )
       )

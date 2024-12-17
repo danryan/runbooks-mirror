@@ -138,7 +138,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_5m{component="graphql_query",env="gstg",monitor="global",tier="sv",type="api"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_5m
+  - record: gitlab_regional_sli_errors:confidence:ratio_5m
     labels:
       component: graphql_query
       confidence: 98%
@@ -172,7 +172,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_5m{component="graphql_query",env="gstg",monitor="global",tier="sv",type="api"} * 300)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_5m
+  - record: gitlab_regional_sli_apdex:confidence:ratio_5m
     labels:
       component: graphql_query
       confidence: 98%
@@ -262,7 +262,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_5m{component="group_management",env="gstg",monitor="global",tier="sv",type="api"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_5m
+  - record: gitlab_regional_sli_errors:confidence:ratio_5m
     labels:
       component: group_management
       confidence: 98%
@@ -296,7 +296,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_5m{component="group_management",env="gstg",monitor="global",tier="sv",type="api"} * 300)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_5m
+  - record: gitlab_regional_sli_apdex:confidence:ratio_5m
     labels:
       component: group_management
       confidence: 98%
@@ -683,7 +683,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_30m{component="graphql_query",env="gstg",monitor="global",tier="sv",type="api"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_30m
+  - record: gitlab_regional_sli_errors:confidence:ratio_30m
     labels:
       component: graphql_query
       confidence: 98%
@@ -717,7 +717,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_30m{component="graphql_query",env="gstg",monitor="global",tier="sv",type="api"} * 1800)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_30m
+  - record: gitlab_regional_sli_apdex:confidence:ratio_30m
     labels:
       component: graphql_query
       confidence: 98%
@@ -807,7 +807,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_30m{component="group_management",env="gstg",monitor="global",tier="sv",type="api"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_30m
+  - record: gitlab_regional_sli_errors:confidence:ratio_30m
     labels:
       component: group_management
       confidence: 98%
@@ -841,7 +841,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_30m{component="group_management",env="gstg",monitor="global",tier="sv",type="api"} * 1800)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_30m
+  - record: gitlab_regional_sli_apdex:confidence:ratio_30m
     labels:
       component: group_management
       confidence: 98%
@@ -1228,7 +1228,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_1h{component="graphql_query",env="gstg",monitor="global",tier="sv",type="api"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_1h
+  - record: gitlab_regional_sli_errors:confidence:ratio_1h
     labels:
       component: graphql_query
       confidence: 98%
@@ -1262,7 +1262,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_1h{component="graphql_query",env="gstg",monitor="global",tier="sv",type="api"} * 3600)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_1h
+  - record: gitlab_regional_sli_apdex:confidence:ratio_1h
     labels:
       component: graphql_query
       confidence: 98%
@@ -1352,7 +1352,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_1h{component="group_management",env="gstg",monitor="global",tier="sv",type="api"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_1h
+  - record: gitlab_regional_sli_errors:confidence:ratio_1h
     labels:
       component: group_management
       confidence: 98%
@@ -1386,7 +1386,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_1h{component="group_management",env="gstg",monitor="global",tier="sv",type="api"} * 3600)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_1h
+  - record: gitlab_regional_sli_apdex:confidence:ratio_1h
     labels:
       component: group_management
       confidence: 98%
@@ -1775,7 +1775,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_6h{component="graphql_query",env="gstg",monitor="global",tier="sv",type="api"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_6h
+  - record: gitlab_regional_sli_errors:confidence:ratio_6h
     labels:
       component: graphql_query
       confidence: 98%
@@ -1809,7 +1809,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_6h{component="graphql_query",env="gstg",monitor="global",tier="sv",type="api"} * 21600)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_6h
+  - record: gitlab_regional_sli_apdex:confidence:ratio_6h
     labels:
       component: graphql_query
       confidence: 98%
@@ -1911,7 +1911,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_6h{component="group_management",env="gstg",monitor="global",tier="sv",type="api"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_6h
+  - record: gitlab_regional_sli_errors:confidence:ratio_6h
     labels:
       component: group_management
       confidence: 98%
@@ -1945,7 +1945,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_6h{component="group_management",env="gstg",monitor="global",tier="sv",type="api"} * 21600)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_6h
+  - record: gitlab_regional_sli_apdex:confidence:ratio_6h
     labels:
       component: group_management
       confidence: 98%
@@ -2322,7 +2322,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_3d{component="graphql_query",env="gstg",monitor="global",tier="sv",type="api"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_3d
+  - record: gitlab_regional_sli_errors:confidence:ratio_3d
     labels:
       component: graphql_query
       confidence: 98%
@@ -2356,7 +2356,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_3d{component="graphql_query",env="gstg",monitor="global",tier="sv",type="api"} * 259200)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_3d
+  - record: gitlab_regional_sli_apdex:confidence:ratio_3d
     labels:
       component: graphql_query
       confidence: 98%
@@ -2458,7 +2458,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_3d{component="group_management",env="gstg",monitor="global",tier="sv",type="api"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_3d
+  - record: gitlab_regional_sli_errors:confidence:ratio_3d
     labels:
       component: group_management
       confidence: 98%
@@ -2492,7 +2492,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_3d{component="group_management",env="gstg",monitor="global",tier="sv",type="api"} * 259200)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_3d
+  - record: gitlab_regional_sli_apdex:confidence:ratio_3d
     labels:
       component: group_management
       confidence: 98%

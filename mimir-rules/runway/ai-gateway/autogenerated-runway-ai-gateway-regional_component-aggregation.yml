@@ -92,7 +92,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_5m{component="inference_anthropic",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_5m
+  - record: gitlab_regional_sli_errors:confidence:ratio_5m
     labels:
       component: inference_anthropic
       confidence: 98%
@@ -126,7 +126,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_5m{component="inference_anthropic",monitor="global",tier="sv",type="ai-gateway"} * 300)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_5m
+  - record: gitlab_regional_sli_apdex:confidence:ratio_5m
     labels:
       component: inference_anthropic
       confidence: 98%
@@ -240,7 +240,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_5m{component="inference_other",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_5m
+  - record: gitlab_regional_sli_errors:confidence:ratio_5m
     labels:
       component: inference_other
       confidence: 98%
@@ -274,7 +274,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_5m{component="inference_other",monitor="global",tier="sv",type="ai-gateway"} * 300)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_5m
+  - record: gitlab_regional_sli_apdex:confidence:ratio_5m
     labels:
       component: inference_other
       confidence: 98%
@@ -396,7 +396,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_5m{component="inference_vertex",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_5m
+  - record: gitlab_regional_sli_errors:confidence:ratio_5m
     labels:
       component: inference_vertex
       confidence: 98%
@@ -430,7 +430,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_5m{component="inference_vertex",monitor="global",tier="sv",type="ai-gateway"} * 300)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_5m
+  - record: gitlab_regional_sli_apdex:confidence:ratio_5m
     labels:
       component: inference_vertex
       confidence: 98%
@@ -1183,7 +1183,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_30m{component="inference_anthropic",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_30m
+  - record: gitlab_regional_sli_errors:confidence:ratio_30m
     labels:
       component: inference_anthropic
       confidence: 98%
@@ -1217,7 +1217,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_30m{component="inference_anthropic",monitor="global",tier="sv",type="ai-gateway"} * 1800)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_30m
+  - record: gitlab_regional_sli_apdex:confidence:ratio_30m
     labels:
       component: inference_anthropic
       confidence: 98%
@@ -1331,7 +1331,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_30m{component="inference_other",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_30m
+  - record: gitlab_regional_sli_errors:confidence:ratio_30m
     labels:
       component: inference_other
       confidence: 98%
@@ -1365,7 +1365,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_30m{component="inference_other",monitor="global",tier="sv",type="ai-gateway"} * 1800)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_30m
+  - record: gitlab_regional_sli_apdex:confidence:ratio_30m
     labels:
       component: inference_other
       confidence: 98%
@@ -1487,7 +1487,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_30m{component="inference_vertex",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_30m
+  - record: gitlab_regional_sli_errors:confidence:ratio_30m
     labels:
       component: inference_vertex
       confidence: 98%
@@ -1521,7 +1521,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_30m{component="inference_vertex",monitor="global",tier="sv",type="ai-gateway"} * 1800)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_30m
+  - record: gitlab_regional_sli_apdex:confidence:ratio_30m
     labels:
       component: inference_vertex
       confidence: 98%
@@ -2274,7 +2274,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_1h{component="inference_anthropic",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_1h
+  - record: gitlab_regional_sli_errors:confidence:ratio_1h
     labels:
       component: inference_anthropic
       confidence: 98%
@@ -2308,7 +2308,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_1h{component="inference_anthropic",monitor="global",tier="sv",type="ai-gateway"} * 3600)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_1h
+  - record: gitlab_regional_sli_apdex:confidence:ratio_1h
     labels:
       component: inference_anthropic
       confidence: 98%
@@ -2422,7 +2422,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_1h{component="inference_other",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_1h
+  - record: gitlab_regional_sli_errors:confidence:ratio_1h
     labels:
       component: inference_other
       confidence: 98%
@@ -2456,7 +2456,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_1h{component="inference_other",monitor="global",tier="sv",type="ai-gateway"} * 3600)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_1h
+  - record: gitlab_regional_sli_apdex:confidence:ratio_1h
     labels:
       component: inference_other
       confidence: 98%
@@ -2578,7 +2578,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_1h{component="inference_vertex",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_1h
+  - record: gitlab_regional_sli_errors:confidence:ratio_1h
     labels:
       component: inference_vertex
       confidence: 98%
@@ -2612,7 +2612,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_1h{component="inference_vertex",monitor="global",tier="sv",type="ai-gateway"} * 3600)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_1h
+  - record: gitlab_regional_sli_apdex:confidence:ratio_1h
     labels:
       component: inference_vertex
       confidence: 98%
@@ -3349,7 +3349,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_6h{component="inference_anthropic",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_6h
+  - record: gitlab_regional_sli_errors:confidence:ratio_6h
     labels:
       component: inference_anthropic
       confidence: 98%
@@ -3383,7 +3383,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_6h{component="inference_anthropic",monitor="global",tier="sv",type="ai-gateway"} * 21600)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_6h
+  - record: gitlab_regional_sli_apdex:confidence:ratio_6h
     labels:
       component: inference_anthropic
       confidence: 98%
@@ -3489,7 +3489,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_6h{component="inference_other",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_6h
+  - record: gitlab_regional_sli_errors:confidence:ratio_6h
     labels:
       component: inference_other
       confidence: 98%
@@ -3523,7 +3523,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_6h{component="inference_other",monitor="global",tier="sv",type="ai-gateway"} * 21600)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_6h
+  - record: gitlab_regional_sli_apdex:confidence:ratio_6h
     labels:
       component: inference_other
       confidence: 98%
@@ -3629,7 +3629,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_6h{component="inference_vertex",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_6h
+  - record: gitlab_regional_sli_errors:confidence:ratio_6h
     labels:
       component: inference_vertex
       confidence: 98%
@@ -3663,7 +3663,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_6h{component="inference_vertex",monitor="global",tier="sv",type="ai-gateway"} * 21600)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_6h
+  - record: gitlab_regional_sli_apdex:confidence:ratio_6h
     labels:
       component: inference_vertex
       confidence: 98%
@@ -4348,7 +4348,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_3d{component="inference_anthropic",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_3d
+  - record: gitlab_regional_sli_errors:confidence:ratio_3d
     labels:
       component: inference_anthropic
       confidence: 98%
@@ -4382,7 +4382,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_3d{component="inference_anthropic",monitor="global",tier="sv",type="ai-gateway"} * 259200)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_3d
+  - record: gitlab_regional_sli_apdex:confidence:ratio_3d
     labels:
       component: inference_anthropic
       confidence: 98%
@@ -4488,7 +4488,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_3d{component="inference_other",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_3d
+  - record: gitlab_regional_sli_errors:confidence:ratio_3d
     labels:
       component: inference_other
       confidence: 98%
@@ -4522,7 +4522,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_3d{component="inference_other",monitor="global",tier="sv",type="ai-gateway"} * 259200)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_3d
+  - record: gitlab_regional_sli_apdex:confidence:ratio_3d
     labels:
       component: inference_other
       confidence: 98%
@@ -4628,7 +4628,7 @@ groups:
       sum by (env,environment,stage,region) (
         gitlab_regional_sli_apdex:weight:score_3d{component="inference_vertex",monitor="global",tier="sv",type="ai-gateway"} offset 30s
       )
-  - record: gitlab_component_errors:confidence:ratio_3d
+  - record: gitlab_regional_sli_errors:confidence:ratio_3d
     labels:
       component: inference_vertex
       confidence: 98%
@@ -4662,7 +4662,7 @@ groups:
         (1 + 5.411894 / (gitlab_regional_sli_ops:rate_3d{component="inference_vertex",monitor="global",tier="sv",type="ai-gateway"} * 259200)),
         0, 1
       )
-  - record: gitlab_component_apdex:confidence:ratio_3d
+  - record: gitlab_regional_sli_apdex:confidence:ratio_3d
     labels:
       component: inference_vertex
       confidence: 98%

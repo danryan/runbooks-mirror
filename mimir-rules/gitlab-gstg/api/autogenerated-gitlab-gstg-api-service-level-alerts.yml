@@ -477,12 +477,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_apdex:confidence:ratio_1h{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_apdex:confidence:ratio_1h{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
           < (1 - 14.4 * 0.005000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_apdex:confidence:ratio_5m{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_apdex:confidence:ratio_5m{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
           < (1 - 14.4 * 0.005000)
         )
       )
@@ -531,12 +531,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_apdex:confidence:ratio_6h{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_apdex:confidence:ratio_6h{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
           < (1 - 6 * 0.005000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_apdex:confidence:ratio_30m{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_apdex:confidence:ratio_30m{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
           < (1 - 6 * 0.005000)
         )
       )
@@ -701,12 +701,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_1h{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_errors:confidence:ratio_1h{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
           > (14.4 * 0.001000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_5m{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_errors:confidence:ratio_5m{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
           > (14.4 * 0.001000)
         )
       )
@@ -759,12 +759,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_6h{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_errors:confidence:ratio_6h{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
           > (6 * 0.001000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_30m{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_errors:confidence:ratio_30m{component="graphql_query",confidence="98%",env="gstg",monitor="global",type="api"}
           > (6 * 0.001000)
         )
       )
@@ -1090,12 +1090,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_1h{component="group_management",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_errors:confidence:ratio_1h{component="group_management",confidence="98%",env="gstg",monitor="global",type="api"}
           > (14.4 * 0.001000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_5m{component="group_management",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_errors:confidence:ratio_5m{component="group_management",confidence="98%",env="gstg",monitor="global",type="api"}
           > (14.4 * 0.001000)
         )
       )
@@ -1143,12 +1143,12 @@ groups:
     expr: |
       (
         (
-          gitlab_component_errors:confidence:ratio_6h{component="group_management",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_errors:confidence:ratio_6h{component="group_management",confidence="98%",env="gstg",monitor="global",type="api"}
           > (6 * 0.001000)
         )
         and on (env,environment,tier,type,stage,region,component)
         (
-          gitlab_component_errors:confidence:ratio_30m{component="group_management",confidence="98%",env="gstg",monitor="global",type="api"}
+          gitlab_regional_sli_errors:confidence:ratio_30m{component="group_management",confidence="98%",env="gstg",monitor="global",type="api"}
           > (6 * 0.001000)
         )
       )
