@@ -29,6 +29,10 @@ propagation time.
 
 ## Gandi Instructions
 
+As of 2024 December, we have [transferred ownership of Gandi to Corpsec / IT](https://gitlab.com/gitlab-com/gl-security/corp/issue-tracker/-/issues/1078).
+
+Keeping for documentation purposes:
+
 1. Log in to the [Gandi Admin panel](https://admin.gandi.net), with the creds in 1Password.
 2. Click on the Domains tab in the left panel.
 3. Click on Register in the upper right corner and type in the domain you wish to register and choose "register".
