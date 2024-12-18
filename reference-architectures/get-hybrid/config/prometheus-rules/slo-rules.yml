@@ -287,7 +287,7 @@ groups:
       tier: sv
       type: webservice
     record: slo:max:events:gitlab_service_errors:ratio
-  - expr: "0.998000"
+  - expr: "0.995000"
     labels:
       component: graphql_query
       tier: sv

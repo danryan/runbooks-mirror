@@ -3623,12 +3623,12 @@ groups:
       (
         (
           gitlab_component_apdex:confidence:ratio_1h{component="graphql_query",confidence="98%",type="webservice"}
-          < (1 - 14.4 * 0.002000)
+          < (1 - 14.4 * 0.005000)
         )
         and on (type,component)
         (
           gitlab_component_apdex:confidence:ratio_5m{component="graphql_query",confidence="98%",type="webservice"}
-          < (1 - 14.4 * 0.002000)
+          < (1 - 14.4 * 0.005000)
         )
       )
       and on(type,component)
@@ -3674,12 +3674,12 @@ groups:
       (
         (
           gitlab_component_apdex:confidence:ratio_6h{component="graphql_query",confidence="98%",type="webservice"}
-          < (1 - 6 * 0.002000)
+          < (1 - 6 * 0.005000)
         )
         and on (type,component)
         (
           gitlab_component_apdex:confidence:ratio_30m{component="graphql_query",confidence="98%",type="webservice"}
-          < (1 - 6 * 0.002000)
+          < (1 - 6 * 0.005000)
         )
       )
       and on(type,component)
