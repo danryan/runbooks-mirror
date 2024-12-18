@@ -38,7 +38,7 @@ groups:
       sli_type: apdex
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 1h
     expr: |
       (
@@ -90,7 +90,7 @@ groups:
       sli_type: apdex
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 6h
     expr: |
       (
@@ -144,7 +144,7 @@ groups:
       sli_type: apdex
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 1h
     expr: |
       (
@@ -198,7 +198,7 @@ groups:
       sli_type: apdex
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 6h
     expr: |
       (
@@ -247,7 +247,7 @@ groups:
       sli_type: error
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 1h
     expr: |
       (
@@ -296,7 +296,7 @@ groups:
       sli_type: error
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 6h
     expr: |
       (
@@ -347,7 +347,7 @@ groups:
       sli_type: error
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 1h
     expr: |
       (
@@ -398,7 +398,7 @@ groups:
       sli_type: error
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 6h
     expr: |
       (
@@ -416,6 +416,158 @@ groups:
       (
         sum by(env,environment,tier,type,stage,region,component) (gitlab_regional_sli_ops:rate_6h{component="runway_ingress",monitor="global",type="sast-service"}) >= 0.16667
       )
+  - alert: SastServiceServiceRunwayIngressTrafficCessation
+    for: 5m
+    annotations:
+      title: The runway_ingress SLI of the sast-service service (`{{ $labels.stage
+        }}` stage) has not received any traffic in the past 30m
+      description: |
+        Application load balancer serving ingress HTTP requests for the Runway service.
+
+        This alert signifies that the SLI is reporting a cessation of traffic; the signal is present, but is zero.
+      grafana_dashboard_id: sast-service-main/sast-service-overview
+      grafana_dashboard_link: https://dashboards.gitlab.net/d/sast-service-main/sast-service-overview?from=now-6h/m&to=now-1m/m&var-environment={{
+        $labels.environment }}&var-stage={{ $labels.stage }}
+      grafana_datasource_id: mimir-runway
+      grafana_min_zoom_hours: "6"
+      grafana_panel_id: "1866380853"
+      grafana_variables: environment,stage
+      promql_template_1: |
+        sum by (env,environment,tier,stage) (
+          avg_over_time(stackdriver_cloud_run_revision_run_googleapis_com_request_count{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="sast-service"}[5m]) / 60
+        )
+      runbook: docs/sast-service/README.md
+    labels:
+      aggregation: component
+      alert_class: traffic_cessation
+      alert_type: cause
+      feature_category: static_application_security_testing
+      rules_domain: general
+      severity: s4
+      sli_type: ops
+      slo_alert: "no"
+      team: static_analysis
+      user_impacting: "yes"
+    expr: |
+      gitlab_component_ops:rate_30m{component="runway_ingress",monitor="global",stage="main",type="sast-service"} == 0
+      and
+      gitlab_component_ops:rate_30m{component="runway_ingress",monitor="global",stage="main",type="sast-service"} offset 1h >= 0.16666666666666666
+  - alert: SastServiceServiceRunwayIngressTrafficAbsent
+    for: 30m
+    annotations:
+      title: The runway_ingress SLI of the sast-service service (`{{ $labels.stage
+        }}` stage) has not reported any traffic in the past 30m
+      description: |
+        Application load balancer serving ingress HTTP requests for the Runway service.
+
+        This alert signifies that the SLI was previously reporting traffic, but is no longer - the signal is absent.
+
+        This could be caused by a change to the metrics used in the SLI, or by the service not receiving traffic.
+      grafana_dashboard_id: sast-service-main/sast-service-overview
+      grafana_dashboard_link: https://dashboards.gitlab.net/d/sast-service-main/sast-service-overview?from=now-6h/m&to=now-1m/m&var-environment={{
+        $labels.environment }}&var-stage={{ $labels.stage }}
+      grafana_datasource_id: mimir-runway
+      grafana_min_zoom_hours: "6"
+      grafana_panel_id: "1866380853"
+      grafana_variables: environment,stage
+      promql_template_1: |
+        sum by (env,environment,tier,stage) (
+          avg_over_time(stackdriver_cloud_run_revision_run_googleapis_com_request_count{environment="{{ $labels.environment }}",stage="{{ $labels.stage }}",type="sast-service"}[5m]) / 60
+        )
+      runbook: docs/sast-service/README.md
+    labels:
+      aggregation: component
+      alert_class: traffic_cessation
+      alert_type: cause
+      feature_category: static_application_security_testing
+      rules_domain: general
+      severity: s4
+      sli_type: ops
+      slo_alert: "no"
+      team: static_analysis
+      user_impacting: "yes"
+    expr: |
+      gitlab_component_ops:rate_5m{component="runway_ingress",monitor="global",stage="main",type="sast-service"} offset 1h
+      unless
+      gitlab_component_ops:rate_5m{component="runway_ingress",monitor="global",stage="main",type="sast-service"}
+  - alert: SastServiceServiceRunwayIngressTrafficCessationRegional
+    for: 5m
+    annotations:
+      title: The runway_ingress SLI of the sast-service service in region `{{ $labels.region
+        }}` has not received any traffic in the past 30m
+      description: |
+        Application load balancer serving ingress HTTP requests for the Runway service.
+
+        This alert signifies that the SLI is reporting a cessation of traffic; the signal is present, but is zero.
+
+        Note that this alert is specific to the `{{ $labels.region }}` region.
+      grafana_dashboard_id: sast-service-main/sast-service-overview
+      grafana_dashboard_link: https://dashboards.gitlab.net/d/sast-service-main/sast-service-overview?from=now-6h/m&to=now-1m/m&var-environment={{
+        $labels.environment }}&var-stage={{ $labels.stage }}
+      grafana_datasource_id: mimir-runway
+      grafana_min_zoom_hours: "6"
+      grafana_panel_id: "1866380853"
+      grafana_variables: environment,stage
+      promql_template_1: |
+        sum by (env,environment,tier,stage,region) (
+          avg_over_time(stackdriver_cloud_run_revision_run_googleapis_com_request_count{environment="{{ $labels.environment }}",region="{{ $labels.region }}",stage="{{ $labels.stage }}",type="sast-service"}[5m]) / 60
+        )
+      runbook: docs/sast-service/README.md
+    labels:
+      aggregation: regional_component
+      alert_class: traffic_cessation
+      alert_type: cause
+      feature_category: static_application_security_testing
+      rules_domain: general
+      severity: s4
+      sli_type: ops
+      slo_alert: "no"
+      team: static_analysis
+      user_impacting: "yes"
+    expr: |
+      gitlab_regional_sli_ops:rate_30m{component="runway_ingress",monitor="global",stage="main",type="sast-service"} == 0
+      and
+      gitlab_regional_sli_ops:rate_30m{component="runway_ingress",monitor="global",stage="main",type="sast-service"} offset 1h >= 0.16666666666666666
+  - alert: SastServiceServiceRunwayIngressTrafficAbsentRegional
+    for: 30m
+    annotations:
+      title: The runway_ingress SLI of the sast-service service in region `{{ $labels.region
+        }}` has not reported any traffic in the past 30m
+      description: |
+        Application load balancer serving ingress HTTP requests for the Runway service.
+
+        This alert signifies that the SLI was previously reporting traffic, but is no longer - the signal is absent.
+
+        This could be caused by a change to the metrics used in the SLI, or by the service not receiving traffic.
+
+        Note that this alert is specific to the `{{ $labels.region }}` region.
+      grafana_dashboard_id: sast-service-main/sast-service-overview
+      grafana_dashboard_link: https://dashboards.gitlab.net/d/sast-service-main/sast-service-overview?from=now-6h/m&to=now-1m/m&var-environment={{
+        $labels.environment }}&var-stage={{ $labels.stage }}
+      grafana_datasource_id: mimir-runway
+      grafana_min_zoom_hours: "6"
+      grafana_panel_id: "1866380853"
+      grafana_variables: environment,stage
+      promql_template_1: |
+        sum by (env,environment,tier,stage,region) (
+          avg_over_time(stackdriver_cloud_run_revision_run_googleapis_com_request_count{environment="{{ $labels.environment }}",region="{{ $labels.region }}",stage="{{ $labels.stage }}",type="sast-service"}[5m]) / 60
+        )
+      runbook: docs/sast-service/README.md
+    labels:
+      aggregation: regional_component
+      alert_class: traffic_cessation
+      alert_type: cause
+      feature_category: static_application_security_testing
+      rules_domain: general
+      severity: s4
+      sli_type: ops
+      slo_alert: "no"
+      team: static_analysis
+      user_impacting: "yes"
+    expr: |
+      gitlab_regional_sli_ops:rate_5m{component="runway_ingress",monitor="global",stage="main",type="sast-service"} offset 1h
+      unless
+      gitlab_regional_sli_ops:rate_5m{component="runway_ingress",monitor="global",stage="main",type="sast-service"}
   - alert: SastServiceServiceRunwayLbErrorSLOViolation
     for: 2m
     annotations:
@@ -447,7 +599,7 @@ groups:
       sli_type: error
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 1h
     expr: |
       (
@@ -496,7 +648,7 @@ groups:
       sli_type: error
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 6h
     expr: |
       (
@@ -547,7 +699,7 @@ groups:
       sli_type: error
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 1h
     expr: |
       (
@@ -598,7 +750,7 @@ groups:
       sli_type: error
       slo_alert: "yes"
       team: static_analysis
-      user_impacting: "no"
+      user_impacting: "yes"
       window: 6h
     expr: |
       (
@@ -616,3 +768,155 @@ groups:
       (
         sum by(env,environment,tier,type,stage,region,component) (gitlab_regional_sli_ops:rate_6h{component="runway_lb",monitor="global",type="sast-service"}) >= 0.16667
       )
+  - alert: SastServiceServiceRunwayLbTrafficCessation
+    for: 5m
+    annotations:
+      title: The runway_lb SLI of the sast-service service (`{{ $labels.stage }}`
+        stage) has not received any traffic in the past 30m
+      description: |
+        External load balancer serving global HTTP requests for the Runway service.
+
+        This alert signifies that the SLI is reporting a cessation of traffic; the signal is present, but is zero.
+      grafana_dashboard_id: sast-service-main/sast-service-overview
+      grafana_dashboard_link: https://dashboards.gitlab.net/d/sast-service-main/sast-service-overview?from=now-6h/m&to=now-1m/m&var-environment={{
+        $labels.environment }}&var-stage={{ $labels.stage }}
+      grafana_datasource_id: mimir-runway
+      grafana_min_zoom_hours: "6"
+      grafana_panel_id: "1782139780"
+      grafana_variables: environment,stage
+      promql_template_1: |
+        sum by (env,environment,tier,stage) (
+          rate(stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{environment="{{ $labels.environment }}",job="runway-exporter",stage="{{ $labels.stage }}",url_map_name="sast-service-url-map"}[5m])
+        )
+      runbook: docs/sast-service/README.md
+    labels:
+      aggregation: component
+      alert_class: traffic_cessation
+      alert_type: cause
+      feature_category: static_application_security_testing
+      rules_domain: general
+      severity: s4
+      sli_type: ops
+      slo_alert: "no"
+      team: static_analysis
+      user_impacting: "yes"
+    expr: |
+      gitlab_component_ops:rate_30m{component="runway_lb",monitor="global",stage="main",type="sast-service"} == 0
+      and
+      gitlab_component_ops:rate_30m{component="runway_lb",monitor="global",stage="main",type="sast-service"} offset 1h >= 0.16666666666666666
+  - alert: SastServiceServiceRunwayLbTrafficAbsent
+    for: 30m
+    annotations:
+      title: The runway_lb SLI of the sast-service service (`{{ $labels.stage }}`
+        stage) has not reported any traffic in the past 30m
+      description: |
+        External load balancer serving global HTTP requests for the Runway service.
+
+        This alert signifies that the SLI was previously reporting traffic, but is no longer - the signal is absent.
+
+        This could be caused by a change to the metrics used in the SLI, or by the service not receiving traffic.
+      grafana_dashboard_id: sast-service-main/sast-service-overview
+      grafana_dashboard_link: https://dashboards.gitlab.net/d/sast-service-main/sast-service-overview?from=now-6h/m&to=now-1m/m&var-environment={{
+        $labels.environment }}&var-stage={{ $labels.stage }}
+      grafana_datasource_id: mimir-runway
+      grafana_min_zoom_hours: "6"
+      grafana_panel_id: "1782139780"
+      grafana_variables: environment,stage
+      promql_template_1: |
+        sum by (env,environment,tier,stage) (
+          rate(stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{environment="{{ $labels.environment }}",job="runway-exporter",stage="{{ $labels.stage }}",url_map_name="sast-service-url-map"}[5m])
+        )
+      runbook: docs/sast-service/README.md
+    labels:
+      aggregation: component
+      alert_class: traffic_cessation
+      alert_type: cause
+      feature_category: static_application_security_testing
+      rules_domain: general
+      severity: s4
+      sli_type: ops
+      slo_alert: "no"
+      team: static_analysis
+      user_impacting: "yes"
+    expr: |
+      gitlab_component_ops:rate_5m{component="runway_lb",monitor="global",stage="main",type="sast-service"} offset 1h
+      unless
+      gitlab_component_ops:rate_5m{component="runway_lb",monitor="global",stage="main",type="sast-service"}
+  - alert: SastServiceServiceRunwayLbTrafficCessationRegional
+    for: 5m
+    annotations:
+      title: The runway_lb SLI of the sast-service service in region `{{ $labels.region
+        }}` has not received any traffic in the past 30m
+      description: |
+        External load balancer serving global HTTP requests for the Runway service.
+
+        This alert signifies that the SLI is reporting a cessation of traffic; the signal is present, but is zero.
+
+        Note that this alert is specific to the `{{ $labels.region }}` region.
+      grafana_dashboard_id: sast-service-main/sast-service-overview
+      grafana_dashboard_link: https://dashboards.gitlab.net/d/sast-service-main/sast-service-overview?from=now-6h/m&to=now-1m/m&var-environment={{
+        $labels.environment }}&var-stage={{ $labels.stage }}
+      grafana_datasource_id: mimir-runway
+      grafana_min_zoom_hours: "6"
+      grafana_panel_id: "1782139780"
+      grafana_variables: environment,stage
+      promql_template_1: |
+        sum by (env,environment,tier,stage,region) (
+          rate(stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{environment="{{ $labels.environment }}",job="runway-exporter",region="{{ $labels.region }}",stage="{{ $labels.stage }}",url_map_name="sast-service-url-map"}[5m])
+        )
+      runbook: docs/sast-service/README.md
+    labels:
+      aggregation: regional_component
+      alert_class: traffic_cessation
+      alert_type: cause
+      feature_category: static_application_security_testing
+      rules_domain: general
+      severity: s4
+      sli_type: ops
+      slo_alert: "no"
+      team: static_analysis
+      user_impacting: "yes"
+    expr: |
+      gitlab_regional_sli_ops:rate_30m{component="runway_lb",monitor="global",stage="main",type="sast-service"} == 0
+      and
+      gitlab_regional_sli_ops:rate_30m{component="runway_lb",monitor="global",stage="main",type="sast-service"} offset 1h >= 0.16666666666666666
+  - alert: SastServiceServiceRunwayLbTrafficAbsentRegional
+    for: 30m
+    annotations:
+      title: The runway_lb SLI of the sast-service service in region `{{ $labels.region
+        }}` has not reported any traffic in the past 30m
+      description: |
+        External load balancer serving global HTTP requests for the Runway service.
+
+        This alert signifies that the SLI was previously reporting traffic, but is no longer - the signal is absent.
+
+        This could be caused by a change to the metrics used in the SLI, or by the service not receiving traffic.
+
+        Note that this alert is specific to the `{{ $labels.region }}` region.
+      grafana_dashboard_id: sast-service-main/sast-service-overview
+      grafana_dashboard_link: https://dashboards.gitlab.net/d/sast-service-main/sast-service-overview?from=now-6h/m&to=now-1m/m&var-environment={{
+        $labels.environment }}&var-stage={{ $labels.stage }}
+      grafana_datasource_id: mimir-runway
+      grafana_min_zoom_hours: "6"
+      grafana_panel_id: "1782139780"
+      grafana_variables: environment,stage
+      promql_template_1: |
+        sum by (env,environment,tier,stage,region) (
+          rate(stackdriver_https_lb_rule_loadbalancing_googleapis_com_https_request_count{environment="{{ $labels.environment }}",job="runway-exporter",region="{{ $labels.region }}",stage="{{ $labels.stage }}",url_map_name="sast-service-url-map"}[5m])
+        )
+      runbook: docs/sast-service/README.md
+    labels:
+      aggregation: regional_component
+      alert_class: traffic_cessation
+      alert_type: cause
+      feature_category: static_application_security_testing
+      rules_domain: general
+      severity: s4
+      sli_type: ops
+      slo_alert: "no"
+      team: static_analysis
+      user_impacting: "yes"
+    expr: |
+      gitlab_regional_sli_ops:rate_5m{component="runway_lb",monitor="global",stage="main",type="sast-service"} offset 1h
+      unless
+      gitlab_regional_sli_ops:rate_5m{component="runway_lb",monitor="global",stage="main",type="sast-service"}
