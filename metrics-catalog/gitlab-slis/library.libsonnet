@@ -22,6 +22,14 @@ local list = [
     |||,
   }),
   sliDefinition.new({
+    name: 'security_scan',
+    significantLabels: ['feature_category', 'scan_type'],
+    kinds: [sliDefinition.errorRateKind],
+    description: |||
+      The rate at which security scanners are failing with errors.
+    |||,
+  }),
+  sliDefinition.new({
     name: 'graphql_query',
     significantLabels: ['endpoint_id', 'feature_category', 'query_urgency'],
     kinds: [sliDefinition.errorRateKind, sliDefinition.apdexKind],

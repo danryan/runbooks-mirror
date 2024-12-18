@@ -58,6 +58,22 @@ groups:
     expr: "0.005000"
   - record: slo:min:events:gitlab_service_apdex:ratio
     labels:
+      component: security_scan
+      monitor: global
+      shard: ""
+      tier: sv
+      type: sidekiq
+    expr: "0.995000"
+  - record: slo:max:events:gitlab_service_errors:ratio
+    labels:
+      component: security_scan
+      monitor: global
+      shard: ""
+      tier: sv
+      type: sidekiq
+    expr: "0.005000"
+  - record: slo:min:events:gitlab_service_apdex:ratio
+    labels:
       component: sidekiq_execution
       monitor: global
       shard: ""
@@ -173,6 +189,16 @@ groups:
   - record: gitlab_component_service:mapping
     labels:
       component: llm_completion
+      global_aggregation: "no"
+      monitor: global
+      regional_aggregation: "no"
+      service_aggregation: "no"
+      tier: sv
+      type: sidekiq
+    expr: "1"
+  - record: gitlab_component_service:mapping
+    labels:
+      component: security_scan
       global_aggregation: "no"
       monitor: global
       regional_aggregation: "no"

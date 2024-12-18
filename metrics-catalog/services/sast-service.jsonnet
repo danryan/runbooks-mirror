@@ -1,5 +1,7 @@
 local runwayArchetype = import 'service-archetypes/runway-archetype.libsonnet';
 local metricsCatalog = import 'servicemetrics/metrics.libsonnet';
+local rateMetric = metricsCatalog.rateMetric;
+local sliLibrary = import 'gitlab-slis/library.libsonnet';
 
 metricsCatalog.serviceDefinition(
   runwayArchetype(
@@ -9,6 +11,6 @@ metricsCatalog.serviceDefinition(
     featureCategory='static_application_security_testing',
     tags=['golang'],
     userImpacting=false,
-    trafficCessationAlertConfig=false
+    trafficCessationAlertConfig=false,
   )
 )

@@ -137,6 +137,38 @@ groups:
       sum by (env,environment,tier,type,stage,service_class) (
         (sli_aggregations:gitlab_sli_llm_completion_apdex_success_total:rate_1h{env="gstg",monitor!="global",type="sidekiq"} >= 0)
       )
+- name: 'Application Defined SLI Global metrics: security_scan (fast burn) emitted
+    by sidekiq'
+  interval: 1m
+  rules:
+  - record: application_sli_aggregation:security_scan:error:rate_5m
+    labels:
+      monitor: global
+    expr: |
+      sum by (env,environment,tier,type,stage,feature_category,scan_type) (
+        (sli_aggregations:gitlab_sli_security_scan_error_total:rate_5m{env="gstg",monitor!="global",type="sidekiq"} >= 0)
+      )
+  - record: application_sli_aggregation:security_scan:ops:rate_5m
+    labels:
+      monitor: global
+    expr: |
+      sum by (env,environment,tier,type,stage,feature_category,scan_type) (
+        (sli_aggregations:gitlab_sli_security_scan_total:rate_5m{env="gstg",monitor!="global",type="sidekiq"} >= 0)
+      )
+  - record: application_sli_aggregation:security_scan:error:rate_1h
+    labels:
+      monitor: global
+    expr: |
+      sum by (env,environment,tier,type,stage,feature_category,scan_type) (
+        (sli_aggregations:gitlab_sli_security_scan_error_total:rate_1h{env="gstg",monitor!="global",type="sidekiq"} >= 0)
+      )
+  - record: application_sli_aggregation:security_scan:ops:rate_1h
+    labels:
+      monitor: global
+    expr: |
+      sum by (env,environment,tier,type,stage,feature_category,scan_type) (
+        (sli_aggregations:gitlab_sli_security_scan_total:rate_1h{env="gstg",monitor!="global",type="sidekiq"} >= 0)
+      )
 - name: 'Application Defined SLI Global metrics: sidekiq_execution (fast burn) emitted
     by sidekiq'
   interval: 1m

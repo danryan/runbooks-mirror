@@ -111,6 +111,19 @@ groups:
       sum by (component,env,environment,feature_category,fqdn,product_stage,region,service_class,shard,stage,stage_group,tier,type) (
         rate(gitlab_sli_llm_completion_total{env="gstg",type=~"sidekiq"}[5m] offset 30s)
       )
+- name: 'SLI Aggregations: sidekiq - security_scan - 5m burn-rate'
+  interval: 1m
+  rules:
+  - record: sli_aggregations:gitlab_sli_security_scan_error_total:rate_5m
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,product_stage,region,scan_type,shard,stage,stage_group,tier,type) (
+        rate(gitlab_sli_security_scan_error_total{env="gstg",type=~"sidekiq"}[5m] offset 30s)
+      )
+  - record: sli_aggregations:gitlab_sli_security_scan_total:rate_5m
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,product_stage,region,scan_type,shard,stage,stage_group,tier,type) (
+        rate(gitlab_sli_security_scan_total{env="gstg",type=~"sidekiq"}[5m] offset 30s)
+      )
 - name: 'SLI Aggregations: sidekiq - sidekiq_execution - 5m burn-rate'
   interval: 1m
   rules:
@@ -257,6 +270,19 @@ groups:
       sum by (component,env,environment,feature_category,fqdn,product_stage,region,service_class,shard,stage,stage_group,tier,type) (
         rate(gitlab_sli_llm_completion_total{env="gstg",type=~"sidekiq"}[30m] offset 30s)
       )
+- name: 'SLI Aggregations: sidekiq - security_scan - 30m burn-rate'
+  interval: 2m
+  rules:
+  - record: sli_aggregations:gitlab_sli_security_scan_error_total:rate_30m
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,product_stage,region,scan_type,shard,stage,stage_group,tier,type) (
+        rate(gitlab_sli_security_scan_error_total{env="gstg",type=~"sidekiq"}[30m] offset 30s)
+      )
+  - record: sli_aggregations:gitlab_sli_security_scan_total:rate_30m
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,product_stage,region,scan_type,shard,stage,stage_group,tier,type) (
+        rate(gitlab_sli_security_scan_total{env="gstg",type=~"sidekiq"}[30m] offset 30s)
+      )
 - name: 'SLI Aggregations: sidekiq - sidekiq_execution - 30m burn-rate'
   interval: 2m
   rules:
@@ -402,6 +428,19 @@ groups:
     expr: |
       sum by (component,env,environment,feature_category,fqdn,product_stage,region,service_class,shard,stage,stage_group,tier,type) (
         rate(gitlab_sli_llm_completion_total{env="gstg",type=~"sidekiq"}[1h] offset 30s)
+      )
+- name: 'SLI Aggregations: sidekiq - security_scan - 1h burn-rate'
+  interval: 1m
+  rules:
+  - record: sli_aggregations:gitlab_sli_security_scan_error_total:rate_1h
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,product_stage,region,scan_type,shard,stage,stage_group,tier,type) (
+        rate(gitlab_sli_security_scan_error_total{env="gstg",type=~"sidekiq"}[1h] offset 30s)
+      )
+  - record: sli_aggregations:gitlab_sli_security_scan_total:rate_1h
+    expr: |
+      sum by (component,env,environment,feature_category,fqdn,product_stage,region,scan_type,shard,stage,stage_group,tier,type) (
+        rate(gitlab_sli_security_scan_total{env="gstg",type=~"sidekiq"}[1h] offset 30s)
       )
 - name: 'SLI Aggregations: sidekiq - sidekiq_execution - 1h burn-rate'
   interval: 1m

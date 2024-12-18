@@ -188,6 +188,10 @@ metricsCatalog.serviceDefinition({
     ],
     trafficCessationAlertConfig: sidekiqHelpers.shardTrafficCessationAlertConfig,
     emittedBy: ['ops-gitlab-net', 'sidekiq'],
+  }) + sliLibrary.get('security_scan').generateServiceLevelIndicator({}, {
+    serviceAggregation: false,
+    severity: 's4',
+    emittedBy: ['sidekiq'],
   }),
 
   capacityPlanning: {

@@ -21,7 +21,7 @@ function(
   customToolingLinks=[],
   regional=false,
   externalLoadBalancer=true,
-  tags=[]
+  tags=[],
 )
   local baseSelector = { type: type };
   {
