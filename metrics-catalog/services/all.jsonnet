@@ -10,6 +10,7 @@
   import 'atlantis.jsonnet',
   import 'camoproxy.jsonnet',
   import 'ci-runners.jsonnet',
+  import 'clickhouse-cloud.jsonnet',
   import 'cloud-sql.jsonnet',
   import 'cloudflare.jsonnet',
   import 'consul.jsonnet',

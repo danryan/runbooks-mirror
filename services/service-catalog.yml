@@ -165,6 +165,8 @@ services:
     friendly_name: ClickHouse Cloud
     label: Service::ClickHouseCloud
     owner: ops
+    teams:
+      - clickhouse
     technical:
       project:
       documents:

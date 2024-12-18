@@ -42,6 +42,7 @@ metricsCatalog.serviceDefinition({
     },
   },
   serviceDependencies: {
+    clickhouse: true,
     gitaly: true,
     'redis-cluster-ratelimiting': true,
     'redis-cluster-cache': true,
