@@ -27,7 +27,7 @@ Related issues:
 ## Triage decision chart
 
 Use this flow diagram to guide you through the triage process. It should help you understand where a given
-problem originates from. For self-managed deployments, you can also use the [health check UI](https://docs.gitlab.com/ee/user/gitlab_duo/turn_on_off.html#run-a-health-check-for-gitlab-duo) to get a high-level sense for the general cause of the problem.
+problem originates from. For self-managed deployments, you can also use the [health check UI](https://docs.gitlab.com/ee/user/gitlab_duo/setup.html#run-a-health-check-for-gitlab-duo) to get a high-level sense for the general cause of the problem.
 
 ```mermaid
 flowchart LR
