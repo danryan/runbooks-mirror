@@ -160,4 +160,219 @@ Below we cover the process step-by-step with examples:
 
 ### Let's implement our own SLI
 
-TBD
+Assuming we have an endpoint to fetch data using a black box third-party API.
+
+Our user journey would be: given an end-user requested data from the black box endpoint, then endpoint should be rendered with data retrieved.
+
+We are going to implement a `black_box` apdex and error rate to capture the end-user experience.
+
+Let's create the file `lib/gitlab/metrics/blackbox_slis.rb` in the [Rails app](https://gitlab.com/gitlab-org/gitlab). It will contain the SLI implementation:
+
+```diff
+diff --git a/lib/gitlab/metrics/blackbox_slis.rb b/lib/gitlab/metrics/blackbox_slis.rb
+new file mode 100644
+index 000000000000..2c2e2cb53089
+--- /dev/null
++++ b/lib/gitlab/metrics/blackbox_slis.rb
+@@ -0,0 +1,39 @@
++# frozen_string_literal: true
++
++module Gitlab
++  module Metrics
++    module BlackboxSlis
++      class << self
++        THRESHOLD_IN_SECONDS = 2
++
++        def initialize_slis!
++          request_labels = possible_request_labels
++          Gitlab::Metrics::Sli::Apdex.initialize_sli(:black_box, request_labels)
++          Gitlab::Metrics::Sli::ErrorRate.initialize_sli(:black_box, request_labels)
++        end
++
++        def apdex
++          Gitlab::Metrics::Sli::Apdex[:black_box]
++        end
++
++        def error_rate
++          Gitlab::Metrics::Sli::ErrorRate[:black_box]
++        end
++
++        def record_apdex(labels, duration)
++          apdex.increment(labels: labels, success: duration < THRESHOLD_IN_SECONDS)
++        end
++
++        def record_error(labels)
++          error_rate.increment(labels: labels, error: true)
++        end
++
++        private
++
++        def possible_request_labels
++          [{ feature_category: :error_budgets }]
++        end
++      end
++    end
++  end
++end
+```
+
+Our `BlackboxSlis` library will be built on top of `Gitlab::Metrics::Sli::Apdex` and `Gitlab::Metrics::Sli::ErrorRate`, which provide building blocks for us.
+
+The `initialize_slis!` method will take care of initializing the `Gitlab::Metrics::Sli::Apdex` and `Gitlab::Metrics::Sli::ErrorRate` with its expected set of labels. This initialization is done to avoid gaps in scraped metrics after restarts. It makes sure all counters are available at process start. It's a good practice to always initialize your metrics before putting them to use.
+
+The `record_apdex` method increments in case of success. The `success` parameter receives a boolean and we compare the duration of the request against the `THRESHOLD_IN_SECONDS`. If it is bigger than the threshold specified, then apdex is not being met.
+
+The `record_error` method increments in case of error while trying to access the black box API.
+
+With the `Gitlab::Metrics::BlackboxSlis` implemented. We need to initialize it:
+
+```diff
+diff --git a/config/initializers/zz_metrics.rb b/config/initializers/zz_metrics.rb
+index e6ae5af28c4f..b9e1bdccad31 100644
+--- a/config/initializers/zz_metrics.rb
++++ b/config/initializers/zz_metrics.rb
+@@ -33,6 +33,7 @@
+     Gitlab::Metrics::RequestsRackMiddleware.initialize_metrics
+     Gitlab::Metrics::Middleware::PathTraversalCheck.initialize_slis!
+     Gitlab::Metrics::GlobalSearchSlis.initialize_slis!
++    Gitlab::Metrics::BlackboxSlis.initialize_slis!
+   elsif Gitlab::Runtime.sidekiq?
+     Gitlab::Metrics::GlobalSearchIndexingSlis.initialize_slis! if Gitlab.ee?
+     Gitlab::Metrics::LooseForeignKeysSlis.initialize_slis!
+```
+
+After that, we should be able to start the Rails app and access the metrics endpoint (`http://127.0.0.1:3000/-/metrics` in development). We are going to see the SLI counters zeroed:
+
+![Black Box SLI Initialized](./black_box_sli_initialized.png)
+
+To record the apdex, we need to wrap the `BlackBox.fetch` call to capture the elapsed time and call the `record_apdex` method to increment the apdex:
+
+```diff
+diff --git a/app/controllers/fetcher_controller.rb b/app/controllers/fetcher_controller.rb
+index 72b7b71e23df..9ebb142cfa48 100644
+--- a/app/controllers/fetcher_controller.rb
++++ b/app/controllers/fetcher_controller.rb
+@@ -4,7 +4,13 @@ class FetcherController < ApplicationController
+   feature_category :error_budgets
+
+   def index
++    labels = { feature_category: feature_category }
++
++    started = ::Gitlab::Metrics::System.monotonic_time
+     n = BlackBox.fetch
++    elapsed = ::Gitlab::Metrics::System.monotonic_time - started
++    ::Gitlab::Metrics::BlackboxSlis.record_apdex(labels, elapsed)
++
+     render json: { latency: n }
+   end
+ end
+```
+
+To record the error rate, we need to rescue any `BlackBox` specific exception and increment the error rate:
+
+```diff
+diff --git a/app/controllers/fetcher_controller.rb b/app/controllers/fetcher_controller.rb
+index 9ebb142cfa48..c8fe5f142e13 100644
+--- a/app/controllers/fetcher_controller.rb
++++ b/app/controllers/fetcher_controller.rb
+@@ -12,5 +12,8 @@ def index
+     ::Gitlab::Metrics::BlackboxSlis.record_apdex(labels, elapsed)
+
+     render json: { latency: n }
++  rescue BlackBox::Error => ex
++    ::Gitlab::Metrics::BlackboxSlis.record_error(labels)
++    render json: { error: ex.message }, status: :unprocessable_entity
+   end
+ end
+```
+
+After multiple calls, the metrics will be incremented accordingly:
+
+![Black Box SLI incremented](./black_box_sli_increments.png)
+
+If you'd like to view the changes above in a merge request, you can do so in [this URL](https://gitlab.com/gitlab-org/gitlab/-/merge_requests/176179).
+
+With the Rails app instrumented, let's jump to [Runbooks](https://gitlab.com/gitlab-com/runbooks) where we are going to add the newly created SLI to the SLI library.
+
+Open the file `metrics-catalog/gitlab-slis/library.libsonnet` and add the new SLI:
+
+```diff
+diff --git a/metrics-catalog/gitlab-slis/library.libsonnet b/metrics-catalog/gitlab-slis/library.libsonnet
+index 04e59f267..5fce2fbb1 100644
+--- a/metrics-catalog/gitlab-slis/library.libsonnet
++++ b/metrics-catalog/gitlab-slis/library.libsonnet
+@@ -176,6 +176,18 @@ local list = [
+       at least one database transaction within the Sidekiq job has exceeded the threshold duration.
+     |||,
+   }),
++  sliDefinition.new({
++    name: 'black_box',
++    significantLabels: ['feature_category'],
++    featureCategory: 'error_budgets',
++    kinds: [sliDefinition.apdexKind, sliDefinition.errorRateKind],
++    description: |||
++      These signifies operations that reach out to a black box API. Requests should take no more than 5s.
++
++      A success means that we were able to present the user with a response.
++      An error could be that the black box API is not responding, or is erroring.
++    |||,
++  }),
+ ];
+
+ local definitionsByName = std.foldl(
+```
+
+It is comprised of an apdex (represented as `sliDefinition.apdexKind`) and error rate (represented as `sliDefinition.errorRateKind`). The only significant label is `feature_category`.
+
+Adding it to the SLI library is not enough. We should associate the SLI with a service. Let's add it to the `web` service:
+
+```diff
+diff --git a/metrics-catalog/services/web.jsonnet b/metrics-catalog/services/web.jsonnet
+index 0ec4c16f9..71c6b20cf 100644
+--- a/metrics-catalog/services/web.jsonnet
++++ b/metrics-catalog/services/web.jsonnet
+@@ -294,5 +294,8 @@ metricsCatalog.serviceDefinition({
+   }) + sliLibrary.get('global_search').generateServiceLevelIndicator(railsSelector, {
+     serviceAggregation: false,  // Don't add this to the request rate of the service
+     severity: 's3',  // Don't page SREs for this SLI
++  }) + sliLibrary.get('black_box').generateServiceLevelIndicator(railsSelector, {
++    serviceAggregation: false,  // Don't add this to the request rate of the service
++    severity: 's3',  // Don't page SREs for this SLI
+   }),
+ })
+```
+
+By running `make generate` it will generate multiple files related to the new SLI:
+
+```shell
+metrics-catalog/services/web.jsonnet
+mimir-rules/gitlab-gprd/web/autogenerated-gitlab-gprd-web-aggregated-application-sli-metrics.yml
+mimir-rules/gitlab-gprd/web/autogenerated-gitlab-gprd-web-component-aggregation.yml
+mimir-rules/gitlab-gprd/web/autogenerated-gitlab-gprd-web-feature_category-aggregation.yml
+mimir-rules/gitlab-gprd/web/autogenerated-gitlab-gprd-web-regional_component-aggregation.yml
+mimir-rules/gitlab-gprd/web/autogenerated-gitlab-gprd-web-service-level-alerts.yml
+mimir-rules/gitlab-gprd/web/autogenerated-gitlab-gprd-web-sli-aggregations.yml
+mimir-rules/gitlab-gprd/web/autogenerated-gitlab-gprd-web-web-service-slos.yml
+mimir-rules/gitlab-gstg/web/autogenerated-gitlab-gstg-web-aggregated-application-sli-metrics.yml
+mimir-rules/gitlab-gstg/web/autogenerated-gitlab-gstg-web-component-aggregation.yml
+mimir-rules/gitlab-gstg/web/autogenerated-gitlab-gstg-web-feature_category-aggregation.yml
+mimir-rules/gitlab-gstg/web/autogenerated-gitlab-gstg-web-regional_component-aggregation.yml
+mimir-rules/gitlab-gstg/web/autogenerated-gitlab-gstg-web-service-level-alerts.yml
+mimir-rules/gitlab-gstg/web/autogenerated-gitlab-gstg-web-sli-aggregations.yml
+mimir-rules/gitlab-gstg/web/autogenerated-gitlab-gstg-web-web-service-slos.yml
+mimir-rules/gitlab-pre/web/autogenerated-gitlab-pre-web-aggregated-application-sli-metrics.yml
+mimir-rules/gitlab-pre/web/autogenerated-gitlab-pre-web-component-aggregation.yml
+mimir-rules/gitlab-pre/web/autogenerated-gitlab-pre-web-feature_category-aggregation.yml
+mimir-rules/gitlab-pre/web/autogenerated-gitlab-pre-web-regional_component-aggregation.yml
+mimir-rules/gitlab-pre/web/autogenerated-gitlab-pre-web-service-level-alerts.yml
+mimir-rules/gitlab-pre/web/autogenerated-gitlab-pre-web-sli-aggregations.yml
+mimir-rules/gitlab-pre/web/autogenerated-gitlab-pre-web-web-service-slos.yml
+```
+
+These files are recording rules. They are part of the [metrics catalog](metrics-catalog/README.md) and are used for recording the error budget over time and alerts based on the SLOs (service level objectives) defined for the service. Each GitLab environment will have its own set of recording rules.
+
+If you'd like to view the changes above in a merge request, you can do so in [this URL](https://gitlab.com/gitlab-com/runbooks/-/merge_requests/8305).
+
+### Need help?
+
+Need help or noticed anything missing? Please reach out to the observability team in [Slack](https://gitlab.enterprise.slack.com/archives/C065RLJB8HK) and let us know.
