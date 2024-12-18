@@ -123,7 +123,7 @@ local excludedRedisInstances = ['redis-tracechunks'];
   }),
 
   redis_memory_sessions: resourceSaturationPoint(maxMemoryDefinition {
-    appliesTo: ['redis-sessions'],  // No need for tags, this is specifically targeted
+    appliesTo: ['redis-sessions', 'redis-cluster-sessions'],  // No need for tags, this is specifically targeted
     description: |||
       Redis maxmemory utilization per node
 

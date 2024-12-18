@@ -1599,6 +1599,33 @@ services:
       monitors:
         primary_grafana_dashboard: redis-cluster-repo-cache-main/redis-cluster-repo-cache-overview
 
+  - name: redis-cluster-sessions
+    tier: db
+    friendly_name: Redis Cluster Sessions
+    label: RedisClusterSessions
+    owner: data-access:durability
+    technical:
+      project:
+        - https://github.com/redis/redis
+      documents:
+        design:
+        architecture:
+        readiness_review:
+        sre_guide: https://gitlab.com/gitlab-com/runbooks/-/blob/master/docs/redis/redis-cluster.md
+        developer_guide: https://docs.gitlab.com/ee/development/redis.html#redis-guidelines
+        service:
+          - https://redis.io/documentation
+          - https://docs.gitlab.com/omnibus/settings/redis.html
+        security:
+      dependencies:
+        - service:
+      logging:
+        - name: system
+          permalink:
+    observability:
+      monitors:
+        primary_grafana_dashboard: redis-cluster-sessions-main/redis-cluster-sessions-overview
+
   - name: redis-sessions
     tier: db
     friendly_name: Redis Sessions

@@ -50,6 +50,7 @@ metricsCatalog.serviceDefinition({
     'redis-cluster-feature-flag': true,
     'redis-cluster-queues-meta': true,
     'redis-cluster-repo-cache': true,
+    'redis-cluster-sessions': true,
     'redis-sidekiq': true,
     'redis-sessions': true,
     'redis-db-load-balancing': true,
