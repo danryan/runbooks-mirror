@@ -52,6 +52,7 @@
   import 'postgres-archive.jsonnet',
   import 'redis-cluster-cache.jsonnet',
   import 'redis-cluster-chat-cache.jsonnet',
+  import 'redis-cluster-database-lb.jsonnet',
   import 'redis-cluster-feature-flag.jsonnet',
   import 'redis-cluster-queues-meta.jsonnet',
   import 'redis-cluster-ratelimiting.jsonnet',
