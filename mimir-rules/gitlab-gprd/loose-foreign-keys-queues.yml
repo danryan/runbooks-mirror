@@ -1,9 +1,9 @@
 groups:
-- name: Loose Foreign Key Processed Deleted Queue
+- name: Loose Foreign Key Queue
   rules:
   - alert: LooseForeignKeyProcessedDeletedQueueTooLarge
     expr: >
-      sum by(table) (increase(loose_foreign_key_processed_deleted_records{env="gprd"}[60m])) > 1000000
+      count by(relname, type) (pg_stat_user_tables_n_live_tup{env="gprd", relname=~"loose_foreign_keys_.*", schemaname="gitlab_partitions_dynamic", type=~"(patroni|patroni-ci|patroni-sec)"}) > 2
     for: 60m
     labels:
       severity: 's3'
@@ -12,5 +12,5 @@ groups:
       type: logging
     annotations:
       title: "Large amount of enqueued loose foreign key records for deletion"
-      description: "There have been over 1m LooseForeignKey records enqueued in env {{ $labels.env }} for table {{ $labels.table }} for the last 60 minutes."
+      description: "The partition count for LooseForeignKey records in env {{ $labels.env }} has exceeded 1 for the last 60 minutes."
       grafana_dashboard_id: sidekiq-loose-foreign-keys/sidekiq3a-loose-foreign-keys-processing
