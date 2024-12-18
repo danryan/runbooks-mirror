@@ -90,13 +90,6 @@ groups:
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
-      feature_category: secure_artifacts
-      monitor: global
-      product_stage: software_supply_chain_security
-      stage_group: pipeline_security
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
       feature_category: attack_emulation
       monitor: global
       product_stage: application_security_testing
@@ -127,15 +120,8 @@ groups:
     labels:
       feature_category: build
       monitor: global
-      product_stage: systems
-      stage_group: distribution_build
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
-      feature_category: capacity_planning
-      monitor: global
-      product_stage: platforms
-      stage_group: scalability
+      product_stage: gitlab_delivery
+      stage_group: build
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
@@ -169,8 +155,8 @@ groups:
     labels:
       feature_category: cloud_native_installation
       monitor: global
-      product_stage: systems
-      stage_group: distribution_deploy
+      product_stage: gitlab_delivery
+      stage_group: self_managed
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
@@ -288,15 +274,15 @@ groups:
     labels:
       feature_category: dedicated
       monitor: global
-      product_stage: platforms
-      stage_group: dedicated
+      product_stage: gitlab_dedicated
+      stage_group: environment_automation
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
       feature_category: delivery
       monitor: global
-      product_stage: platforms
-      stage_group: delivery
+      product_stage: gitlab_delivery
+      stage_group: release
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
@@ -388,13 +374,6 @@ groups:
       monitor: global
       product_stage: deploy
       stage_group: environments
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
-      feature_category: error_budgets
-      monitor: global
-      product_stage: platforms
-      stage_group: scalability
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
@@ -510,13 +489,6 @@ groups:
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
-      feature_category: infrastructure_cost_data
-      monitor: global
-      product_stage: platforms
-      stage_group: scalability
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
       feature_category: insider_threat
       monitor: global
       product_stage: software_supply_chain_security
@@ -624,8 +596,8 @@ groups:
     labels:
       feature_category: omnibus_package
       monitor: global
-      product_stage: systems
-      stage_group: distribution_deploy
+      product_stage: gitlab_delivery
+      stage_group: self_managed
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
@@ -708,7 +680,7 @@ groups:
     labels:
       feature_category: pubsec_services
       monitor: global
-      product_stage: platforms
+      product_stage: gitlab_dedicated
       stage_group: pubsec_services
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
@@ -720,17 +692,10 @@ groups:
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
-      feature_category: rate_limiting
+      feature_category: rTBD
       monitor: global
-      product_stage: platforms
-      stage_group: scalability
-    expr: "1"
-  - record: gitlab:feature_category:stage_group:mapping
-    labels:
-      feature_category: redis
-      monitor: global
-      product_stage: platforms
-      stage_group: scalability
+      product_stage: production_engineering
+      stage_group: foundations
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
@@ -769,10 +734,10 @@ groups:
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
-      feature_category: scalability
+      feature_category: runway
       monitor: global
-      product_stage: platforms
-      stage_group: scalability
+      product_stage: production_engineering
+      stage_group: ops
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping
     labels:
@@ -869,7 +834,7 @@ groups:
     labels:
       feature_category: switchboard
       monitor: global
-      product_stage: platforms
+      product_stage: gitlab_dedicated
       stage_group: switchboard
     expr: "1"
   - record: gitlab:feature_category:stage_group:mapping

@@ -143,42 +143,6 @@ groups:
       product_stage: modelops
       stage_group: dataops
     expr: "1"
-- name: 'Stage group Ignored components: platforms - GitLab Dedicated'
-  interval: 1m
-  rules:
-  - record: gitlab:ignored_component:stage_group
-    labels:
-      component: graphql_query
-      product_stage: platforms
-      stage_group: dedicated
-    expr: "1"
-- name: 'Stage group Ignored components: platforms - Delivery'
-  interval: 1m
-  rules:
-  - record: gitlab:ignored_component:stage_group
-    labels:
-      component: graphql_query
-      product_stage: platforms
-      stage_group: delivery
-    expr: "1"
-- name: 'Stage group Ignored components: systems - Distribution::Build'
-  interval: 1m
-  rules:
-  - record: gitlab:ignored_component:stage_group
-    labels:
-      component: graphql_query
-      product_stage: systems
-      stage_group: distribution_build
-    expr: "1"
-- name: 'Stage group Ignored components: systems - Distribution::Deploy'
-  interval: 1m
-  rules:
-  - record: gitlab:ignored_component:stage_group
-    labels:
-      component: graphql_query
-      product_stage: systems
-      stage_group: distribution_deploy
-    expr: "1"
 - name: 'Stage group Ignored components: ai-powered - Duo Chat'
   interval: 1m
   rules:
@@ -387,7 +351,7 @@ groups:
       product_stage: verify
       stage_group: runner
     expr: "1"
-- name: 'Stage group Ignored components: security_risk_management - Threat Insights'
+- name: 'Stage group Ignored components: security_risk_management - Security Insights'
   interval: 1m
   rules:
   - record: gitlab:ignored_component:stage_group

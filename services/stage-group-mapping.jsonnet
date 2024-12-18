@@ -273,7 +273,7 @@
     ],
   },
   security_insights: {
-    name: 'Threat Insights',
+    name: 'Security Insights',
     stage: 'security_risk_management',
     feature_categories: [
       'vulnerability_management',
@@ -368,19 +368,68 @@
       'cloud_connector',
     ],
   },
-  distribution_build: {
-    name: 'Distribution::Build',
-    stage: 'systems',
+  build: {
+    name: 'GitLab Build',
+    stage: 'gitlab_delivery',
     feature_categories: [
       'build',
     ],
   },
-  distribution_deploy: {
-    name: 'Distribution::Deploy',
-    stage: 'systems',
+  self_managed: {
+    name: 'Self Managed',
+    stage: 'gitlab_delivery',
     feature_categories: [
       'omnibus_package',
       'cloud_native_installation',
+    ],
+  },
+  release: {
+    name: 'GitLab Release',
+    stage: 'gitlab_delivery',
+    feature_categories: [
+      'delivery',
+    ],
+  },
+  deploy: {
+    name: 'GitLab Deploy',
+    stage: 'gitlab_delivery',
+    feature_categories: [
+
+    ],
+  },
+  framework: {
+    name: 'Framework',
+    stage: 'gitlab_delivery',
+    feature_categories: [
+
+    ],
+  },
+  ops: {
+    name: 'Ops',
+    stage: 'production_engineering',
+    feature_categories: [
+      'runway',
+    ],
+  },
+  runway: {
+    name: 'Runway',
+    stage: 'production_engineering',
+    feature_categories: [
+
+    ],
+  },
+  foundations: {
+    name: 'Foundations',
+    stage: 'production_engineering',
+    feature_categories: [
+      'rTBD',
+    ],
+  },
+  observability: {
+    name: 'Observability',
+    stage: 'production_engineering',
+    feature_categories: [
+
     ],
   },
   gitaly: {
@@ -442,42 +491,23 @@
       'disaster_recovery',
     ],
   },
-  delivery: {
-    name: 'Delivery',
-    stage: 'platforms',
-    feature_categories: [
-      'delivery',
-    ],
-  },
-  scalability: {
-    name: 'Scalability',
-    stage: 'platforms',
-    feature_categories: [
-      'scalability',
-      'error_budgets',
-      'infrastructure_cost_data',
-      'capacity_planning',
-      'redis',
-      'rate_limiting',
-    ],
-  },
-  dedicated: {
-    name: 'GitLab Dedicated',
-    stage: 'platforms',
+  environment_automation: {
+    name: 'Environment Automation',
+    stage: 'gitlab_dedicated',
     feature_categories: [
       'dedicated',
     ],
   },
   switchboard: {
     name: 'Switchboard',
-    stage: 'platforms',
+    stage: 'gitlab_dedicated',
     feature_categories: [
       'switchboard',
     ],
   },
   pubsec_services: {
     name: 'US Public Sector Services',
-    stage: 'platforms',
+    stage: 'gitlab_dedicated',
     feature_categories: [
       'pubsec_services',
     ],
@@ -555,6 +585,13 @@
 
     ],
   },
+  development_analytics: {
+    name: 'Development Analytics',
+    stage: 'developer_experience',
+    feature_categories: [
+
+    ],
+  },
   quality: {
     name: 'Quality',
     stage: 'unlisted_stage',
@@ -578,13 +615,6 @@
   },
   technical_writing: {
     name: 'Technical Writing',
-    stage: 'unlisted_stage',
-    feature_categories: [
-
-    ],
-  },
-  engineering_analytics: {
-    name: 'Engineering Analytics',
     stage: 'unlisted_stage',
     feature_categories: [
 

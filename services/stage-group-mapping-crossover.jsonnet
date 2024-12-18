@@ -6,5 +6,10 @@
 //
 // Blank values will be ignored.
 {
-  secure_artifacts: 'artifact_security',
+  scalability: '',
+  error_budgets: '',
+  infrastructure_cost_data: '',
+  capacity_planning: '',
+  redis: '',
+  rate_limiting: '',
 }
