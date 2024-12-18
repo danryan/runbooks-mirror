@@ -1,9 +1,9 @@
-local datasource = import './datasource.libsonnet';
 local saturationDetail = import './saturation_detail.libsonnet';
 local grafana = import 'github.com/grafana/grafonnet-lib/grafonnet/grafana.libsonnet';
 local metricsConfig = import 'gitlab-metrics-config.libsonnet';
 local basic = import 'grafana/basic.libsonnet';
 local layout = import 'grafana/layout.libsonnet';
+local datasource = import 'grafonnet-dashboarding/gitlab-dashboards/datasource.libsonnet';
 local selectors = import 'promql/selectors.libsonnet';
 local metricsCatalog = import 'servicemetrics/metrics-catalog.libsonnet';
 local saturationResources = import 'servicemetrics/saturation-resources.libsonnet';

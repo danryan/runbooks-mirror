@@ -14,7 +14,8 @@ local metricsCatalog = import 'servicemetrics/metrics-catalog.libsonnet';
 local gitlabMetricsConfig = (import 'gitlab-metrics-config.libsonnet');
 local row = grafana.row;
 local commonAnnotations = import 'grafana/common_annotations.libsonnet';
-local datasource = import './datasource.libsonnet';
+
+local datasource = import 'grafonnet-dashboarding/gitlab-dashboards/datasource.libsonnet';
 
 local defaultEnvironmentSelector = gitlabMetricsConfig.grafanaEnvironmentSelector;
 

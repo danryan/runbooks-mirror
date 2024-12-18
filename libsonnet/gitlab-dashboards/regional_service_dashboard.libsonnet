@@ -1,8 +1,8 @@
-local datasource = import './datasource.libsonnet';
 local metricsCatalogDashboards = import './metrics_catalog_dashboards.libsonnet';
 local basic = import 'grafana/basic.libsonnet';
 local layout = import 'grafana/layout.libsonnet';
 local templates = import 'grafana/templates.libsonnet';
+local datasource = import 'grafonnet-dashboarding/gitlab-dashboards/datasource.libsonnet';
 local singleMetricRow = import 'key-metric-panels/single-metric-row.libsonnet';
 local metricsCatalog = import 'servicemetrics/metrics-catalog.libsonnet';
 

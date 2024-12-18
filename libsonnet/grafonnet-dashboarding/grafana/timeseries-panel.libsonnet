@@ -1,0 +1,87 @@
+local g = import 'grafonnet-dashboarding/grafana/g.libsonnet';
+local timeSeries = g.panel.timeSeries;
+local defaultFieldConfig = timeSeries.fieldConfig.defaults.custom;
+
+local array = import 'utils/array.libsonnet';
+
+local withStableId(stableId) = if stableId != null then { stableId: stableId } else {};
+
+// in Grafonnet-lib this was called a `graphPanel`
+{
+  new(
+    title,
+    linewidth=1,
+    fill=null,
+    description='',
+    decimals=2,
+    sort='desc',
+    legend_show=true,
+    legend_values=true,
+    legend_min=true,
+    legend_max=true,
+    legend_current=true,
+    legend_total=false,
+    legend_avg=true,
+    legend_alignAsTable=true,
+    legend_hideEmpty=true,
+    legend_rightSide=false,
+    thresholds=[],
+    points=false,
+    pointradius=5,
+    stableId=null,
+    lines=true,
+    stack=false,
+    bars=false,
+  )::
+    assert !bars : 'use a barchart instead https://grafana.github.io/grafonnet/API/panel/barChart/index.html';
+    assert fill == null : '`fill` is not supported by grafonnet, use opacity (I think)';
+
+    local legendCalcs =
+      if legend_values then
+        local orderedCalcs = ['min', 'max', 'mean', 'lastNotNull', 'total'];
+        local selectedCalcs =
+          []
+          + (if legend_current then ['lastNotNull'] else [])
+          + (if legend_min then ['min'] else [])
+          + (if legend_max then ['max'] else [])
+          + (if legend_avg then ['mean'] else [])
+          + (if legend_total then ['total'] else []);
+        std.sort(selectedCalcs, function(e) array.indexOf(orderedCalcs, e))
+      else [];
+    local legendPlacement = if legend_rightSide then 'right' else 'bottom';
+
+    local stackingConfig = if stack then defaultFieldConfig.stacking.withMode('normal') else {};
+
+    local panel =
+      timeSeries.new(title)
+      + defaultFieldConfig.withLineWidth(linewidth)
+      + defaultFieldConfig.withShowPoints(if points then 'always' else 'auto')
+      + timeSeries.panelOptions.withDescription(description)
+      + timeSeries.standardOptions.withDecimals(decimals)
+      // + timeSeries.options.withLegendMixin(
+      + timeSeries.options.legend.withShowLegend(legend_show)
+      + timeSeries.options.legend.withSortDesc(sort == 'desc')
+      + timeSeries.options.legend.withDisplayMode('table')
+      + timeSeries.options.legend.withCalcsMixin(legendCalcs)
+      + timeSeries.options.legend.withPlacement(legendPlacement)
+      // )
+      + stackingConfig
+      + withStableId(stableId);
+
+    panel {
+      // I'm on the fence... I liked the builder pattern better, but grafonnet doesn't...
+      // These are currently unused.
+      addTarget(query)::
+        self + timeSeries.queryOptions.withTargetsMixin([query]),
+      addSeriesOverride(override)::
+        self + timeSeries.standardOptions.withOverridesMixin(override),
+    },
+
+  g:: timeSeries,
+  defaultFieldConfig:: defaultFieldConfig,
+
+  ratioOptions::
+    $.g.standardOptions.withUnit('percentunit')
+    + $.g.standardOptions.withDecimals(1),
+
+}
