@@ -176,6 +176,18 @@ local list = [
       at least one database transaction within the Sidekiq job has exceeded the threshold duration.
     |||,
   }),
+  sliDefinition.new({
+    name: 'black_box',
+    significantLabels: ['feature_category'],
+    featureCategory: 'error_budgets',
+    kinds: [sliDefinition.apdexKind, sliDefinition.errorRateKind],
+    description: |||
+      These signifies operations that reach out to a black box API. Requests should take no more than 5s.
+
+      A success means that we were able to present the user with a response.
+      An error could be that the black box API is not responding, or is erroring.
+    |||,
+  }),
 ];
 
 local definitionsByName = std.foldl(

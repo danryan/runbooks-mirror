@@ -30,6 +30,20 @@ groups:
     expr: "0.000100"
   - record: slo:min:events:gitlab_service_apdex:ratio
     labels:
+      component: black_box
+      monitor: global
+      tier: sv
+      type: web
+    expr: "0.998000"
+  - record: slo:max:events:gitlab_service_errors:ratio
+    labels:
+      component: black_box
+      monitor: global
+      tier: sv
+      type: web
+    expr: "0.000100"
+  - record: slo:min:events:gitlab_service_apdex:ratio
+    labels:
       component: dependency_proxy
       monitor: global
       tier: sv
@@ -164,6 +178,16 @@ groups:
       tier: sv
       type: web
     expr: "0.000050"
+  - record: gitlab_component_service:mapping
+    labels:
+      component: black_box
+      global_aggregation: "no"
+      monitor: global
+      regional_aggregation: "yes"
+      service_aggregation: "no"
+      tier: sv
+      type: web
+    expr: "1"
   - record: gitlab_component_service:mapping
     labels:
       component: dependency_proxy
